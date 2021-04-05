@@ -2,13 +2,14 @@ import Router from 'next/router';
 import { mutate } from 'swr';
 import { useState, useCallback } from 'react';
 import ListErrors from './list-errors';
-import { login } from '../lib/api/user';
+import { register } from '../lib/api/user';
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const handleEmailChange = useCallback(
     (e) => setEmail(e.target.value),
@@ -18,13 +19,17 @@ export default function LoginForm() {
     (e) => setPassword(e.target.value),
     [],
   );
+  const handlePasswordConfirmationChange = useCallback(
+    (e) => setPasswordConfirmation(e.target.value),
+    [],
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const { data, status } = await login(email, password);
+      const { data, status } = await register(email, password, passwordConfirmation);
       if (status !== 200) {
         setErrors(data.errors);
       }
@@ -44,7 +49,6 @@ export default function LoginForm() {
   return (
     <>
       <ListErrors errors={errors} />
-
       <form onSubmit={handleSubmit}>
         <fieldset>
           <fieldset>
@@ -65,14 +69,24 @@ export default function LoginForm() {
             />
           </fieldset>
 
+          <fieldset>
+            <input
+              type="password"
+              placeholder="Password Confirmation"
+              value={passwordConfirmation}
+              onChange={handlePasswordConfirmationChange}
+            />
+          </fieldset>
+
           <button
             type="submit"
             disabled={isLoading}
           >
-            Sign in
+            Sign up
           </button>
         </fieldset>
       </form>
+
     </>
   );
 }
