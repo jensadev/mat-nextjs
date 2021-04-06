@@ -7,7 +7,7 @@ export default function Navlink({ href, children }) {
 
   let className = children.props.className || '';
   if (router.pathname === href) {
-    className = `${className} selected`;
+    className = `${className} active`;
   }
 
   return <Link href={href}>{cloneElement(children, { className })}</Link>;

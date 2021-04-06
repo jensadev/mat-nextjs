@@ -1,4 +1,7 @@
 {
   "food": "Mat",
-  "meal": "Måltid"
+  "meal": "Måltid",
+  "meal_plural": "Måltider",
+  "mealWithCount": "{{count}} måltid",
+  "mealWithCount_plural": "{{count}} måltider"
 }

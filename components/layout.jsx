@@ -17,12 +17,13 @@ export default function Layout({ children, home }) {
           content="Måltider"
         />
         <meta name="og:title" content={siteTitle} />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+          rel="stylesheet"
+        />
         <link rel="stylesheet" href="https://use.typekit.net/yis5dme.css" />
       </Head>
-      <header className={styles.header}>
-        <Navbar />
-      </header>
+      <Navbar />
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>

@@ -51,35 +51,29 @@ export default function LoginForm() {
       <ListErrors errors={errors} />
 
       <form onSubmit={handleSubmit}>
-        <fieldset>
-          <fieldset className={styles.formGroup}>
-            <label htmlFor="email" className="visually-hidden">{t('email')}</label>
-            <input
-              name="email"
-              type="email"
-              placeholder={t('email')}
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </fieldset>
-
-          <fieldset className={styles.formGroup}>
-            <label htmlFor="password" className="visually-hidden">{t('password')}</label>
-            <input
-              type="password"
-              placeholder={t('password')}
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          </fieldset>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-          >
-            {t('login')}
-          </button>
+        <fieldset className={styles.formGroup}>
+          <label htmlFor="email" className="visually-hidden">{t('email')}</label>
+          <input
+            name="email"
+            type="email"
+            placeholder={t('email')}
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <label htmlFor="password" className="visually-hidden">{t('password')}</label>
+          <input
+            type="password"
+            placeholder={t('password')}
+            value={password}
+            onChange={handlePasswordChange}
+          />
         </fieldset>
+        <button
+          type="submit"
+          disabled={isLoading}
+        >
+          {t('login')}
+        </button>
       </form>
     </>
   );
