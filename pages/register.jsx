@@ -1,10 +1,15 @@
+import Head from 'next/head';
 import RegisterForm from '../components/register-form';
-import styles from '../styles/Home.module.css';
+// import Link from 'next/link';
+import Layout, { siteTitle } from '../components/layout';
 
 export default function Login() {
   return (
-    <div className={styles.container}>
+    <Layout register>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
       <RegisterForm />
-    </div>
+    </Layout>
   );
 }

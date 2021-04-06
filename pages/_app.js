@@ -3,6 +3,12 @@
 /* eslint-disable react/jsx-filename-extension */
 import '../styles/globals.css';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
-}
+import { appWithTranslation } from 'next-i18next';
+
+// export default function App({ Component, pageProps }) {
+//   return <Component {...pageProps} />;
+// }
+
+const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
+
+export default appWithTranslation(MyApp);

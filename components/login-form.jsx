@@ -1,8 +1,11 @@
 import Router from 'next/router';
+import { useTranslation } from 'next-i18next';
+import { useCallback, useState } from 'react';
 import { mutate } from 'swr';
-import { useState, useCallback } from 'react';
-import ListErrors from './list-errors';
+
 import { login } from '../lib/api/user';
+import styles from './form.module.css';
+import ListErrors from './list-errors';
 
 export default function LoginForm() {
   const [isLoading, setLoading] = useState(false);
@@ -41,25 +44,30 @@ export default function LoginForm() {
     }
   };
 
+  const { t } = useTranslation('auth');
+
   return (
     <>
       <ListErrors errors={errors} />
 
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <fieldset>
+          <fieldset className={styles.formGroup}>
+            <label htmlFor="email" className="visually-hidden">{t('email')}</label>
             <input
+              name="email"
               type="email"
-              placeholder="Email"
+              placeholder={t('email')}
               value={email}
               onChange={handleEmailChange}
             />
           </fieldset>
 
-          <fieldset>
+          <fieldset className={styles.formGroup}>
+            <label htmlFor="password" className="visually-hidden">{t('password')}</label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t('password')}
               value={password}
               onChange={handlePasswordChange}
             />
@@ -69,7 +77,7 @@ export default function LoginForm() {
             type="submit"
             disabled={isLoading}
           >
-            Sign in
+            {t('login')}
           </button>
         </fieldset>
       </form>
