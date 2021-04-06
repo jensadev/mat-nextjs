@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -10,6 +11,7 @@ import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
 import Maybe from './maybe';
 import Navlink from './nav-link';
+import styles from './navbar.module.scss';
 
 export default function Navbar() {
   const router = useRouter();
@@ -27,7 +29,9 @@ export default function Navbar() {
       <nav id="navbar" className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <Navlink href="/">
-            <a className="navbar-brand">{t('home')}</a>
+            <a className="navbar-brand">
+              <img alt="logo" className={styles.logo} src="/images/tallrik.svg" height={96} width={96} />
+            </a>
           </Navlink>
           <button
             className="navbar-toggler"
@@ -79,11 +83,11 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <Maybe test={isLoggedIn}>
+      {/* <Maybe test={isLoggedIn}>
         <Navlink href={`/profile/${currentUser?.handle}`}>
           <a>{currentUser?.handle}</a>
         </Navlink>
-      </Maybe>
+      </Maybe> */}
     </>
   );
 }

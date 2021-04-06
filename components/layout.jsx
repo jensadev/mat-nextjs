@@ -1,15 +1,14 @@
 import Head from 'next/head';
-import Link from 'next/link';
 
-import styles from './layout.module.css';
+import Footer from './footer';
 import Navbar from './navbar';
 
 export const siteTitle = 'Mat';
 
 // eslint-disable-next-line react/prop-types
-export default function Layout({ children, home }) {
+export default function Layout({ children }) {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -24,14 +23,15 @@ export default function Layout({ children, home }) {
         <link rel="stylesheet" href="https://use.typekit.net/yis5dme.css" />
       </Head>
       <Navbar />
-      <main>{children}</main>
-      {!home && (
+      {children}
+      {/* {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
             <a>← Back to home</a>
           </Link>
         </div>
-      )}
-    </div>
+      )} */}
+      <Footer />
+    </>
   );
 }

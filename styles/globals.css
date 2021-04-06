@@ -1,9 +1,21 @@
+body, html {
+  height: 100%
+}
 body {
   font-family: azo-sans-web, sans-serif;
   color: #231f20;
   background-color: #fee4d1;
   font-size: 2rem;
   line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .home {
@@ -33,3 +45,13 @@ fieldset {
 }
 
 .md-48 { font-size: 48px; }
+
+#__next {
+  height: 100%;
+}
+
+.heroH1 {
+  font-size: 8rem;
+  font-weight: 900;
+  color: #fff;
+}

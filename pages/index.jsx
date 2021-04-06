@@ -137,9 +137,9 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section>
-        <h1>{t('meal')}</h1>
-      </section>
+      <main className="container d-flex h-100 align-items-center">
+        <h1 className="heroH1">{t('meal')}</h1>
+      </main>
     </Layout>
   );
 }
