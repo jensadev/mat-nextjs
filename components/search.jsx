@@ -40,8 +40,8 @@ export default function Search({ onDishSelect }) {
   };
 
   // useEffect(() => {
-  //   onDishSelect(dish);
-  // }, [dish]);
+  //   console.log(open);
+  // }, [open]);
 
   // const onChange = useCallback((e) => {
   //   const q = e.target.value;
@@ -88,7 +88,7 @@ export default function Search({ onDishSelect }) {
         placeholder="search"
         type="text"
       />
-      {open && !!filteredItems.length && (
+      {!!filteredItems.length && (
       <ul>
         {filteredItems.map(({ id, name }) => (
           <li key={id}>

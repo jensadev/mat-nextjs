@@ -28,7 +28,7 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <main className="container d-flex h-100 align-items-center">
+      <main className="container d-flex h-100 justify-content-center flex-column">
         <Maybe test={isLoggedIn}>
           <MealForm />
           <MealList />
