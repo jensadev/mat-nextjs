@@ -9,7 +9,6 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
-    "@material-ui/core": "^5.0.0-alpha.29",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta3",
     "next": "10.1.3",

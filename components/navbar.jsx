@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Head from 'next/head';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -9,7 +9,7 @@ import useSWR from 'swr';
 
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
-import Maybe from './maybe';
+// import Maybe from './maybe';
 import Navlink from './nav-link';
 import styles from './navbar.module.scss';
 
