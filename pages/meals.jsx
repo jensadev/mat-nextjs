@@ -6,6 +6,7 @@ import useSWR from 'swr';
 
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
+import MealForm from '../components/meal-form';
 import MealList from '../components/meal-list';
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
@@ -29,6 +30,7 @@ export default function Home() {
       </Head>
       <main className="container d-flex h-100 align-items-center">
         <Maybe test={isLoggedIn}>
+          <MealForm />
           <MealList />
         </Maybe>
       </main>
