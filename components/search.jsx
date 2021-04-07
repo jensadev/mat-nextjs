@@ -83,7 +83,7 @@ export default function Search({ onDishSelect }) {
       <input
         name="dish"
         value={dish}
-        onFocus={onFocus}
+        // onFocus={onFocus}
         onChange={onChange}
         placeholder="search"
         type="text"
