@@ -3,5 +3,18 @@
   "meal": "Måltid",
   "meal_plural": "Måltider",
   "mealWithCount": "{{count}} måltid",
-  "mealWithCount_plural": "{{count}} måltider"
+  "mealWithCount_plural": "{{count}} måltider",
+  "dish": "rätt",
+  "for": "till",
+  "mealtype": "måltidstyp",
+  "eaten": "har jag ätit",
+  "toeat": "ska jag äta",
+  "date": "datum",
+  "the": "den",
+  "reset": "rensa",
+  "create": "skapa",
+  "breakfast": "frukost",
+  "lunch": "lunch",
+  "dinner": "middag",
+  "dishplaceholder": "Skriv för att söka eller lägga till en rätt..."
 }

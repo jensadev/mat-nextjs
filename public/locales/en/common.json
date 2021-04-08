@@ -1,5 +1,18 @@
 {
   "meal": "Meal",
   "meal_plural": "Meals",
-  "food": "Food"
+  "food": "Food",
+  "dish": "dish",
+  "for": "for",
+  "mealtype": "meal type",
+  "eaten": "have I eaten",
+  "toeat": "will I eat",
+  "date": "date",
+  "the": "the",
+  "reset": "clear",
+  "create": "create",
+  "breakfast": "breakfast",
+  "lunch": "lunch",
+  "dinner": "dinner",
+  "dishplaceholder": "Type to search for or add a dish..."
 }
