@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import useSWR from 'swr';
 
@@ -12,8 +13,15 @@ export default function MealList() {
   // const getFetchURL = () => `${process.env.apiUrl}/meals`;
   // const fetchURL = useMemo(() => getFetchURL());
   const { data, error } = useSWR(`${process.env.apiUrl}/meals?page=${pageIndex}`, fetcher);
-
-  if (error) return <Alert error>Cannot load recent meals...</Alert>;
+  const { t } = useTranslation(['common', 'glossary']);
+  if (error) {
+    return (
+      <Alert error>
+        {t('cantload', { what: `${t('recent')} ${t('glossary:meal_plural')}` })}
+        ...
+      </Alert>
+    );
+  }
   if (!data) return <Loading />;
 
   const { pager, pageOfItems } = data;

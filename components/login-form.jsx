@@ -44,7 +44,7 @@ export default function LoginForm() {
     }
   };
 
-  const { t } = useTranslation('auth');
+  const { t } = useTranslation(['common', 'glossary']);
 
   return (
     <>

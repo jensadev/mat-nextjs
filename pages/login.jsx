@@ -9,13 +9,13 @@ import LoginForm from '../components/login-form';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'auth', 'navbar']),
+      ...await serverSideTranslations(locale, ['common', 'glossary']),
     },
   };
 }
 
 export default function Login() {
-  const { t } = useTranslation('auth');
+  const { t } = useTranslation(['common', 'glossary']);
   return (
     <Layout login>
       <Head>

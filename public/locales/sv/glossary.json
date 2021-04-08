@@ -1,0 +1,15 @@
+{
+  "breakfast": "frukost",
+  "dinner": "middag",
+  "dish": "rätt",
+  "dish_plural": "rätter",
+  "eaten": "har jag ätit",
+  "food": "mat",
+  "for": "till",
+  "lunch": "lunch",
+  "meal": "måltid",
+  "meal_plural": "måltider",
+  "mealtype": "måltidstyp",
+  "the": "den",
+  "toeat": "ska jag äta"
+}

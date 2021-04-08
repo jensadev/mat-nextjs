@@ -17,7 +17,7 @@ export default function Navbar() {
   const router = useRouter();
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
-  const { t } = useTranslation(['navbar', 'common']);
+  const { t } = useTranslation(['common', 'glossary']);
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -58,7 +58,7 @@ export default function Navbar() {
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
                 <Navlink href="/meals">
-                  <a className="nav-link">{t('common:meal_plural')}</a>
+                  <a className="nav-link">{t('glossary:meal_plural')}</a>
                 </Navlink>
               </li>
               <li className="nav-item">

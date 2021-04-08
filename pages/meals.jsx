@@ -1,6 +1,6 @@
 import Head from 'next/head';
 // import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
+// import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useSWR from 'swr';
 
@@ -14,7 +14,7 @@ import storage from '../lib/utils/storage';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'navbar']),
+      ...await serverSideTranslations(locale, ['common', 'glossary']),
     },
   };
 }
@@ -22,7 +22,7 @@ export async function getStaticProps({ locale }) {
 export default function Home() {
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
-  const { t } = useTranslation('common');
+  // const { t } = useTranslation('common');
   return (
     <Layout home>
       <Head>

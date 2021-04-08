@@ -1,0 +1,15 @@
+{
+  "breakfast": "breakfast",
+  "dinner": "dinner",
+  "dish": "dish",
+  "dish_plural": "dishes",
+  "eaten": "have I eaten",
+  "food": "food",
+  "for": "for",
+  "lunch": "lunch",
+  "meal": "meal",
+  "meal_plural": "meals",
+  "mealtype": "meal type",
+  "the": "the",
+  "toeat": "will I eat"
+}

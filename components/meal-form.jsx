@@ -17,11 +17,11 @@ import Loading from './loading';
 
 export default function MealForm() {
   const router = useRouter();
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['common', 'glossary']);
   const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
   const defaultValues = {
     date: Date.now(),
-    type: { value: '3', label: t('dinner') },
+    type: { value: '3', label: t('glossary:dinner') },
     dish: '',
   };
 
@@ -32,7 +32,14 @@ export default function MealForm() {
   const [values, setValues] = useState(null);
   const watchDate = watch('date');
 
-  if (error) return <Alert error>Cannot load dishes...</Alert>;
+  if (error) {
+    return (
+      <Alert error>
+        {t('cantload', { what: t('glossary:dish_plural') })}
+        ...
+      </Alert>
+    );
+  }
   if (!data) return <Loading />;
 
   console.table(values);
@@ -42,7 +49,7 @@ export default function MealForm() {
       <p>
         {format(watchDate, 'eeee', { locale: router.locale === 'en' ? en : sv })}
         {' '}
-        {t('the')}
+        {t('glossary:the')}
       </p>
       <label className="form-label visually-hidden">
         {t('date')}
@@ -63,8 +70,8 @@ export default function MealForm() {
       />
       <p>
         {watchDate > defaultValues.date
-          ? t('toeat')
-          : t('eaten')}
+          ? t('glossary:toeat')
+          : t('glossary:eaten')}
       </p>
       <label className="form-label visually-hidden">
         {t('dish')}
@@ -84,7 +91,7 @@ export default function MealForm() {
           />
         )}
       />
-      <p>{t('for')}</p>
+      <p>{t('glossary:for')}</p>
       <label className="form-label visually-hidden">
         {t('mealtype')}
       </label>
@@ -94,9 +101,9 @@ export default function MealForm() {
         render={({ field }) => (
           <ReactSelect
             options={[
-              { value: '1', label: t('breakfast') },
-              { value: '2', label: t('lunch') },
-              { value: '3', label: t('dinner') },
+              { value: '1', label: t('glossary:breakfast') },
+              { value: '2', label: t('glossary:lunch') },
+              { value: '3', label: t('glossary:dinner') },
             ]}
             {...field}
           />
