@@ -12,7 +12,7 @@ export default function ListItem({ meal }) {
       case 2:
         return (
           <span className="material-icons-round md-48">
-            bento
+            fastfood
           </span>
         );
       case 3:

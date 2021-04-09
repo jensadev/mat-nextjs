@@ -16,7 +16,7 @@ export default function MealList() {
   const { t } = useTranslation(['common', 'glossary']);
   if (error) {
     return (
-      <Alert error>
+      <Alert type="danger">
         {t('cantload', { what: `${t('recent')} ${t('glossary:meal_plural')}` })}
         ...
       </Alert>

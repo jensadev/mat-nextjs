@@ -11,11 +11,13 @@ import ReactSelect from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import useSWR from 'swr';
 
+import { store } from '../lib/api/meal';
 import fetcher from '../lib/utils/fetcher';
 import Alert from './alert';
 import Loading from './loading';
 
 export default function MealForm() {
+  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const { t } = useTranslation(['common', 'glossary']);
   const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
@@ -26,15 +28,14 @@ export default function MealForm() {
   };
 
   const {
-    handleSubmit, reset, control, watch, register,
+    handleSubmit, reset, control, watch, formState: { errors },
   } = useForm({ defaultValues });
 
-  const [values, setValues] = useState(null);
   const watchDate = watch('date');
 
   if (error) {
     return (
-      <Alert error>
+      <Alert type="danger">
         {t('cantload', { what: t('glossary:dish_plural') })}
         ...
       </Alert>
@@ -42,10 +43,35 @@ export default function MealForm() {
   }
   if (!data) return <Loading />;
 
-  console.table(values);
-  console.log(watchDate);
+  const onSubmit = async (values) => {
+    setLoading(true);
+    if (Object.entries(errors).length !== 0) {
+      return (
+        <Alert error>
+          Fel
+          ...
+        </Alert>
+      );
+    }
+    try {
+      const response = await store(
+        new Date(values.date).toISOString(),
+        values.type.value,
+        values.dish.value,
+      );
+      if (response.status !== 201) {
+        console.log(response.data.errors);
+      }
+      console.table(response.data.meal);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit((values) => setValues(values))} className="form">
+    <form onSubmit={handleSubmit(onSubmit)} className="form">
       <p>
         {format(watchDate, 'eeee', { locale: router.locale === 'en' ? en : sv })}
         {' '}
@@ -57,6 +83,10 @@ export default function MealForm() {
       <Controller
         control={control}
         name="date"
+        rules={{
+          required: true,
+          valueAsDate: true,
+        }}
         render={({ field }) => (
           <ReactDatePicker
             locale={router.locale === 'en' ? en : sv}
@@ -68,6 +98,7 @@ export default function MealForm() {
           />
         )}
       />
+      {errors.date && t('validation.required')}
       <p>
         {watchDate > defaultValues.date
           ? t('glossary:toeat')
@@ -79,8 +110,13 @@ export default function MealForm() {
       <Controller
         name="dish"
         control={control}
+        rules={{
+          required: true,
+          minLength: 4,
+        }}
         render={({ field }) => (
           <CreatableSelect
+            isValidNewOption={(option) => (option.length > 3)}
             placeholder={t('dishplaceholder')}
             isClearable
             options={data.dishes.map((dish) => ({
@@ -91,6 +127,8 @@ export default function MealForm() {
           />
         )}
       />
+      {errors.dish?.type === 'required' && t('validation.required')}
+      {errors.dish?.type === 'minLength' && t('validation.minLength', { length: 4 })}
       <p>{t('glossary:for')}</p>
       <label className="form-label visually-hidden">
         {t('mealtype')}
@@ -98,6 +136,9 @@ export default function MealForm() {
       <Controller
         name="type"
         control={control}
+        rules={{
+          required: true,
+        }}
         render={({ field }) => (
           <ReactSelect
             options={[
@@ -109,16 +150,18 @@ export default function MealForm() {
           />
         )}
       />
+      {errors.type && t('validation.required')}
       <button
         className="btn btn-warning"
         type="button"
+        disabled={isLoading}
         onClick={() => {
           reset(defaultValues);
         }}
       >
         {t('reset')}
       </button>
-      <button type="submit" className="btn btn-primary">{t('create')}</button>
+      <button type="submit" disabled={isLoading} className="btn btn-primary">{t('create')}</button>
     </form>
   );
 }
