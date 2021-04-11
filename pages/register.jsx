@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -21,8 +20,17 @@ export default function Login() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <h1>{t('register')}</h1>
-      <RegisterForm />
+      <main
+        className="d-flex h-100 justify-content-center flex-column"
+      >
+        <div className="h-50 w-100" style={{ backgroundColor: '#956FDE' }}>
+          <div className="container">
+            <h1>{t('register')}</h1>
+            <RegisterForm />
+          </div>
+
+        </div>
+      </main>
     </Layout>
   );
 }

@@ -28,10 +28,16 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <main className="container d-flex h-100 justify-content-center flex-column">
+      <main
+        className="d-flex h-100 justify-content-center flex-column"
+      >
         <Maybe test={isLoggedIn}>
           <MealForm />
-          <MealList />
+          <div className="h-50 w-100" style={{ backgroundColor: '#FF4D3C' }}>
+            <div className="container">
+              <MealList />
+            </div>
+          </div>
         </Maybe>
       </main>
     </Layout>

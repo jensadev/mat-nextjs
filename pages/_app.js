@@ -4,12 +4,16 @@
 import '../styles/custom.scss';
 import '../styles/globals.css';
 
+import { AnimatePresence } from 'framer-motion';
 import { appWithTranslation } from 'next-i18next';
-
 // export default function App({ Component, pageProps }) {
 //   return <Component {...pageProps} />;
 // }
 
-const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
+const MyApp = ({ Component, pageProps, router }) => (
+  <AnimatePresence exitBeforeEnter>
+    <Component {...pageProps} key={router.route} />
+  </AnimatePresence>
+);
 
 export default appWithTranslation(MyApp);
