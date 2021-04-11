@@ -1,5 +1,6 @@
 import 'react-datepicker/dist/react-datepicker.css';
 
+import { ErrorMessage } from '@hookform/error-message';
 import { format } from 'date-fns';
 import { en, sv } from 'date-fns/locale/';
 import { useRouter } from 'next/router';
@@ -98,7 +99,7 @@ export default function MealForm() {
           />
         )}
       />
-      {errors.date && t('validation.required')}
+      <ErrorMessage errors={errors} name="date" />
       <p>
         {watchDate > defaultValues.date
           ? t('glossary:toeat')
@@ -127,8 +128,7 @@ export default function MealForm() {
           />
         )}
       />
-      {errors.dish?.type === 'required' && t('validation.required')}
-      {errors.dish?.type === 'minLength' && t('validation.minLength', { length: 4 })}
+      <ErrorMessage errors={errors} name="dish" />
       <p>{t('glossary:for')}</p>
       <label className="form-label visually-hidden">
         {t('mealtype')}
@@ -150,7 +150,7 @@ export default function MealForm() {
           />
         )}
       />
-      {errors.type && t('validation.required')}
+      <ErrorMessage errors={errors} name="type" />
       <button
         className="btn btn-warning"
         type="button"

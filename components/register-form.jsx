@@ -1,42 +1,51 @@
+import { ErrorMessage } from '@hookform/error-message';
 import Router from 'next/router';
+import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
-import { useState, useCallback } from 'react';
-import ListErrors from './list-errors';
-import { register } from '../lib/api/user';
+
+import { store } from '../lib/api/user';
+import Alert from './alert';
 
 export default function RegisterForm() {
+  const { t } = useTranslation(['common', 'glossary']);
   const [isLoading, setLoading] = useState(false);
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const {
+    register, handleSubmit, formState: { errors }, setError, reset,
+  } = useForm();
 
-  const handleEmailChange = useCallback(
-    (e) => setEmail(e.target.value),
-    [],
-  );
-  const handlePasswordChange = useCallback(
-    (e) => setPassword(e.target.value),
-    [],
-  );
-  const handlePasswordConfirmationChange = useCallback(
-    (e) => setPasswordConfirmation(e.target.value),
-    [],
-  );
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (values) => {
     setLoading(true);
+    if (Object.keys(errors).length > 0) {
+      return (
+        <Alert error>
+          Fel
+          ...
+        </Alert>
+      );
+    }
 
     try {
-      const { data, status } = await register(email, password, passwordConfirmation);
-      if (status !== 200) {
-        setErrors(data.errors);
+      const response = await store(
+        values.email,
+        values.password,
+        values.passwordConfirmation,
+      );
+
+      if (response.status !== 200) {
+        console.table(response.data.errors);
+        Object.keys(response.data.errors).map((key, index) => {
+          setError(key.replace('users.', ''), {
+            type: 'manual',
+            message: response.data.errors[key][0],
+          });
+        });
       }
 
-      if (data?.user) {
-        window.localStorage.setItem('user', JSON.stringify(data.user));
-        mutate('user', data?.user);
+      if (response.data?.user) {
+        window.localStorage.setItem('user', JSON.stringify(response.data.user));
+        mutate('user', response.data?.user);
         Router.push('/');
       }
     } catch (error) {
@@ -47,46 +56,43 @@ export default function RegisterForm() {
   };
 
   return (
-    <>
-      <ListErrors errors={errors} />
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <fieldset>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </fieldset>
-
-          <fieldset>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          </fieldset>
-
-          <fieldset>
-            <input
-              type="password"
-              placeholder="Password Confirmation"
-              value={passwordConfirmation}
-              onChange={handlePasswordConfirmationChange}
-            />
-          </fieldset>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-          >
-            Sign up
-          </button>
-        </fieldset>
-      </form>
-
-    </>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="text" placeholder={t('common:email')} {...register('email', { required: true, pattern: /^\S+@\S+$/i })} />
+      <ErrorMessage errors={errors} name="email" />
+      {/* {errors.email && t('valuerequired', { what: t('email') })}
+      {errors.email && t('valueinvalid', { what: t('email') })} */}
+      <input type="password" placeholder={t('common:password')} {...register('password', { required: true })} />
+      <ErrorMessage errors={errors} name="password" />
+      <input type="password" placeholder={t('common:passwordConfirmation')} {...register('passwordConfirmation', { required: true })} />
+      <ErrorMessage errors={errors} name="passwordConfirmation" />
+      <button
+        className="btn btn-warning"
+        type="button"
+        disabled={isLoading}
+        onClick={() => {
+          reset();
+        }}
+      >
+        {t('reset')}
+      </button>
+      <button
+        className="btn btn-primary"
+        type="submit"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <>
+            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+            {t('loading')}
+            ...
+          </>
+        )
+          : (
+            <>
+              { t('register') }
+            </>
+          )}
+      </button>
+    </form>
   );
 }

@@ -9,6 +9,7 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.0",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta3",
     "date-fns": "^2.19.0",
