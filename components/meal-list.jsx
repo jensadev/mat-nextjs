@@ -28,7 +28,7 @@ export default function MealList() {
   // console.table(pager);
   return (
     <div className="w-100">
-      <ul>
+      <ul className="list-unstyled">
         {pageOfItems?.map((meal) => (
           // <li key={meal.id}>{meal.Dish.name}</li>
           <ListItem

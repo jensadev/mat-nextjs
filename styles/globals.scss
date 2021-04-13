@@ -111,3 +111,26 @@ fieldset {
     box-shadow: none;
   }
 }
+
+.content {
+  height: 80%;
+}
+
+.page-header {
+  position: relative;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 20%;
+  overflow: hidden;
+  .container {
+    z-index: 10;
+  }
+}
+
+.page-heading {
+  font-size: 6rem;
+  font-weight: 600;
+  color: #fff;
+}

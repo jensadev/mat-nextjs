@@ -12,6 +12,7 @@
 
 
 .open {
+  z-index: 200;
   color: #ff4d3c;
   opacity: .8;
   &:hover {
@@ -20,6 +21,7 @@
 }
 
 .close {
+  z-index: 200;
   color: #fff;
   opacity: .8;
   &:hover {

@@ -1,4 +1,6 @@
 {
   "passwordConfirmation": "passwordConfirmation",
-  "about": "about"
+  "about": "about",
+  "meal_plural": "meal_plural",
+  "listof": "listof"
 }

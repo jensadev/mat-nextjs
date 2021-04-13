@@ -94,7 +94,7 @@ export default function MealForm() {
             popperPlacement="top-end"
             locale={router.locale === 'en' ? en : sv}
             dateFormat="do LLLL"
-            className={styles.control}
+            className={`w-100 ${styles.control}`}
             placeholderText="Select date"
             onChange={(e) => field.onChange(e)}
             selected={field.value}
@@ -172,7 +172,7 @@ export default function MealForm() {
       />
       <ErrorMessage errors={errors} name="type" />
       <button
-        className="btn btn-warning"
+        className="btn w-100"
         type="button"
         disabled={isLoading}
         onClick={() => {
@@ -181,7 +181,14 @@ export default function MealForm() {
       >
         {t('reset')}
       </button>
-      <button type="submit" disabled={isLoading} className="btn btn-primary">{t('create')}</button>
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="btn w-100"
+      >
+        {t('create')}
+
+      </button>
     </form>
   );
 }

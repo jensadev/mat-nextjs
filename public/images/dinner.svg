@@ -8,7 +8,7 @@
 	.st2{display:none;}
 	.st3{font-family:'AzoSans-Black';}
 	.st4{font-size:18px;}
-	.st5{fill:none;stroke:#EF8187;stroke-width:4;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#EF8187;stroke-width:5;stroke-miterlimit:10;}
 	.st6{display:none;fill:none;stroke:#956FDE;stroke-width:4;stroke-miterlimit:10;}
 	.st7{fill:#231F20;}
 </style>

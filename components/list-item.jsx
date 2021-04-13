@@ -5,21 +5,30 @@ export default function ListItem({ meal }) {
     switch (type) {
       case 1:
         return (
-          <span className="material-icons-round md-48">
-            free_breakfast
-          </span>
+          <img
+            alt="breakfast"
+            src="/images/breakfast.svg"
+            height={64}
+            width={64}
+          />
         );
       case 2:
         return (
-          <span className="material-icons-round md-48">
-            fastfood
-          </span>
+          <img
+            alt="lunch"
+            src="/images/lunch.svg"
+            height={64}
+            width={64}
+          />
         );
       case 3:
         return (
-          <span className="material-icons-round md-48">
-            dinner_dining
-          </span>
+          <img
+            alt="dinner"
+            src="/images/dinner.svg"
+            height={64}
+            width={64}
+          />
         );
       default:
         return 'tom';
@@ -29,7 +38,7 @@ export default function ListItem({ meal }) {
     <li>
       <div className="d-flex">
         {mealIcon(meal.typeId)}
-        <p className="pb-3 ps-2 mb-0 lh-sm text-dark">
+        <p className="pb-3">
           <Date classes="d-block small text-muted" dateString={meal.date} />
           {meal.Dish.name}
         </p>

@@ -11,5 +11,6 @@
   "meal_plural": "måltider",
   "mealtype": "måltidstyp",
   "the": "den",
-  "toeat": "ska jag äta"
+  "toeat": "ska jag äta",
+  "listof": "Dina {{what}}"
 }

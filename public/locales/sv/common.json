@@ -3,7 +3,7 @@
  "cantload": "Kan inte ladda {{what}}",
  "create": "skapa",
  "date": "datum",
- "dishplaceholder": "Skriv för att söka eller lägga till en rätt...",
+ "dishplaceholder": "Skapa eller sök en rätt...",
  "email": "E-post",
  "home": "hem",
  "login": "logga in",
@@ -13,5 +13,6 @@
  "recent": "senaste",
  "register": "registrera",
  "reset": "rensa",
- "signup": "registrera dig"
+ "signup": "registrera dig",
+ "passwordConfirmation": "bekräfta lösenord"
 }
