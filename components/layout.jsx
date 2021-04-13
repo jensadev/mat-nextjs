@@ -92,11 +92,13 @@ export default function Layout({ children }) {
             <div className="d-flex flex-column h-100 px-md-5">
               <header className="page-header">
                 <div className="container ">
-                  <h2 className="page-heading">Add måltid</h2>
+                  <h1 className="page-heading">Add måltid</h1>
                 </div>
               </header>
-              <div className="container ">
-                <MealForm />
+              <div className="content w-100">
+                <div className="container ">
+                  <MealForm />
+                </div>
               </div>
             </div>
           </motion.div>

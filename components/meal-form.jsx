@@ -1,4 +1,4 @@
-import 'react-datepicker/dist/react-datepicker.css';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 import { ErrorMessage } from '@hookform/error-message';
 import { format } from 'date-fns';
@@ -74,12 +74,12 @@ export default function MealForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <p>
-        {format(watchDate, 'eeee', { locale: router.locale === 'en' ? en : sv })}
+      <p className={styles.capitalizeFirst}>
+        {format(watchDate || Date.now(), 'eeee', { locale: router.locale === 'en' ? en : sv })}
         {' '}
         {t('glossary:the')}
       </p>
-      <label className="form-label visually-hidden">
+      <label htmlFor="date" className="form-label visually-hidden">
         {t('date')}
       </label>
       <Controller
@@ -91,10 +91,23 @@ export default function MealForm() {
         }}
         render={({ field }) => (
           <ReactDatePicker
-            popperPlacement="top-end"
+            closeOnScroll
+            // popperClassName="some-custom-class"
+            popperPlacement="bottom-start"
+            popperModifiers={{
+              offset: {
+                enabled: true,
+                offset: '32px, 8px',
+              },
+              preventOverflow: {
+                enabled: true,
+                escapeWithReference: false,
+                boundariesElement: 'viewport',
+              },
+            }}
             locale={router.locale === 'en' ? en : sv}
             dateFormat="do LLLL"
-            className={`w-100 ${styles.control}`}
+            className="w-100"
             placeholderText="Select date"
             onChange={(e) => field.onChange(e)}
             selected={field.value}
@@ -102,12 +115,12 @@ export default function MealForm() {
         )}
       />
       <ErrorMessage errors={errors} name="date" />
-      <p>
+      <p className="pt-2">
         {watchDate > defaultValues.date
           ? t('glossary:toeat')
           : t('glossary:eaten')}
       </p>
-      <label className="form-label visually-hidden">
+      <label htmlFor="dish" className="form-label visually-hidden">
         {t('dish')}
       </label>
       <Controller
@@ -124,8 +137,8 @@ export default function MealForm() {
               borderRadius: 0,
               colors: {
                 ...theme.colors,
-                primary25: 'hotpink',
-                primary: 'black',
+                primary25: '#77D7DB',
+                primary: '#231F20',
               },
             })}
             isValidNewOption={(option) => (option.length > 3)}
@@ -140,8 +153,8 @@ export default function MealForm() {
         )}
       />
       <ErrorMessage errors={errors} name="dish" />
-      <p>{t('glossary:for')}</p>
-      <label className="form-label visually-hidden">
+      <p className="pt-2">{t('glossary:for')}</p>
+      <label htmlFor="type" className="form-label visually-hidden">
         {t('mealtype')}
       </label>
       <Controller
@@ -157,8 +170,8 @@ export default function MealForm() {
               borderRadius: 0,
               colors: {
                 ...theme.colors,
-                primary25: 'hotpink',
-                primary: 'black',
+                primary25: '#77D7DB',
+                primary: '#231F20',
               },
             })}
             options={[

@@ -14,17 +14,17 @@
 .open {
   z-index: 200;
   color: #ff4d3c;
-  opacity: .8;
+  transition: color .2s;
   &:hover {
-    opacity: 1;
+    color: #231F20;
   }
 }
 
 .close {
   z-index: 200;
   color: #fff;
-  opacity: .8;
+  transition: color .2s;
   &:hover {
-    opacity: 1;
+    color: #231F20;
   }
 }

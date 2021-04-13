@@ -79,9 +79,9 @@ fieldset {
   padding: 1rem 0;
   display: flex;
   align-items: center;
-  cursor: pointer;
   height: 33.3333333%;
   overflow: hidden;
+  cursor: pointer;
   .container {
     z-index: 10;
   }
@@ -113,6 +113,7 @@ fieldset {
 }
 
 .content {
+  padding-top: 96px;
   height: 80%;
 }
 
@@ -121,7 +122,6 @@ fieldset {
   padding: 1rem 0;
   display: flex;
   align-items: center;
-  cursor: pointer;
   height: 20%;
   overflow: hidden;
   .container {
@@ -134,3 +134,54 @@ fieldset {
   font-weight: 600;
   color: #fff;
 }
+
+
+.react-datepicker-wrapper {
+  width: 100%;
+
+}
+
+.react-datepicker__input-container {
+
+  input {
+    color: #231F20;
+    background-color: #fff;
+    border-color: #EBEAEB;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px 8px;
+    margin: 0px 0px;
+    &:focus {
+      border: 2px solid #231F20;
+      box-shadow: none;
+      outline: none;
+    }
+    &::placeholder {
+      color: #4D4A4B;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+  }
+}
+
+$datepicker__background-color: #f0f0f0 !default;
+$datepicker__border-color: #A19FA0;
+$datepicker__highlighted-color: #44D19D;
+$datepicker__muted-color: #ccc !default;
+$datepicker__selected-color: #40B5E0;
+$datepicker__text-color: #231F20;
+$datepicker__header-color: #231F20;
+$datepicker__navigation-disabled-color: lighten($datepicker__muted-color, 10%)
+  !default;
+
+$datepicker__border-radius: 0;
+$datepicker__day-margin: 0.166rem !default;
+$datepicker__font-size: 1.4rem;
+$datepicker__font-family:  azo-sans-web, sans-serif;
+$datepicker__item-size: 3rem;
+$datepicker__margin: 0.4rem !default;
+$datepicker__navigation-size: 0.45rem !default;
+$datepicker__triangle-size: 8px !default;
+
+@import '../node_modules/react-datepicker/src/stylesheets/datepicker.scss'
