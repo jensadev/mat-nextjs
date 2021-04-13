@@ -7,7 +7,7 @@
 	.st1{fill:#231F20;}
 	.st2{
     display:none;
-    animation: clock 60s easeinout infinite;
+    <!-- animation: clock 60s easeinout infinite; -->
     <!-- animation-direction: flip; -->
 		fill:none;
     stroke:#40B5E0;
@@ -64,18 +64,22 @@ FEDA3C
     animation: spin 60s linear infinite;
     fill:none;
     stroke:#EF8187;
-    stroke-width:4;
+    stroke-width:5;
     stroke-miterlimit:10;
   }
   .st3, .st4 {
     display: none;
+  }
+  .m {
+    stroke: #FF4D3C;
+    fill: #FF4D3C;
   }
 	<!-- .st4{display:none;fill:none;stroke:#40B5E0;stroke-width:4;stroke-miterlimit:10;} -->
 	<!-- .st5{display:none;fill:none;stroke:#956FDE;stroke-width:4;stroke-miterlimit:10;} -->
 </style>
 <rect class="st0" width="48" height="48"/>
 <g>
-	<path class="st1" d="M17.1,30.3v-13h3.6L24,22l3.3-4.8h3.5v13h-3.7V26c0-1,0-2.2,0-3.1l0,0c-0.5,0.8-1.1,1.7-1.7,2.5l-1.5,2.2
+	<path class="m" d="M17.1,30.3v-13h3.6L24,22l3.3-4.8h3.5v13h-3.7V26c0-1,0-2.2,0-3.1l0,0c-0.5,0.8-1.1,1.7-1.7,2.5l-1.5,2.2
 		l-1.6-2.2c-0.6-0.8-1.2-1.7-1.7-2.5l0,0c0,0.9,0,2,0,3.1v4.2H17.1z"/>
 </g>
 <path id="animate" class="st2" d="M24,6.7C14.5,6.7,6.7,14.5,6.7,24S14.5,41.3,24,41.3S41.3,33.5,41.3,24S33.5,6.7,24,6.7L24,6.7z"

@@ -16,6 +16,7 @@ import { store } from '../lib/api/meal';
 import fetcher from '../lib/utils/fetcher';
 import Alert from './alert';
 import Loading from './loading';
+import styles from './meal-form.module.scss';
 
 export default function MealForm() {
   const [isLoading, setLoading] = useState(false);
@@ -72,7 +73,7 @@ export default function MealForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="form">
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <p>
         {format(watchDate, 'eeee', { locale: router.locale === 'en' ? en : sv })}
         {' '}
@@ -90,9 +91,10 @@ export default function MealForm() {
         }}
         render={({ field }) => (
           <ReactDatePicker
+            popperPlacement="top-end"
             locale={router.locale === 'en' ? en : sv}
             dateFormat="do LLLL"
-            className="input"
+            className={styles.control}
             placeholderText="Select date"
             onChange={(e) => field.onChange(e)}
             selected={field.value}
@@ -117,6 +119,15 @@ export default function MealForm() {
         }}
         render={({ field }) => (
           <CreatableSelect
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary25: 'hotpink',
+                primary: 'black',
+              },
+            })}
             isValidNewOption={(option) => (option.length > 3)}
             placeholder={t('dishplaceholder')}
             isClearable
@@ -141,6 +152,15 @@ export default function MealForm() {
         }}
         render={({ field }) => (
           <ReactSelect
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary25: 'hotpink',
+                primary: 'black',
+              },
+            })}
             options={[
               { value: '1', label: t('glossary:breakfast') },
               { value: '2', label: t('glossary:lunch') },

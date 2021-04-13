@@ -1,0 +1,24 @@
+.btnLang {
+  display: inline-block;
+  opacity: .8;
+  // border-bottom: 3px solid transparent;
+  // transition: border-bottom .1s;
+  // &:hover {
+  //   border-bottom: 3px solid #231f20;
+  //   opacity: 1;
+  // }
+  &::after {
+    opacity: .8;
+    content: '';
+    display: block;
+    width: 0;
+    height: 4px;
+    background: #000;
+    transition: width .2s;
+  }
+  &:hover::after {
+    opacity: 1;
+    width: 100%;
+    //transition: width .3s;
+  }
+}

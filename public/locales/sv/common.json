@@ -1,16 +1,17 @@
 {
+ "about": "om",
+ "cantload": "Kan inte ladda {{what}}",
  "create": "skapa",
  "date": "datum",
+ "dishplaceholder": "Skriv för att söka eller lägga till en rätt...",
  "email": "E-post",
  "home": "hem",
  "login": "logga in",
+ "noaccount": "inget konto",
+ "noaccountlink": "registrera dig",
  "password": "Lösenord",
  "recent": "senaste",
  "register": "registrera",
  "reset": "rensa",
- "cantload": "Kan inte ladda {{what}}",
- "dishplaceholder": "Skriv för att söka eller lägga till en rätt...",
- "noaccount": "inget konto",
- "noaccountlink": "registrera dig",
  "signup": "registrera dig"
 }

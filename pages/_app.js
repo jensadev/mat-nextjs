@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-filename-extension */
 import '../styles/custom.scss';
-import '../styles/globals.css';
+import '../styles/globals.scss';
 
 import { AnimatePresence } from 'framer-motion';
 import { appWithTranslation } from 'next-i18next';

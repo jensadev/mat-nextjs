@@ -1,16 +1,17 @@
 {
+  "about": "about",
+  "cantload": "Can't load {{what}}",
   "create": "create",
   "date": "date",
+  "dishplaceholder": "Type to search for or add a dish...",
   "email": "email",
   "home": "home",
   "login": "login",
+  "noaccount": "no account",
+  "noaccountlink": "register",
   "password": "password",
   "recent": "recent",
   "register": "register",
   "reset": "clear",
-  "cantload": "Can't load {{what}}",
-  "dishplaceholder": "Type to search for or add a dish...",
-  "noaccount": "no account",
-  "noaccountlink": "register",
   "signup": "register an account"
 }

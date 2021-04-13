@@ -1,0 +1,28 @@
+.logo {
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.header {
+  height: 96px;
+  transition: top 0.3s;
+}
+
+
+.open {
+  color: #ff4d3c;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #fff;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
+}

@@ -1,16 +1,29 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+// import useWindowDimensions from './wd';
+// import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import { useState } from 'react';
+import useSWR from 'swr';
 
+import checkLogin from '../lib/utils/checklogin';
+import storage from '../lib/utils/storage';
 // import { useEffect, useState } from 'react';
 import Footer from './footer';
+import Header from './header';
+import styles from './layout.module.scss';
+import Maybe from './maybe';
+// const MealForm = dynamic(() => import('./meal-form'));
+import MealForm from './meal-form';
 import Navbar from './navbar';
-// import useWindowDimensions from './wd';
 
 export const siteTitle = 'Mat';
 
 // eslint-disable-next-line react/prop-types
 export default function Layout({ children }) {
   // const { height, width } = useWindowDimensions();
+  const [open, setOpen] = useState(false);
+  const { data: currentUser } = useSWR('user', storage);
+  const isLoggedIn = checkLogin(currentUser);
 
   const rand = (items) => (items[items.length * Math.random() || 0]);
 
@@ -21,6 +34,24 @@ export default function Layout({ children }) {
     damping: 30,
   };
 
+  const openClose = () => {
+    open ? setOpen(false) : setOpen(true);
+  };
+
+  const hideShowForm = {
+    expanded: {
+      y: 0,
+      opacity: 1,
+      zIndex: 200,
+      transition: 'easeInOut',
+    },
+    collapsed: {
+      y: -200,
+      opacity: 0,
+      zIndex: 10,
+      transition: 'easeInOut',
+    },
+  };
   return (
     // <motion.div
     //   className="d-flex h-100 flex-column"
@@ -45,7 +76,24 @@ export default function Layout({ children }) {
         />
         <link rel="stylesheet" href="https://use.typekit.net/yis5dme.css" />
       </Head>
-      <Navbar />
+      <Header handleForm={openClose} />
+      {/* {open
+        && ( */}
+      <Maybe test={isLoggedIn}>
+        <AnimatePresence>
+          <motion.div
+            className={`${styles.overlay} col-12 col-md-6`}
+            variants={hideShowForm}
+            animate={open ? 'expanded' : 'collapsed'}
+            // style={open ? { zIndex: 200 } : { zIndex: 0 }}
+            initial={false}
+            transition={spring}
+          >
+            <MealForm />
+          </motion.div>
+        </AnimatePresence>
+      </Maybe>
+      {/* )} */}
       {children}
       <Footer />
       {/* </motion.div> */}
