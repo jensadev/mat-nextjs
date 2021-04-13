@@ -38,7 +38,7 @@ export default function MealList() {
         ))}
       </ul>
       <nav aria-label="Pagination" className={styles.paginationContainer}>
-        <ul className={`${styles.pagination} justify-content-center`}>
+        <ul className={`${styles.pagination} justify-content-start`}>
           <li className={`${pager.currentPage === 1 ? styles.disabled : ''}`}>
             <button
               className={styles.pageLink}
