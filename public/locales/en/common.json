@@ -1,17 +1,24 @@
 {
   "about": "about",
+  "add": "add {{what}}",
   "cantload": "Can't load {{what}}",
+  "cookie": "cookie",
+  "cookie_plural": "cookies",
   "create": "create",
   "date": "date",
   "dishplaceholder": "Search or create a dish...",
   "email": "email",
   "home": "home",
+  "legal": "legal",
   "login": "login",
   "noaccount": "no account",
   "noaccountlink": "register",
   "password": "password",
+  "policy": "policy",
+  "privacy": "privacy",
   "recent": "recent",
   "register": "register",
   "reset": "clear",
-  "signup": "register an account"
+  "signup": "register an account",
+  "terms": "terms of service"
 }

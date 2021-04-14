@@ -2,5 +2,12 @@
   "passwordConfirmation": "passwordConfirmation",
   "about": "about",
   "meal_plural": "meal_plural",
-  "listof": "listof"
+  "listof": "listof",
+  "terms": "terms",
+  "cookie": "cookie",
+  "policy": "policy",
+  "privacy": "privacy",
+  "thisweb": "thisweb",
+  "dishes": "dishes",
+  "profile": "profile"
 }

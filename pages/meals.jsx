@@ -25,13 +25,11 @@ export default function Home() {
   const isLoggedIn = checkLogin(currentUser);
   // const { t } = useTranslation('common');
   return (
-    <Layout home>
+    <Layout meals>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <main
-        className="d-flex h-100 flex-column justify-content-center"
-      >
+      <main className="d-flex flex-column">
         <Maybe test={isLoggedIn}>
           <header className="page-header">
             <div className="container">

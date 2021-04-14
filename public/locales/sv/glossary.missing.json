@@ -2,5 +2,9 @@
   "meals": "meals",
   "dishes": "dishes",
   "start": "start",
-  "about": "about"
+  "about": "about",
+  "login": "login",
+  "register": "register",
+  "profile": "profile",
+  "add": "add"
 }

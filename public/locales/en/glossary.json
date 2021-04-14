@@ -3,13 +3,16 @@
   "dinner": "dinner",
   "dish": "dish",
   "dish_plural": "dishes",
+  "dishes": "dishes",
   "eaten": "I have eaten",
   "food": "food",
   "for": "for",
   "lunch": "lunch",
   "meal": "meal",
   "meal_plural": "meals",
+  "meals": "meals",
   "mealtype": "meal type",
+  "profile": "profile",
   "the": "the",
   "toeat": "will I eat"
 }

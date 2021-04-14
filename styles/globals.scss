@@ -53,25 +53,49 @@ fieldset {
   flex-direction: column;
 }
 
-.heroH1 {
-  font-size: 8rem;
-  font-weight: 900;
-  color: #fff;
+@mixin line-link($fg, $bg, $fs, $fw, $height) {
+  font-size: $fs;
+  font-weight: $fw;
+  color: $fg;
   display: inline-block;
+  &:hover {
+    color: $fg;
+  }
   &::after {
     opacity: .8;
     content: '';
     display: block;
     width: 0;
-    height: 12px;
-    background: #fff;
+    height: $height;
+    background: $bg;
     transition: width .2s;
   }
   &:hover::after {
     opacity: 1;
     width: 100%;
-    //transition: width .3s;
   }
+}
+
+.heroH1 {
+  @include line-link(#fff, #fff, 8rem, 900, .8rem);
+}
+
+.link-meals {
+  @include line-link(#231F20, #44D19D, 2rem, 400, .28rem);
+}
+.link-dishes {
+  @include line-link(#231F20, #956FDE, 2rem, 400, .28rem);
+}
+.link-profile {
+  @include line-link(#231F20, #7292F7, 2rem, 400, .28rem);
+}
+
+.link-lang {
+  @include line-link(#231F20, #231F20, 2rem, 400, .28rem);
+}
+
+.link-legal {
+  @include line-link(#231F20, #FF9F50, 1.2rem, 400, .14rem);
 }
 
 .meal, .dish, .about {
@@ -87,7 +111,7 @@ fieldset {
   }
 }
 /* const colors = ['#FF9F50', '#FF4D3C', '#EF8187', '#C392FF', '#956FDE', '#40B5E0', '#44D19D', '#7292F7', '#77D7DB', '#FEDA3C']; */
-.bg-meal, .bg-dish, .bg-about{
+.bg-meal, .bg-dish, .bg-about, .bg-legal {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -105,6 +129,17 @@ fieldset {
   background-color:#7292F7;
 }
 
+.bg-legal {
+  background-color: #FF9F50;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0 1rem;
+}
+
 .btn {
   &:focus {
     -webkit-box-shadow: none;
@@ -113,8 +148,7 @@ fieldset {
 }
 
 .content {
-  padding-top: 96px;
-  height: 80%;
+  padding-top: 64px;
 }
 
 .page-header {
@@ -122,7 +156,7 @@ fieldset {
   padding: 1rem 0;
   display: flex;
   align-items: center;
-  height: 20%;
+  height: 256px;
   overflow: hidden;
   .container {
     z-index: 10;
@@ -130,19 +164,20 @@ fieldset {
 }
 
 .page-heading {
-  font-size: 6rem;
+  padding-top: 3rem;
+  font-size: 5rem;
   font-weight: 600;
   color: #fff;
+  @media (max-width: 768px) {
+    font-size: 4rem;
+  }
 }
-
 
 .react-datepicker-wrapper {
   width: 100%;
-
 }
 
 .react-datepicker__input-container {
-
   input {
     color: #231F20;
     background-color: #fff;

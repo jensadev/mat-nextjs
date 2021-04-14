@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 // import useWindowDimensions from './wd';
-// import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import useSWR from 'swr';
 
@@ -12,9 +13,10 @@ import Footer from './footer';
 import Header from './header';
 import styles from './layout.module.scss';
 import Maybe from './maybe';
-// const MealForm = dynamic(() => import('./meal-form'));
-import MealForm from './meal-form';
-import Navbar from './navbar';
+
+const MealForm = dynamic(() => import('./meal-form'));
+// import MealForm from './meal-form';
+// import Navbar from './navbar';
 
 export const siteTitle = 'Mat';
 
@@ -24,15 +26,7 @@ export default function Layout({ children }) {
   const [open, setOpen] = useState(false);
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
-
-  const rand = (items) => (items[items.length * Math.random() || 0]);
-
-  const colors = ['#FF9F50', '#FF4D3C', '#EF8187', '#C392FF', '#956FDE', '#40B5E0', '#44D19D', '#7292F7', '#77D7DB', '#FEDA3C'];
-  const spring = {
-    type: 'spring',
-    stiffness: 500,
-    damping: 30,
-  };
+  const { t } = useTranslation(['glossary', 'common']);
 
   const openClose = () => {
     open ? setOpen(false) : setOpen(true);
@@ -48,7 +42,7 @@ export default function Layout({ children }) {
     collapsed: {
       y: -200,
       opacity: 0,
-      zIndex: 10,
+      zIndex: -1,
       transition: 'easeInOut',
     },
   };
@@ -75,6 +69,7 @@ export default function Layout({ children }) {
           rel="stylesheet"
         />
         <link rel="stylesheet" href="https://use.typekit.net/yis5dme.css" />
+        <script src="/javascript/scrollhide.js" />
       </Head>
       <Header handleForm={openClose} />
       {/* {open
@@ -87,12 +82,11 @@ export default function Layout({ children }) {
             animate={open ? 'expanded' : 'collapsed'}
             // style={open ? { zIndex: 200 } : { zIndex: 0 }}
             initial={false}
-            transition={spring}
           >
             <div className="d-flex flex-column h-100 px-md-5">
               <header className="page-header">
                 <div className="container ">
-                  <h1 className="page-heading">Add måltid</h1>
+                  <h1 className="page-heading">{t('common:add', { what: t('glossary:meal') })}</h1>
                 </div>
               </header>
               <div className="content w-100">
