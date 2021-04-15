@@ -37,6 +37,10 @@ fieldset {
   text-transform: uppercase;
 } */
 
+.lead {
+  font-size: 2.2rem;
+}
+
 .btn-icon {
   background-color: transparent;
   border: 0;
@@ -78,6 +82,13 @@ fieldset {
 
 .heroH1 {
   @include line-link(#fff, #fff, 8rem, 900, .8rem);
+}
+
+.heroH1-nolink {
+  font-size: 8rem;
+  font-weight: 900;
+  color: #fff;
+  display: inline-block;
 }
 
 .link-meals {

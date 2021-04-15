@@ -108,14 +108,27 @@ export default function Home() {
           </Link>
         </Maybe>
         <Maybe test={!isLoggedIn}>
-          <Link href="/about">
-            <motion.div variants={item} className="about">
-              <div className="container">
-                <h1 className="heroH1">{t('common:about')}</h1>
-              </div>
-              <span className="bg-about" />
-            </motion.div>
-          </Link>
+          <motion.div variants={item} className="meal">
+            <div className="container">
+              <h1 className="heroH1-nolink">{t('glossary:meal_plural')}</h1>
+              <p className="lead">{t('aboutmeals')}</p>
+            </div>
+            <span className="bg-meal" />
+          </motion.div>
+          <motion.div variants={item} className="dish">
+            <div className="container">
+              <h1 className="heroH1-nolink">{t('glossary:dish_plural')}</h1>
+              <p className="lead">{t('aboutdishes')}</p>
+            </div>
+            <span className="bg-dish" />
+          </motion.div>
+          <motion.div variants={item} className="about">
+            <div className="container">
+              <h1 className="heroH1">{t('common:about')}</h1>
+              <p className="lead">{t('aboutintro')}</p>
+            </div>
+            <span className="bg-about" />
+          </motion.div>
         </Maybe>
       </motion.main>
     </Layout>
