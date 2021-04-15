@@ -7,8 +7,8 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import useSWR from 'swr';
 
-import checkLogin from '../lib/utils/checklogin';
-import storage from '../lib/utils/storage';
+import checkLogin from '../../lib/utils/checklogin';
+import storage from '../../lib/utils/storage';
 // import Maybe from './maybe';
 import Navlink from './nav-link';
 import styles from './navbar.module.scss';

@@ -13,8 +13,8 @@ import storage from '../lib/utils/storage';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'glossary']),
-    },
+      ...(await serverSideTranslations(locale, ['common', 'glossary']))
+    }
   };
 }
 
@@ -54,14 +54,14 @@ export default function Home() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.5,
-      },
-    },
+        staggerChildren: 0.5
+      }
+    }
   };
 
   const item = {
     hidden: { opacity: 0, y: -400 },
-    show: { opacity: 1, y: 0 },
+    show: { opacity: 1, y: 0 }
   };
   // const variants = {
   //   visible: { opacity: 1 },
@@ -80,12 +80,9 @@ export default function Home() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="d-flex h-100 flex-column justify-content-center"
-      >
+        className="d-flex h-100 flex-column justify-content-center">
         <Maybe test={isLoggedIn}>
-          <Link
-            href="/meals"
-          >
+          <Link href="/meals">
             <motion.div variants={item} className="meal">
               <div className="container">
                 <h1 className="heroH1">{t('glossary:meal_plural')}</h1>
@@ -93,9 +90,7 @@ export default function Home() {
               <span className="bg-meal" />
             </motion.div>
           </Link>
-          <Link
-            href="/dishes"
-          >
+          <Link href="/dishes">
             <motion.div variants={item} className="dish">
               <div className="container">
                 <h1 className="heroH1">{t('glossary:dish_plural')}</h1>
@@ -103,17 +98,25 @@ export default function Home() {
               <span className="bg-dish" />
             </motion.div>
           </Link>
+          <Link href="/profile">
+            <motion.div variants={item} className="profile">
+              <div className="container">
+                <h1 className="heroH1">{t('common:mypage')}</h1>
+              </div>
+              <span className="bg-profile" />
+            </motion.div>
+          </Link>
         </Maybe>
-        <Link
-          href="/about"
-        >
-          <motion.div variants={item} className="about">
-            <div className="container">
-              <h1 className="heroH1">{t('common:about')}</h1>
-            </div>
-            <span className="bg-about" />
-          </motion.div>
-        </Link>
+        <Maybe test={!isLoggedIn}>
+          <Link href="/about">
+            <motion.div variants={item} className="about">
+              <div className="container">
+                <h1 className="heroH1">{t('common:about')}</h1>
+              </div>
+              <span className="bg-about" />
+            </motion.div>
+          </Link>
+        </Maybe>
       </motion.main>
     </Layout>
   );

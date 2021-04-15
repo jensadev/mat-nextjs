@@ -1,12 +1,12 @@
 {
   "about": "about",
   "add": "add {{what}}",
-  "cantload": "Can't load {{what}}",
+  "cantload": "can't load {{what}}",
   "cookie": "cookie",
   "cookie_plural": "cookies",
   "create": "create",
   "date": "date",
-  "dishplaceholder": "Search or create a dish...",
+  "dishplaceholder": "search or create a dish...",
   "email": "email",
   "home": "home",
   "legal": "legal",
@@ -20,5 +20,6 @@
   "register": "register",
   "reset": "clear",
   "signup": "register an account",
-  "terms": "terms of service"
+  "terms": "terms of service",
+  "mypage": "my page"
 }

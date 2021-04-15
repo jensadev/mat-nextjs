@@ -1,18 +1,18 @@
 {
   "about": "om",
-  "add": "Lägg till {{what}}",
-  "cantload": "Kan inte ladda {{what}}",
+  "add": "lägg till {{what}}",
+  "cantload": "kan inte ladda {{what}}",
   "cookie": "cookie",
   "cookie_plural": "cookies",
   "create": "skapa",
   "date": "datum",
-  "dishplaceholder": "Skapa eller sök en rätt...",
-  "email": "E-post",
+  "dishplaceholder": "skapa eller sök en rätt...",
+  "email": "e-post",
   "home": "hem",
   "login": "logga in",
   "noaccount": "inget konto",
   "noaccountlink": "registrera dig",
-  "password": "Lösenord",
+  "password": "lösenord",
   "passwordConfirmation": "bekräfta lösenord",
   "policy": "policy",
   "privacy": "integritets",
@@ -20,5 +20,6 @@
   "register": "registrera",
   "reset": "rensa",
   "signup": "registrera dig",
-  "terms": "Användarvillkor"
+  "terms": "användarvillkor",
+  "mypage": "min sida"
 }

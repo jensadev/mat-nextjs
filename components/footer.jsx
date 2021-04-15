@@ -7,20 +7,19 @@ import { useTranslation } from 'next-i18next';
 export default function Footer() {
   const router = useRouter();
   const { t } = useTranslation(['common']);
+
   return (
-    <footer className="mt-auto pb-5">
+    <footer
+      className={`${
+        router.pathname === '/' ? 'fixed-bottom' : ''
+      } mt-auto pb-5`}>
       <div className="container d-flex justify-content-between align-items-center">
-        <Link
-          href="/"
-          locale={router.locale === 'en' ? 'sv' : 'en'}
-        >
+        <Link href="/" locale={router.locale === 'en' ? 'sv' : 'en'}>
           <button type="button" className="btn-icon link-lang">
             {router.locale === 'en' ? 'sv' : 'en'}
           </button>
         </Link>
-        <Link
-          href="/legal"
-        >
+        <Link href="/legal">
           <a className="btn link-legal">
             {`${t('terms')}`}
             {/* {`${t('cookie')} ${t('policy')} / ${t('privacy')} ${t('policy')}`} */}

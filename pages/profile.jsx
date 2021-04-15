@@ -1,13 +1,10 @@
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
-// import Link from 'next/link';
-// import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useSWR from 'swr';
 
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
-import MealList from '../components/meal-list';
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
 
@@ -19,13 +16,13 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export default function Home() {
+export default function Profile() {
   const { t } = useTranslation(['common', 'glossary']);
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
 
   return (
-    <Layout meals>
+    <Layout profile>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -34,15 +31,15 @@ export default function Home() {
           <header className="page-header">
             <div className="container">
               <h1 className="page-heading">
-                {t('glossary:listof', { what: t('glossary:meal_plural') })}
+                {t('common:mypage')}
+                {/* {`${t('common:cookie')} &
+              ${t('common:privacy')} ${t('common:policy')}`} */}
               </h1>
             </div>
-            <span className="bg-meal" />
+            <span className="bg-profile" />
           </header>
           <div className="content w-100">
-            <div className="container">
-              <MealList />
-            </div>
+            <div className="container" />
           </div>
         </Maybe>
       </main>

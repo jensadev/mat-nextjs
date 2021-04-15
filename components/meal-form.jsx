@@ -26,11 +26,15 @@ export default function MealForm() {
   const defaultValues = {
     date: Date.now(),
     type: { value: '3', label: t('glossary:dinner') },
-    dish: '',
+    dish: ''
   };
 
   const {
-    handleSubmit, reset, control, watch, formState: { errors },
+    handleSubmit,
+    reset,
+    control,
+    watch,
+    formState: { errors }
   } = useForm({ defaultValues });
 
   const watchDate = watch('date');
@@ -48,18 +52,13 @@ export default function MealForm() {
   const onSubmit = async (values) => {
     setLoading(true);
     if (Object.entries(errors).length !== 0) {
-      return (
-        <Alert error>
-          Fel
-          ...
-        </Alert>
-      );
+      return <Alert error>Fel ...</Alert>;
     }
     try {
       const response = await store(
         new Date(values.date).toISOString(),
         values.type.value,
-        values.dish.value,
+        values.dish.value
       );
       if (response.status !== 201) {
         console.log(response.data.errors);
@@ -75,8 +74,9 @@ export default function MealForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <p className={styles.capitalizeFirst}>
-        {format(watchDate || Date.now(), 'eeee', { locale: router.locale === 'en' ? en : sv })}
-        {' '}
+        {format(watchDate || Date.now(), 'eeee', {
+          locale: router.locale === 'en' ? en : sv
+        })}{' '}
         {t('glossary:the')}
       </p>
       <label htmlFor="date" className="form-label visually-hidden">
@@ -87,7 +87,7 @@ export default function MealForm() {
         name="date"
         rules={{
           required: true,
-          valueAsDate: true,
+          valueAsDate: true
         }}
         render={({ field }) => (
           <ReactDatePicker
@@ -97,13 +97,13 @@ export default function MealForm() {
             popperModifiers={{
               offset: {
                 enabled: true,
-                offset: '32px, 8px',
+                offset: '32px, 8px'
               },
               preventOverflow: {
                 enabled: true,
                 escapeWithReference: false,
-                boundariesElement: 'viewport',
-              },
+                boundariesElement: 'viewport'
+              }
             }}
             locale={router.locale === 'en' ? en : sv}
             dateFormat="do LLLL"
@@ -128,7 +128,7 @@ export default function MealForm() {
         control={control}
         rules={{
           required: true,
-          minLength: 4,
+          minLength: 4
         }}
         render={({ field }) => (
           <CreatableSelect
@@ -138,15 +138,15 @@ export default function MealForm() {
               colors: {
                 ...theme.colors,
                 primary25: '#77D7DB',
-                primary: '#231F20',
-              },
+                primary: '#231F20'
+              }
             })}
-            isValidNewOption={(option) => (option.length > 3)}
+            isValidNewOption={(option) => option.length > 3}
             placeholder={t('dishplaceholder')}
             isClearable
             options={data.dishes.map((dish) => ({
               label: dish.name,
-              value: dish.name,
+              value: dish.name
             }))}
             {...field}
           />
@@ -161,7 +161,7 @@ export default function MealForm() {
         name="type"
         control={control}
         rules={{
-          required: true,
+          required: true
         }}
         render={({ field }) => (
           <ReactSelect
@@ -171,13 +171,13 @@ export default function MealForm() {
               colors: {
                 ...theme.colors,
                 primary25: '#77D7DB',
-                primary: '#231F20',
-              },
+                primary: '#231F20'
+              }
             })}
             options={[
               { value: '1', label: t('glossary:breakfast') },
               { value: '2', label: t('glossary:lunch') },
-              { value: '3', label: t('glossary:dinner') },
+              { value: '3', label: t('glossary:dinner') }
             ]}
             {...field}
           />
@@ -190,17 +190,11 @@ export default function MealForm() {
         disabled={isLoading}
         onClick={() => {
           reset(defaultValues);
-        }}
-      >
+        }}>
         {t('reset')}
       </button>
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="btn w-100"
-      >
+      <button type="submit" disabled={isLoading} className="btn w-100">
         {t('create')}
-
       </button>
     </form>
   );
