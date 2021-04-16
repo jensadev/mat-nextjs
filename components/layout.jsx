@@ -14,6 +14,7 @@ import Header from './header';
 import styles from './layout.module.scss';
 import LoginForm from './login-form';
 import Maybe from './maybe';
+import RegistrationForm from './registration-form';
 
 const MealForm = dynamic(() => import('./meal-form'));
 // import MealForm from './meal-form';
@@ -121,14 +122,24 @@ export default function Layout({ children }) {
         </AnimatePresence>
       </Maybe>
       <Maybe test={!isLoggedIn} key="notLoggedIn">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence>
           <motion.div
+            key="login"
             className={`${styles.overlayLogin} bg-profile`}
             variants={hideShowForm}
             animate={open.login ? 'expanded' : 'collapsed'}
             initial={false}
             exit={{ opacity: 0 }}>
             {open.login && <LoginForm />}
+          </motion.div>
+          <motion.div
+            key="register"
+            className={`${styles.overlayLogin} bg-profile`}
+            variants={hideShowForm}
+            animate={open.register ? 'expanded' : 'collapsed'}
+            initial={false}
+            exit={{ opacity: 0 }}>
+            {open.register && <RegistrationForm />}
           </motion.div>
         </AnimatePresence>
       </Maybe>

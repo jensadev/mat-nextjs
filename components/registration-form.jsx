@@ -1,16 +1,15 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { usePresence } from 'framer-motion';
-import Link from 'next/link';
 import Router from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
 
-import { login } from '../lib/api/user';
+import { store } from '../lib/api/user';
 import Alert from './alert';
 
-export default function LoginForm() {
+export default function RegistrationForm() {
   const [isPresent, safeToRemove] = usePresence();
   const { t } = useTranslation(['common', 'glossary']);
   const [isLoading, setLoading] = useState(false);
@@ -33,8 +32,12 @@ export default function LoginForm() {
     }
 
     try {
-      const response = await login(values.email, values.password);
-      if (response.status !== 200) {
+      const response = await store(
+        values.email,
+        values.password,
+        values.passwordConfirmation
+      );
+      if (response.status !== 201) {
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
             type: 'manual',
@@ -59,7 +62,7 @@ export default function LoginForm() {
     <div className="d-flex flex-column h-100 px-md-5">
       <header className="">
         <div className="container">
-          <h1 className="page-heading">{t('common:login')}</h1>
+          <h1 className="page-heading">{t('common:register')}</h1>
         </div>
       </header>
       <div className="mt-4 w-100">
@@ -92,8 +95,20 @@ export default function LoginForm() {
               />
               <ErrorMessage errors={errors} name="password" />
             </fieldset>
+            <fieldset className="mb-3">
+              <label htmlFor="passwordConfirmation" className="visually-hidden">
+                {t('common:passwordConfirmation')}
+              </label>
+              <input
+                className="w-100"
+                type="password"
+                placeholder={t('common:passwordConfirmation')}
+                {...register('passwordConfirmation', { required: true })}
+              />
+              <ErrorMessage errors={errors} name="passwordConfirmation" />
+            </fieldset>
             <button
-              className="btn btn-login w-100"
+              className="btn btn-create w-100"
               type="submit"
               disabled={isLoading}>
               {isLoading ? (
@@ -107,17 +122,10 @@ export default function LoginForm() {
                   ...
                 </>
               ) : (
-                <>{t('login')}</>
+                <>{t('register')}</>
               )}
             </button>
           </form>
-          <p className="mt-4">
-            {t('noaccount')}
-            {', '}
-            <Link href="/register">
-              <a className="link-dark">{t('noaccountlink')}</a>
-            </Link>
-          </p>
         </div>
       </div>
     </div>
