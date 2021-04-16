@@ -15,7 +15,7 @@ export default function Footer() {
       } mt-auto pb-5`}>
       <div className="container d-flex justify-content-between align-items-center">
         <Link href="/" locale={router.locale === 'en' ? 'sv' : 'en'}>
-          <button type="button" className="btn-icon link-lang">
+          <button type="button" className="btn link-lang">
             {router.locale === 'en' ? 'sv' : 'en'}
           </button>
         </Link>

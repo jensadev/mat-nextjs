@@ -67,13 +67,17 @@ export default function Header(props) {
           </Maybe>
         </div>
         <Maybe test={!isLoggedIn}>
-          <div>
-            <Link href="/login">
-              <a className="btn">{t('common:login')}</a>
-            </Link>
-            <Link href="/register">
-              <a className="btn">{t('common:register')}</a>
-            </Link>
+          <div className="d-flex">
+            <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/login">
+                <a className="btn">{t('common:login')}</a>
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/register">
+                <a className="btn">{t('common:register')}</a>
+              </Link>
+            </motion.div>
           </div>
         </Maybe>
         <Maybe test={isLoggedIn}>
