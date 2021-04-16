@@ -1,7 +1,9 @@
 import { ErrorMessage } from '@hookform/error-message';
+import { usePresence } from 'framer-motion';
+import Link from 'next/link';
 import Router from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
 
@@ -9,21 +11,25 @@ import { login } from '../lib/api/user';
 import Alert from './alert';
 
 export default function App() {
+  const [isPresent, safeToRemove] = usePresence();
   const { t } = useTranslation(['common', 'glossary']);
   const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    !isPresent && setTimeout(safeToRemove, 1000);
+  }, [isPresent]);
+
   const {
-    register, handleSubmit, formState: { errors }, setError,
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError
   } = useForm();
 
   const onSubmit = async (values) => {
     setLoading(true);
     if (Object.keys(errors).length > 0) {
-      return (
-        <Alert error>
-          Fel
-          ...
-        </Alert>
-      );
+      return <Alert error>Fel ...</Alert>;
     }
 
     try {
@@ -32,7 +38,7 @@ export default function App() {
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
             type: 'manual',
-            message: response.data.errors[key][0],
+            message: response.data.errors[key][0]
           });
         });
       }
@@ -50,29 +56,70 @@ export default function App() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder={t('common:email')} {...register('email', { required: true, pattern: /^\S+@\S+$/i })} />
-      <ErrorMessage errors={errors} name="email" />
-      <input type="password" placeholder={t('common:password')} {...register('password', { required: true })} />
-      <ErrorMessage errors={errors} name="password" />
-      <button
-        className="btn btn-primary"
-        type="submit"
-        disabled={isLoading}
-      >
-        {isLoading ? (
-          <>
-            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-            {t('loading')}
-            ...
-          </>
-        )
-          : (
-            <>
-              { t('login') }
-            </>
-          )}
-      </button>
-    </form>
+    <div className="d-flex flex-column h-100 px-md-5">
+      <header className="">
+        <div className="container">
+          <h1 className="page-heading">{t('common:login')}</h1>
+        </div>
+      </header>
+      <div className="mt-4 w-100">
+        <div className="container">
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <fieldset className="mb-3">
+              <label htmlFor="email" className="visually-hidden">
+                {t('common:email')}
+              </label>
+              <input
+                className="w-100"
+                type="text"
+                placeholder={t('common:email')}
+                {...register('email', {
+                  required: true,
+                  pattern: /^\S+@\S+$/i
+                })}
+              />
+              <ErrorMessage errors={errors} name="email" />
+            </fieldset>
+            <fieldset className="mb-3">
+              <label htmlFor="password" className="visually-hidden">
+                {t('common:password')}
+              </label>
+              <input
+                className="w-100"
+                type="password"
+                placeholder={t('common:password')}
+                {...register('password', { required: true })}
+              />
+              <ErrorMessage errors={errors} name="password" />
+            </fieldset>
+            <button
+              className="btn btn-login w-100"
+              type="submit"
+              disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  {t('loading')}
+                  ...
+                </>
+              ) : (
+                <>{t('login')}</>
+              )}
+            </button>
+          </form>
+          <p className="mt-4">
+            {t('noaccount')}
+            {', '}
+            <Link href="/register">
+              <a className="link-dark">{t('noaccountlink')}</a>
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

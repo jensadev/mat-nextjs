@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 // import router from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
 import useSWR from 'swr';
 
 import checkLogin from '../lib/utils/checklogin';
@@ -11,26 +10,18 @@ import storage from '../lib/utils/storage';
 import styles from './header.module.scss';
 import Maybe from './maybe';
 
-export default function Header(props) {
+export default function Header({ open, handleForm }) {
   const router = useRouter();
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
-  const [open, setOpen] = useState(false);
+
   const { t } = useTranslation(['glossary', 'common']);
   const pages = ['meals', 'dishes', 'profile'];
-  const handleOpen = () => {
+  const handleOpen = (e) => {
     // window.history.pushState('mealform', 'Add meal', '?mealform');
     // router.push('', undefined, { shallow: true });
-    if (open) setOpen(false);
-    else setOpen(true);
-    // open ? setOpen(false) : setOpen(true);
-    props.handleForm();
+    handleForm(e.target.dataset.action);
   };
-  // const handleClose = () => {
-  //   window.history.pushState('page2', 'Title of this page', '?/Home-URL');
-  //   // router.push(p, undefined, { shallow: true })
-  //   // setOpen(false);
-  // };
 
   return (
     <header id="header" className={`${styles.header} fixed-top`}>
@@ -68,24 +59,36 @@ export default function Header(props) {
         </div>
         <Maybe test={!isLoggedIn}>
           <div className="d-flex">
-            <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/login">
-                <a className="btn">{t('common:login')}</a>
-              </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/register">
-                <a className="btn">{t('common:register')}</a>
-              </Link>
-            </motion.div>
+            <div>
+              <button
+                data-action="login"
+                type="button"
+                onClick={handleOpen}
+                className="btn link-header">
+                {t('common:login')}
+              </button>
+            </div>
+            <div>
+              <button
+                data-action="register"
+                type="button"
+                onClick={handleOpen}
+                className="btn link-header">
+                {t('common:register')}
+              </button>
+            </div>
           </div>
         </Maybe>
         <Maybe test={isLoggedIn}>
           <button
+            data-action="meal"
             type="button"
             className="btn rounded-circle"
             onClick={handleOpen}>
-            {open ? (
+            <span className="visually-hidden">
+              {t('common:add', { what: t('glossary:meal') })}
+            </span>
+            {open.addMeal ? (
               <motion.span
                 initial={{ rotate: 0 }}
                 animate={{

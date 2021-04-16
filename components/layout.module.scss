@@ -1,7 +1,15 @@
-.overlay {
+.overlayAddMeal {
   position: absolute;
   top: 0px;
   right: 0px;
   height: 100%;
-  background-color: #ff4d3c;
+}
+
+.overlayLogin {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  height: 50%;
+  width: 50%;
+  // transform: translate(-50%, -50%) !important;
 }

@@ -4,20 +4,20 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import Layout, { siteTitle } from '../components/layout';
-import LoginForm from '../components/login-form';
+import Layout, { siteTitle } from '../layout';
+import LoginForm from '../login-form';
 
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'glossary']),
-    },
+      ...(await serverSideTranslations(locale, ['common', 'glossary']))
+    }
   };
 }
 const spring = {
   type: 'spring',
   stiffness: 500,
-  damping: 30,
+  damping: 30
 };
 
 export default function Login() {
@@ -27,9 +27,7 @@ export default function Login() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <main
-        className="d-flex h-100 justify-content-center flex-column"
-      >
+      <main className="d-flex h-100 justify-content-center flex-column">
         <div className="h-50 w-100" style={{ backgroundColor: '#FEDA3C' }}>
           <div className="container">
             <h1 className="heroH1">{t('login')}</h1>

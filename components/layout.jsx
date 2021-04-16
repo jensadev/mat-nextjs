@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 // import useWindowDimensions from './wd';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -12,6 +12,7 @@ import storage from '../lib/utils/storage';
 import Footer from './footer';
 import Header from './header';
 import styles from './layout.module.scss';
+import LoginForm from './login-form';
 import Maybe from './maybe';
 
 const MealForm = dynamic(() => import('./meal-form'));
@@ -23,46 +24,82 @@ export const siteTitle = 'Mat';
 // eslint-disable-next-line react/prop-types
 export default function Layout({ children }) {
   // const { height, width } = useWindowDimensions();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState({
+    login: false,
+    register: false,
+    addMeal: false
+  });
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
   const { t } = useTranslation(['glossary', 'common']);
 
-  const openClose = () => {
-    open ? setOpen(false) : setOpen(true);
+  const openClose = (e) => {
+    switch (e) {
+      case 'login':
+        setOpen({
+          login: !open.login,
+          register: false,
+          addMeal: false
+        });
+        break;
+      case 'register':
+        setOpen({
+          login: false,
+          register: !open.register,
+          addMeal: false
+        });
+        break;
+      case 'meal':
+        setOpen({
+          login: false,
+          register: false,
+          addMeal: !open.addMeal
+        });
+        break;
+      default:
+        setOpen({
+          login: false,
+          register: false,
+          addMeal: false
+        });
+        break;
+    }
   };
 
-  const hideShowForm = {
+  const hideShowAddMeal = {
     expanded: {
       y: 0,
       opacity: 1,
-      zIndex: 200,
-      transition: 'easeInOut',
+      zIndex: 1020,
+      transition: 'easeInOut'
     },
     collapsed: {
       y: -200,
       opacity: 0,
-      zIndex: -1,
-      transition: 'easeInOut',
-    },
+      transition: 'easeInOut'
+    }
   };
+
+  const hideShowForm = {
+    expanded: {
+      y: '0%',
+      opacity: 1,
+      zIndex: 1020,
+      transition: 'easeInOut'
+    },
+    collapsed: {
+      y: '50%',
+      opacity: 0,
+      zIndex: 100,
+      transition: 'easeInOut'
+    }
+  };
+
   return (
-    // <motion.div
-    //   className="d-flex h-100 flex-column"
-    //   initial={{ x: '20%', opacity: 0 }}
-    //   animate={{
-    //     x: 0, opacity: 1, backgroundColor: '#fee4d1',
-    //   }}
-    //   exit={{ x: '20%', opacity: 0 }}
-    //   transition={spring} // {{ ease: 'easeOut', duration: 0.2 }}
-    // >
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Måltider"
-        />
+        <meta name="description" content="Måltider" />
         <meta name="og:title" content={siteTitle} />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
@@ -71,37 +108,32 @@ export default function Layout({ children }) {
         <link rel="stylesheet" href="https://use.typekit.net/yis5dme.css" />
         <script src="/javascript/scrollhide.js" />
       </Head>
-      <Header handleForm={openClose} />
-      {/* {open
-        && ( */}
-      <Maybe test={isLoggedIn}>
-        <AnimatePresence>
+      <Header handleForm={openClose} open={open} />
+      <Maybe test={isLoggedIn} key="loggedIn">
+        <AnimatePresence exitBeforeEnter>
           <motion.div
-            className={`${styles.overlay} col-12 col-md-6`}
-            variants={hideShowForm}
-            animate={open ? 'expanded' : 'collapsed'}
-            // style={open ? { zIndex: 200 } : { zIndex: 0 }}
-            initial={false}
-          >
-            <div className="d-flex flex-column h-100 px-md-5">
-              <header className="page-header">
-                <div className="container ">
-                  <h1 className="page-heading">{t('common:add', { what: t('glossary:meal') })}</h1>
-                </div>
-              </header>
-              <div className="content w-100">
-                <div className="container ">
-                  <MealForm />
-                </div>
-              </div>
-            </div>
+            className={`${styles.overlayAddMeal} bg-addmeal col-12 col-md-6`}
+            variants={hideShowAddMeal}
+            animate={open.addMeal ? 'expanded' : 'collapsed'}
+            initial={false}>
+            {open.addMeal && <MealForm />}
           </motion.div>
         </AnimatePresence>
       </Maybe>
-      {/* )} */}
+      <Maybe test={!isLoggedIn} key="notLoggedIn">
+        <AnimatePresence exitBeforeEnter>
+          <motion.div
+            className={`${styles.overlayLogin} bg-profile`}
+            variants={hideShowForm}
+            animate={open.login ? 'expanded' : 'collapsed'}
+            initial={false}
+            exit={{ opacity: 0 }}>
+            {open.login && <LoginForm />}
+          </motion.div>
+        </AnimatePresence>
+      </Maybe>
       {children}
       <Footer />
-      {/* </motion.div> */}
     </>
   );
 }

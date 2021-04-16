@@ -1,0 +1,24 @@
+@import "../styles/_vars.scss";
+
+.form {
+  input {
+    color: $black;
+    background-color: $white;
+    border-color: $light-gray;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px 8px;
+    margin: 0px 0px;
+    &:focus {
+      border: 2px solid $black;
+      box-shadow: none;
+      outline: none;
+    }
+    &::placeholder {
+      color: $gray;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+  }
+}

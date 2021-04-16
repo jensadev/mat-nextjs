@@ -83,7 +83,7 @@ export default function Home() {
         className="d-flex h-100 flex-column justify-content-center">
         <Maybe test={isLoggedIn}>
           <Link href="/meals">
-            <motion.div variants={item} className="meal">
+            <motion.div variants={item} className="meal pointer">
               <div className="container">
                 <h1 className="heroH1">{t('glossary:meal_plural')}</h1>
               </div>
@@ -91,7 +91,7 @@ export default function Home() {
             </motion.div>
           </Link>
           <Link href="/dishes">
-            <motion.div variants={item} className="dish">
+            <motion.div variants={item} className="dish pointer">
               <div className="container">
                 <h1 className="heroH1">{t('glossary:dish_plural')}</h1>
               </div>
@@ -99,7 +99,7 @@ export default function Home() {
             </motion.div>
           </Link>
           <Link href="/profile">
-            <motion.div variants={item} className="profile">
+            <motion.div variants={item} className="profile pointer">
               <div className="container">
                 <h1 className="heroH1">{t('common:mypage')}</h1>
               </div>
@@ -122,13 +122,15 @@ export default function Home() {
             </div>
             <span className="bg-dish" />
           </motion.div>
-          <motion.div variants={item} className="about">
-            <div className="container">
-              <h1 className="heroH1">{t('common:about')}</h1>
-              <p className="lead">{t('aboutintro')}</p>
-            </div>
-            <span className="bg-about" />
-          </motion.div>
+          <Link href="/about">
+            <motion.div variants={item} className="about pointer">
+              <div className="container">
+                <h1 className="heroH1">{t('common:about')}</h1>
+                <p className="lead">{t('aboutintro')}</p>
+              </div>
+              <span className="bg-about" />
+            </motion.div>
+          </Link>
         </Maybe>
       </motion.main>
     </Layout>

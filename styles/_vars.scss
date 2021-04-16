@@ -1,0 +1,26 @@
+@import "../node_modules/bootstrap/scss/functions"; // Required
+$black: #231f20;
+$white: #fff;
+$silk: #fee4d1;
+$red: #ff4d3c;
+$green: #44D19D;
+$sky: #77D7DB;
+$purple: #956FDE;
+$lilac: #C392FF;
+$blue: #7292F7;
+$cyan: #40B5E0;
+$sand: #FF9F50;
+$yellow: #FEDA3C;
+$coral: #EF8187;
+
+$light-gray: tint-color($black, 80%);
+$gray: tint-color($black, 20%);
+$dark-grey: tint-color($black, 10%);
+
+$darker-blue: shade-color($blue, 60%);
+
+$meal: $coral;
+$dish: $purple;
+$legal: $sand;
+$profile: $cyan;
+$about: $sky;
