@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 // import useWindowDimensions from './wd';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -8,17 +8,16 @@ import useSWR from 'swr';
 
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
-// import { useEffect, useState } from 'react';
 import Footer from './footer';
 import Header from './header';
 import styles from './layout.module.scss';
-import LoginForm from './login-form';
+// import LoginForm from './login-form';
 import Maybe from './maybe';
-import RegistrationForm from './registration-form';
+// import RegistrationForm from './registration-form';
 
 const MealForm = dynamic(() => import('./meal-form'));
-// import MealForm from './meal-form';
-// import Navbar from './navbar';
+const LoginForm = dynamic(() => import('./login-form'));
+const RegistrationForm = dynamic(() => import('./registration-form'));
 
 export const siteTitle = 'Mat';
 
@@ -125,7 +124,7 @@ export default function Layout({ children }) {
         <AnimatePresence>
           <motion.div
             key="login"
-            className={`${styles.overlayLogin} bg-profile`}
+            className={`${styles.overlayLogin} bg-auth`}
             variants={hideShowForm}
             animate={open.login ? 'expanded' : 'collapsed'}
             initial={false}
@@ -134,7 +133,7 @@ export default function Layout({ children }) {
           </motion.div>
           <motion.div
             key="register"
-            className={`${styles.overlayLogin} bg-profile`}
+            className={`${styles.overlayLogin} bg-auth`}
             variants={hideShowForm}
             animate={open.register ? 'expanded' : 'collapsed'}
             initial={false}

@@ -32,6 +32,16 @@ fieldset {
   border: 0;
 }
 
+::-moz-selection { /* Code for Firefox */
+  color: $white;
+  background: $darker-purple;
+}
+
+::selection {
+  color:  $white;
+  background: $darker-purple;
+}
+
 .capitalize-first::first-letter {
   text-transform: uppercase;
 }
@@ -81,6 +91,9 @@ fieldset {
 
 .heroH1 {
   @include line-link( $white, $white, 8rem, 900, .8rem);
+  @media (max-width: 768px) {
+    @include line-link( $white, $white, 4rem, 900, .4rem);
+  }
 }
 
 .heroH1-nolink {
@@ -88,6 +101,9 @@ fieldset {
   font-weight: 900;
   color: $white;
   display: inline-block;
+  @media (max-width: 768px) {
+    font-size: 4rem;
+  }
 }
 
 .link-meals {
@@ -100,12 +116,19 @@ fieldset {
   @include line-link($black, $profile, 2rem, 400, .28rem);
 }
 
+.link-blue {
+  @include line-link($darker-blue, $black, 2rem, 400, .28rem);
+  &:hover {
+    color: $black;
+  }
+}
+
 .link-dark {
   @include line-link($black, $black, 2rem, 400, .28rem);
 }
 
 .link-header {
-  @include line-link($darker-blue, $profile, 2rem, 400, .28rem);
+  @include line-link($darker-blue, $green, 2rem, 400, .28rem);
 }
 
 .link-legal {
@@ -121,11 +144,18 @@ fieldset {
   padding: 1rem 0;
   display: flex;
   align-items: center;
-  height: 33.3333333%;
   overflow: hidden;
   .container {
     z-index: 10;
   }
+}
+
+.row-3 {
+  height: 33.3333333%;
+}
+
+.row-6 {
+  height: 66.666666%;
 }
 
 .pointer {
@@ -158,6 +188,10 @@ fieldset {
   background-color: $profile;
 }
 
+.bg-auth {
+  background-color: $green;
+}
+
 .nav-list {
   list-style: none;
   display: flex;
@@ -186,7 +220,7 @@ fieldset {
 @mixin btn-outline($fg, $bg) {
   position: relative;
   z-index: 1;
-  border: 1px solid $fg;
+  border: 2px solid $fg;
   border-radius: 0;
   transition: all .3s;
   &:after {
@@ -200,9 +234,12 @@ fieldset {
     transition: all .3s;
     z-index: -1;
   }
+  &:focus {
+    border: 2px solid $black;
+  }   
   &:hover {
     color: $fg;
-    border: 1px solid $bg;
+    border: 2px solid $bg;
     &:after {
       width: 100%;
     }
@@ -210,15 +247,15 @@ fieldset {
 }
 
 .btn-clear {
-  @include btn-outline($white, $yellow)
+  @include btn-outline($white, $sand)
 }
 
 .btn-create {
   @include btn-outline($white, $green)
 }
 
-.btn-login {
-  @include btn-outline($white, $blue)
+.btn-auth {
+  @include btn-outline($white, $profile)
 }
 
 .btn-register {
@@ -254,6 +291,7 @@ fieldset {
     font-size: 4rem;
   }
 }
+
 
 .form {
   input {

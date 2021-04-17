@@ -1,4 +1,10 @@
 {
+  "aboutdishes": "What do you eat? Get an overview and suggestions. ",
+  "aboutintro": "{{brand}} is an app to help you keep track of what {{who}} eat. Save your meals to help plan your daily meals. ",
+  "aboutmeals": "Save your meals, what you eat and when. ",
+  "aboutpage": {},
+  "aboutprofile": "aboutprofile",
+  "aboutthis": "aboutintro",
   "breakfast": "breakfast",
   "dinner": "dinner",
   "dish": "dish",
@@ -7,13 +13,18 @@
   "eaten": "i've eaten",
   "food": "food",
   "for": "for",
-  "lunch": "lunch",
   "listof": "your {{what}}",
+  "lunch": "lunch",
   "meal": "meal",
   "meal_plural": "meals",
   "meals": "meals",
   "mealtype": "meal type",
   "profile": "profile",
   "the": "the",
-  "toeat": "will I eat"
+  "toeat": "will I eat",
+  "we": "we",
+  "you": "you",
+  "your": "your",
+  "yours": "yours",
+  "yous": "you"
 }

@@ -11,15 +11,17 @@
   "home": "home",
   "legal": "legal",
   "login": "login",
+  "mypage": "my page",
   "noaccount": "no account",
-  "noaccountlink": "register",
+  "noaccountlink": "register one",
+  "ourpage": "our page",
   "password": "password",
+  "passwordConfirmation": "confirm password",
   "policy": "policy",
   "privacy": "privacy",
   "recent": "recent",
   "register": "register",
   "reset": "clear",
   "signup": "register an account",
-  "terms": "terms of service",
-  "mypage": "my page"
+  "terms": "terms of service"
 }

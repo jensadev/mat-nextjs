@@ -57,7 +57,7 @@ export default function LoginForm() {
 
   return (
     <div className="d-flex flex-column h-100 px-md-5">
-      <header className="">
+      <header>
         <div className="container">
           <h1 className="page-heading">{t('common:login')}</h1>
         </div>
@@ -93,7 +93,7 @@ export default function LoginForm() {
               <ErrorMessage errors={errors} name="password" />
             </fieldset>
             <button
-              className="btn btn-login w-100"
+              className="btn btn-auth w-100"
               type="submit"
               disabled={isLoading}>
               {isLoading ? (
@@ -115,7 +115,7 @@ export default function LoginForm() {
             {t('noaccount')}
             {', '}
             <Link href="/register">
-              <a className="link-dark">{t('noaccountlink')}</a>
+              <a className="link-blue">{t('noaccountlink')}</a>
             </Link>
           </p>
         </div>

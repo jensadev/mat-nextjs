@@ -9,9 +9,12 @@
   "dishplaceholder": "skapa eller sök en rätt...",
   "email": "e-post",
   "home": "hem",
+  "legal": "legal",
   "login": "logga in",
+  "mypage": "min sida",
   "noaccount": "inget konto",
-  "noaccountlink": "registrera dig",
+  "noaccountlink": "registrera ett",
+  "ourpage": "vår sida",
   "password": "lösenord",
   "passwordConfirmation": "bekräfta lösenord",
   "policy": "policy",
@@ -20,6 +23,5 @@
   "register": "registrera",
   "reset": "rensa",
   "signup": "registrera dig",
-  "terms": "användarvillkor",
-  "mypage": "min sida"
+  "terms": "användarvillkor"
 }

@@ -108,7 +108,7 @@ export default function RegistrationForm() {
               <ErrorMessage errors={errors} name="passwordConfirmation" />
             </fieldset>
             <button
-              className="btn btn-create w-100"
+              className="btn btn-auth w-100"
               type="submit"
               disabled={isLoading}>
               {isLoading ? (

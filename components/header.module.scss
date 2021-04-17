@@ -10,10 +10,13 @@
   transition: top 0.3s;
 }
 
+.btnAdd {
+  display: flex;
+}
 
 .open {
   z-index: 200;
-  color: #ff4d3c;
+  color: #fff;
   transition: color .2s;
   &:hover {
     color: #231F20;
@@ -27,4 +30,40 @@
   &:hover {
     color: #231F20;
   }
+}
+
+button.bubble {
+  position: relative;
+  width: 340px;
+  margin: 30px auto;
+  background-color: #fff;
+  border: 8px solid #231F20;
+  border-radius: 30px;
+  padding: 20px;
+}
+
+button.bubble:before,
+button.bubble:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+button.speech:before {
+  left: 74%;
+  top: -50px;
+  border: 46px solid transparent;
+  border-bottom-color: #231F20;
+  border-top: 0;
+  border-right: 0;
+}
+
+button.speech:after {
+  left: calc(74% + 8px);
+  top: -30px;
+  border: 30px solid transparent;
+  border-bottom-color: #fff;
+  border-top: 0;
+  border-right: 0;
 }

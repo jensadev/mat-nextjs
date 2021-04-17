@@ -1,12 +1,23 @@
 {
+  "aboutdishes": "Vad äter du? Få överblick och tips.",
+  "aboutintro": "{{brand}} är en app för att hjälpa dig föra statistik över vad {{who}} äter. Spara dina måltider för att hjälpa dig planera din vardagsmat.",
+  "aboutmeals": "Spara dina måltider, vad du äter och när.",
+  "aboutpage": {
+    "lead": "Måltidsmatsidan är skapad för att hjälpa dig föra statistik över vad du äter. När inspirationen tryter och frågan: -Vad ska vi äta idag? hänger i luften så finns det hjälp att få.",
+    "p1": "På den här sidan kan du snabbt och enkelt föra en loggbok över vad du äter. Du kan sedan se din historik, söka och hitta vad du har ätit. Allt för att hjälpa dig i vardagen."
+  },
+  "aboutprofile": "aboutprofile",
+  "aboutthis": "aboutintro",
   "breakfast": "frukost",
+  "clickheretoadd": "Klicka här för att lägga till en måltid",
   "dinner": "middag",
-  "dish": "rätt",
-  "dish_plural": "rätter",
-  "dishes": "rätter",
+  "dish": "maträtt",
+  "dish_plural": "maträtter",
+  "dishes": "maträtter",
   "eaten": "har jag ätit",
   "food": "mat",
   "for": "till",
+  "legalpage": {},
   "listof": "dina {{what}}",
   "lunch": "lunch",
   "meal": "måltid",
@@ -15,5 +26,10 @@
   "mealtype": "måltidstyp",
   "profile": "profil",
   "the": "den",
-  "toeat": "ska jag äta"
+  "toeat": "ska jag äta",
+  "we": "vi",
+  "you": "du",
+  "your": "din",
+  "yours": "dina",
+  "yous": "ni"
 }

@@ -83,7 +83,7 @@ export default function Home() {
         className="d-flex h-100 flex-column justify-content-center">
         <Maybe test={isLoggedIn}>
           <Link href="/meals">
-            <motion.div variants={item} className="meal pointer">
+            <motion.div variants={item} className="row-3 meal pointer">
               <div className="container">
                 <h1 className="heroH1">{t('glossary:meal_plural')}</h1>
               </div>
@@ -91,7 +91,7 @@ export default function Home() {
             </motion.div>
           </Link>
           <Link href="/dishes">
-            <motion.div variants={item} className="dish pointer">
+            <motion.div variants={item} className="row-3 dish pointer">
               <div className="container">
                 <h1 className="heroH1">{t('glossary:dish_plural')}</h1>
               </div>
@@ -99,23 +99,27 @@ export default function Home() {
             </motion.div>
           </Link>
           <Link href="/profile">
-            <motion.div variants={item} className="profile pointer">
+            <motion.div variants={item} className="row-3 profile pointer">
               <div className="container">
-                <h1 className="heroH1">{t('common:mypage')}</h1>
+                <h1 className="heroH1">
+                  {currentUser && currentUser.family
+                    ? t('common:ourpage')
+                    : t('common:mypage')}
+                </h1>
               </div>
               <span className="bg-profile" />
             </motion.div>
           </Link>
         </Maybe>
         <Maybe test={!isLoggedIn}>
-          <motion.div variants={item} className="meal">
+          <motion.div variants={item} className="row-3 meal">
             <div className="container">
               <h1 className="heroH1-nolink">{t('glossary:meal_plural')}</h1>
               <p className="lead">{t('aboutmeals')}</p>
             </div>
             <span className="bg-meal" />
           </motion.div>
-          <motion.div variants={item} className="dish">
+          <motion.div variants={item} className="row-3 dish">
             <div className="container">
               <h1 className="heroH1-nolink">{t('glossary:dish_plural')}</h1>
               <p className="lead">{t('aboutdishes')}</p>
@@ -123,10 +127,15 @@ export default function Home() {
             <span className="bg-dish" />
           </motion.div>
           <Link href="/about">
-            <motion.div variants={item} className="about pointer">
+            <motion.div variants={item} className="row-6 about pointer">
               <div className="container">
                 <h1 className="heroH1">{t('common:about')}</h1>
-                <p className="lead">{t('aboutintro')}</p>
+                <p className="lead">
+                  {t('aboutintro', {
+                    brand: 'Måltidsmatloggen',
+                    who: t('you')
+                  })}
+                </p>
               </div>
               <span className="bg-about" />
             </motion.div>

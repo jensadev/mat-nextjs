@@ -39,7 +39,11 @@ export default function Profile() {
             <span className="bg-profile" />
           </header>
           <div className="content w-100">
-            <div className="container" />
+            <div className="container">
+              {currentUser && (
+                <h1>{`${t('welcomeback')} ${currentUser.handle}`}</h1>
+              )}
+            </div>
           </div>
         </Maybe>
       </main>
