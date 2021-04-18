@@ -12,8 +12,8 @@
   "legal": "legal",
   "login": "logga in",
   "mypage": "min sida",
-  "noaccount": "inget konto",
-  "noaccountlink": "registrera ett",
+  "noaccount": "inget konto?",
+  "noaccountlink": "skapa ett",
   "ourpage": "vår sida",
   "password": "lösenord",
   "passwordConfirmation": "bekräfta lösenord",
@@ -23,5 +23,7 @@
   "register": "registrera",
   "reset": "rensa",
   "signup": "registrera dig",
-  "terms": "användarvillkor"
+  "terms": "användarvillkor",
+  "welcomeback": "välkommen tillbaka",
+  "index": "start"
 }

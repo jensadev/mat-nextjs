@@ -18,6 +18,7 @@ export default function Header({ open, handleForm }) {
 
   const { t } = useTranslation(['glossary', 'common']);
   const pages = ['meals', 'dishes', 'profile'];
+
   const handleOpen = (e) => {
     handleForm(e.target.dataset.action);
   };
@@ -32,11 +33,6 @@ export default function Header({ open, handleForm }) {
       }
     }
   }, [visible]);
-
-  // const showBubble = localStorage.getItem('bubble');
-  // const handleBubble = () => {
-  //   localStorage.setItem('bubble', false);
-  // };
 
   return (
     <header id="header" className={`${styles.header} fixed-top`}>
@@ -99,12 +95,12 @@ export default function Header({ open, handleForm }) {
             <button
               data-action="meal"
               type="button"
-              className={`btn ${styles.btnAdd}`}
-              onClick={handleOpen}>
+              onClick={handleOpen}
+              className={`btn ${styles.btnAdd}`}>
               <span className="visually-hidden">
                 {t('common:add', { what: t('glossary:meal') })}
               </span>
-              {open.addMeal ? (
+              {open ? (
                 <motion.span
                   initial={{ rotate: 0 }}
                   animate={{

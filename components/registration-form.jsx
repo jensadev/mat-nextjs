@@ -108,13 +108,13 @@ export default function RegistrationForm() {
               <ErrorMessage errors={errors} name="passwordConfirmation" />
             </fieldset>
             <button
-              className="btn btn-auth w-100"
+              className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
               type="submit"
               disabled={isLoading}>
               {isLoading ? (
                 <>
                   <span
-                    className="spinner-border spinner-border-sm"
+                    className="spinner-border me-3"
                     role="status"
                     aria-hidden="true"
                   />
@@ -122,7 +122,7 @@ export default function RegistrationForm() {
                   ...
                 </>
               ) : (
-                <>{t('register')}</>
+                t('register')
               )}
             </button>
           </form>
