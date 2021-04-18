@@ -59,19 +59,6 @@ export default function Layout({ children }) {
     return () => window.removeEventListener('click', handleClick);
   }, [showRegister]);
 
-  useEffect(() => {
-    // only add the event listener when the dropdown is opened
-    if (!showMeal) return;
-    function handleClick(e) {
-      if (meal.current && !meal.current.contains(e.target)) {
-        setShowMeal(false);
-      }
-    }
-    window.addEventListener('click', handleClick);
-    // clean up
-    return () => window.removeEventListener('click', handleClick);
-  }, [showMeal]);
-
   const openClose = (e) => {
     switch (e) {
       case 'login':
@@ -81,7 +68,7 @@ export default function Layout({ children }) {
         setShowRegister(true);
         break;
       case 'meal':
-        setShowMeal(true);
+        setShowMeal(!showMeal);
         break;
       default:
         setShowLogin(false);
@@ -101,6 +88,7 @@ export default function Layout({ children }) {
     collapsed: {
       y: -200,
       opacity: 0,
+      zIndex: 100,
       transition: 'easeInOut'
     }
   };
@@ -135,9 +123,10 @@ export default function Layout({ children }) {
       </Head>
       <Header handleForm={openClose} open={showMeal} />
       <Maybe test={isLoggedIn} key="loggedIn">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence>
           <motion.div
             ref={meal}
+            key="meal"
             className={`${styles.overlayAddMeal} bg-addmeal col-12 col-md-6`}
             variants={hideShowAddMeal}
             animate={showMeal ? 'expanded' : 'collapsed'}

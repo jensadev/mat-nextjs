@@ -15,7 +15,7 @@ export default function Header({ open, handleForm }) {
   const router = useRouter();
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
-
+  const [visible, setVisible] = useState(false);
   const { t } = useTranslation(['glossary', 'common']);
   const pages = ['meals', 'dishes', 'profile'];
 
@@ -23,7 +23,6 @@ export default function Header({ open, handleForm }) {
     handleForm(e.target.dataset.action);
   };
 
-  const [visible, setVisible] = useState(false);
   useEffect(() => {
     if (isLoggedIn) {
       const bubble = localStorage.getItem('bubble');
@@ -88,6 +87,15 @@ export default function Header({ open, handleForm }) {
                 {t('common:register')}
               </button>
             </div>
+            {/* <div>
+              <button
+                data-action="meal"
+                type="button"
+                onClick={handleOpen}
+                className="btn link-header">
+                +
+              </button>
+            </div> */}
           </div>
         </Maybe>
         <Maybe test={isLoggedIn}>
