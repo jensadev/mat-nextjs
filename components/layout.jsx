@@ -73,6 +73,7 @@ export default function Layout({ children }) {
   }, [showMeal]);
 
   const openClose = (e) => {
+    console.log(e);
     switch (e) {
       case 'login':
         setShowLogin(true);
@@ -90,6 +91,11 @@ export default function Layout({ children }) {
         break;
     }
   };
+  console.group('show');
+  console.log(showMeal);
+  console.log(showLogin);
+  console.log(showRegister);
+  console.groupEnd();
 
   const hideShowAddMeal = {
     expanded: {
@@ -101,6 +107,7 @@ export default function Layout({ children }) {
     collapsed: {
       y: -200,
       opacity: 0,
+      zIndex: 100,
       transition: 'easeInOut'
     }
   };
@@ -135,9 +142,10 @@ export default function Layout({ children }) {
       </Head>
       <Header handleForm={openClose} open={showMeal} />
       <Maybe test={isLoggedIn} key="loggedIn">
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence>
           <motion.div
             ref={meal}
+            key="meal"
             className={`${styles.overlayAddMeal} bg-addmeal col-12 col-md-6`}
             variants={hideShowAddMeal}
             animate={showMeal ? 'expanded' : 'collapsed'}

@@ -1,6 +1,5 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { usePresence } from 'framer-motion';
-import Link from 'next/link';
 import Router from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
@@ -12,12 +11,12 @@ import Alert from './alert';
 
 export default function LoginForm({ handleForm }) {
   const [isPresent, safeToRemove] = usePresence();
-  const { t } = useTranslation(['common', 'glossary']);
   const [isLoading, setLoading] = useState(false);
+  const { t } = useTranslation(['common', 'glossary']);
 
   useEffect(() => {
-    !isPresent && setTimeout(safeToRemove, 1000);
-  }, [isPresent]);
+    if (!isPresent) setTimeout(safeToRemove, 1000);
+  }, [isPresent, safeToRemove]);
 
   const handleOpen = (e) => {
     handleForm(e.target.dataset.action);
@@ -32,6 +31,7 @@ export default function LoginForm({ handleForm }) {
 
   const onSubmit = async (values) => {
     setLoading(true);
+
     if (Object.keys(errors).length > 0) {
       return <Alert error>Fel ...</Alert>;
     }

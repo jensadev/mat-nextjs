@@ -15,8 +15,8 @@ export default function RegistrationForm() {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    !isPresent && setTimeout(safeToRemove, 1000);
-  }, [isPresent]);
+    if (!isPresent) setTimeout(safeToRemove, 1000);
+  }, [isPresent, safeToRemove]);
 
   const {
     register,

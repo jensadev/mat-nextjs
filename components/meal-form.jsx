@@ -16,7 +16,6 @@ import { store } from '../lib/api/meal';
 import fetcher from '../lib/utils/fetcher';
 import Alert from './alert';
 import Loading from './loading';
-import styles from './meal-form.module.scss';
 
 export default function MealForm() {
   const [isPresent, safeToRemove] = usePresence();
@@ -31,14 +30,16 @@ export default function MealForm() {
   };
 
   useEffect(() => {
-    !isPresent && setTimeout(safeToRemove, 1000);
-  }, [isPresent]);
+    if (!isPresent) setTimeout(safeToRemove, 1000);
+  }, [isPresent, safeToRemove]);
 
   const {
     handleSubmit,
     reset,
     control,
+    register,
     watch,
+    setError,
     formState: { errors }
   } = useForm({ defaultValues });
 
@@ -52,13 +53,17 @@ export default function MealForm() {
       </Alert>
     );
   }
+
   if (!data) return <Loading />;
+  // return <div>Hello</div>;
 
   const onSubmit = async (values) => {
     setLoading(true);
+
     if (Object.entries(errors).length !== 0) {
       return <Alert error>Fel ...</Alert>;
     }
+
     try {
       const response = await store(
         new Date(values.date).toISOString(),
@@ -67,6 +72,12 @@ export default function MealForm() {
       );
       if (response.status !== 201) {
         console.log(response.data.errors);
+        Object.keys(response.data.errors).map((key, index) => {
+          setError(key, {
+            type: 'manual',
+            message: response.data.errors[key][0]
+          });
+        });
       }
       console.table(response.data.meal);
     } catch (err) {
@@ -87,8 +98,8 @@ export default function MealForm() {
       </header>
       <div className="content w-100">
         <div className="container ">
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-            <p className={`${styles.capitalizeFirst} pb-1`}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <p className="capitalize-first pb-1">
               {format(watchDate || Date.now(), 'eeee', {
                 locale: router.locale === 'en' ? en : sv
               })}{' '}
@@ -97,7 +108,7 @@ export default function MealForm() {
             <label htmlFor="date" className="form-label visually-hidden">
               {t('date')}
             </label>
-            <Controller
+            {/* <Controller
               control={control}
               name="date"
               rules={{
@@ -129,7 +140,7 @@ export default function MealForm() {
                 />
               )}
             />
-            <ErrorMessage errors={errors} name="date" />
+            <ErrorMessage errors={errors} name="date" /> */}
             <p className="pt-4 pb-1">
               {watchDate > defaultValues.date
                 ? t('glossary:toeat')
@@ -138,7 +149,7 @@ export default function MealForm() {
             <label htmlFor="dish" className="form-label visually-hidden">
               {t('dish')}
             </label>
-            <Controller
+            {/* <Controller
               name="dish"
               control={control}
               rules={{
@@ -167,12 +178,12 @@ export default function MealForm() {
                 />
               )}
             />
-            <ErrorMessage errors={errors} name="dish" />
+            <ErrorMessage errors={errors} name="dish" /> */}
             <p className="pt-4 pb-1">{t('glossary:for')}</p>
             <label htmlFor="type" className="form-label visually-hidden">
               {t('mealtype')}
             </label>
-            <Controller
+            {/* <Controller
               name="type"
               control={control}
               rules={{
@@ -198,7 +209,7 @@ export default function MealForm() {
                 />
               )}
             />
-            <ErrorMessage errors={errors} name="type" />
+            <ErrorMessage errors={errors} name="type" /> */}
             <div className="pt-4">
               <button
                 className="btn btn-clear w-100 mb-3"
