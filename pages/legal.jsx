@@ -17,16 +17,12 @@ export default function Legal() {
   return (
     <Layout legal>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`${siteTitle} - ${t('common:terms')}`}</title>
       </Head>
       <main className="d-flex flex-column">
         <header className="page-header">
           <div className="container">
-            <h1 className="page-heading">
-              {t('terms')}
-              {/* {`${t('common:cookie')} &
-              ${t('common:privacy')} ${t('common:policy')}`} */}
-            </h1>
+            <h1 className="page-heading">{t('common:terms')}</h1>
           </div>
           <span className="bg-legal" />
         </header>

@@ -12,8 +12,8 @@
   "legal": "legal",
   "login": "login",
   "mypage": "my page",
-  "noaccount": "no account",
-  "noaccountlink": "register one",
+  "noaccount": "no account?",
+  "noaccountlink": "create one",
   "ourpage": "our page",
   "password": "password",
   "passwordConfirmation": "confirm password",
@@ -23,5 +23,7 @@
   "register": "register",
   "reset": "clear",
   "signup": "register an account",
-  "terms": "terms of service"
+  "terms": "terms of service",
+  "welcomeback": "welcome back",
+  "index": "start"
 }

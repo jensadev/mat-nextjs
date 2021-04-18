@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`${siteTitle} - ${t('common:index')}`}</title>
       </Head>
       <motion.main
         variants={container}
@@ -115,14 +115,14 @@ export default function Home() {
           <motion.div variants={item} className="row-3 meal">
             <div className="container">
               <h1 className="heroH1-nolink">{t('glossary:meal_plural')}</h1>
-              <p className="lead">{t('aboutmeals')}</p>
+              <p className="lead">{t('glossary:aboutmeals')}</p>
             </div>
             <span className="bg-meal" />
           </motion.div>
           <motion.div variants={item} className="row-3 dish">
             <div className="container">
               <h1 className="heroH1-nolink">{t('glossary:dish_plural')}</h1>
-              <p className="lead">{t('aboutdishes')}</p>
+              <p className="lead">{t('glossary:aboutdishes')}</p>
             </div>
             <span className="bg-dish" />
           </motion.div>
@@ -131,9 +131,9 @@ export default function Home() {
               <div className="container">
                 <h1 className="heroH1">{t('common:about')}</h1>
                 <p className="lead">
-                  {t('aboutintro', {
+                  {t('glossary:aboutintro', {
                     brand: 'Måltidsmatloggen',
-                    who: t('you')
+                    who: t('glossary:you')
                   })}
                 </p>
               </div>

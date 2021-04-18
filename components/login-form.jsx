@@ -10,7 +10,7 @@ import { mutate } from 'swr';
 import { login } from '../lib/api/user';
 import Alert from './alert';
 
-export default function LoginForm() {
+export default function LoginForm({ handleForm }) {
   const [isPresent, safeToRemove] = usePresence();
   const { t } = useTranslation(['common', 'glossary']);
   const [isLoading, setLoading] = useState(false);
@@ -18,6 +18,10 @@ export default function LoginForm() {
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 1000);
   }, [isPresent]);
+
+  const handleOpen = (e) => {
+    handleForm(e.target.dataset.action);
+  };
 
   const {
     register,
@@ -93,13 +97,13 @@ export default function LoginForm() {
               <ErrorMessage errors={errors} name="password" />
             </fieldset>
             <button
-              className="btn btn-auth w-100"
+              className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
               type="submit"
               disabled={isLoading}>
               {isLoading ? (
                 <>
                   <span
-                    className="spinner-border spinner-border-sm"
+                    className="spinner-border me-3"
                     role="status"
                     aria-hidden="true"
                   />
@@ -107,16 +111,20 @@ export default function LoginForm() {
                   ...
                 </>
               ) : (
-                <>{t('login')}</>
+                t('login')
               )}
             </button>
           </form>
           <p className="mt-4">
-            {t('noaccount')}
-            {', '}
-            <Link href="/register">
-              <a className="link-blue">{t('noaccountlink')}</a>
-            </Link>
+            {t('common:noaccount')}
+            <button
+              data-action="register"
+              type="button"
+              style={{ textTransform: 'lowercase' }}
+              onClick={handleOpen}
+              className="btn link-blue capitalize-first">
+              {t('common:noaccountlink')}
+            </button>
           </p>
         </div>
       </div>

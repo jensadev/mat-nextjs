@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 // import useWindowDimensions from './wd';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+// import { useTranslation } from 'next-i18next';
+import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 
 import checkLogin from '../lib/utils/checklogin';
@@ -23,45 +23,70 @@ export const siteTitle = 'Mat';
 
 // eslint-disable-next-line react/prop-types
 export default function Layout({ children }) {
-  // const { height, width } = useWindowDimensions();
-  const [open, setOpen] = useState({
-    login: false,
-    register: false,
-    addMeal: false
-  });
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showMeal, setShowMeal] = useState(false);
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
-  const { t } = useTranslation(['glossary', 'common']);
+  // const { t } = useTranslation(['glossary', 'common']);
+  const login = useRef(null);
+  const register = useRef(null);
+  const meal = useRef(null);
+
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!showLogin) return;
+    function handleClick(e) {
+      if (login.current && !login.current.contains(e.target)) {
+        setShowLogin(false);
+      }
+    }
+    window.addEventListener('click', handleClick);
+    // clean up
+    return () => window.removeEventListener('click', handleClick);
+  }, [showLogin]);
+
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!showRegister) return;
+    function handleClick(e) {
+      if (register.current && !register.current.contains(e.target)) {
+        setShowRegister(false);
+      }
+    }
+    window.addEventListener('click', handleClick);
+    // clean up
+    return () => window.removeEventListener('click', handleClick);
+  }, [showRegister]);
+
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!showMeal) return;
+    function handleClick(e) {
+      if (meal.current && !meal.current.contains(e.target)) {
+        setShowMeal(false);
+      }
+    }
+    window.addEventListener('click', handleClick);
+    // clean up
+    return () => window.removeEventListener('click', handleClick);
+  }, [showMeal]);
 
   const openClose = (e) => {
     switch (e) {
       case 'login':
-        setOpen({
-          login: !open.login,
-          register: false,
-          addMeal: false
-        });
+        setShowLogin(true);
         break;
       case 'register':
-        setOpen({
-          login: false,
-          register: !open.register,
-          addMeal: false
-        });
+        setShowRegister(true);
         break;
       case 'meal':
-        setOpen({
-          login: false,
-          register: false,
-          addMeal: !open.addMeal
-        });
+        setShowMeal(true);
         break;
       default:
-        setOpen({
-          login: false,
-          register: false,
-          addMeal: false
-        });
+        setShowLogin(false);
+        setShowRegister(false);
+        setShowMeal(false);
         break;
     }
   };
@@ -106,39 +131,43 @@ export default function Layout({ children }) {
           rel="stylesheet"
         />
         <link rel="stylesheet" href="https://use.typekit.net/yis5dme.css" />
-        <script src="/javascript/scrollhide.js" />
+        <script src="/javascript/scrollhide.js" key="scrollhide" />
       </Head>
-      <Header handleForm={openClose} open={open} />
+      <Header handleForm={openClose} open={showMeal} />
       <Maybe test={isLoggedIn} key="loggedIn">
         <AnimatePresence exitBeforeEnter>
           <motion.div
+            ref={meal}
             className={`${styles.overlayAddMeal} bg-addmeal col-12 col-md-6`}
             variants={hideShowAddMeal}
-            animate={open.addMeal ? 'expanded' : 'collapsed'}
-            initial={false}>
-            {open.addMeal && <MealForm />}
+            animate={showMeal ? 'expanded' : 'collapsed'}
+            initial={false}
+            exit={{ opacity: 0 }}>
+            {showMeal && <MealForm />}
           </motion.div>
         </AnimatePresence>
       </Maybe>
       <Maybe test={!isLoggedIn} key="notLoggedIn">
         <AnimatePresence>
           <motion.div
+            ref={login}
             key="login"
             className={`${styles.overlayLogin} bg-auth`}
             variants={hideShowForm}
-            animate={open.login ? 'expanded' : 'collapsed'}
+            animate={showLogin ? 'expanded' : 'collapsed'}
             initial={false}
             exit={{ opacity: 0 }}>
-            {open.login && <LoginForm />}
+            {showLogin && <LoginForm handleForm={openClose} />}
           </motion.div>
           <motion.div
+            ref={register}
             key="register"
             className={`${styles.overlayLogin} bg-auth`}
             variants={hideShowForm}
-            animate={open.register ? 'expanded' : 'collapsed'}
+            animate={showRegister ? 'expanded' : 'collapsed'}
             initial={false}
             exit={{ opacity: 0 }}>
-            {open.register && <RegistrationForm />}
+            {showRegister && <RegistrationForm />}
           </motion.div>
         </AnimatePresence>
       </Maybe>

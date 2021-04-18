@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <Layout meals>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`${siteTitle} - ${t('glossary:meals')}`}</title>
       </Head>
       <main className="d-flex flex-column">
         <Maybe test={isLoggedIn}>

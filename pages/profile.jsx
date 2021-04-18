@@ -24,16 +24,20 @@ export default function Profile() {
   return (
     <Layout profile>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`${siteTitle} - ${
+          currentUser && currentUser.family
+            ? t('common:ourpage')
+            : t('common:mypage')
+        }`}</title>
       </Head>
       <main className="d-flex flex-column">
         <Maybe test={isLoggedIn}>
           <header className="page-header">
             <div className="container">
               <h1 className="page-heading">
-                {t('common:mypage')}
-                {/* {`${t('common:cookie')} &
-              ${t('common:privacy')} ${t('common:policy')}`} */}
+                {currentUser && currentUser.family
+                  ? t('common:ourpage')
+                  : t('common:mypage')}
               </h1>
             </div>
             <span className="bg-profile" />
@@ -41,7 +45,7 @@ export default function Profile() {
           <div className="content w-100">
             <div className="container">
               {currentUser && (
-                <h1>{`${t('welcomeback')} ${currentUser.handle}`}</h1>
+                <h1>{`${t('common:welcomeback')} ${currentUser.handle}`}</h1>
               )}
             </div>
           </div>

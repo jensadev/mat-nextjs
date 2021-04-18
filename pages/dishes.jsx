@@ -23,17 +23,13 @@ export default function Dishes() {
   return (
     <Layout dishes>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`${siteTitle} - ${t('glossary:dishes')}`}</title>
       </Head>
       <main className="d-flex flex-column">
         <Maybe test={isLoggedIn}>
           <header className="page-header">
             <div className="container">
-              <h1 className="page-heading">
-                {t('glossary:dish_plural')}
-                {/* {`${t('common:cookie')} &
-              ${t('common:privacy')} ${t('common:policy')}`} */}
-              </h1>
+              <h1 className="page-heading">{t('glossary:dish_plural')}</h1>
             </div>
             <span className="bg-dish" />
           </header>
