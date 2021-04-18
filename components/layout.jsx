@@ -59,21 +59,7 @@ export default function Layout({ children }) {
     return () => window.removeEventListener('click', handleClick);
   }, [showRegister]);
 
-  useEffect(() => {
-    // only add the event listener when the dropdown is opened
-    if (!showMeal) return;
-    function handleClick(e) {
-      if (meal.current && !meal.current.contains(e.target)) {
-        setShowMeal(false);
-      }
-    }
-    window.addEventListener('click', handleClick);
-    // clean up
-    return () => window.removeEventListener('click', handleClick);
-  }, [showMeal]);
-
   const openClose = (e) => {
-    console.log(e);
     switch (e) {
       case 'login':
         setShowLogin(true);
@@ -82,7 +68,7 @@ export default function Layout({ children }) {
         setShowRegister(true);
         break;
       case 'meal':
-        setShowMeal(true);
+        setShowMeal(!showMeal);
         break;
       default:
         setShowLogin(false);
@@ -91,11 +77,6 @@ export default function Layout({ children }) {
         break;
     }
   };
-  console.group('show');
-  console.log(showMeal);
-  console.log(showLogin);
-  console.log(showRegister);
-  console.groupEnd();
 
   const hideShowAddMeal = {
     expanded: {

@@ -55,7 +55,6 @@ export default function MealForm() {
   }
 
   if (!data) return <Loading />;
-  // return <div>Hello</div>;
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -108,7 +107,7 @@ export default function MealForm() {
             <label htmlFor="date" className="form-label visually-hidden">
               {t('date')}
             </label>
-            {/* <Controller
+            <Controller
               control={control}
               name="date"
               rules={{
@@ -140,7 +139,7 @@ export default function MealForm() {
                 />
               )}
             />
-            <ErrorMessage errors={errors} name="date" /> */}
+            <ErrorMessage errors={errors} name="date" />
             <p className="pt-4 pb-1">
               {watchDate > defaultValues.date
                 ? t('glossary:toeat')
@@ -149,7 +148,7 @@ export default function MealForm() {
             <label htmlFor="dish" className="form-label visually-hidden">
               {t('dish')}
             </label>
-            {/* <Controller
+            <Controller
               name="dish"
               control={control}
               rules={{
@@ -178,12 +177,12 @@ export default function MealForm() {
                 />
               )}
             />
-            <ErrorMessage errors={errors} name="dish" /> */}
+            <ErrorMessage errors={errors} name="dish" />
             <p className="pt-4 pb-1">{t('glossary:for')}</p>
             <label htmlFor="type" className="form-label visually-hidden">
               {t('mealtype')}
             </label>
-            {/* <Controller
+            <Controller
               name="type"
               control={control}
               rules={{
@@ -209,7 +208,7 @@ export default function MealForm() {
                 />
               )}
             />
-            <ErrorMessage errors={errors} name="type" /> */}
+            <ErrorMessage errors={errors} name="type" />
             <div className="pt-4">
               <button
                 className="btn btn-clear w-100 mb-3"

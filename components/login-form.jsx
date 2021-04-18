@@ -115,17 +115,17 @@ export default function LoginForm({ handleForm }) {
               )}
             </button>
           </form>
-          <p className="mt-4">
-            {t('common:noaccount')}
+          <div className="mt-4 d-flex align-items-center">
+            <p>{t('common:noaccount')}</p>
             <button
               data-action="register"
               type="button"
-              style={{ textTransform: 'lowercase' }}
+              // style={{ textTransform: 'lowercase' }}
               onClick={handleOpen}
-              className="btn link-blue capitalize-first">
+              className="btn link-blue capitalize-first mb-2">
               {t('common:noaccountlink')}
             </button>
-          </p>
+          </div>
         </div>
       </div>
     </div>
