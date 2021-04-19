@@ -9,7 +9,8 @@
   position: absolute;
   top: 22%;
   left: 25%;
-  height: 35%;
+  min-height: 40%;
   width: 50%;
+  max-width: 640px;
   // transform: translate(-50%, -50%) !important;
 }

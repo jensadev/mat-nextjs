@@ -1,6 +1,6 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { usePresence } from 'framer-motion';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,7 @@ import { login } from '../lib/api/user';
 import Alert from './alert';
 
 export default function LoginForm({ handleForm }) {
+  const router = useRouter();
   const [isPresent, safeToRemove] = usePresence();
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation(['common', 'glossary']);
@@ -32,12 +33,16 @@ export default function LoginForm({ handleForm }) {
   const onSubmit = async (values) => {
     setLoading(true);
 
-    if (Object.keys(errors).length > 0) {
-      return <Alert error>Fel ...</Alert>;
-    }
+    // if (Object.keys(errors).length > 0) {
+    //   return <Alert error>Fel ...</Alert>;
+    // }
 
     try {
-      const response = await login(values.email, values.password);
+      const response = await login(
+        values.email,
+        values.password,
+        router.locale
+      );
       if (response.status !== 200) {
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
@@ -45,6 +50,7 @@ export default function LoginForm({ handleForm }) {
             message: response.data.errors[key][0]
           });
         });
+        return <Alert type="success">Hejsan</Alert>;
       }
 
       if (response.data?.user) {
@@ -66,7 +72,7 @@ export default function LoginForm({ handleForm }) {
           <h1 className="page-heading">{t('common:login')}</h1>
         </div>
       </header>
-      <div className="mt-4 w-100">
+      <div className="mt-4 w-100 mb-5">
         <div className="container">
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="mb-3">
@@ -74,7 +80,10 @@ export default function LoginForm({ handleForm }) {
                 {t('common:email')}
               </label>
               <input
-                className="w-100"
+                id="email"
+                name="email"
+                aria-invalid={errors.email ? 'true' : 'false'}
+                className={`w-100 ${errors.email ? 'invalid' : ''}`}
                 type="text"
                 placeholder={t('common:email')}
                 {...register('email', {
@@ -89,7 +98,10 @@ export default function LoginForm({ handleForm }) {
                 {t('common:password')}
               </label>
               <input
-                className="w-100"
+                id="password"
+                name="password"
+                aria-invalid={errors.password ? 'true' : 'false'}
+                className={`w-100 ${errors.password ? 'invalid' : ''}`}
                 type="password"
                 placeholder={t('common:password')}
                 {...register('password', { required: true })}
