@@ -96,12 +96,14 @@ export default function Layout({ children }) {
   const hideShowForm = {
     expanded: {
       y: '0%',
+      x: '50%',
       opacity: 1,
       zIndex: 1020,
       transition: 'easeInOut'
     },
     collapsed: {
       y: '50%',
+      x: '50%',
       opacity: 0,
       zIndex: 100,
       transition: 'easeInOut'
