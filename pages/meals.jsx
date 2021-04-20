@@ -19,7 +19,7 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export default function Home() {
+export default function Meals() {
   const { t } = useTranslation(['common', 'glossary']);
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
