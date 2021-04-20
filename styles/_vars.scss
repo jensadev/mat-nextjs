@@ -17,8 +17,19 @@ $light-gray: tint-color($black, 80%);
 $gray: tint-color($black, 20%);
 $dark-grey: tint-color($black, 10%);
 
-$darker-blue: shade-color($blue, 60%);
-$darker-purple: shade-color($purple, 40%);
+$dark-purple: shade-color($purple, 40%);
+
+$light-blue: tint-color($blue, 60%);
+$dark-blue: shade-color($blue, 60%);
+
+$light-green: tint-color($green, 60%);
+$dark-green: shade-color($green, 60%);
+
+$light-red: tint-color($red, 60%);
+$dark-red: shade-color($red, 60%);
+
+$light-yellow: tint-color($yellow, 60%);
+$dark-yellow: shade-color($yellow, 60%);
 
 $meal: $coral;
 $dish: $purple;

@@ -82,7 +82,7 @@ export default function Layout({ children }) {
     expanded: {
       y: 0,
       opacity: 1,
-      zIndex: 1020,
+      zIndex: 800,
       transition: 'easeInOut'
     },
     collapsed: {
@@ -98,7 +98,7 @@ export default function Layout({ children }) {
       y: '0%',
       x: '50%',
       opacity: 1,
-      zIndex: 1020,
+      zIndex: 800,
       transition: 'easeInOut'
     },
     collapsed: {

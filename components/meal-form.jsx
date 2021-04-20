@@ -10,6 +10,7 @@ import ReactDatePicker from 'react-datepicker';
 import { Controller, useForm } from 'react-hook-form';
 import ReactSelect from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import { useToasts } from 'react-toast-notifications';
 import useSWR from 'swr';
 
 import { store } from '../lib/api/meal';
@@ -23,6 +24,7 @@ export default function MealForm() {
   const router = useRouter();
   const { t } = useTranslation(['common', 'glossary']);
   const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
+  const { addToast } = useToasts();
   const defaultValues = {
     date: Date.now(),
     type: { value: '3', label: t('glossary:dinner') },
@@ -37,7 +39,6 @@ export default function MealForm() {
     handleSubmit,
     reset,
     control,
-    register,
     watch,
     setError,
     formState: { errors }
@@ -54,7 +55,8 @@ export default function MealForm() {
     );
   }
 
-  if (!data) return <Loading />;
+  // if (!data) return <Loading />;
+  const dishes = (data && data.dishes) || false;
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -78,8 +80,11 @@ export default function MealForm() {
           });
         });
       }
+      addToast('Meal created', { appearance: 'success' });
       console.table(response.data.meal);
+      reset(defaultValues);
     } catch (err) {
+      addToast('feeeeeel', { appearance: 'error' });
       console.error(err);
     } finally {
       setLoading(false);
@@ -169,10 +174,13 @@ export default function MealForm() {
                   isValidNewOption={(option) => option.length > 3}
                   placeholder={t('dishplaceholder')}
                   isClearable
-                  options={data.dishes.map((dish) => ({
-                    label: dish.name,
-                    value: dish.name
-                  }))}
+                  options={
+                    dishes &&
+                    dishes.map((dish) => ({
+                      label: dish.name,
+                      value: dish.name
+                    }))
+                  }
                   {...field}
                 />
               )}

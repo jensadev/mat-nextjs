@@ -35,11 +35,12 @@
 button.bubble {
   position: relative;
   width: 340px;
-  margin: 30px auto;
+  margin-top: 18px;
+  margin-right: 9px;
   background-color: #fff;
-  border: 8px solid #231F20;
-  border-radius: 30px;
-  padding: 20px;
+  border: 2px solid #231F20;
+  // border-radius: 20px;
+  padding: 16px;
 }
 
 button.bubble:before,
@@ -52,17 +53,17 @@ button.bubble:after {
 
 button.speech:before {
   left: 74%;
-  top: -50px;
-  border: 46px solid transparent;
+  top: -30px;
+  border: 30px solid transparent;
   border-bottom-color: #231F20;
   border-top: 0;
   border-right: 0;
 }
 
 button.speech:after {
-  left: calc(74% + 8px);
-  top: -30px;
-  border: 30px solid transparent;
+  left: calc(74% + 2px);
+  top: -26px;
+  border: 26px solid transparent;
   border-bottom-color: #fff;
   border-top: 0;
   border-right: 0;
