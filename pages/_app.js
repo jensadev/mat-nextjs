@@ -14,15 +14,15 @@ import CustomToast from '../components/custom-toast';
 // }
 
 const MyApp = ({ Component, pageProps, router }) => (
-  <AnimatePresence exitBeforeEnter>
+  <AnimatePresence>
     <ToastProvider
       key="toast"
       components={{ Toast: CustomToast }}
       placement="bottom-right"
       autoDismiss
-      autoDismissTimeout={4000}
-    />
-    <Component {...pageProps} key={router.route} />
+      autoDismissTimeout={4000}>
+      <Component {...pageProps} key={router.route} />
+    </ToastProvider>
   </AnimatePresence>
 );
 

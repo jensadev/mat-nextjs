@@ -14,9 +14,9 @@ export default function LoginForm({ handleForm }) {
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation(['common', 'glossary']);
 
-  useEffect(() => {
-    if (!isPresent) setTimeout(safeToRemove, 1000);
-  }, [isPresent, safeToRemove]);
+  // useEffect(() => {
+  //   if (!isPresent) setTimeout(safeToRemove, 1000);
+  // }, [isPresent, safeToRemove]);
 
   const handleOpen = (e) => {
     handleForm(e.target.dataset.action);
