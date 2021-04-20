@@ -5,13 +5,10 @@ import useSWR from 'swr';
 import fetcher from '../lib/utils/fetcher';
 import Alert from './alert';
 import ListItem from './list-item';
-import Loading from './loading';
 import styles from './meal.module.scss';
 
 export default function MealList() {
   const [pageIndex, setPageIndex] = useState(1);
-  // const getFetchURL = () => `${process.env.apiUrl}/meals`;
-  // const fetchURL = useMemo(() => getFetchURL());
   const { data, error } = useSWR(
     `${process.env.apiUrl}/meals?page=${pageIndex}`,
     fetcher

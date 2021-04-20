@@ -33,39 +33,41 @@ export default function Layout({ children }) {
   const register = useRef(null);
   const meal = useRef(null);
 
-  useEffect(() => {
-    // only add the event listener when the dropdown is opened
-    if (!showLogin) return;
-    function handleClick(e) {
-      if (login.current && !login.current.contains(e.target)) {
-        setShowLogin(false);
-      }
-    }
-    window.addEventListener('click', handleClick);
-    // clean up
-    return () => window.removeEventListener('click', handleClick);
-  }, [showLogin]);
+  // useEffect(() => {
+  //   console.log(showLogin);
+  //   // only add the event listener when the dropdown is opened
+  //   if (!showLogin) return;
+  //   function handleClick(e) {
+  //     if (login.current && !login.current.contains(e.target)) {
+  //       console.log('nej');
+  //       setShowLogin(false);
+  //     }
+  //   }
+  //   window.addEventListener('click', handleClick);
+  //   // clean up
+  //   return () => window.removeEventListener('click', handleClick);
+  // }, [showLogin]);
 
-  useEffect(() => {
-    // only add the event listener when the dropdown is opened
-    if (!showRegister) return;
-    function handleClick(e) {
-      if (register.current && !register.current.contains(e.target)) {
-        setShowRegister(false);
-      }
-    }
-    window.addEventListener('click', handleClick);
-    // clean up
-    return () => window.removeEventListener('click', handleClick);
-  }, [showRegister]);
+  // useEffect(() => {
+  //   // only add the event listener when the dropdown is opened
+  //   if (!showRegister) return;
+  //   function handleClick(e) {
+  //     if (register.current && !register.current.contains(e.target)) {
+  //       setShowRegister(false);
+  //     }
+  //   }
+  //   window.addEventListener('click', handleClick);
+  //   // clean up
+  //   return () => window.removeEventListener('click', handleClick);
+  // }, [showRegister]);
 
   const openClose = (e) => {
     switch (e) {
       case 'login':
-        setShowLogin(true);
+        setShowLogin(!showLogin);
         break;
       case 'register':
-        setShowRegister(true);
+        setShowRegister(!showRegister);
         break;
       case 'meal':
         setShowMeal(!showMeal);

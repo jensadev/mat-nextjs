@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
 
 import { login } from '../lib/api/user';
-import Alert from './alert';
 
 export default function LoginForm({ handleForm }) {
   const router = useRouter();
@@ -50,7 +49,6 @@ export default function LoginForm({ handleForm }) {
             message: response.data.errors[key][0]
           });
         });
-        return <Alert type="success">Hejsan</Alert>;
       }
 
       if (response.data?.user) {
