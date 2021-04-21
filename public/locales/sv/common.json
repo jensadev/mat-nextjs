@@ -25,5 +25,7 @@
   "signup": "registrera dig",
   "terms": "användarvillkor",
   "welcomeback": "välkommen tillbaka",
-  "index": "start"
+  "index": "start",
+  "formcreate": "skapa",
+  "formnooptions": "inga alternativ"
 }

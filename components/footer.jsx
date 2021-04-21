@@ -12,7 +12,7 @@ export default function Footer() {
     <footer
       className={`${
         router.pathname === '/' ? 'fixed-bottom' : ''
-      } mt-auto pb-5`}>
+      } mt-auto pb-2 pb-md-5`}>
       <div className="container d-flex justify-content-between align-items-center">
         <Link href="/" locale={router.locale === 'en' ? 'sv' : 'en'}>
           <button type="button" className="btn link-dark">

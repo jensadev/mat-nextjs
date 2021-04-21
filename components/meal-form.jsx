@@ -17,6 +17,7 @@ import { store } from '../lib/api/meal';
 import fetcher from '../lib/utils/fetcher';
 import Alert from './alert';
 import Loading from './loading';
+import styles from './meal-form.module.scss';
 
 export default function MealForm() {
   const [isPresent, safeToRemove] = usePresence();
@@ -104,8 +105,8 @@ export default function MealForm() {
       </header>
       <div className="content w-100">
         <div className="container ">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <p className="capitalize-first pb-1">
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.mealForm}>
+            <p className="capitalize-first mb-1 mb-md-2">
               {format(watchDate || Date.now(), 'eeee', {
                 locale: router.locale === 'en' ? en : sv
               })}{' '}
@@ -127,10 +128,6 @@ export default function MealForm() {
                   // popperClassName="some-custom-class"
                   popperPlacement="bottom-start"
                   popperModifiers={{
-                    offset: {
-                      enabled: true,
-                      offset: '32px, 8px'
-                    },
                     preventOverflow: {
                       enabled: true,
                       escapeWithReference: false,
@@ -147,7 +144,7 @@ export default function MealForm() {
               )}
             />
             <ErrorMessage errors={errors} name="date" />
-            <p className="pt-4 pb-1">
+            <p className="pt-1 pt-md-4 mb-1 mb-md-2">
               {watchDate > defaultValues.date
                 ? t('glossary:toeat')
                 : t('glossary:eaten')}
@@ -164,6 +161,10 @@ export default function MealForm() {
               }}
               render={({ field }) => (
                 <CreatableSelect
+                  formatCreateLabel={(inputValue) =>
+                    `${t('common:formcreate')} "${inputValue}"`
+                  }
+                  noOptionsMessage={() => `${t('common:formnooptions')}`}
                   theme={(theme) => ({
                     ...theme,
                     borderRadius: 0,
@@ -191,7 +192,7 @@ export default function MealForm() {
               )}
             />
             <ErrorMessage errors={errors} name="dish" />
-            <p className="pt-4 pb-1">{t('glossary:for')}</p>
+            <p className="pt-1 pt-md-4 mb-1 mb-md-2">{t('glossary:for')}</p>
             <label htmlFor="type" className="form-label visually-hidden">
               {t('mealtype')}
             </label>
@@ -225,7 +226,7 @@ export default function MealForm() {
               )}
             />
             <ErrorMessage errors={errors} name="type" />
-            <div className="pt-4">
+            <div className="pt-3 pt-md-4 pb-3">
               <button
                 className="btn btn-clear w-100"
                 type="button"
@@ -238,7 +239,7 @@ export default function MealForm() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="btn btn-create w-100 mt-4">
+                className="btn btn-create w-100 mt-3 mt-md-4">
                 {t('create')}
               </button>
             </div>

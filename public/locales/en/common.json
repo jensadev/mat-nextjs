@@ -25,5 +25,7 @@
   "signup": "register an account",
   "terms": "terms of service",
   "welcomeback": "welcome back",
-  "index": "start"
+  "index": "start",
+  "formcreate": "create",
+  "formnooptions": "no options"
 }

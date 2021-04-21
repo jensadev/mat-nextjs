@@ -65,7 +65,7 @@ export default function RegistrationForm() {
           <h1 className="page-heading">{t('common:register')}</h1>
         </div>
       </header>
-      <div className="mt-4 w-100">
+      <div className="mt-4 w-100 mb-4">
         <div className="container">
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="mb-3">

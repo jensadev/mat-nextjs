@@ -1,3 +1,10 @@
-.capitalizeFirst::first-letter {
-  text-transform: uppercase;
+// .capitalizeFirst::first-letter {
+//   text-transform: uppercase;
+// }
+
+.mealForm {
+  font-size: 2rem;
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
 }

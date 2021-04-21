@@ -10,6 +10,9 @@ body {
   background-color: $silk;
   font-size: 2rem;
   line-height: 1.5;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 }
 
 a {
@@ -48,6 +51,9 @@ fieldset {
 
 .lead {
   font-size: 2.2rem;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 }
 
 .spinner-border {
@@ -123,6 +129,9 @@ fieldset {
 
 .link-blue {
   @include line-link($dark-blue, $black, 2rem, 400, .28rem);
+  @media (max-width: 768px) {
+    @include line-link($dark-blue, $black, 1rem, 400, .1rem);
+  }
   &:hover {
     color: $black;
   }
@@ -130,10 +139,16 @@ fieldset {
 
 .link-dark {
   @include line-link($black, $black, 2rem, 400, .28rem);
+  @media (max-width: 768px) {
+    @include line-link($black, $black, 1.4rem, 400, .2rem);
+  }
 }
 
 .link-header {
   @include line-link($dark-blue, $green, 2rem, 400, .28rem);
+  @media (max-width: 768px) {
+    @include line-link($dark-blue, $green, 1.4rem, 400, .2rem);
+  }
 }
 
 .link-legal {
@@ -206,6 +221,7 @@ fieldset {
 }
 
 .btn {
+  white-space: nowrap;
   text-transform: uppercase;
   font-size: 2rem;
   transition: all .3s;
@@ -250,7 +266,7 @@ fieldset {
 }
 
 .btn-clear {
-  @include btn-outline($gray, $white, $sand)
+  @include btn-outline($black, $white, $sand)
 }
 
 .btn-create {
@@ -271,6 +287,9 @@ fieldset {
 
 .content {
   padding-top: 64px;
+  @media (max-width: 768px) {
+    padding-top: 0px;
+  }
 }
 
 .page-header {
@@ -392,23 +411,23 @@ fieldset {
   }
 }
 
-$datepicker__background-color: #f0f0f0 !default;
-$datepicker__border-color: #A19FA0;
-$datepicker__highlighted-color: #44D19D;
-$datepicker__muted-color: #ccc !default;
-$datepicker__selected-color: #40B5E0;
-$datepicker__text-color: #231F20;
-$datepicker__header-color: #231F20;
+$datepicker__background-color: $light-cyan;
+$datepicker__border-color: $white;
+$datepicker__highlighted-color: $green;
+$datepicker__muted-color: $gray;
+$datepicker__selected-color: $cyan;
+$datepicker__text-color: $black;
+$datepicker__header-color: $black;
 $datepicker__navigation-disabled-color: lighten($datepicker__muted-color, 10%)
   !default;
 
 $datepicker__border-radius: 0;
 $datepicker__day-margin: 0.166rem !default;
-$datepicker__font-size: 1.4rem;
+$datepicker__font-size: 1.2rem;
 $datepicker__font-family:  azo-sans-web, sans-serif;
-$datepicker__item-size: 3rem;
+$datepicker__item-size: 2.2rem;
 $datepicker__margin: 0.4rem !default;
-$datepicker__navigation-size: 0.45rem !default;
+$datepicker__navigation-size: 0.5rem !default;
 $datepicker__triangle-size: 8px !default;
 
 @import '../node_modules/react-datepicker/src/stylesheets/datepicker.scss'

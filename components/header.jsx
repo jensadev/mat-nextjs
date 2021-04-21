@@ -45,6 +45,7 @@ export default function Header() {
     expanded: {
       y: '0%',
       x: '50%',
+      // height: '50%',
       opacity: 1,
       zIndex: 800,
       transition: 'easeInOut'
@@ -52,6 +53,7 @@ export default function Header() {
     collapsed: {
       y: '50%',
       x: '50%',
+      // height: '0%',
       opacity: 0,
       zIndex: 100,
       transition: 'easeInOut'
@@ -60,12 +62,14 @@ export default function Header() {
   const mealFormAnimation = {
     expanded: {
       y: 0,
+      height: '100%',
       opacity: 1,
       zIndex: 800,
       transition: 'easeInOut'
     },
     collapsed: {
       y: -200,
+      height: '0%',
       opacity: 0,
       zIndex: 100,
       transition: 'easeInOut'
@@ -84,15 +88,15 @@ export default function Header() {
   return (
     <>
       <header id="header" className={`${styles.header} fixed-top`}>
-        <div className="container d-flex justify-content-between align-items-center py-3">
+        <div className="container d-flex justify-content-between align-items-center py-1 py-md-3">
           <div className="d-flex">
             <Link href="/">
               <img
                 alt="logo"
                 className={styles.logo}
                 src="/images/logo.svg"
-                height={64}
-                width={64}
+                height={48}
+                width={48}
               />
             </Link>
             <Maybe test={isLoggedIn}>
@@ -118,7 +122,8 @@ export default function Header() {
           </div>
           <Maybe test={!isLoggedIn}>
             <div className="d-flex">
-              <div>
+              <div className="position-relative">
+                {isLoginVisible && <div className={styles.fulHack} />}
                 <button
                   type="button"
                   onClick={(e) => setIsLoginVisible(!isLoginVisible)}
@@ -126,7 +131,8 @@ export default function Header() {
                   {t('common:login')}
                 </button>
               </div>
-              <div>
+              <div className="position-relative">
+                {isRegisterVisible && <div className={styles.fulHack} />}
                 <button
                   type="button"
                   onClick={(e) => setIsRegisterVisible(!isRegisterVisible)}
@@ -138,15 +144,7 @@ export default function Header() {
           </Maybe>
           <Maybe test={isLoggedIn}>
             <div className="position-relative">
-              {isAddMealVisible && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    width: '90px',
-                    height: '80px'
-                  }}
-                />
-              )}
+              {isAddMealVisible && <div className={styles.fulHack} />}
               <button
                 type="button"
                 onClick={() => setIsAddMealVisible(!isAddMealVisible)}
@@ -198,7 +196,7 @@ export default function Header() {
           <motion.div
             ref={loginForm}
             key="login"
-            className={`${styles.overlayLogin} bg-auth`}
+            className={`${styles.overlayAuth} bg-auth`}
             variants={authFormAnimation}
             animate={isLoginVisible ? 'expanded' : 'collapsed'}
             initial={false}
@@ -208,7 +206,7 @@ export default function Header() {
           <motion.div
             ref={registerForm}
             key="register"
-            className={`${styles.overlayLogin} bg-auth`}
+            className={`${styles.overlayAuth} bg-auth`}
             variants={authFormAnimation}
             animate={isRegisterVisible ? 'expanded' : 'collapsed'}
             initial={false}
