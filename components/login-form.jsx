@@ -10,7 +10,7 @@ import { login } from '../lib/api/user';
 
 export default function LoginForm({ handleForm }) {
   const router = useRouter();
-  const [isPresent, safeToRemove] = usePresence();
+  // const [isPresent, safeToRemove] = usePresence();
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation(['common', 'glossary']);
 

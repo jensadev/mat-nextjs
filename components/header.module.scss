@@ -68,3 +68,24 @@ button.speech:after {
   border-top: 0;
   border-right: 0;
 }
+
+.overlayAddMeal {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+}
+
+.overlayLogin {
+  position: absolute;
+  top: 22%;
+  // left: 25%;
+  min-height: 40%;
+  width: 50%;
+  // max-width: 640px;
+  // transform: translate(-50%, -50%) !important;
+  @media (max-width: 768px) {
+    left: -50%;
+    width: 100%;
+  }
+}

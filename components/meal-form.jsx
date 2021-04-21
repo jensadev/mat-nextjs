@@ -80,9 +80,11 @@ export default function MealForm() {
           });
         });
       }
-      addToast('Meal created', { appearance: 'success' });
-      console.table(response.data.meal);
-      reset(defaultValues);
+      if (response.status === 201) {
+        addToast('Meal created', { appearance: 'success' });
+        console.table(response.data.meal);
+        reset(defaultValues);
+      }
     } catch (err) {
       addToast('feeeeeel', { appearance: 'error' });
       console.error(err);
@@ -165,10 +167,13 @@ export default function MealForm() {
                   theme={(theme) => ({
                     ...theme,
                     borderRadius: 0,
+                    borderWidth: '2px',
                     colors: {
                       ...theme.colors,
                       primary25: '#77D7DB',
-                      primary: '#231F20'
+                      primary: '#231F20',
+                      neutral20: '#fff',
+                      neutral30: '#fff'
                     }
                   })}
                   isValidNewOption={(option) => option.length > 3}
@@ -201,10 +206,13 @@ export default function MealForm() {
                   theme={(theme) => ({
                     ...theme,
                     borderRadius: 0,
+                    borderWidth: '2px',
                     colors: {
                       ...theme.colors,
                       primary25: '#77D7DB',
-                      primary: '#231F20'
+                      primary: '#231F20',
+                      neutral20: '#fff',
+                      neutral30: '#fff'
                     }
                   })}
                   options={[
@@ -219,7 +227,7 @@ export default function MealForm() {
             <ErrorMessage errors={errors} name="type" />
             <div className="pt-4">
               <button
-                className="btn btn-clear w-100 mb-3"
+                className="btn btn-clear w-100"
                 type="button"
                 disabled={isLoading}
                 onClick={() => {
@@ -230,7 +238,7 @@ export default function MealForm() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="btn btn-create  w-100">
+                className="btn btn-create w-100 mt-4">
                 {t('create')}
               </button>
             </div>
