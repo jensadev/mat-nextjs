@@ -229,6 +229,9 @@ fieldset {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
 }
 
 @mixin btn-outline($text, $fg, $bg) {
@@ -288,7 +291,7 @@ fieldset {
 .content {
   padding-top: 64px;
   @media (max-width: 768px) {
-    padding-top: 0px;
+    padding-top: 32px;
   }
 }
 
