@@ -29,7 +29,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
         router.locale
       );
       if (response.status !== 200) {
-        console.table(response.data.errors);
+        // console.table(response.data.errors);
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
             type: 'manual',
@@ -76,8 +76,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
               <input
                 id="email"
                 name="email"
-                aria-invalid={errors.email ? 'true' : 'false'}
-                className={`w-100 ${errors.email ? 'invalid' : ''}`}
+                aria-invalid={errors.user.email ? 'true' : 'false'}
+                className={`w-100 ${errors.user.email ? 'invalid' : ''}`}
                 type="text"
                 placeholder={t('common:email')}
                 {...register('email', {
@@ -85,7 +85,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                   pattern: /^\S+@\S+$/i
                 })}
               />
-              <ErrorMessage errors={errors} name="email" />
+              <ErrorMessage errors={errors} name="user.email" />
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="password" className="visually-hidden">
@@ -94,13 +94,13 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
               <input
                 id="password"
                 name="password"
-                aria-invalid={errors.password ? 'true' : 'false'}
-                className={`w-100 ${errors.password ? 'invalid' : ''}`}
+                aria-invalid={errors.user.password ? 'true' : 'false'}
+                className={`w-100 ${errors.user.password ? 'invalid' : ''}`}
                 type="password"
                 placeholder={t('common:password')}
                 {...register('password', { required: true })}
               />
-              <ErrorMessage errors={errors} name="password" />
+              <ErrorMessage errors={errors} name="user.password" />
             </fieldset>
             <button
               className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
