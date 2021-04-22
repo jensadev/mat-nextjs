@@ -26,10 +26,11 @@ export default function RegistrationForm({ setIsRegistrationVisible, isRegistrat
       const response = await store(
         values.email,
         values.password,
-        values.passwordConfirmation
+        values.passwordConfirmation,
+        router.locale
       );
       if (response.status !== 201) {
-        console.table(response.data.errors);
+        // console.table(response.data.errors);
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
             type: 'manual',
@@ -74,7 +75,10 @@ export default function RegistrationForm({ setIsRegistrationVisible, isRegistrat
                 {t('common:email')}
               </label>
               <input
-                className="w-100"
+                id="email"
+                name="email"
+                aria-invalid={errors.user.email ? 'true' : 'false'}
+                className={`w-100 ${errors.user.email ? 'invalid' : ''}`}
                 type="text"
                 placeholder={t('common:email')}
                 {...register('email', {
@@ -82,31 +86,38 @@ export default function RegistrationForm({ setIsRegistrationVisible, isRegistrat
                   pattern: /^\S+@\S+$/i
                 })}
               />
-              <ErrorMessage errors={errors} name="email" />
+              <ErrorMessage errors={errors} name="user.email" />
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="password" className="visually-hidden">
                 {t('common:password')}
               </label>
               <input
-                className="w-100"
+                id="password"
+                name="password"
+                aria-invalid={errors.user.password ? 'true' : 'false'}
+                className={`w-100 ${errors.user.password ? 'invalid' : ''}`}
                 type="password"
                 placeholder={t('common:password')}
                 {...register('password', { required: true })}
               />
-              <ErrorMessage errors={errors} name="password" />
+              <ErrorMessage errors={errors} name="user.password" />
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="passwordConfirmation" className="visually-hidden">
                 {t('common:passwordConfirmation')}
               </label>
               <input
-                className="w-100"
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                aria-invalid={errors.user.passwordConfirmation ? 'true' : 'false'}
+                className={`w-100 ${errors.user.passwordConfirmation ? 'invalid' : ''}`}
+
                 type="password"
                 placeholder={t('common:passwordConfirmation')}
                 {...register('passwordConfirmation', { required: true })}
               />
-              <ErrorMessage errors={errors} name="passwordConfirmation" />
+              <ErrorMessage errors={errors} name="user.passwordConfirmation" />
             </fieldset>
             <button
               className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
