@@ -1,27 +1,17 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { usePresence } from 'framer-motion';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
-
+import styles from './form.module.scss'
 import { login } from '../lib/api/user';
-
-export default function LoginForm({ handleForm }) {
-  const router = useRouter();
-  // const [isPresent, safeToRemove] = usePresence();
+import { useToasts } from 'react-toast-notifications';
+export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation(['common', 'glossary']);
-
-  // useEffect(() => {
-  //   if (!isPresent) setTimeout(safeToRemove, 1000);
-  // }, [isPresent, safeToRemove]);
-
-  const handleOpen = (e) => {
-    handleForm(e.target.dataset.action);
-  };
-
+  const router = useRouter();
+  const { addToast } = useToasts();
   const {
     register,
     handleSubmit,
@@ -32,10 +22,6 @@ export default function LoginForm({ handleForm }) {
   const onSubmit = async (values) => {
     setLoading(true);
 
-    // if (Object.keys(errors).length > 0) {
-    //   return <Alert error>Fel ...</Alert>;
-    // }
-
     try {
       const response = await login(
         values.email,
@@ -43,6 +29,7 @@ export default function LoginForm({ handleForm }) {
         router.locale
       );
       if (response.status !== 200) {
+        console.table(response.data.errors);
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
             type: 'manual',
@@ -52,11 +39,13 @@ export default function LoginForm({ handleForm }) {
       }
 
       if (response.data?.user) {
+        addToast(t('glossary:loginsuccess'), { appearance: 'success' });
         window.localStorage.setItem('user', JSON.stringify(response.data.user));
         mutate('user', response.data?.user);
         Router.push('/');
       }
     } catch (error) {
+      addToast(t('glossary:loginerror'), { appearance: 'error' });
       console.error(error);
     } finally {
       setLoading(false);
@@ -64,15 +53,22 @@ export default function LoginForm({ handleForm }) {
   };
 
   return (
-    <div className="d-flex flex-column h-100 px-md-5">
+    <>
+    <div className="position-absolute top-0 end-0 p-1">
+      <button class="btn" onClick={e => setIsLoginVisible(!isLoginVisible)}>
+        <span class="material-icons-round md-48">
+          close
+        </span>
+      </button>
+    </div>
+    <div className="py-5 px-4">
       <header>
         <div className="container">
-          <h1 className="page-heading">{t('common:login')}</h1>
+          <h1 className={styles.formHeading}>{t('common:login')}</h1>
         </div>
       </header>
-      <div className="mt-4 w-100 mb-4">
         <div className="container">
-          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="mb-3">
               <label htmlFor="email" className="visually-hidden">
                 {t('common:email')}
@@ -125,19 +121,19 @@ export default function LoginForm({ handleForm }) {
               )}
             </button>
           </form>
-          <div className="mt-4 d-flex align-items-center">
+          {/* <div className="mt-4 d-flex align-items-center">
             <p>{t('common:noaccount')}</p>
             <button
               data-action="register"
               type="button"
               // style={{ textTransform: 'lowercase' }}
-              onClick={handleOpen}
+              // onClick={handleOpen}
               className="btn link-blue capitalize-first mb-2">
               {t('common:noaccountlink')}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -30,8 +30,8 @@ export default function Header() {
   } = useVisible(false);
   const {
     ref: registerForm,
-    isVisible: isRegisterVisible,
-    setIsVisible: setIsRegisterVisible
+    isVisible: isRegistrationVisible,
+    setIsVisible: setIsRegistrationVisible
   } = useVisible(false);
   const {
     ref: addMealForm,
@@ -45,9 +45,8 @@ export default function Header() {
     expanded: {
       y: '0%',
       x: '50%',
-      // height: '50%',
+      // height: '100%',
       opacity: 1,
-      zIndex: 800,
       transition: 'easeInOut'
     },
     collapsed: {
@@ -55,7 +54,6 @@ export default function Header() {
       x: '50%',
       // height: '0%',
       opacity: 0,
-      zIndex: 100,
       transition: 'easeInOut'
     }
   };
@@ -64,14 +62,12 @@ export default function Header() {
       y: 0,
       height: '100%',
       opacity: 1,
-      zIndex: 800,
       transition: 'easeInOut'
     },
     collapsed: {
       y: -200,
       height: '0%',
       opacity: 0,
-      zIndex: 100,
       transition: 'easeInOut'
     }
   };
@@ -87,7 +83,7 @@ export default function Header() {
 
   return (
     <>
-      <header id="header" className={`${styles.header} fixed-top`}>
+      <header id="header" className={`${styles.header} fixed-top pt-2`}>
         <div className="container d-flex justify-content-between align-items-center py-1 py-md-3">
           <div className="d-flex">
             <Link href="/">
@@ -123,7 +119,7 @@ export default function Header() {
           <Maybe test={!isLoggedIn}>
             <div className="d-flex">
               <div className="position-relative">
-                {isLoginVisible && <div className={styles.fulHack} />}
+                {/* {isLoginVisible && <div className={styles.fulHack} />} */}
                 <button
                   type="button"
                   onClick={(e) => setIsLoginVisible(!isLoginVisible)}
@@ -132,10 +128,10 @@ export default function Header() {
                 </button>
               </div>
               <div className="position-relative">
-                {isRegisterVisible && <div className={styles.fulHack} />}
+                {/* {isRegistrationVisible && <div className={styles.fulHack} />} */}
                 <button
                   type="button"
-                  onClick={(e) => setIsRegisterVisible(!isRegisterVisible)}
+                  onClick={(e) => setIsRegistrationVisible(!isRegistrationVisible)}
                   className="btn link-header">
                   {t('common:register')}
                 </button>
@@ -144,7 +140,7 @@ export default function Header() {
           </Maybe>
           <Maybe test={isLoggedIn}>
             <div className="position-relative">
-              {isAddMealVisible && <div className={styles.fulHack} />}
+              {/* {isAddMealVisible && <div className={styles.fulHack} />} */}
               <button
                 type="button"
                 onClick={() => setIsAddMealVisible(!isAddMealVisible)}
@@ -192,27 +188,33 @@ export default function Header() {
         </div>
       </header>
       <Maybe test={!isLoggedIn} key="notLoggedIn">
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
+        {isLoginVisible && 
           <motion.div
             ref={loginForm}
             key="login"
             className={`${styles.overlayAuth} bg-auth`}
-            variants={authFormAnimation}
-            animate={isLoginVisible ? 'expanded' : 'collapsed'}
-            initial={false}
-            exit={{ opacity: 0 }}>
-            {isLoginVisible && <LoginForm />}
-          </motion.div>
+            animate={{ opacity: 1, y: 0}}
+            initial={{ opacity: 0, y: 200}}
+            exit={{ opacity: 0, y: 200,}}
+            >
+            <LoginForm 
+              isLoginVisible={isLoginVisible}
+              setIsLoginVisible={setIsLoginVisible}/>           
+          </motion.div> }
+          {isRegistrationVisible && 
           <motion.div
             ref={registerForm}
             key="register"
             className={`${styles.overlayAuth} bg-auth`}
-            variants={authFormAnimation}
-            animate={isRegisterVisible ? 'expanded' : 'collapsed'}
-            initial={false}
-            exit={{ opacity: 0 }}>
-            {isRegisterVisible && <RegistrationForm />}
-          </motion.div>
+            className={`${styles.overlayAuth} bg-auth`}
+            animate={{ opacity: 1, y: 0}}
+            initial={{ opacity: 0, y: 200}}
+            exit={{ opacity: 0, y: 200,}}>
+            <RegistrationForm 
+                          isRegistrationVisible={isRegistrationVisible}
+                          setIsRegistrationVisible={setIsRegistrationVisible}/>
+          </motion.div>}
         </AnimatePresence>
       </Maybe>
       <Maybe test={isLoggedIn} key="loggedIn">
