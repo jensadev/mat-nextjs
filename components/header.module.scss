@@ -1,8 +1,6 @@
+@import "../styles/_vars.scss";
+
 .logo {
-  // opacity: .8;
-  // &:hover {
-  //   opacity: 1;
-  // }
 }
 
 .header {
@@ -15,20 +13,18 @@
 }
 
 .open {
-  z-index: 200;
-  color: #fff;
+  color: $white;
   transition: color .2s;
   &:hover {
-    color: #231F20;
+    color: $black;
   }
 }
 
 .close {
-  z-index: 200;
-  color: #fff;
+  color: $white;
   transition: color .2s;
   &:hover {
-    color: #231F20;
+    color: $black;
   }
 }
 
@@ -37,8 +33,8 @@ button.bubble {
   width: 340px;
   margin-top: 18px;
   margin-right: 9px;
-  background-color: #fff;
-  border: 2px solid #231F20;
+  background-color: $white;
+  border: 2px solid $black;
   // border-radius: 20px;
   padding: 16px;
 }
@@ -55,7 +51,7 @@ button.speech:before {
   left: 74%;
   top: -30px;
   border: 30px solid transparent;
-  border-bottom-color: #231F20;
+  border-bottom-color: $black;
   border-top: 0;
   border-right: 0;
 }
@@ -64,7 +60,7 @@ button.speech:after {
   left: calc(74% + 2px);
   top: -26px;
   border: 26px solid transparent;
-  border-bottom-color: #fff;
+  border-bottom-color: $white;
   border-top: 0;
   border-right: 0;
 }
@@ -76,18 +72,14 @@ button.speech:after {
 }
 
 .overlayAuth {
+  z-index: 1000;
   position: absolute;
   top: 22%;
-  // left: 25%;
   width: 50%;
-  height: 50%;
-  // max-width: 640px;
-  // transform: translate(-50%, -50%) !important;
-  @media (max-width: 768px) {
-    left: -50%;
+  left: 25%;
+  @media (max-width: map-get($grid-breakpoints, md)) {
     width: 100%;
-    height: 100%;
-    top: 0%;
+    left: 0%;
   }
 }
 

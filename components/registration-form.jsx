@@ -1,23 +1,17 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { usePresence } from 'framer-motion';
-import Router from 'next/router';
+import { useRouter }  from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
-
+import styles from './form.module.scss'
 import { store } from '../lib/api/user';
-import Alert from './alert';
-
-export default function RegistrationForm() {
-  const [isPresent, safeToRemove] = usePresence();
-  const { t } = useTranslation(['common', 'glossary']);
+import { useToasts } from 'react-toast-notifications';
+export default function RegistrationForm({ setIsRegistrationVisible, isRegistrationVisible }) {
   const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!isPresent) setTimeout(safeToRemove, 1000);
-  }, [isPresent, safeToRemove]);
-
+  const { t } = useTranslation(['common', 'glossary']);
+  const router = useRouter();
+  const { addToast } = useToasts();
   const {
     register,
     handleSubmit,
@@ -27,9 +21,6 @@ export default function RegistrationForm() {
 
   const onSubmit = async (values) => {
     setLoading(true);
-    if (Object.keys(errors).length > 0) {
-      return <Alert error>Fel ...</Alert>;
-    }
 
     try {
       const response = await store(
@@ -38,6 +29,7 @@ export default function RegistrationForm() {
         values.passwordConfirmation
       );
       if (response.status !== 201) {
+        console.table(response.data.errors);
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
             type: 'manual',
@@ -47,11 +39,13 @@ export default function RegistrationForm() {
       }
 
       if (response.data?.user) {
+        addToast(t('glossary:registersuccess'), { appearance: 'success' });
         window.localStorage.setItem('user', JSON.stringify(response.data.user));
         mutate('user', response.data?.user);
         Router.push('/');
       }
     } catch (error) {
+      addToast(t('glossary:registererror'), { appearance: 'error' });
       console.error(error);
     } finally {
       setLoading(false);
@@ -59,15 +53,22 @@ export default function RegistrationForm() {
   };
 
   return (
-    <div className="d-flex flex-column h-100 px-md-5">
+    <>
+    <div className="position-absolute top-0 end-0 p-1">
+      <button class="btn" onClick={e => setIsRegistrationVisible(!isRegistrationVisible)}>
+        <span class="material-icons-round md-48">
+          close
+        </span>
+      </button>
+    </div>
+    <div className="py-5 px-4">
       <header className="">
         <div className="container">
-          <h1 className="page-heading">{t('common:register')}</h1>
+          <h1 className={styles.formHeading}>{t('common:register')}</h1>
         </div>
       </header>
-      <div className="mt-4 w-100 mb-4">
         <div className="container">
-          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <form className={styles.form}  onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="mb-3">
               <label htmlFor="email" className="visually-hidden">
                 {t('common:email')}
@@ -127,7 +128,7 @@ export default function RegistrationForm() {
             </button>
           </form>
         </div>
-      </div>
     </div>
+    </>
   );
 }

@@ -1,16 +1,10 @@
 import Head from 'next/head';
 
-// import { useTranslation } from 'next-i18next';
 import Footer from './footer';
 import Header from './header';
 
-// import LoginForm from './login-form';
-
-// import RegistrationForm from './registration-form';
-
 export const siteTitle = 'Mat';
 
-// eslint-disable-next-line react/prop-types
 export default function Layout({ children }) {
   return (
     <>

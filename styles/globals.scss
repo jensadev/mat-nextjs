@@ -5,13 +5,13 @@ body, html {
 }
 
 body {
-  font-family: azo-sans-web, sans-serif;
+  font-family: $font-family-sans-serif;
   color: $black;
   background-color: $silk;
-  font-size: 2rem;
-  line-height: 1.5;
-  @media (max-width: 768px) {
-    font-size: 1rem;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-sm;
   }
 }
 
@@ -50,9 +50,9 @@ fieldset {
 }
 
 .lead {
-  font-size: 2.2rem;
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
+  font-size: $font-size-lg;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-base;
   }
 }
 
@@ -64,15 +64,13 @@ fieldset {
 .btn-icon {
   background-color: transparent;
   border: 0;
-  text-transform: uppercase;
-  font-size: 2rem;
 }
 
 .md-48 { font-size: 48px; }
 .md-64 { font-size: 64px; }
 
 #__next {
-  height: 100%;
+  // height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -101,36 +99,36 @@ fieldset {
 }
 
 .heroH1 {
-  @include line-link( $white, $white, 8rem, 900, .8rem);
-  @media (max-width: 768px) {
-    @include line-link( $white, $white, 4rem, 900, .4rem);
+  @include line-link( $white, $white, $font-size-xxl, 900, $font-size-xxl / 10);
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    @include line-link( $white, $white, $font-size-xl, 900, $font-size-xl / 10);
   }
 }
 
 .heroH1-nolink {
-  font-size: 8rem;
+  font-size: $font-size-xxl;
   font-weight: 900;
   color: $white;
   display: inline-block;
-  @media (max-width: 768px) {
-    font-size: 4rem;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-xl;
   }
 }
 
 .link-meals {
-  @include line-link($black, $meal, 2rem, 400, .28rem);
+  @include line-link($black, $meal, $font-size-lg, 400, $font-size-lg / 10);
 }
 .link-dishes {
-  @include line-link($black, $dish, 2rem, 400, .28rem);
+  @include line-link($black, $dish, $font-size-lg, 400, $font-size-lg / 10);
 }
 .link-profile {
-  @include line-link($black, $profile, 2rem, 400, .28rem);
+  @include line-link($black, $profile, $font-size-lg , 400, $font-size-lg / 10);
 }
 
 .link-blue {
-  @include line-link($dark-blue, $black, 2rem, 400, .28rem);
-  @media (max-width: 768px) {
-    @include line-link($dark-blue, $black, 1rem, 400, .1rem);
+  @include line-link($dark-blue, $black, $font-size-lg, 400, $font-size-lg / 10);
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    @include line-link($dark-blue, $black, $font-size-sm, 400, $font-size-sm / 10);
   }
   &:hover {
     color: $black;
@@ -138,44 +136,37 @@ fieldset {
 }
 
 .link-dark {
-  @include line-link($black, $black, 2rem, 400, .28rem);
-  @media (max-width: 768px) {
-    @include line-link($black, $black, 1.4rem, 400, .2rem);
+  @include line-link($black, $black, $font-size-lg, 400, $font-size-lg / 10);
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    @include line-link($black, $black, $font-size-sm, 400, $font-size-sm / 10);
   }
 }
 
 .link-header {
-  @include line-link($dark-blue, $green, 2rem, 400, .28rem);
-  @media (max-width: 768px) {
-    @include line-link($dark-blue, $green, 1.4rem, 400, .2rem);
+  @include line-link($dark-blue, $green, $font-size-lg, 400, $font-size-lg / 10);
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    @include line-link($dark-blue, $green, $font-size-sm, 400, $font-size-sm / 10);
   }
 }
 
 .link-legal {
-  @include line-link($black, $legal, 1.2rem, 400, .14rem);
+  @include line-link($black, $legal, $font-size-sm, 400, $font-size-sm / 10);
+}
+
+.link-footer {
+  @include line-link($light-gray, $light-gray, $font-size-sm, 400, $font-size-sm / 10);
 }
 
 .text-small {
-  font-size: 1.2rem;
+  font-size: $font-size-sm;
 }
 
 .meal, .dish, .about, .profile {
   position: relative;
-  padding: 1rem 0;
+  padding: $spacer 0;
   display: flex;
   align-items: center;
   overflow: hidden;
-  .container {
-    z-index: 10;
-  }
-}
-
-.row-3 {
-  height: 33.3333333%;
-}
-
-.row-6 {
-  height: 66.666666%;
 }
 
 .pointer {
@@ -183,10 +174,10 @@ fieldset {
 }
 
 .bg-meal, .bg-dish, .bg-about, .bg-legal, .bg-profile {
-  position: absolute;
+  // position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  // z-index: 0;
 }
 
 .bg-addmeal {
@@ -207,9 +198,12 @@ fieldset {
 .bg-profile {
   background-color: $profile;
 }
-
 .bg-auth {
   background-color: $green;
+}
+.footer {
+  background-color: $black;
+  color: $white;
 }
 
 .nav-list {
@@ -223,14 +217,14 @@ fieldset {
 .btn {
   white-space: nowrap;
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: $font-size-lg;
   transition: all .3s;
   &:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-  @media (max-width: 768px) {
-    font-size: 1.6rem;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-base;
   }
 }
 
@@ -280,40 +274,37 @@ fieldset {
   @include btn-outline($black, $white, $profile)
 }
 
-.btn-register {
-  
-}
-
-.fixed-bottom {
+.fixed-bottom, .fixed-top {
   z-index: 700;
 }
 
-.content {
-  padding-top: 64px;
-  @media (max-width: 768px) {
-    padding-top: 32px;
-  }
-}
+// .content {
+//   padding-top: map-get($spacers, 5);
+//   @media (max-width: map-get($grid-breakpoints, md)) {
+//     padding-top: map-get($spacers, 4);
+//   }
+// }
 
 .page-header {
-  position: relative;
-  padding: 1rem 0;
+  // position: absolute;
+  // top: 0;
+  padding: $spacer 0;
   display: flex;
   align-items: center;
   height: 256px;
   overflow: hidden;
-  .container {
-    z-index: 10;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    height: 192px;
   }
 }
 
 .page-heading {
-  padding-top: 3rem;
-  font-size: 5rem;
+  padding-top: map-get($spacers, 5);
+  font-size: $font-size-xxl;
   font-weight: 600;
   color: $white;
-  @media (max-width: 768px) {
-    font-size: 4rem;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-xl;
   }
 }
 
@@ -409,7 +400,7 @@ fieldset {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  @media (min-width: 768px) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     width: 50%;
   }
 }

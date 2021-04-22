@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -14,26 +15,44 @@ export async function getStaticProps({ locale }) {
 
 export default function About() {
   const { t } = useTranslation(['common', 'glossary']);
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: -400 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
     <Layout about>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`${siteTitle} - ${t('common:about')}`}</title>
       </Head>
-      <main className="d-flex flex-shrink-0 flex-column justify-content-center">
-        <header className="page-header">
+      <motion.main
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="d-flex h-100 flex-column justify-content-center">
+        <motion.header variants={item} className="page-header bg-about">
           <div className="container">
             <h1 className="page-heading">
               {`${t('about', { what: t('thisweb') })}`}
             </h1>
           </div>
-          <span className="bg-about" />
-        </header>
-        <div className="content w-100">
-          <div className="container">
+        </motion.header>
+          <div className="container my-5">
             <h1>Infos</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore labore optio commodi harum asperiores dignissimos rem. Consequuntur quas tenetur vel nobis aliquid nisi cum ratione quasi consequatur. Ab, nesciunt explicabo.</p>
           </div>
-        </div>
-      </main>
+      </motion.main>
     </Layout>
   );
 }

@@ -4,7 +4,7 @@
   input {
     color: $black;
     background-color: $white;
-    border-color: $light-gray;
+    border-color: transparent;
     border-radius: 0;
     border-style: solid;
     border-width: 2px;
@@ -21,4 +21,11 @@
       margin-right: 2px;
     }
   }
+}
+
+.formHeading {
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $white;
+  padding-bottom: map-get($spacers, 3);
 }
