@@ -55,8 +55,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
   return (
     <>
     <div className="position-absolute top-0 end-0 p-1">
-      <button class="btn" onClick={e => setIsLoginVisible(!isLoginVisible)}>
-        <span class="material-icons-round md-48">
+      <button className="btn" onClick={e => setIsLoginVisible(!isLoginVisible)}>
+        <span className="material-icons-round md-48">
           close
         </span>
       </button>
@@ -76,8 +76,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
               <input
                 id="email"
                 name="email"
-                aria-invalid={errors.user.email ? 'true' : 'false'}
-                className={`w-100 ${errors.user.email ? 'invalid' : ''}`}
+                aria-invalid={errors.user?.email ? 'true' : 'false'}
+                className={`w-100 ${errors.user?.email ? 'invalid' : ''}`}
                 type="text"
                 placeholder={t('common:email')}
                 {...register('email', {
@@ -94,8 +94,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
               <input
                 id="password"
                 name="password"
-                aria-invalid={errors.user.password ? 'true' : 'false'}
-                className={`w-100 ${errors.user.password ? 'invalid' : ''}`}
+                aria-invalid={errors.user?.password ? 'true' : 'false'}
+                className={`w-100 ${errors.user?.password ? 'invalid' : ''}`}
                 type="password"
                 placeholder={t('common:password')}
                 {...register('password', { required: true })}
