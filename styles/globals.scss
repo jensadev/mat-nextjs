@@ -15,6 +15,10 @@ body {
   }
 }
 
+.py-6 {
+  padding: map-get($spacers, 6) 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -70,9 +74,19 @@ fieldset {
 .md-64 { font-size: 64px; }
 
 #__next {
-  // height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.row-3 {
+  height: 25%;
+}
+.row-4 {
+  height: 33%;
+}
+.row-6 {
+  height: 50%;
 }
 
 @mixin line-link($fg, $bg, $fs, $fw, $height) {
@@ -163,10 +177,13 @@ fieldset {
 
 .meal, .dish, .about, .profile {
   position: relative;
-  padding: $spacer 0;
+  padding: map-get($spacers, 4) 0;
   display: flex;
   align-items: center;
   overflow: hidden;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    padding: map-get($spacers, 1) 0;
+  }
 }
 
 .pointer {
@@ -175,8 +192,8 @@ fieldset {
 
 .bg-meal, .bg-dish, .bg-about, .bg-legal, .bg-profile {
   // position: absolute;
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
   // z-index: 0;
 }
 
@@ -400,6 +417,7 @@ fieldset {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  z-index: $zindex-tooltip !important;
   @media (min-width: map-get($grid-breakpoints, md)) {
     width: 50%;
   }

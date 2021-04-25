@@ -3,10 +3,12 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { mutate } from 'swr';
-import styles from './form.module.scss'
-import { login } from '../lib/api/user';
 import { useToasts } from 'react-toast-notifications';
+import { mutate } from 'swr';
+
+import { login } from '../lib/api/user';
+import styles from './form.module.scss';
+
 export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation(['common', 'glossary']);
@@ -15,8 +17,9 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setError
+    formState: { errors, isSubmitted, isDirty },
+    setError,
+    clearErrors
   } = useForm();
 
   const onSubmit = async (values) => {
@@ -29,7 +32,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
         router.locale
       );
       if (response.status !== 200) {
-        // console.table(response.data.errors);
+        console.table(response.data.errors);
         Object.keys(response.data.errors).map((key, index) => {
           setError(key, {
             type: 'manual',
@@ -54,21 +57,27 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
 
   return (
     <>
-    <div className="position-absolute top-0 end-0 p-1">
-      <button className="btn" onClick={e => setIsLoginVisible(!isLoginVisible)}>
-        <span className="material-icons-round md-48">
-          close
-        </span>
-      </button>
-    </div>
-    <div className="py-5 px-4">
-      <header>
+      <div className="position-absolute top-0 end-0 p-1">
+        <button
+          type="button"
+          className="btn"
+          onClick={(e) => setIsLoginVisible(!isLoginVisible)}>
+          <span className="material-icons-round md-48">close</span>
+        </button>
+      </div>
+      <div className="py-5 px-4">
+        <header>
+          <div className="container">
+            <h1 className={styles.formHeading}>{t('common:login')}</h1>
+          </div>
+        </header>
         <div className="container">
-          <h1 className={styles.formHeading}>{t('common:login')}</h1>
-        </div>
-      </header>
-        <div className="container">
-          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className={styles.form}
+            onSubmit={handleSubmit(onSubmit)}
+            onChange={() => {
+              if (isSubmitted && isDirty) clearErrors();
+            }}>
             <fieldset className="mb-3">
               <label htmlFor="email" className="visually-hidden">
                 {t('common:email')}
@@ -76,8 +85,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
               <input
                 id="email"
                 name="email"
-                aria-invalid={errors.user?.email ? 'true' : 'false'}
-                className={`w-100 ${errors.user?.email ? 'invalid' : ''}`}
+                aria-invalid={errors.email ? 'true' : 'false'}
+                className={`w-100 ${errors.email ? 'invalid' : ''}`}
                 type="text"
                 placeholder={t('common:email')}
                 {...register('email', {
@@ -85,7 +94,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                   pattern: /^\S+@\S+$/i
                 })}
               />
-              <ErrorMessage errors={errors} name="user.email" />
+              <ErrorMessage errors={errors} name="email" />
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="password" className="visually-hidden">
@@ -94,13 +103,13 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
               <input
                 id="password"
                 name="password"
-                aria-invalid={errors.user?.password ? 'true' : 'false'}
-                className={`w-100 ${errors.user?.password ? 'invalid' : ''}`}
+                aria-invalid={errors.password ? 'true' : 'false'}
+                className={`w-100 ${errors.password ? 'invalid' : ''}`}
                 type="password"
                 placeholder={t('common:password')}
                 {...register('password', { required: true })}
               />
-              <ErrorMessage errors={errors} name="user.password" />
+              <ErrorMessage errors={errors} name="password" />
             </fieldset>
             <button
               className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
@@ -113,11 +122,11 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                     role="status"
                     aria-hidden="true"
                   />
-                  {t('loading')}
+                  {t('common:loading')}
                   ...
                 </>
               ) : (
-                t('login')
+                t('common:login')
               )}
             </button>
           </form>

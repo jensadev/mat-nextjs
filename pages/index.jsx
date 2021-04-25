@@ -47,51 +47,50 @@ export default function Home() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="d-flex h-100 flex-column justify-content-center">
+        className="d-flex h-100 flex-column">
         <Maybe test={isLoggedIn}>
           <Link href="/meals">
-            <motion.div variants={item} className="bg-meal meal pointer">
-              <div className="container pt-5 pt-md-1">
-                <h1 className="heroH1">{t('glossary:meal_plural')}</h1>
+            <motion.div variants={item} className="bg-meal meal pointer row-4">
+              <div className="container py-5">
+                <h1 className="heroH1 pt-2">{t('glossary:meal_plural')}</h1>
               </div>
-      
             </motion.div>
           </Link>
           <Link href="/dishes">
-            <motion.div variants={item} className="bg-dish dish pointer">
-              <div className="container">
+            <motion.div variants={item} className="bg-dish dish pointer row-4">
+              <div className="container py-5">
                 <h1 className="heroH1">{t('glossary:dish_plural')}</h1>
               </div>
-  
             </motion.div>
           </Link>
           <Link href="/profile">
-            <motion.div variants={item} className="bg-profile profile pointer">
-              <div className="container">
+            <motion.div
+              variants={item}
+              className="bg-profile profile pointer row-4">
+              <div className="container py-5 mb-md-3">
                 <h1 className="heroH1">
                   {currentUser && currentUser.family
                     ? t('common:ourpage')
                     : t('common:mypage')}
                 </h1>
               </div>
-      
             </motion.div>
           </Link>
         </Maybe>
         <Maybe test={!isLoggedIn}>
           <motion.div variants={item} className="bg-meal meal">
             <div className="container py-5">
-              <h1 className="heroH1-nolink pt-2">{t('glossary:meal_plural')}</h1>
+              <h1 className="heroH1-nolink pt-2">
+                {t('glossary:meal_plural')}
+              </h1>
               <p className="lead">{t('glossary:aboutmeals')}</p>
             </div>
-          
           </motion.div>
           <motion.div variants={item} className="bg-dish dish">
             <div className="container py-5">
               <h1 className="heroH1-nolink">{t('glossary:dish_plural')}</h1>
               <p className="lead">{t('glossary:aboutdishes')}</p>
             </div>
-         
           </motion.div>
           <Link href="/about">
             <motion.div variants={item} className="bg-about about pointer">
