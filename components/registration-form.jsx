@@ -1,13 +1,18 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { useRouter }  from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { mutate } from 'swr';
-import styles from './form.module.scss'
-import { store } from '../lib/api/user';
 import { useToasts } from 'react-toast-notifications';
-export default function RegistrationForm({ setIsRegistrationVisible, isRegistrationVisible }) {
+import { mutate } from 'swr';
+
+import { store } from '../lib/api/user';
+import styles from './form.module.scss';
+
+export default function RegistrationForm({
+  setIsRegistrationVisible,
+  isRegistrationVisible
+}) {
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation(['common', 'glossary']);
   const router = useRouter();
@@ -15,8 +20,9 @@ export default function RegistrationForm({ setIsRegistrationVisible, isRegistrat
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setError
+    setError,
+    clearErrors,
+    formState: { errors, isSubmitted, isDirty }
   } = useForm();
 
   const onSubmit = async (values) => {
@@ -52,24 +58,29 @@ export default function RegistrationForm({ setIsRegistrationVisible, isRegistrat
       setLoading(false);
     }
   };
-
   return (
     <>
-    <div className="position-absolute top-0 end-0 p-1">
-      <button className="btn" onClick={e => setIsRegistrationVisible(!isRegistrationVisible)}>
-        <span className="material-icons-round md-48">
-          close
-        </span>
-      </button>
-    </div>
-    <div className="py-5 px-4">
-      <header className="">
+      <div className="position-absolute top-0 end-0 p-1">
+        <button
+          type="button"
+          className="btn"
+          onClick={(e) => setIsRegistrationVisible(!isRegistrationVisible)}>
+          <span className="material-icons-round md-48">close</span>
+        </button>
+      </div>
+      <div className="py-5 px-4">
+        <header className="">
+          <div className="container">
+            <h1 className={styles.formHeading}>{t('common:register')}</h1>
+          </div>
+        </header>
         <div className="container">
-          <h1 className={styles.formHeading}>{t('common:register')}</h1>
-        </div>
-      </header>
-        <div className="container">
-          <form className={styles.form}  onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className={styles.form}
+            onSubmit={handleSubmit(onSubmit)}
+            onChange={() => {
+              if (isSubmitted && isDirty) clearErrors();
+            }}>
             <fieldset className="mb-3">
               <label htmlFor="email" className="visually-hidden">
                 {t('common:email')}
@@ -110,9 +121,12 @@ export default function RegistrationForm({ setIsRegistrationVisible, isRegistrat
               <input
                 id="passwordConfirmation"
                 name="passwordConfirmation"
-                aria-invalid={errors.user?.passwordConfirmation ? 'true' : 'false'}
-                className={`w-100 ${errors.user?.passwordConfirmation ? 'invalid' : ''}`}
-
+                aria-invalid={
+                  errors.user?.passwordConfirmation ? 'true' : 'false'
+                }
+                className={`w-100 ${
+                  errors.user?.passwordConfirmation ? 'invalid' : ''
+                }`}
                 type="password"
                 placeholder={t('common:passwordConfirmation')}
                 {...register('passwordConfirmation', { required: true })}
@@ -139,7 +153,7 @@ export default function RegistrationForm({ setIsRegistrationVisible, isRegistrat
             </button>
           </form>
         </div>
-    </div>
+      </div>
     </>
   );
 }

@@ -66,13 +66,14 @@ button.speech:after {
 }
 
 .overlayAddMeal {
+  z-index: $zindex-modal;
   position: absolute;
   top: 0px;
   right: 0px;
 }
 
 .overlayAuth {
-  z-index: 1000;
+  z-index: $zindex-modal;
   position: absolute;
   top: 22%;
   width: 50%;
