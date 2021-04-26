@@ -13,7 +13,7 @@ import storage from '../lib/utils/storage';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'glossary']))
+      ...(await serverSideTranslations(locale, ['common', 'glossary', 'validation']))
     }
   };
 }
@@ -37,7 +37,7 @@ export default function Home() {
     show: { opacity: 1, y: 0 }
   };
 
-  const { t } = useTranslation('glossary');
+  const { t } = useTranslation('glossary', 'common');
   return (
     <Layout home>
       <Head>
@@ -70,8 +70,8 @@ export default function Home() {
               <div className="container py-5 mb-md-3">
                 <h1 className="heroH1">
                   {currentUser && currentUser.family
-                    ? t('common:ourpage')
-                    : t('common:mypage')}
+                    ? t('common:our_page')
+                    : t('common:my_page')}
                 </h1>
               </div>
             </motion.div>
@@ -83,13 +83,13 @@ export default function Home() {
               <h1 className="heroH1-nolink pt-2">
                 {t('glossary:meal_plural')}
               </h1>
-              <p className="lead">{t('glossary:aboutmeals')}</p>
+              <p className="lead">{t('glossary:about_meals')}</p>
             </div>
           </motion.div>
           <motion.div variants={item} className="bg-dish dish">
             <div className="container py-5">
               <h1 className="heroH1-nolink">{t('glossary:dish_plural')}</h1>
-              <p className="lead">{t('glossary:aboutdishes')}</p>
+              <p className="lead">{t('glossary:about_dishes')}</p>
             </div>
           </motion.div>
           <Link href="/about">
@@ -97,7 +97,7 @@ export default function Home() {
               <div className="container py-5 mb-md-3">
                 <h1 className="heroH1">{t('common:about')}</h1>
                 <p className="lead">
-                  {t('glossary:aboutintro', {
+                  {t('glossary:about_intro', {
                     brand: 'Måltidsmatloggen',
                     who: t('glossary:you')
                   })}

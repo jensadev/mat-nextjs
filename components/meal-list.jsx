@@ -17,7 +17,7 @@ export default function MealList() {
   if (error) {
     return (
       <Alert type="danger">
-        {t('cantload', { what: `${t('recent')} ${t('glossary:meal_plural')}` })}
+        {t('common:cant_load', { what: `${t('common:recent')} ${t('glossary:meal_plural')}` })}
         ...
       </Alert>
     );
@@ -31,7 +31,6 @@ export default function MealList() {
       <ul className="list-unstyled">
         {pageOfItems &&
           pageOfItems?.map((meal) => (
-            // <li key={meal.id}>{meal.Dish.name}</li>
             <ListItem key={meal.id} meal={meal} />
           ))}
       </ul>
@@ -43,6 +42,7 @@ export default function MealList() {
                 className={styles.pageLink}
                 type="button"
                 onClick={() => setPageIndex(1)}>
+                  <span className="visually-hidden">{t('common:first_page')}</span>
                 <span className="material-icons-round">first_page</span>
               </button>
             </li>
@@ -51,6 +51,7 @@ export default function MealList() {
                 className={styles.pageLink}
                 type="button"
                 onClick={() => setPageIndex(pager.currentPage - 1)}>
+                  <span className="visually-hidden">{t('common:before')}</span>
                 <span className="material-icons-round">navigate_before</span>
               </button>
             </li>
@@ -76,6 +77,7 @@ export default function MealList() {
                 className={styles.pageLink}
                 type="button"
                 onClick={() => setPageIndex(pager.currentPage + 1)}>
+                  <span className="visually-hidden">{t('common:next')}</span>
                 <span className="material-icons-round">navigate_next</span>
               </button>
             </li>
@@ -87,6 +89,7 @@ export default function MealList() {
                 className={styles.pageLink}
                 type="button"
                 onClick={() => setPageIndex(pager.totalPages)}>
+                  <span className="visually-hidden">{t('common:last_page')}</span>
                 <span className="material-icons-round">last_page</span>
               </button>
             </li>
