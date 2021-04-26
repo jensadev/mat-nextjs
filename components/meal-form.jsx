@@ -186,7 +186,7 @@ export default function MealForm() {
                     }
                   })}
                   isValidNewOption={(option) => option.length > 3}
-                  placeholder={`${t('glossary:dish_place_holder')}`}
+                  placeholder={`${t('glossary:dish_placeholder')}`}
                   isClearable
                   options={
                     dishes &&
