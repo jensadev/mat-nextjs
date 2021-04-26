@@ -15,9 +15,9 @@ import useSWR from 'swr';
 
 import { store } from '../lib/api/meal';
 import fetcher from '../lib/utils/fetcher';
-import Alert from './alert';
 // import Loading from './loading';
 import styles from './meal-form.module.scss';
+// import Alert from './unused/alert';
 
 export default function MealForm() {
   const [isPresent, safeToRemove] = usePresence();
@@ -48,12 +48,18 @@ export default function MealForm() {
   const watchDate = watch('date');
 
   if (error) {
-    return (
-      <Alert type="danger">
-        {t('common:cant_load', { what: t('glossary:dish_plural') })}
-        ...
-      </Alert>
+    return addToast(
+      t('common:cant_load', { what: t('glossary:dish_plural') }),
+      {
+        appearance: 'error'
+      }
     );
+    // return (
+    //   <Alert type="danger">
+    //     {t('common:cant_load', { what: t('glossary:dish_plural') })}
+    //     ...
+    //   </Alert>
+    // );
   }
 
   // if (!data) return <Loading />;
@@ -62,9 +68,9 @@ export default function MealForm() {
   const onSubmit = async (values) => {
     setLoading(true);
 
-    if (Object.entries(errors).length !== 0) {
-      return <Alert error>Fel ...</Alert>;
-    }
+    // if (Object.entries(errors).length !== 0) {
+    //   return <Alert error>Fel ...</Alert>;
+    // }
 
     try {
       const response = await store(
