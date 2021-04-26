@@ -13,13 +13,10 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleEmailChange = useCallback(
-    (e) => setEmail(e.target.value),
-    [],
-  );
+  const handleEmailChange = useCallback((e) => setEmail(e.target.value), []);
   const handlePasswordChange = useCallback(
     (e) => setPassword(e.target.value),
-    [],
+    []
   );
 
   const handleSubmit = async (e) => {
@@ -52,7 +49,9 @@ export default function LoginForm() {
 
       <form onSubmit={handleSubmit}>
         <fieldset className={styles.formGroup}>
-          <label htmlFor="email" className="visually-hidden">{t('email')}</label>
+          <label htmlFor="email" className="visually-hidden">
+            {t('email')}
+          </label>
           <input
             name="email"
             type="email"
@@ -60,7 +59,9 @@ export default function LoginForm() {
             value={email}
             onChange={handleEmailChange}
           />
-          <label htmlFor="password" className="visually-hidden">{t('password')}</label>
+          <label htmlFor="password" className="visually-hidden">
+            {t('password')}
+          </label>
           <input
             type="password"
             placeholder={t('password')}
@@ -68,10 +69,7 @@ export default function LoginForm() {
             onChange={handlePasswordChange}
           />
         </fieldset>
-        <button
-          type="submit"
-          disabled={isLoading}
-        >
+        <button type="submit" disabled={isLoading}>
           {t('login')}
         </button>
       </form>

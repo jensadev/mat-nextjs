@@ -1,28 +1,35 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
+import { useToasts } from 'react-toast-notifications';
 import useSWR from 'swr';
 
 import fetcher from '../lib/utils/fetcher';
-import Alert from './alert';
+// import Alert from './alert';
 import ListItem from './list-item';
 import styles from './meal.module.scss';
 
 export default function MealList() {
   const [pageIndex, setPageIndex] = useState(1);
+  const { addToast } = useToasts();
   const { data, error } = useSWR(
     `${process.env.apiUrl}/meals?page=${pageIndex}`,
     fetcher
   );
   const { t } = useTranslation(['common', 'glossary']);
   if (error) {
-    return (
-      <Alert type="danger">
-        {t('common:cant_load', {
-          what: `${t('common:recent')} ${t('glossary:meal_plural')}`
-        })}
-        ...
-      </Alert>
+    return addToast(
+      t('common:cant_load', {
+        what: `${t('common:recent')} ${t('glossary:meal_plural')}`
+      })
     );
+    // return (
+    //   <Alert type="danger">
+    //     {t('common:cant_load', {
+    //       what: `${t('common:recent')} ${t('glossary:meal_plural')}`
+    //     })}
+    //     ...
+    //   </Alert>
+    // );
   }
   // if (!data) return <Loading />;
 
