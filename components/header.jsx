@@ -179,7 +179,7 @@ export default function Header() {
                     type="button"
                     onClick={() => setVisible(false)}
                     className={`${styles.bubble} ${styles.speech}`}>
-                    {t('glossary:clickheretoadd')}
+                    {t('glossary:click_here_to_add')}
                   </button>
                 </motion.div>
               )}

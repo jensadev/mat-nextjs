@@ -19,7 +19,7 @@ export default function Footer() {
         </Link>
         <Link href="/legal">
           <a className="link-footer">
-            {`${t('terms')}`}
+            {`${t('common:terms')}`}
             {/* {`${t('cookie')} ${t('policy')} / ${t('privacy')} ${t('policy')}`} */}
           </a>
         </Link>

@@ -14,7 +14,7 @@ export default function RegistrationForm({
   isRegistrationVisible
 }) {
   const [isLoading, setLoading] = useState(false);
-  const { t } = useTranslation(['common', 'glossary']);
+  const { t } = useTranslation(['common', 'glossary', 'validation']);
   const router = useRouter();
   const { addToast } = useToasts();
   const {
@@ -46,13 +46,13 @@ export default function RegistrationForm({
       }
 
       if (response.data?.user) {
-        addToast(t('glossary:registersuccess'), { appearance: 'success' });
+        addToast(t('validation:what_success', {what: t('common:registration')}), { appearance: 'success' });
         window.localStorage.setItem('user', JSON.stringify(response.data.user));
         mutate('user', response.data?.user);
         Router.push('/');
       }
     } catch (error) {
-      addToast(t('glossary:registererror'), { appearance: 'error' });
+      addToast(t('validation:what_error', {what: t('common:registration')}), { appearance: 'error' });
       console.error(error);
     } finally {
       setLoading(false);
@@ -65,6 +65,7 @@ export default function RegistrationForm({
           type="button"
           className="btn"
           onClick={(e) => setIsRegistrationVisible(!isRegistrationVisible)}>
+          <span className="visually-hidden">{t('common:close')}</span>
           <span className="material-icons-round md-48">close</span>
         </button>
       </div>
@@ -83,7 +84,7 @@ export default function RegistrationForm({
             }}>
             <fieldset className="mb-3">
               <label htmlFor="email" className="visually-hidden">
-                {t('common:email')}
+                {`${t('common:email')}*`}
               </label>
               <input
                 id="email"
@@ -91,7 +92,7 @@ export default function RegistrationForm({
                 aria-invalid={errors.user?.email ? 'true' : 'false'}
                 className={`w-100 ${errors.user?.email ? 'invalid' : ''}`}
                 type="text"
-                placeholder={t('common:email')}
+                placeholder={`${t('common:email')}*`}
                 {...register('email', {
                   required: true,
                   pattern: /^\S+@\S+$/i
@@ -101,7 +102,7 @@ export default function RegistrationForm({
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="password" className="visually-hidden">
-                {t('common:password')}
+              {`${t('common:password')}*`}
               </label>
               <input
                 id="password"
@@ -109,14 +110,14 @@ export default function RegistrationForm({
                 aria-invalid={errors.user?.password ? 'true' : 'false'}
                 className={`w-100 ${errors.user?.password ? 'invalid' : ''}`}
                 type="password"
-                placeholder={t('common:password')}
+                placeholder={`${t('common:password')}*`}
                 {...register('password', { required: true })}
               />
               <ErrorMessage errors={errors} name="user.password" />
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="passwordConfirmation" className="visually-hidden">
-                {t('common:passwordConfirmation')}
+              {`${t('common:password_confirmation')}*`}
               </label>
               <input
                 id="passwordConfirmation"
@@ -128,7 +129,7 @@ export default function RegistrationForm({
                   errors.user?.passwordConfirmation ? 'invalid' : ''
                 }`}
                 type="password"
-                placeholder={t('common:passwordConfirmation')}
+                placeholder={`${t('common:password_confirmation')}*`}
                 {...register('passwordConfirmation', { required: true })}
               />
               <ErrorMessage errors={errors} name="user.passwordConfirmation" />

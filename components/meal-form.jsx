@@ -23,7 +23,7 @@ export default function MealForm() {
   const [isPresent, safeToRemove] = usePresence();
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
-  const { t } = useTranslation(['common', 'glossary']);
+  const { t } = useTranslation(['common', 'glossary', 'validation']);
   const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
   const { addToast } = useToasts();
   const defaultValues = {
@@ -50,7 +50,7 @@ export default function MealForm() {
   if (error) {
     return (
       <Alert type="danger">
-        {t('cantload', { what: t('glossary:dish_plural') })}
+        {t('common:cantload', { what: t('glossary:dish_plural') })}
         ...
       </Alert>
     );
@@ -82,12 +82,12 @@ export default function MealForm() {
         });
       }
       if (response.status === 201) {
-        addToast('Meal created', { appearance: 'success' });
+        addToast(t('common:created', { what: t('glossary:meal')}), { appearance: 'success' });
         console.table(response.data.meal);
         reset(defaultValues);
       }
     } catch (err) {
-      addToast('feeeeeel', { appearance: 'error' });
+      addToast(t('validation:somethingwentwrong'), { appearance: 'error' });
       console.error(err);
     } finally {
       setLoading(false);
@@ -113,7 +113,7 @@ export default function MealForm() {
               {t('glossary:the')}
             </p>
             <label htmlFor="date" className="form-label visually-hidden">
-              {t('date')}
+              {`${t('common:date')}*`}
             </label>
             <Controller
               control={control}
@@ -150,7 +150,7 @@ export default function MealForm() {
                 : t('glossary:eaten')}
             </p>
             <label htmlFor="dish" className="form-label visually-hidden">
-              {t('dish')}
+              {`${t('glossary:dish')}*`}
             </label>
             <Controller
               name="dish"
@@ -178,7 +178,7 @@ export default function MealForm() {
                     }
                   })}
                   isValidNewOption={(option) => option.length > 3}
-                  placeholder={t('dishplaceholder')}
+                  placeholder={`${t('glossary:dishplaceholder')}*`}
                   isClearable
                   options={
                     dishes &&
@@ -194,7 +194,7 @@ export default function MealForm() {
             <ErrorMessage errors={errors} name="dish" />
             <p className="pt-1 pt-md-4 mb-1 mb-md-2">{t('glossary:for')}</p>
             <label htmlFor="type" className="form-label visually-hidden">
-              {t('mealtype')}
+              {`${t('glossary:mealtype')}*`}
             </label>
             <Controller
               name="type"
@@ -234,13 +234,13 @@ export default function MealForm() {
                 onClick={() => {
                   reset(defaultValues);
                 }}>
-                {t('reset')}
+                {t('common:reset')}
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
                 className="btn btn-create w-100 mt-3 mt-md-4">
-                {t('create')}
+                {t('common:create')}
               </button>
             </div>
           </form>

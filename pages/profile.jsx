@@ -11,13 +11,13 @@ import storage from '../lib/utils/storage';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'glossary']))
+      ...(await serverSideTranslations(locale, ['common', 'glossary', 'validation']))
     }
   };
 }
 
 export default function Profile() {
-  const { t } = useTranslation(['common', 'glossary']);
+  const { t } = useTranslation(['common']);
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
 
@@ -26,8 +26,8 @@ export default function Profile() {
       <Head>
         <title>{`${siteTitle} - ${
           currentUser && currentUser.family
-            ? t('common:ourpage')
-            : t('common:mypage')
+            ? t('common:our_page')
+            : t('common:my_page')
         }`}</title>
       </Head>
       <main className="d-flex flex-column">
@@ -36,8 +36,8 @@ export default function Profile() {
             <div className="container">
               <h1 className="page-heading">
                 {currentUser && currentUser.family
-                  ? t('common:ourpage')
-                  : t('common:mypage')}
+                  ? t('common:our_page')
+                  : t('common:my_page')}
               </h1>
             </div>
             <span className="bg-profile" />
@@ -45,7 +45,7 @@ export default function Profile() {
           <div className="content w-100">
             <div className="container">
               {currentUser && (
-                <h1>{`${t('common:welcomeback')} ${currentUser.handle}`}</h1>
+                <h1>{`${t('common:welcome_back')} ${currentUser.handle}`}</h1>
               )}
             </div>
           </div>

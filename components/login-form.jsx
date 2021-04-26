@@ -11,7 +11,7 @@ import styles from './form.module.scss';
 
 export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
   const [isLoading, setLoading] = useState(false);
-  const { t } = useTranslation(['common', 'glossary']);
+  const { t } = useTranslation(['common', 'glossary', 'validation']);
   const router = useRouter();
   const { addToast } = useToasts();
   const {
@@ -42,13 +42,13 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
       }
 
       if (response.data?.user) {
-        addToast(t('glossary:loginsuccess'), { appearance: 'success' });
+        addToast(t('validation:what_success', {what: t('common:login')}), { appearance: 'success' });
         window.localStorage.setItem('user', JSON.stringify(response.data.user));
         mutate('user', response.data?.user);
         Router.push('/');
       }
     } catch (error) {
-      addToast(t('glossary:loginerror'), { appearance: 'error' });
+      addToast(t('validation:what_error', {what: t('common:login')}), { appearance: 'error' });
       console.error(error);
     } finally {
       setLoading(false);
@@ -62,6 +62,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
           type="button"
           className="btn"
           onClick={(e) => setIsLoginVisible(!isLoginVisible)}>
+          <span className="visually-hidden">{t('common:close')}</span>
           <span className="material-icons-round md-48">close</span>
         </button>
       </div>
@@ -80,7 +81,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
             }}>
             <fieldset className="mb-3">
               <label htmlFor="email" className="visually-hidden">
-                {t('common:email')}
+              {`${t('common:email')}*`}
               </label>
               <input
                 id="email"
@@ -88,7 +89,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                 aria-invalid={errors.email ? 'true' : 'false'}
                 className={`w-100 ${errors.email ? 'invalid' : ''}`}
                 type="text"
-                placeholder={t('common:email')}
+                placeholder={`${t('common:email')}*`}
                 {...register('email', {
                   required: true,
                   pattern: /^\S+@\S+$/i
@@ -98,7 +99,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="password" className="visually-hidden">
-                {t('common:password')}
+                {`${t('common:password')}*`}
               </label>
               <input
                 id="password"
@@ -106,7 +107,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                 aria-invalid={errors.password ? 'true' : 'false'}
                 className={`w-100 ${errors.password ? 'invalid' : ''}`}
                 type="password"
-                placeholder={t('common:password')}
+                placeholder={`${t('common:password')}*`}
                 {...register('password', { required: true })}
               />
               <ErrorMessage errors={errors} name="password" />

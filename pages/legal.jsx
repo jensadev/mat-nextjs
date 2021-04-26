@@ -8,7 +8,7 @@ import Layout, { siteTitle } from '../components/layout';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'glossary']))
+      ...(await serverSideTranslations(locale, ['common', 'glossary', 'validation']))
     }
   };
 }

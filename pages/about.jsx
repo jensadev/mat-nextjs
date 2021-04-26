@@ -8,13 +8,13 @@ import Layout, { siteTitle } from '../components/layout';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'glossary']),
+      ...await serverSideTranslations(locale, ['common', 'glossary', 'validation']),
     },
   };
 }
 
 export default function About() {
-  const { t } = useTranslation(['common', 'glossary']);
+  const { t } = useTranslation(['common']);
 
   const container = {
     hidden: { opacity: 0 },
@@ -44,7 +44,7 @@ export default function About() {
         <motion.header variants={item} className="page-header bg-about">
           <div className="container">
             <h1 className="page-heading">
-              {`${t('about', { what: t('thisweb') })}`}
+              {`${t('common:what_about', { what: t('common:this_web') })}`}
             </h1>
           </div>
         </motion.header>
