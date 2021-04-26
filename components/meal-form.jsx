@@ -16,7 +16,7 @@ import useSWR from 'swr';
 import { store } from '../lib/api/meal';
 import fetcher from '../lib/utils/fetcher';
 import Alert from './alert';
-import Loading from './loading';
+// import Loading from './loading';
 import styles from './meal-form.module.scss';
 
 export default function MealForm() {
@@ -50,7 +50,7 @@ export default function MealForm() {
   if (error) {
     return (
       <Alert type="danger">
-        {t('common:cantload', { what: t('glossary:dish_plural') })}
+        {t('common:cant_load', { what: t('glossary:dish_plural') })}
         ...
       </Alert>
     );
@@ -82,12 +82,14 @@ export default function MealForm() {
         });
       }
       if (response.status === 201) {
-        addToast(t('common:created', { what: t('glossary:meal')}), { appearance: 'success' });
+        addToast(t('common:created', { what: t('glossary:meal') }), {
+          appearance: 'success'
+        });
         console.table(response.data.meal);
         reset(defaultValues);
       }
     } catch (err) {
-      addToast(t('validation:somethingwentwrong'), { appearance: 'error' });
+      addToast(t('validation:something_went_wrong'), { appearance: 'error' });
       console.error(err);
     } finally {
       setLoading(false);
@@ -146,7 +148,7 @@ export default function MealForm() {
             <ErrorMessage errors={errors} name="date" />
             <p className="pt-1 pt-md-4 mb-1 mb-md-2">
               {watchDate > defaultValues.date
-                ? t('glossary:toeat')
+                ? t('glossary:to_eat')
                 : t('glossary:eaten')}
             </p>
             <label htmlFor="dish" className="form-label visually-hidden">
@@ -162,9 +164,9 @@ export default function MealForm() {
               render={({ field }) => (
                 <CreatableSelect
                   formatCreateLabel={(inputValue) =>
-                    `${t('common:formcreate')} "${inputValue}"`
+                    `${t('common:form_create')} "${inputValue}"`
                   }
-                  noOptionsMessage={() => `${t('common:formnooptions')}`}
+                  noOptionsMessage={() => `${t('common:form_no_options')}`}
                   theme={(theme) => ({
                     ...theme,
                     borderRadius: 0,
@@ -178,7 +180,7 @@ export default function MealForm() {
                     }
                   })}
                   isValidNewOption={(option) => option.length > 3}
-                  placeholder={`${t('glossary:dishplaceholder')}*`}
+                  placeholder={`${t('glossary:dish_place_holder')}`}
                   isClearable
                   options={
                     dishes &&
@@ -194,7 +196,7 @@ export default function MealForm() {
             <ErrorMessage errors={errors} name="dish" />
             <p className="pt-1 pt-md-4 mb-1 mb-md-2">{t('glossary:for')}</p>
             <label htmlFor="type" className="form-label visually-hidden">
-              {`${t('glossary:mealtype')}*`}
+              {`${t('glossary:meal_type')}*`}
             </label>
             <Controller
               name="type"

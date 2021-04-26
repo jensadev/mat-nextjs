@@ -46,13 +46,18 @@ export default function RegistrationForm({
       }
 
       if (response.data?.user) {
-        addToast(t('validation:what_success', {what: t('common:registration')}), { appearance: 'success' });
+        addToast(
+          t('validation:what_success', { what: t('common:registration') }),
+          { appearance: 'success' }
+        );
         window.localStorage.setItem('user', JSON.stringify(response.data.user));
         mutate('user', response.data?.user);
         Router.push('/');
       }
     } catch (error) {
-      addToast(t('validation:what_error', {what: t('common:registration')}), { appearance: 'error' });
+      addToast(t('validation:what_error', { what: t('common:registration') }), {
+        appearance: 'error'
+      });
       console.error(error);
     } finally {
       setLoading(false);
@@ -102,7 +107,7 @@ export default function RegistrationForm({
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="password" className="visually-hidden">
-              {`${t('common:password')}*`}
+                {`${t('common:password')}*`}
               </label>
               <input
                 id="password"
@@ -117,7 +122,7 @@ export default function RegistrationForm({
             </fieldset>
             <fieldset className="mb-3">
               <label htmlFor="passwordConfirmation" className="visually-hidden">
-              {`${t('common:password_confirmation')}*`}
+                {`${t('common:password_confirmation')}*`}
               </label>
               <input
                 id="passwordConfirmation"
