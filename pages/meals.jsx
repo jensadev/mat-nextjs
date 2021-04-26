@@ -14,7 +14,11 @@ import storage from '../lib/utils/storage';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'glossary', 'validation']))
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'glossary',
+        'validation'
+      ]))
     }
   };
 }

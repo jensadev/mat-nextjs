@@ -14,21 +14,11 @@ export default function ListItem({ meal }) {
         );
       case 2:
         return (
-          <img
-            alt="lunch"
-            src="/images/lunch.svg"
-            height={64}
-            width={64}
-          />
+          <img alt="lunch" src="/images/lunch.svg" height={64} width={64} />
         );
       case 3:
         return (
-          <img
-            alt="dinner"
-            src="/images/dinner.svg"
-            height={64}
-            width={64}
-          />
+          <img alt="dinner" src="/images/dinner.svg" height={64} width={64} />
         );
       default:
         return 'tom';

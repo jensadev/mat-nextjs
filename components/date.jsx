@@ -6,10 +6,7 @@ export default function Date({ classNames, dateString }) {
   const router = useRouter();
   const date = parseISO(dateString);
   return (
-    <time
-      className={classNames}
-      dateTime={dateString}
-    >
+    <time className={classNames} dateTime={dateString}>
       {format(date, 'PPPP', { locale: router.locale === 'en' ? en : sv })}
     </time>
   );

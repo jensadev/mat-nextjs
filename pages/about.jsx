@@ -8,8 +8,12 @@ import Layout, { siteTitle } from '../components/layout';
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'glossary', 'validation']),
-    },
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'glossary',
+        'validation'
+      ]))
+    }
   };
 }
 
@@ -48,10 +52,15 @@ export default function About() {
             </h1>
           </div>
         </motion.header>
-          <div className="container my-5">
-            <h1>Infos</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore labore optio commodi harum asperiores dignissimos rem. Consequuntur quas tenetur vel nobis aliquid nisi cum ratione quasi consequatur. Ab, nesciunt explicabo.</p>
-          </div>
+        <div className="container my-5">
+          <h1>Infos</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+            labore optio commodi harum asperiores dignissimos rem. Consequuntur
+            quas tenetur vel nobis aliquid nisi cum ratione quasi consequatur.
+            Ab, nesciunt explicabo.
+          </p>
+        </div>
       </motion.main>
     </Layout>
   );
