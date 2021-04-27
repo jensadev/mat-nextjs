@@ -1,5 +1,5 @@
 {
-  "what_success": "{{what}} success",
-  "what_error": "{{what}} failed, please try again",
-  "something_went_wrong": "oops, something went wrong"
+    "what_success": "{{what}} success",
+    "what_error": "{{what}} failed, please try again",
+    "something_went_wrong": "oops, something went wrong"
 }

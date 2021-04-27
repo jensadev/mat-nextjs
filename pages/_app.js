@@ -14,16 +14,16 @@ import CustomToast from '../components/custom-toast';
 // }
 
 const MyApp = ({ Component, pageProps, router }) => (
-  <AnimatePresence>
-    <ToastProvider
-      key="toast"
-      components={{ Toast: CustomToast }}
-      placement="bottom-right"
-      autoDismiss
-      autoDismissTimeout={4000}>
-      <Component {...pageProps} key={router.route} />
-    </ToastProvider>
-  </AnimatePresence>
+    <AnimatePresence>
+        <ToastProvider
+            key="toast"
+            components={{ Toast: CustomToast }}
+            placement="bottom-right"
+            autoDismiss
+            autoDismissTimeout={4000}>
+            <Component {...pageProps} key={router.route} />
+        </ToastProvider>
+    </AnimatePresence>
 );
 
 export default appWithTranslation(MyApp);
