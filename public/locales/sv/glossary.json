@@ -12,18 +12,24 @@
     "click_here_to_add": "Klicka här för att lägga till en måltid",
     "dinner": "middag",
     "dish": "maträtt",
+    "dish_placeholder": "skapa eller sök en rätt...",
     "dish_plural": "maträtter",
     "dishes": "maträtter",
     "eaten": "har jag ätit",
     "food": "mat",
     "for": "till",
-    "legal_page": {},
+    "legal_page": {
+        "cookie_header": "Din integritet är viktig för oss ",
+        "cookie_text_1": "Cookies är mycket små textfiler som lagras på din dator när du besöker en webbplats. Vi använder cookies för olika ändamål och för att förbättra din onlineupplevelse på vår webbplats (till exempel för att komma ihåg dina inloggningsuppgifter för kontot).",
+        "cookie_text_2": "Du kan ändra dina preferenser och avvisa vissa typer av kakor som ska lagras på din dator när du surfar på vår webbplats. Du kan också ta bort alla cookies som redan finns lagrade på din dator, men kom ihåg att radering av cookies kan hindra dig från att använda delar av vår webbplats.",
+        "cookie_text_3": "Om du har några frågor eller funderingar kring hur denna webbplats behandlar dina personuppgifter, kontakta oss."
+    },
     "list_of": "dina {{what}}",
     "lunch": "lunch",
     "meal": "måltid",
     "meal_plural": "måltider",
-    "meals": "måltider",
     "meal_type": "måltidstyp",
+    "meals": "måltider",
     "profile": "profil",
     "the": "den",
     "to_eat": "ska jag äta",
@@ -31,6 +37,5 @@
     "you": "du",
     "your": "din",
     "yours": "dina",
-    "yous": "ni",
-    "dish_placeholder": "skapa eller sök en rätt..."
+    "yous": "ni"
 }

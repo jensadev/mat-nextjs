@@ -1,10 +1,11 @@
+import { useTranslation } from 'next-i18next';
+
 import Date from '../date';
 import styles from './meal.module.scss';
-import { useTranslation } from 'next-i18next';
 
 export default function ListItem({ meal }) {
     const { t } = useTranslation(['glossary']);
-    
+
     const mealIcon = (type) => {
         switch (type) {
             case 1:
@@ -76,14 +77,22 @@ export default function ListItem({ meal }) {
                 </button>
                 <ul className={styles.dropdownMenu} aria-labelledby="more">
                     <li>
-                        <button className={`btn btn-icon ${styles.btn}`}>
-                            <span className="visually-hidden">{t('common:edit')}</span>
+                        <button
+                            type="button"
+                            className={`btn btn-icon ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:edit')}
+                            </span>
                             <span className="material-icons-round">edit</span>
                         </button>
                     </li>
                     <li>
-                        <button className={`btn btn-icon ${styles.btn}`}>
-                            <span className="visually-hidden">{t('common:delete')}</span>
+                        <button
+                            type="button"
+                            className={`btn btn-icon ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:delete')}
+                            </span>
                             <span className="material-icons-round">delete</span>
                         </button>
                     </li>

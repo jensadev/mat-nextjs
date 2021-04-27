@@ -1,5 +1,5 @@
 {
     "something_went_wrong": "tusan, något gick snett",
-    "what_success": "{{what}} lyckades",
-    "what_error": "{{what}} misslyckades, försök igen"
+    "what_error": "{{what}} misslyckades, försök igen",
+    "what_success": "{{what}} lyckades"
 }
