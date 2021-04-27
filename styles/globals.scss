@@ -283,6 +283,10 @@ fieldset {
   @include btn-outline($black, $white, $sand)
 }
 
+.btn-consent {
+  @include btn-outline($white, $white, $green)
+}
+
 .btn-create {
   @include btn-outline($black, $white, $green)
 }
