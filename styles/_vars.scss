@@ -13,8 +13,9 @@ $sand: #FF9F50;
 $yellow: #FEDA3C;
 $coral: #EF8187;
 
-$light-gray: tint-color($black, 80%);
-$gray: tint-color($black, 20%);
+$lighter-gray: tint-color($black, 80%);
+$light-gray: tint-color($black, 50%);
+$gray: tint-color($black, 30%);
 $dark-gray: tint-color($black, 10%);
 
 $dark-purple: shade-color($purple, 40%);
@@ -48,14 +49,21 @@ $border-color:                $black;
 $font-family-sans-serif: azo-sans-web, sans-serif;
 
 $font-size-base:              1.6rem; // Assumes the browser default, typically `16px`
-$font-size-sm:                $font-size-base * .875 !default;
-$font-size-lg:                $font-size-base * 1.25 !default;
+$font-size-xs:                $font-size-base * .75;
+$font-size-sm:                $font-size-base * .875;
+$font-size-lg:                $font-size-base * 1.25;
 $font-size-xl: $font-size-base * 2;
 $font-size-xxl:             $font-size-base * 3;
 
 $line-height-base:            1.5 !default;
 $line-height-sm:              1.25 !default;
 $line-height-lg:              2 !default;
+
+$link-color:                              $dark-blue;
+$link-decoration:                         underline !default;
+$link-shade-percentage:                   20% !default;
+$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration:                   null !default;
 
 $grid-breakpoints: (
   xs: 0,
