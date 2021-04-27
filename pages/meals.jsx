@@ -1,15 +1,17 @@
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
-// import Link from 'next/link';
-// import { useTranslation } from 'next-i18next';
+
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useSWR from 'swr';
 
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
-import MealList from '../components/meal-list';
+import MealList from '../components/meal/list';
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
+
+import {pageContainer, pageItem} from '../lib/utils/animations';
 
 export async function getStaticProps({ locale }) {
     return {
@@ -33,25 +35,26 @@ export default function Meals() {
             <Head>
                 <title>{`${siteTitle} - ${t('glossary:meals')}`}</title>
             </Head>
-            <main className="d-flex flex-column">
+            <motion.main
+                variants={pageContainer}
+                initial="hidden"
+                animate="show"
+                className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
-                    <header className="page-header">
+                    <motion.header variants={pageItem} className="page-header bg-meal">
                         <div className="container">
                             <h1 className="page-heading">
-                                {t('glossary:listof', {
+                                {t('glossary:list_of', {
                                     what: t('glossary:meal_plural')
                                 })}
                             </h1>
                         </div>
-                        <span className="bg-meal" />
-                    </header>
-                    <div className="content w-100">
-                        <div className="container">
-                            <MealList />
-                        </div>
+                    </motion.header>
+                    <div className="container my-5">
+                        <MealList />
                     </div>
                 </Maybe>
-            </main>
+            </motion.main>
         </Layout>
     );
 }

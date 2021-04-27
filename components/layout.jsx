@@ -18,6 +18,11 @@ export default function Layout({ children }) {
                 <script async src="/javascript/ga.js"></script>
                 <link
                     rel="preload"
+                    href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+                    as="style"
+                />
+                <link
+                    rel="preload"
                     href="https://use.typekit.net/yis5dme.css"
                     as="style"
                 />
@@ -30,8 +35,8 @@ export default function Layout({ children }) {
                 <meta name="description" content="Måltider" />
                 <meta name="og:title" content={siteTitle} />
                 <link
-                    href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
                     rel="stylesheet"
+                    href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
                 />
                 <link
                     rel="stylesheet"

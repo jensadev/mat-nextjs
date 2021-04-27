@@ -10,11 +10,11 @@ import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
 import styles from './header.module.scss';
 import Maybe from './maybe';
-import useVisible from './use-visible';
+import useVisible from '../lib/utils/use-visible';
 
-const LoginForm = dynamic(() => import('./login-form'));
-const RegistrationForm = dynamic(() => import('./registration-form'));
-const MealForm = dynamic(() => import('./meal-form'));
+const LoginForm = dynamic(() => import('./form-login'));
+const RegistrationForm = dynamic(() => import('./form-registration'));
+const MealForm = dynamic(() => import('./meal/form-add'));
 
 export default function Header() {
     const router = useRouter();

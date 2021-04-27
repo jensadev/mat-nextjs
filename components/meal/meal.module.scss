@@ -1,0 +1,128 @@
+@import "../../styles/_vars.scss";
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  li {
+    @media (max-width: 576px) {
+      &:nth-child(2) {
+        display: none;
+      }
+      &:nth-last-child(2) {
+        display: none;
+      }
+    }  
+  }
+}
+
+.pageItem {
+  border-bottom: 2px solid transparent;
+}
+
+.disabled {
+  .pageLink {
+    color: $light-gray;
+    &:hover {
+      color: $gray;
+      border-bottom: 2px solid transparent !important;
+      background-color: transparent !important;
+    }
+  }
+}
+
+.active {
+  .pageLink {
+    color: $black;
+    // background-color: $cyan;
+    border-bottom: 2px solid $black;
+  }
+}
+
+.pageLink {
+  margin: 0 .4rem;
+  background-color: transparent;
+  border: 0;
+  color: $gray;
+  transition: background-color .3s;
+  &:hover {
+    color: $dark-gray;
+    border-bottom: 2px solid $black;
+  }
+  &:hover:not(.active) {
+    background-color: $light-cyan;
+  }
+}
+
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  padding-top: $spacer;
+  border-bottom: 1px solid $lighter-gray;
+  p {
+    line-height: $line-height-sm;
+  }
+  &:hover {
+    border-bottom-color: $light-gray;
+  }
+}
+
+.date {
+  display: block;
+  font-size: $font-size-sm;
+  color: $gray;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-xs;
+  }
+}
+
+.breakfast, .lunch, .dinner {
+  position: absolute;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: $font-size-xs;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.breakfast {
+  color: $purple;
+}
+.dinner {
+  color: $coral;
+}
+.lunch {
+  color: $cyan;
+}
+
+.dropdownMenu {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-xs;
+    display: none;
+  }
+}
+
+.dropdownItem {
+  color: $gray;
+}
+
+.dropdownToggle {
+  display: none;
+  color: $gray;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    display: block;
+  }
+}
+
+.btn {
+  color: $gray;
+}

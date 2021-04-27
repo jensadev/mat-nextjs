@@ -89,13 +89,13 @@ fieldset {
   height: 50%;
 }
 
-@mixin line-link($fg, $bg, $fs, $fw, $height) {
+@mixin line-link($fg, $fgh, $bg, $fs, $fw, $height) {
   font-size: $fs !important;
   font-weight: $fw;
   color: $fg;
   display: inline-block;
   &:hover {
-    color: $fg;
+    color: $fgh;
   }
   &::after {
     opacity: .8;
@@ -113,9 +113,9 @@ fieldset {
 }
 
 .heroH1 {
-  @include line-link( $white, $white, $font-size-xxl, 900, $font-size-xxl / 10);
+  @include line-link( $white, $white, $white, $font-size-xxl, 900, $font-size-xxl / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link( $white, $white, $font-size-xl, 900, $font-size-xl / 10);
+    @include line-link( $white, $white, $white, $font-size-xl, 900, $font-size-xl / 10);
   }
 }
 
@@ -130,19 +130,19 @@ fieldset {
 }
 
 .link-meals {
-  @include line-link($black, $meal, $font-size-lg, 400, $font-size-lg / 10);
+  @include line-link($black, $black, $meal, $font-size-lg, 400, $font-size-lg / 10);
 }
 .link-dishes {
-  @include line-link($black, $dish, $font-size-lg, 400, $font-size-lg / 10);
+  @include line-link($black, $black, $dish, $font-size-lg, 400, $font-size-lg / 10);
 }
 .link-profile {
-  @include line-link($black, $profile, $font-size-lg , 400, $font-size-lg / 10);
+  @include line-link($black, $black, $profile, $font-size-lg , 400, $font-size-lg / 10);
 }
 
 .link-blue {
-  @include line-link($dark-blue, $black, $font-size-lg, 400, $font-size-lg / 10);
+  @include line-link($dark-blue, $black, $black, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($dark-blue, $black, $font-size-sm, 400, $font-size-sm / 10);
+    @include line-link($dark-blue, $black, $black, $font-size-sm, 400, $font-size-sm / 10);
   }
   &:hover {
     color: $black;
@@ -150,29 +150,32 @@ fieldset {
 }
 
 .link-dark {
-  @include line-link($black, $black, $font-size-lg, 400, $font-size-lg / 10);
+  @include line-link($black, $black, $black, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($black, $black, $font-size-sm, 400, $font-size-sm / 10);
+    @include line-link($black, $black, $black, $font-size-sm, 400, $font-size-sm / 10);
   }
 }
 
 .link-header {
-  @include line-link($dark-blue, $green, $font-size-lg, 400, $font-size-lg / 10);
+  @include line-link($dark-blue, $dark-blue, $green, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($dark-blue, $green, $font-size-sm, 400, $font-size-sm / 10);
+    @include line-link($dark-blue, $dark-blue, $green, $font-size-sm, 400, $font-size-sm / 10);
   }
 }
 
 .link-legal {
-  @include line-link($black, $legal, $font-size-sm, 400, $font-size-sm / 10);
+  @include line-link($black, $black, $legal, $font-size-sm, 400, $font-size-sm / 10);
 }
 
 .link-footer {
-  @include line-link($light-gray, $light-gray, $font-size-sm, 400, $font-size-sm / 10);
+  @include line-link($light-gray, $white, $light-gray, $font-size-sm, 400, $font-size-sm / 10);
 }
 
 .text-small {
   font-size: $font-size-sm;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-xs;
+  }
 }
 
 .meal, .dish, .about, .profile {

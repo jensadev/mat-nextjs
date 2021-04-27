@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 import useSWR from 'swr';
 
-import fetcher from '../lib/utils/fetcher';
+import fetcher from '../../lib/utils/fetcher';
 // import Alert from './alert';
 import ListItem from './list-item';
 import styles from './meal.module.scss';
@@ -37,7 +37,7 @@ export default function MealList() {
 
     return (
         <div className="w-100">
-            <ul className="list-unstyled">
+            <ul className={styles.list}>
                 {pageOfItems &&
                     pageOfItems?.map((meal) => (
                         <ListItem key={meal.id} meal={meal} />

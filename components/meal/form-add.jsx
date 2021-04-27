@@ -13,10 +13,10 @@ import CreatableSelect from 'react-select/creatable';
 import { useToasts } from 'react-toast-notifications';
 import useSWR from 'swr';
 
-import { store } from '../lib/api/meal';
-import fetcher from '../lib/utils/fetcher';
+import { store } from '../../lib/api/meal';
+import fetcher from '../../lib/utils/fetcher';
 // import Loading from './loading';
-import styles from './meal-form.module.scss';
+import styles from './meal.module.scss';
 // import Alert from './unused/alert';
 
 export default function MealForm() {
