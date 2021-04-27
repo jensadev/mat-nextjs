@@ -9,6 +9,8 @@ export default function Layout({ children }) {
   return (
     <>
       <Head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-H5GZSB80BD"></script>
+        <script async src="/javascript/ga.js"></script>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Måltider" />
         <meta name="og:title" content={siteTitle} />

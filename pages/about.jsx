@@ -44,7 +44,7 @@ export default function About() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="d-flex h-100 flex-column justify-content-center">
+        className="d-flex h-100 flex-column">
         <motion.header variants={item} className="page-header bg-about">
           <div className="container">
             <h1 className="page-heading">
