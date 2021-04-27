@@ -44,7 +44,7 @@ export default function Legal() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="d-flex h-100 flex-column">
+        className="d-flex flex-column">
         <motion.header variants={item} className="page-header bg-legal">
           <div className="container">
             <h1 className="page-heading">{t('common:terms')}</h1>
