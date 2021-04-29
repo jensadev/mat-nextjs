@@ -90,7 +90,7 @@ export default function Home() {
                     </Link>
                 </Maybe>
                 <Maybe test={!isLoggedIn}>
-                    <motion.div variants={item} className="bg-meal meal">
+                    <motion.div variants={item} className="bg-meal meal row-3">
                         <div className="container py-5">
                             <h1 className="heroH1-nolink pt-2">
                                 {t('glossary:meal_plural')}
@@ -98,7 +98,7 @@ export default function Home() {
                             <p className="lead">{t('glossary:about_meals')}</p>
                         </div>
                     </motion.div>
-                    <motion.div variants={item} className="bg-dish dish">
+                    <motion.div variants={item} className="bg-dish dish row-3">
                         <div className="container py-5">
                             <h1 className="heroH1-nolink">
                                 {t('glossary:dish_plural')}
@@ -109,7 +109,7 @@ export default function Home() {
                     <Link href="/about">
                         <motion.div
                             variants={item}
-                            className="bg-about about pointer">
+                            className="bg-about about pointer row-6">
                             <div className="container py-5 mb-md-3">
                                 <h1 className="heroH1">{t('common:about')}</h1>
                                 <p className="lead">

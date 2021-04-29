@@ -15,6 +15,16 @@ body {
   }
 }
 
+h1 {
+  font-size: $h1-font-size;
+}
+h2 {
+  font-size: $h2-font-size;
+}
+h3 {
+  font-size: $h3-font-size;
+}
+
 .py-6 {
   padding: map-get($spacers, 6) 0;
 }
