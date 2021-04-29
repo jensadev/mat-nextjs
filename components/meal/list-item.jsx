@@ -57,7 +57,7 @@ export default function ListItem({ meal }) {
     return (
         <li className={styles.listItem}>
             <div className="d-flex">
-                {mealIcon(meal.typeId)}
+                {mealIcon(meal.type)}
                 <p>
                     <Date
                         classNames={`${styles.date}`}
