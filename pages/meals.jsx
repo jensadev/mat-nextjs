@@ -45,6 +45,10 @@ export default function Meals() {
                         <div className="container">
                             <h1 className="page-heading">
                                 {t('glossary:list_of', {
+                                    whos:
+                                        currentUser && currentUser.family
+                                            ? t('glossary:era')
+                                            : t('glossary:dina'),
                                     what: t('glossary:meal_plural')
                                 })}
                             </h1>

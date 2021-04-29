@@ -21,7 +21,7 @@
         "cookie_text_2": "You can change your preferences and decline certain types of cookies to be stored on your computer while browsing our website. You can also remove any cookies already stored on your computer, but keep in mind that deleting cookies may prevent you from using parts of our website.",
         "cookie_text_3": "If you have any questions or concerns about how this website processes your personal information, please contact us."
     },
-    "list_of": "your {{what}}",
+    "list_of": "{{whos}} {{what}}",
     "lunch": "lunch",
     "meal": "meal",
     "meal_plural": "meals",
@@ -34,5 +34,7 @@
     "you": "you",
     "your": "your",
     "yours": "yours",
+    "dina": "my",
+    "era": "our",
     "yous": "you"
 }

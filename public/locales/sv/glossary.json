@@ -24,7 +24,7 @@
         "cookie_text_2": "Du kan ändra dina preferenser och avvisa vissa typer av kakor som ska lagras på din dator när du surfar på vår webbplats. Du kan också ta bort alla cookies som redan finns lagrade på din dator, men kom ihåg att radering av cookies kan hindra dig från att använda delar av vår webbplats.",
         "cookie_text_3": "Om du har några frågor eller funderingar kring hur denna webbplats behandlar dina personuppgifter, kontakta oss."
     },
-    "list_of": "dina {{what}}",
+    "list_of": "{{whos}} {{what}}",
     "lunch": "lunch",
     "meal": "måltid",
     "meal_plural": "måltider",
@@ -37,5 +37,7 @@
     "you": "du",
     "your": "din",
     "yours": "dina",
+    "dina": "dina",
+    "era": "våra",
     "yous": "ni"
 }
