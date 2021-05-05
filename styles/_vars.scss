@@ -3,15 +3,15 @@ $black: #231f20;
 $white: #fff;
 $silk: #fee4d1;
 $red: #ff4d3c;
-$green: #44D19D;
-$sky: #77D7DB;
-$purple: #956FDE;
-$lilac: #C392FF;
-$blue: #7292F7;
-$cyan: #40B5E0;
-$sand: #FF9F50;
-$yellow: #FEDA3C;
-$coral: #EF8187;
+$green: #44d19d;
+$sky: #77d7db;
+$purple: #956fde;
+$lilac: #c392ff;
+$blue: #7292f7;
+$cyan: #40b5e0;
+$sand: #ff9f50;
+$yellow: #feda3c;
+$coral: #ef8187;
 
 $lighter-gray: tint-color($black, 80%);
 $light-gray: tint-color($black, 50%);
@@ -40,49 +40,56 @@ $legal: $sand;
 $profile: $cyan;
 $about: $sky;
 
-$body-bg:                   $silk;
-$body-color:                $black;
-$body-text-align:           null !default;
+$body-bg: $silk;
+$body-color: $black;
+$body-text-align: null !default;
 
-$border-color:                $black;
+$border-color: $black;
 
 $font-family-sans-serif: azo-sans-web, sans-serif;
 
-$font-size-base:              1.6rem; // Assumes the browser default, typically `16px`
-$font-size-xs:                $font-size-base * .75;
-$font-size-sm:                $font-size-base * .875;
-$font-size-lg:                $font-size-base * 1.25;
-$font-size-xl: $font-size-base * 2;
-$font-size-xxl:             $font-size-base * 3;
+$font-size-base:            1.777rem; // 1.45rem; //1.618rem; // Assumes the browser default, typically `16px`
+$font-size-xs:              .75rem; //0.618rem; // $font-size-base * 0.75;
+$font-size-sm:              1rem; // $font-size-base * 0.875;
+$font-size-lg:              2.369rem; //2.36rem; //2.618rem; // $font-size-base * 1.25; 
+$font-size-xl:              3.157rem; //3.82rem; //4.236rem; //$font-size-base * 2;
+$font-size-xxl:             4.209rem;//6.18rem; //6.854rem;  //$font-size-base * 3;
 
-$line-height-base:            1.5 !default;
-$line-height-sm:              1.25 !default;
-$line-height-lg:              2 !default;
+// $h1-font-size:              $font-size-base * 2.25;
+// $h2-font-size:              $font-size-base * 1.75;
+// $h3-font-size:              $font-size-base * 1.5;
+// $h4-font-size:              $font-size-base * 1.25;
+// $h5-font-size:              $font-size-base * 1;
+// $h6-font-size:              $font-size-base * 0.75;
 
-$link-color:                              $dark-blue;
-$link-decoration:                         underline !default;
-$link-shade-percentage:                   20% !default;
-$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
-$link-hover-decoration:                   null !default;
+$line-height-base:          1.5 !default;
+$line-height-sm:            1.25 !default;
+$line-height-lg:            2 !default;
+
+$link-color: $dark-blue;
+$link-decoration: underline !default;
+$link-shade-percentage: 20% !default;
+$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration: null !default;
 
 $grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
 ) !default;
 
 $spacer: 1rem !default;
 $spacers: (
-  0: 0,
-  1: $spacer / 4,
-  2: $spacer / 2,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-  6: $spacer * 5,
+    0: 0,
+    1: $spacer / 4,
+    2: $spacer / 2,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+    6: $spacer * 5,
 ) !default;
 
 // Z-index master list
@@ -91,12 +98,12 @@ $spacers: (
 // of components dependent on the z-axis and are designed to all work together.
 
 // scss-docs-start zindex-stack
-$zindex-dropdown:                   1000 !default;
-$zindex-sticky:                     1020 !default;
-$zindex-fixed:                      1030 !default;
-$zindex-offcanvas:                  1040 !default;
-$zindex-modal-backdrop:             1050 !default;
-$zindex-modal:                      1060 !default;
-$zindex-popover:                    1070 !default;
-$zindex-tooltip:                    1080 !default;
+$zindex-dropdown: 1000 !default;
+$zindex-sticky: 1020 !default;
+$zindex-fixed: 1030 !default;
+$zindex-offcanvas: 1040 !default;
+$zindex-modal-backdrop: 1050 !default;
+$zindex-modal: 1060 !default;
+$zindex-popover: 1070 !default;
+$zindex-tooltip: 1080 !default;
 // scss-docs-end zindex-stack

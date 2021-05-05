@@ -15,6 +15,19 @@ body {
   }
 }
 
+h1 {
+  font-size: $font-size-lg;
+  font-weight: 700;
+}
+h2 {
+  font-size: $font-size-lg;
+  font-weight: 500;
+}
+h3 {
+  font-size: $font-size-base;
+  font-weight: 500;
+}
+
 .py-6 {
   padding: map-get($spacers, 6) 0;
 }
@@ -79,14 +92,24 @@ fieldset {
   flex-direction: column;
 }
 
-.row-3 {
-  height: 25%;
+// 1000 / 1.618 = 618
+// 38.2%
+// 61.8%
+
+// 38.19
+// 23.61
+
+.row-top {
+  height: 30.9%;
+}
+.row-middle {
+  height: 30.9%;
+}
+.row-bottom {
+  height: 38.2%;
 }
 .row-4 {
   height: 33.333333%;
-}
-.row-6 {
-  height: 50%;
 }
 
 @mixin line-link($fg, $fgh, $bg, $fs, $fw, $height) {
@@ -152,29 +175,29 @@ fieldset {
 .link-dark {
   @include line-link($black, $black, $black, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($black, $black, $black, $font-size-sm, 400, $font-size-sm / 10);
+    @include line-link($black, $black, $black, $font-size-base, 400, $font-size-base / 10);
   }
 }
 
 .link-header {
   @include line-link($dark-blue, $dark-blue, $green, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($dark-blue, $dark-blue, $green, $font-size-sm, 400, $font-size-sm / 10);
+    @include line-link($dark-blue, $dark-blue, $green, $font-size-base, 400, $font-size-base / 10);
   }
 }
 
 .link-legal {
-  @include line-link($black, $black, $legal, $font-size-sm, 400, $font-size-sm / 10);
+  @include line-link($black, $black, $legal, $font-size-base, 400, $font-size-base / 10);
 }
 
 .link-footer {
-  @include line-link($light-gray, $white, $light-gray, $font-size-sm, 400, $font-size-sm / 10);
+  @include line-link($light-gray, $white, $light-gray, $font-size-base, 400, $font-size-base / 10);
 }
 
 .text-small {
-  font-size: $font-size-sm;
+  font-size: $font-size-base;
   @media (max-width: map-get($grid-breakpoints, md)) {
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
   }
 }
 
@@ -232,6 +255,7 @@ fieldset {
   text-transform: uppercase;
   font-size: $font-size-lg;
   transition: all .3s;
+  font-weight: 500;
   &:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -291,9 +315,9 @@ fieldset {
   @include btn-outline($black, $white, $profile)
 }
 
-.fixed-bottom, .fixed-top {
-  z-index: 700;
-}
+// .fixed-bottom, .fixed-top {
+//   z-index: 700;
+// }
 
 // .content {
 //   padding-top: map-get($spacers, 5);
@@ -318,7 +342,7 @@ fieldset {
 .page-heading {
   padding-top: map-get($spacers, 5);
   font-size: $font-size-xxl;
-  font-weight: 600;
+  font-weight: 700;
   color: $white;
   @media (max-width: map-get($grid-breakpoints, md)) {
     font-size: $font-size-xl;

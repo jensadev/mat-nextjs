@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -5,6 +6,7 @@ import useSWR from 'swr';
 
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
+import { pageContainer, pageItem } from '../lib/utils/animations';
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
 
@@ -29,21 +31,32 @@ export default function Dishes() {
             <Head>
                 <title>{`${siteTitle} - ${t('glossary:dishes')}`}</title>
             </Head>
-            <main className="d-flex flex-column">
+            <motion.main
+                variants={pageContainer}
+                initial="hidden"
+                animate="show"
+                className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
-                    <header className="page-header">
+                    <motion.header
+                        variants={pageItem}
+                        className="page-header bg-dish">
                         <div className="container">
                             <h1 className="page-heading">
-                                {t('glossary:dish_plural')}
+                                {t('glossary:list_of', {
+                                    whos:
+                                        currentUser && currentUser.family
+                                            ? t('glossary:era')
+                                            : t('glossary:dina'),
+                                    what: t('glossary:dish_plural')
+                                })}
                             </h1>
                         </div>
-                        <span className="bg-dish" />
-                    </header>
-                    <div className="content w-100">
+                    </motion.header>
+                    <div className="container my-5">
                         <div className="container" />
                     </div>
                 </Maybe>
-            </main>
+            </motion.main>
         </Layout>
     );
 }

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -5,6 +6,7 @@ import useSWR from 'swr';
 
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
+import { pageContainer, pageItem } from '../lib/utils/animations';
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
 
@@ -34,9 +36,15 @@ export default function Profile() {
                         : t('common:my_page')
                 }`}</title>
             </Head>
-            <main className="d-flex flex-column">
+            <motion.main
+                variants={pageContainer}
+                initial="hidden"
+                animate="show"
+                className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
-                    <header className="page-header">
+                    <motion.header
+                        variants={pageItem}
+                        className="page-header bg-profile">
                         <div className="container">
                             <h1 className="page-heading">
                                 {currentUser && currentUser.family
@@ -44,19 +52,16 @@ export default function Profile() {
                                     : t('common:my_page')}
                             </h1>
                         </div>
-                        <span className="bg-profile" />
-                    </header>
-                    <div className="content w-100">
-                        <div className="container">
-                            {currentUser && (
-                                <h1>{`${t('common:welcome_back')} ${
-                                    currentUser.handle
-                                }`}</h1>
-                            )}
-                        </div>
+                    </motion.header>
+                    <div className="container my-5">
+                        {currentUser && (
+                            <h1>{`${t('common:welcome_back')} ${
+                                currentUser.handle
+                            }`}</h1>
+                        )}
                     </div>
                 </Maybe>
-            </main>
+            </motion.main>
         </Layout>
     );
 }

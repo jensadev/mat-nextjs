@@ -1,8 +1,9 @@
 import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 import CookieConsent from 'react-cookie-consent';
+
 import Footer from './footer';
 import Header from './header';
-import { useTranslation } from 'next-i18next';
 
 export const siteTitle = 'Mat';
 
@@ -14,8 +15,9 @@ export default function Layout({ children }) {
             <Head>
                 <script
                     async
-                    src="https://www.googletagmanager.com/gtag/js?id=G-H5GZSB80BD"></script>
-                <script async src="/javascript/ga.js"></script>
+                    src="https://www.googletagmanager.com/gtag/js?id=G-H5GZSB80BD"
+                />
+                <script async src="/javascript/ga.js" />
                 <link
                     rel="preload"
                     href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
@@ -25,11 +27,6 @@ export default function Layout({ children }) {
                     rel="preload"
                     href="https://use.typekit.net/yis5dme.css"
                     as="style"
-                />
-                <link
-                    rel="preload"
-                    href="/javascript/scrollhide.js"
-                    as="script"
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="description" content="Måltider" />
@@ -42,6 +39,7 @@ export default function Layout({ children }) {
                     rel="stylesheet"
                     href="https://use.typekit.net/yis5dme.css"
                 />
+                <script async src="/javascript/scrollhide.js" />
             </Head>
             <Header />
             {children}
