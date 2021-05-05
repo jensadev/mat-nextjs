@@ -48,19 +48,19 @@ $border-color: $black;
 
 $font-family-sans-serif: azo-sans-web, sans-serif;
 
-$font-size-base:            1.6rem; // Assumes the browser default, typically `16px`
-$font-size-xs:              $font-size-base * 0.75;
-$font-size-sm:              $font-size-base * 0.875;
-$font-size-lg:              $font-size-base * 1.25;
-$font-size-xl:              $font-size-base * 2;
-$font-size-xxl:             $font-size-base * 3;
+$font-size-base:            1.777rem; // 1.45rem; //1.618rem; // Assumes the browser default, typically `16px`
+$font-size-xs:              .75rem; //0.618rem; // $font-size-base * 0.75;
+$font-size-sm:              1rem; // $font-size-base * 0.875;
+$font-size-lg:              2.369rem; //2.36rem; //2.618rem; // $font-size-base * 1.25; 
+$font-size-xl:              3.157rem; //3.82rem; //4.236rem; //$font-size-base * 2;
+$font-size-xxl:             4.209rem;//6.18rem; //6.854rem;  //$font-size-base * 3;
 
-$h1-font-size:              $font-size-base * 2.25;
-$h2-font-size:              $font-size-base * 1.75;
-$h3-font-size:              $font-size-base * 1.5;
-$h4-font-size:              $font-size-base * 1.25;
-$h5-font-size:              $font-size-base * 1;
-$h6-font-size:              $font-size-base * 0.75;
+// $h1-font-size:              $font-size-base * 2.25;
+// $h2-font-size:              $font-size-base * 1.75;
+// $h3-font-size:              $font-size-base * 1.5;
+// $h4-font-size:              $font-size-base * 1.25;
+// $h5-font-size:              $font-size-base * 1;
+// $h6-font-size:              $font-size-base * 0.75;
 
 $line-height-base:          1.5 !default;
 $line-height-sm:            1.25 !default;

@@ -58,9 +58,12 @@ export default function Home() {
                             variants={item}
                             className="bg-meal meal pointer row-4">
                             <div className="container py-5">
-                                <h1 className="heroH1 pt-2">
+                                <h1 className="heroH1 pt-4">
                                     {t('glossary:meal_plural')}
                                 </h1>
+                                <p className="lead">
+                                    {t('glossary:about_meals')}
+                                </p>
                             </div>
                         </motion.div>
                     </Link>
@@ -72,6 +75,9 @@ export default function Home() {
                                 <h1 className="heroH1">
                                     {t('glossary:dish_plural')}
                                 </h1>
+                                <p className="lead">
+                                    {t('glossary:about_dishes')}
+                                </p>
                             </div>
                         </motion.div>
                     </Link>
@@ -85,20 +91,27 @@ export default function Home() {
                                         ? t('common:our_page')
                                         : t('common:my_page')}
                                 </h1>
+                                <p className="lead">
+                                    {t('glossary:about_profile')}
+                                </p>
                             </div>
                         </motion.div>
                     </Link>
                 </Maybe>
                 <Maybe test={!isLoggedIn}>
-                    <motion.div variants={item} className="bg-meal meal row-3">
+                    <motion.div
+                        variants={item}
+                        className="bg-meal meal row-top">
                         <div className="container py-5">
-                            <h1 className="heroH1-nolink pt-2">
+                            <h1 className="heroH1-nolink pt-5">
                                 {t('glossary:meal_plural')}
                             </h1>
                             <p className="lead">{t('glossary:about_meals')}</p>
                         </div>
                     </motion.div>
-                    <motion.div variants={item} className="bg-dish dish row-3">
+                    <motion.div
+                        variants={item}
+                        className="bg-dish dish row-middle">
                         <div className="container py-5">
                             <h1 className="heroH1-nolink">
                                 {t('glossary:dish_plural')}
@@ -109,7 +122,7 @@ export default function Home() {
                     <Link href="/about">
                         <motion.div
                             variants={item}
-                            className="bg-about about pointer row-6">
+                            className="bg-about about pointer row-bottom">
                             <div className="container py-5 mb-md-3">
                                 <h1 className="heroH1">{t('common:about')}</h1>
                                 <p className="lead">
