@@ -8,9 +8,9 @@ import useSWR from 'swr';
 
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
+import useVisible from '../lib/utils/use-visible';
 import styles from './header.module.scss';
 import Maybe from './maybe';
-import useVisible from '../lib/utils/use-visible';
 
 const LoginForm = dynamic(() => import('./form-login'));
 const RegistrationForm = dynamic(() => import('./form-registration'));
@@ -83,9 +83,11 @@ export default function Header() {
 
     return (
         <>
-            <header id="header" className={`${styles.header} fixed-top pt-2`}>
-                <div className="container d-flex justify-content-between align-items-center py-1 py-md-3">
-                    <div className="d-flex">
+            <header
+                id="header"
+                className={`${styles.header} fixed-top pt-md-2`}>
+                <div className="container d-flex justify-content-between align-items-center py-md-3">
+                    <div className="d-flex align-items-center">
                         <Link href="/">
                             <img
                                 alt="logo"
@@ -150,7 +152,9 @@ export default function Header() {
                     </Maybe>
                     <Maybe test={isLoggedIn}>
                         <div className="position-relative">
-                            {/* {isAddMealVisible && <div className={styles.fulHack} />} */}
+                            {isAddMealVisible && (
+                                <div className={styles.fulHack} />
+                            )}
                             <button
                                 type="button"
                                 onClick={() =>
