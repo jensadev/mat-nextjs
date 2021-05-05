@@ -1,21 +1,28 @@
-let prevScrollpos = window.pageYOffset;
+window.addEventListener('load', (event) => {
+    let prevScrollpos = window.pageYOffset;
 
-window.onscroll = () => {
-    // const span = document.querySelector('.page-header > span:first-of-type');
-    // const bgColor = window.getComputedStyle(span).backgroundColor;
+    window.onscroll = () => {
+        const currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.querySelector('#header').style.top = '0';
+        } else {
+            document.querySelector('#header').style.top = '-96px';
+        }
 
-    const currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-        document.querySelector('#header').style.top = '0';
-    } else {
-        document.querySelector('#header').style.top = '-96px';
-    }
+        const bg = document.querySelector('.page-header');
+        if (bg) {
+            const bgColor = window.getComputedStyle(bg).backgroundColor;
 
-    // if (currentScrollPos > 0) {
-    //   document.querySelector('#header').style.backgroundColor = bgColor;
-    // } else {
-    //   document.querySelector('#header').style.backgroundColor = 'transparent';
-    // }
+            if (currentScrollPos > 0) {
+                document.querySelector(
+                    '#header'
+                ).style.backgroundColor = bgColor;
+            } else {
+                document.querySelector('#header').style.backgroundColor =
+                    'transparent';
+            }
+        }
 
-    prevScrollpos = currentScrollPos;
-};
+        prevScrollpos = currentScrollPos;
+    };
+});
