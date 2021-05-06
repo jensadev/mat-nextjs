@@ -15,15 +15,15 @@ body {
   }
 }
 
-h1 {
-  font-size: $font-size-lg;
+h1, .h1 {
+  font-size: $font-size-xl;
   font-weight: 700;
 }
-h2 {
+h2, .h2 {
   font-size: $font-size-lg;
   font-weight: 500;
 }
-h3 {
+h3, .h3 {
   font-size: $font-size-base;
   font-weight: 500;
 }
@@ -83,11 +83,14 @@ fieldset {
   border: 0;
 }
 
-.md-48 { font-size: 48px; }
-.md-64 { font-size: 64px; }
+.material-icons-round {
+  font-size: $font-size-base;
+}
+.md-48 { font-size: $font-size-lg }
+.md-64 { font-size: $font-size-xl; }
 
 #__next {
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -110,6 +113,14 @@ fieldset {
 }
 .row-4 {
   height: 33.333333%;
+}
+
+.row-calc {
+  min-height: calc(100vh / 1.618 / 1.618 / 1.618);
+}
+
+.row-calc-bottom {
+  min-height: calc(100vh / 1.618 / 1.618);
 }
 
 @mixin line-link($fg, $fgh, $bg, $fs, $fw, $height) {
@@ -135,14 +146,14 @@ fieldset {
   }
 }
 
-.heroH1 {
+.hero-h1 {
   @include line-link( $white, $white, $white, $font-size-xxl, 900, $font-size-xxl / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
     @include line-link( $white, $white, $white, $font-size-xl, 900, $font-size-xl / 10);
   }
 }
 
-.heroH1-nolink {
+.hero-h1-nolink {
   font-size: $font-size-xxl;
   font-weight: 900;
   color: $white;
@@ -150,6 +161,14 @@ fieldset {
   @media (max-width: map-get($grid-breakpoints, md)) {
     font-size: $font-size-xl;
   }
+}
+
+.pt-6 {
+  padding-top: map-get($spacers, 6);
+}
+
+.pb-6 {
+  padding-bottom: map-get($spacers, 6);
 }
 
 .link-meals {
@@ -186,12 +205,28 @@ fieldset {
   }
 }
 
+.link-lang {
+  @include line-link($black, $black, $black, $font-size-sm, 400, $font-size-sm / 10);
+  &.active {
+    font-weight: 500;
+  }
+}
+
 .link-legal {
   @include line-link($black, $black, $legal, $font-size-base, 400, $font-size-base / 10);
 }
 
 .link-footer {
   @include line-link($light-gray, $white, $light-gray, $font-size-base, 400, $font-size-base / 10);
+  &:is(.active) {
+    font-weight: 500;
+  }
+  &:hover:is(.active)  {
+    color: $light-gray;
+  }
+  &:hover:is(.active)::after {
+    width: 0;
+  }
 }
 
 .text-small {

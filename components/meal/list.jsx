@@ -48,7 +48,7 @@ export default function MealList() {
                     aria-label="Pagination"
                     className={styles.paginationContainer}>
                     <ul
-                        className={`${styles.pagination} justify-content-start`}>
+                        className={`${styles.pagination} justify-content-center`}>
                         <li
                             className={`${
                                 pager.currentPage === 1 ? styles.disabled : ''
@@ -60,7 +60,7 @@ export default function MealList() {
                                 <span className="visually-hidden">
                                     {t('common:first_page')}
                                 </span>
-                                <span className="material-icons-round">
+                                <span className="material-icons-round md-48">
                                     first_page
                                 </span>
                             </button>
@@ -78,7 +78,7 @@ export default function MealList() {
                                 <span className="visually-hidden">
                                     {t('common:before')}
                                 </span>
-                                <span className="material-icons-round">
+                                <span className="material-icons-round md-48">
                                     navigate_before
                                 </span>
                             </button>
@@ -114,7 +114,7 @@ export default function MealList() {
                                 <span className="visually-hidden">
                                     {t('common:next')}
                                 </span>
-                                <span className="material-icons-round">
+                                <span className="material-icons-round md-48">
                                     navigate_next
                                 </span>
                             </button>
@@ -132,7 +132,7 @@ export default function MealList() {
                                 <span className="visually-hidden">
                                     {t('common:last_page')}
                                 </span>
-                                <span className="material-icons-round">
+                                <span className="material-icons-round md-48">
                                     last_page
                                 </span>
                             </button>
