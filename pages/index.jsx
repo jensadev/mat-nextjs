@@ -99,9 +99,7 @@ export default function Home() {
                     </Link>
                 </Maybe>
                 <Maybe test={!isLoggedIn}>
-                    <motion.div
-                        variants={item}
-                        className="bg-meal meal row-top">
+                    <motion.div variants={item} className="bg-meal meal">
                         <div className="row-calc container py-5">
                             <h1 className="hero-h1-nolink pt-5">
                                 {t('glossary:meal_plural')}
@@ -109,9 +107,7 @@ export default function Home() {
                             <p className="lead">{t('glossary:about_meals')}</p>
                         </div>
                     </motion.div>
-                    <motion.div
-                        variants={item}
-                        className="bg-dish dish row-middle">
+                    <motion.div variants={item} className="bg-dish dish">
                         <div className="row-calc container py-5">
                             <h1 className="hero-h1-nolink">
                                 {t('glossary:dish_plural')}
@@ -122,12 +118,12 @@ export default function Home() {
                     <Link href="/about">
                         <motion.div
                             variants={item}
-                            className="bg-about about pointer row-bottom">
-                            <div className="row-calc-bottom container py-5 mb-md-3">
+                            className="bg-about about pointer">
+                            <div className="row-calc container py-5 mb-md-3">
                                 <h1 className="hero-h1">{t('common:about')}</h1>
                                 <p className="lead">
                                     {t('glossary:about_intro', {
-                                        brand: 'Måltidsmatloggen',
+                                        brand: siteTitle,
                                         who: t('glossary:you')
                                     })}
                                 </p>
