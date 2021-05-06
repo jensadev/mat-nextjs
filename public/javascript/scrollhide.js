@@ -9,19 +9,19 @@ window.addEventListener('load', (event) => {
             document.querySelector('#header').style.top = '-96px';
         }
 
-        const bg = document.querySelector('.page-header');
-        if (bg) {
-            const bgColor = window.getComputedStyle(bg).backgroundColor;
+        // const bg = document.querySelector('.page-header');
+        // if (bg) {
+        //     const bgColor = window.getComputedStyle(bg).backgroundColor;
 
-            if (currentScrollPos > 0) {
-                document.querySelector(
-                    '#header'
-                ).style.backgroundColor = bgColor;
-            } else {
-                document.querySelector('#header').style.backgroundColor =
-                    'transparent';
-            }
-        }
+        //     if (currentScrollPos > 0) {
+        //         document.querySelector(
+        //             '#header'
+        //         ).style.backgroundColor = bgColor;
+        //     } else {
+        //         document.querySelector('#header').style.backgroundColor =
+        //             'transparent';
+        //     }
+        // }
 
         prevScrollpos = currentScrollPos;
     };
