@@ -55,14 +55,10 @@ export default function About() {
                     </div>
                 </motion.header>
                 <div className="container my-5">
-                    <h1>Infos</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Inventore labore optio commodi harum asperiores
-                        dignissimos rem. Consequuntur quas tenetur vel nobis
-                        aliquid nisi cum ratione quasi consequatur. Ab, nesciunt
-                        explicabo.
+                    <p className="lead">
+                        {t('glossary:about_page.lead', { brand: siteTitle })}
                     </p>
+                    <p>{t('glossary:about_page.p1')}</p>
                 </div>
             </motion.main>
         </Layout>
