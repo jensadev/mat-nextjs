@@ -5,7 +5,7 @@ import CookieConsent from 'react-cookie-consent';
 import Footer from './footer';
 import Header from './header';
 
-export const siteTitle = 'Mat';
+export const siteTitle = 'Måltidsloggen';
 
 export default function Layout({ children }) {
     const { t } = useTranslation(['common']);
