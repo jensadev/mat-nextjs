@@ -64,7 +64,7 @@ button.bubble:after {
 }
 
 button.speech:before {
-  left: 74%;
+  left: 80%;
   top: -30px;
   border: 30px solid transparent;
   border-bottom-color: $black;
@@ -73,7 +73,7 @@ button.speech:before {
 }
 
 button.speech:after {
-  left: calc(74% + 2px);
+  left: calc(80% + 2px);
   top: -26px;
   border: 26px solid transparent;
   border-bottom-color: $white;
