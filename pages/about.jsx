@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Layout, { siteTitle } from '../components/layout';
+import { pageContainer, pageItem } from '../lib/utils/animations';
 
 export async function getStaticProps({ locale }) {
     return {
@@ -20,32 +21,17 @@ export async function getStaticProps({ locale }) {
 export default function About() {
     const { t } = useTranslation(['common']);
 
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.5
-            }
-        }
-    };
-
-    const item = {
-        hidden: { opacity: 0, y: -400 },
-        show: { opacity: 1, y: 0 }
-    };
-
     return (
         <Layout about>
             <Head>
                 <title>{`${siteTitle} - ${t('common:about')}`}</title>
             </Head>
-            <motion.main
-                variants={container}
-                initial="hidden"
-                animate="show"
-                className="d-flex h-100 flex-column">
-                <motion.header variants={item} className="page-header bg-about">
+            <main className="d-flex flex-column">
+                <motion.header
+                    initial="hidden"
+                    animate="show"
+                    variants={pageItem}
+                    className="page-header bg-about">
                     <div className="container">
                         <h1 className="page-heading">
                             {`${t('common:what_about', {
@@ -60,7 +46,7 @@ export default function About() {
                     </p>
                     <p>{t('glossary:about_page.p1')}</p>
                 </div>
-            </motion.main>
+            </main>
         </Layout>
     );
 }

@@ -31,14 +31,12 @@ export default function Dishes() {
             <Head>
                 <title>{`${siteTitle} - ${t('glossary:dishes')}`}</title>
             </Head>
-            <motion.main
-                variants={pageContainer}
-                initial="hidden"
-                animate="show"
-                className="d-flex flex-column">
+            <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
                     <motion.header
                         variants={pageItem}
+                        initial="hidden"
+                        animate="show"
                         className="page-header bg-dish">
                         <div className="container">
                             <h1 className="page-heading">
@@ -56,7 +54,7 @@ export default function Dishes() {
                         <div className="container" />
                     </div>
                 </Maybe>
-            </motion.main>
+            </main>
         </Layout>
     );
 }

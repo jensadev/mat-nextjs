@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Layout, { siteTitle } from '../components/layout';
+import { pageContainer, pageItem } from '../lib/utils/animations';
 
 export async function getStaticProps({ locale }) {
     return {
@@ -20,32 +21,17 @@ export async function getStaticProps({ locale }) {
 export default function Legal() {
     const { t } = useTranslation(['common', 'glossary']);
 
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.5
-            }
-        }
-    };
-
-    const item = {
-        hidden: { opacity: 0, y: -400 },
-        show: { opacity: 1, y: 0 }
-    };
-
     return (
         <Layout legal>
             <Head>
                 <title>{`${siteTitle} - ${t('common:terms')}`}</title>
             </Head>
-            <motion.main
-                variants={container}
-                initial="hidden"
-                animate="show"
-                className="d-flex flex-column">
-                <motion.header variants={item} className="page-header bg-legal">
+            <main className="d-flex flex-column">
+                <motion.header
+                    variants={pageItem}
+                    initial="hidden"
+                    animate="show"
+                    className="page-header bg-legal">
                     <div className="container">
                         <h1 className="page-heading">{t('common:terms')}</h1>
                     </div>
@@ -61,7 +47,7 @@ export default function Legal() {
                     <h2>{t('common:contact')}</h2>
                     <p>{t('glossary:legal_page.cookie_text_3')}</p>
                 </div>
-            </motion.main>
+            </main>
         </Layout>
     );
 }

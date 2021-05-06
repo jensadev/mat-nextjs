@@ -36,14 +36,12 @@ export default function Profile() {
                         : t('common:my_page')
                 }`}</title>
             </Head>
-            <motion.main
-                variants={pageContainer}
-                initial="hidden"
-                animate="show"
-                className="d-flex flex-column">
+            <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
                     <motion.header
                         variants={pageItem}
+                        initial="hidden"
+                        animate="show"
                         className="page-header bg-profile">
                         <div className="container">
                             <h1 className="page-heading">
@@ -55,13 +53,13 @@ export default function Profile() {
                     </motion.header>
                     <div className="container my-5">
                         {currentUser && (
-                            <h1>{`${t('common:welcome_back')} ${
+                            <p className="lead">{`${t('common:welcome_back')} ${
                                 currentUser.handle
-                            }`}</h1>
+                            }`}</p>
                         )}
                     </div>
                 </Maybe>
-            </motion.main>
+            </main>
         </Layout>
     );
 }

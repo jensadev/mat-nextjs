@@ -33,13 +33,11 @@ export default function Meals() {
             <Head>
                 <title>{`${siteTitle} - ${t('glossary:meals')}`}</title>
             </Head>
-            <motion.main
-                variants={pageContainer}
-                initial="hidden"
-                animate="show"
-                className="d-flex flex-column">
+            <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
                     <motion.header
+                        initial="hidden"
+                        animate="show"
                         variants={pageItem}
                         className="page-header bg-meal">
                         <div className="container">
@@ -58,7 +56,7 @@ export default function Meals() {
                         <MealList />
                     </div>
                 </Maybe>
-            </motion.main>
+            </main>
         </Layout>
     );
 }
