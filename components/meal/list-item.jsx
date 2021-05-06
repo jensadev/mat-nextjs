@@ -66,7 +66,7 @@ export default function ListItem({ meal }) {
                     {meal.Dish.name}
                 </p>
             </div>
-            <div className="dropdown">
+            <div className="dropstart">
                 <button
                     className={`btn btn-icon ${styles.dropdownToggle}`}
                     type="button"
@@ -75,11 +75,11 @@ export default function ListItem({ meal }) {
                     aria-expanded="false">
                     <span className="material-icons-round">more_vert</span>
                 </button>
-                <ul className={styles.dropdownMenu} aria-labelledby="more">
+                <ul className="dropdown-menu" aria-labelledby="more">
                     <li>
                         <button
                             type="button"
-                            className={`btn btn-icon ${styles.btn}`}>
+                            className={`btn btn-icon  ${styles.btn}`}>
                             <span className="visually-hidden">
                                 {t('common:edit')}
                             </span>
@@ -89,7 +89,29 @@ export default function ListItem({ meal }) {
                     <li>
                         <button
                             type="button"
-                            className={`btn btn-icon ${styles.btn}`}>
+                            className={`btn btn-icon  ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:delete')}
+                            </span>
+                            <span className="material-icons-round">delete</span>
+                        </button>
+                    </li>
+                </ul>
+                <ul className={styles.dropdownMenu} aria-labelledby="more">
+                    <li>
+                        <button
+                            type="button"
+                            className={`btn btn-icon  ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:edit')}
+                            </span>
+                            <span className="material-icons-round">edit</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            className={`btn btn-icon  ${styles.btn}`}>
                             <span className="visually-hidden">
                                 {t('common:delete')}
                             </span>
