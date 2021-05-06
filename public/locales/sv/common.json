@@ -38,5 +38,11 @@
     "terms": "användarvillkor",
     "this_web": "den här webbplatsen",
     "welcome_back": "välkommen tillbaka",
-    "what_about": "om {{what}}"
+    "what_about": "om {{what}}",
+    "created_by": "Sidan är skapad av",
+    "using": "med",
+    "deployed_with": "och driftad på",
+    "source_code": "Koden finns på",
+    "found_a_bug": "Har du hittat ett fel? Rapportera gärna ett",
+    "issue": "issue"
 }
