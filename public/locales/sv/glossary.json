@@ -1,10 +1,10 @@
 {
     "about_dishes": "Vad äter du? Få överblick och tips.",
-    "about_intro": "{{brand}} är en app för att hjälpa dig föra statistik över vad {{who}} äter. Spara dina måltider för att hjälpa dig planera din vardagsmat.",
+    "about_intro": "{{brand}} är en app för att hjälpa dig föra statistik över vad {{who}} äter. Spara dina måltider för att hjälpa dig i vardagen.",
     "about_meals": "Spara dina måltider, vad du äter och när.",
     "about_page": {
-        "lead": "Måltidsmatsidan är skapad för att hjälpa dig föra statistik över vad du äter. När inspirationen tryter och frågan: -Vad ska vi äta idag? hänger i luften så finns det hjälp att få.",
-        "p1": "På den här sidan kan du snabbt och enkelt föra en loggbok över vad du äter. Du kan sedan se din historik, söka och hitta vad du har ätit. Allt för att hjälpa dig i vardagen."
+        "lead": "{{brand}} är skapad för att hjälpa dig föra statistik över vad du äter. När inspirationen tryter och frågan: -Vad ska vi äta idag? hänger i luften så finns det hjälp att få.",
+        "p1": "Den här sidans syfte är att låta dig snabbt och enkelt föra en logg över vad du äter. Du kan sedan se din historik, söka och hitta vad du har ätit. Allt för att hjälpa dig i vardagen."
     },
     "about_profile": "aboutprofile",
     "about_this": "aboutintro",
@@ -19,8 +19,8 @@
     "food": "mat",
     "for": "till",
     "legal_page": {
-        "cookie_header": "Din integritet är viktig för oss ",
-        "cookie_lead": "Här hittar du information rörande din integritet.",
+        "cookie_header": "Din integritet är viktig för oss",
+        "cookie_lead": "Här hittar du information rörande cookies och personuppgifter.",
         "cookie_text_1": "Cookies är mycket små textfiler som lagras på din dator när du besöker en webbplats. Vi använder cookies för olika ändamål och för att förbättra din onlineupplevelse på vår webbplats (till exempel för att komma ihåg dina inloggningsuppgifter för kontot).",
         "cookie_text_2": "Du kan ändra dina preferenser och avvisa vissa typer av kakor som ska lagras på din dator när du surfar på vår webbplats. Du kan också ta bort alla cookies som redan finns lagrade på din dator, men kom ihåg att radering av cookies kan hindra dig från att använda delar av vår webbplats.",
         "cookie_text_3": "Om du har några frågor eller funderingar kring hur denna webbplats behandlar dina personuppgifter, kontakta oss."
