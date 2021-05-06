@@ -13,6 +13,8 @@ $sand: #ff9f50;
 $yellow: #feda3c;
 $coral: #ef8187;
 
+$light: tint-color($silk, 70%);
+
 $lighter-gray: tint-color($black, 80%);
 $light-gray: tint-color($black, 50%);
 $gray: tint-color($black, 30%);
