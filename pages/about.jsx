@@ -40,7 +40,7 @@ export default function About() {
                         </h1>
                     </div>
                 </motion.header>
-                <div className="container my-5">
+                <div className="container my-3">
                     <p className="lead">
                         {t('glossary:about_page.lead', { brand: siteTitle })}
                     </p>

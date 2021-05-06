@@ -36,7 +36,7 @@ export default function Legal() {
                         <h1 className="page-heading">{t('common:terms')}</h1>
                     </div>
                 </motion.header>
-                <div className="container my-5">
+                <div className="container my-3">
                     <p className="lead">
                         {t('glossary:legal_page.cookie_header')}.{' '}
                         {t('glossary:legal_page.cookie_lead')}
