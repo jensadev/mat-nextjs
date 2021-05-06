@@ -45,12 +45,18 @@
   border: 0;
   color: $gray;
   transition: background-color .3s;
+  border-bottom: 2px solid transparent;
+  font-size: $font-size-lg;
   &:hover {
     color: $dark-gray;
     border-bottom: 2px solid $black;
   }
   &:hover:not(.active) {
-    background-color: $light-cyan;
+    // color: $white;
+    background-color: $coral;
+  }
+  span {
+    padding-top: .6rem;
   }
 }
 
