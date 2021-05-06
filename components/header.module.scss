@@ -7,9 +7,9 @@
   height: 96px;
   transition: top 0.3s;
   z-index: $zindex-tooltip;
-  // @media (max-width: map-get($grid-breakpoints, md)) {
-  //   height: 72px;
-  // }
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    height: 48px;
+  }
 }
 
 .btnAdd {
@@ -46,13 +46,16 @@
 
 button.bubble {
   position: relative;
-  width: 340px;
+  width: 381px;
   margin-top: 18px;
   margin-right: 9px;
   background-color: $white;
   border: 2px solid $black;
   // border-radius: 20px;
   padding: 16px;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    width: 236px;
+  }
 }
 
 button.bubble:before,
@@ -76,7 +79,7 @@ button.speech:after {
   left: calc(80% + 2px);
   top: -26px;
   border: 26px solid transparent;
-  border-bottom-color: $white;
+  border-bottom-color: $light;
   border-top: 0;
   border-right: 0;
 }
@@ -86,17 +89,23 @@ button.speech:after {
   position: absolute;
   top: 0px;
   right: 0px;
+  // @media (max-width: map-get($grid-breakpoints, md)) {
+  //   min-height: 618px;
+  // }
 }
 
 .overlayAuth {
   z-index: $zindex-modal;
   position: absolute;
-  top: 22%;
+  top: 23.6%;
   width: 50%;
   left: 25%;
   @media (max-width: map-get($grid-breakpoints, md)) {
     width: 100%;
     left: 0%;
+    top: 0%;
+    height: 100%;
+    min-height: 618px;
   }
 }
 
