@@ -56,9 +56,9 @@ export default function Home() {
                     <Link href="/meals">
                         <motion.div
                             variants={item}
-                            className="bg-meal meal pointer row-4">
-                            <div className="container py-5">
-                                <h1 className="heroH1 pt-4">
+                            className="bg-meal meal pointer">
+                            <div className="row-calc container py-5">
+                                <h1 className="hero-h1 pt-5">
                                     {t('glossary:meal_plural')}
                                 </h1>
                                 <p className="lead">
@@ -70,9 +70,9 @@ export default function Home() {
                     <Link href="/dishes">
                         <motion.div
                             variants={item}
-                            className="bg-dish dish pointer row-4">
-                            <div className="container py-5">
-                                <h1 className="heroH1">
+                            className="bg-dish dish pointer">
+                            <div className="row-calc container py-5">
+                                <h1 className="hero-h1">
                                     {t('glossary:dish_plural')}
                                 </h1>
                                 <p className="lead">
@@ -84,14 +84,14 @@ export default function Home() {
                     <Link href="/profile">
                         <motion.div
                             variants={item}
-                            className="bg-profile profile pointer row-4">
-                            <div className="container py-5 mb-md-3">
-                                <h1 className="heroH1">
+                            className="bg-profile profile pointer">
+                            <div className="row-calc container py-5 mb-md-3">
+                                <h1 className="hero-h1">
                                     {currentUser && currentUser.family
                                         ? t('common:our_page')
                                         : t('common:my_page')}
                                 </h1>
-                                <p className="lead">
+                                <p className="lead pb-5">
                                     {t('glossary:about_profile')}
                                 </p>
                             </div>
@@ -102,8 +102,8 @@ export default function Home() {
                     <motion.div
                         variants={item}
                         className="bg-meal meal row-top">
-                        <div className="container py-5">
-                            <h1 className="heroH1-nolink pt-5">
+                        <div className="row-calc container py-5">
+                            <h1 className="hero-h1-nolink pt-5">
                                 {t('glossary:meal_plural')}
                             </h1>
                             <p className="lead">{t('glossary:about_meals')}</p>
@@ -112,8 +112,8 @@ export default function Home() {
                     <motion.div
                         variants={item}
                         className="bg-dish dish row-middle">
-                        <div className="container py-5">
-                            <h1 className="heroH1-nolink">
+                        <div className="row-calc container py-5">
+                            <h1 className="hero-h1-nolink">
                                 {t('glossary:dish_plural')}
                             </h1>
                             <p className="lead">{t('glossary:about_dishes')}</p>
@@ -123,8 +123,8 @@ export default function Home() {
                         <motion.div
                             variants={item}
                             className="bg-about about pointer row-bottom">
-                            <div className="container py-5 mb-md-3">
-                                <h1 className="heroH1">{t('common:about')}</h1>
+                            <div className="row-calc-bottom container py-5 mb-md-3">
+                                <h1 className="hero-h1">{t('common:about')}</h1>
                                 <p className="lead">
                                     {t('glossary:about_intro', {
                                         brand: 'Måltidsmatloggen',
