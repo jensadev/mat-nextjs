@@ -1,8 +1,9 @@
+@import "../styles/_vars.scss";
 div.bubble {
   position: relative;
   width: calc(100% - 36px);
   margin: 9px 26px;
-  background-color: #fff;
+  background-color: $light;
   border: 2px solid #231F20;
   // border-radius: 20px;
   padding: 16px;
@@ -20,7 +21,7 @@ div.speech:before {
   right: 0;
   top: 40%;
   border: 30px solid transparent;
-  border-left-color: #231F20;
+  border-left-color: $black;
   border-bottom: 0;
   border-right: 0;
   margin-top: -10px;
@@ -31,7 +32,7 @@ div.speech:after {
   right: 0;
   top: calc(40% + 2px);
   border: 26px solid transparent;
-  border-left-color: #fff;
+  border-left-color: $light;
   border-right: 0;
   border-bottom: 0;
   margin-top: -10px;

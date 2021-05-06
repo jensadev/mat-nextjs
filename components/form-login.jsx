@@ -66,104 +66,83 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
     };
 
     return (
-        <>
-            <div className="position-absolute top-0 end-0 p-1">
-                <button
-                    type="button"
-                    className="btn"
-                    onClick={(e) => setIsLoginVisible(!isLoginVisible)}>
-                    <span className="visually-hidden">{t('common:close')}</span>
-                    <span className="material-icons-round md-48">close</span>
-                </button>
-            </div>
-            <div className="py-5 px-4">
-                <header>
-                    <div className="container">
-                        <h1 className={styles.formHeading}>
-                            {t('common:login')}
-                        </h1>
-                    </div>
-                </header>
-                <div className="container">
-                    <form
-                        className={styles.form}
-                        onSubmit={handleSubmit(onSubmit)}
-                        onChange={() => {
-                            if (isSubmitted && isDirty) clearErrors();
-                        }}>
-                        <fieldset className="mb-3">
-                            <label htmlFor="email" className="visually-hidden">
-                                {`${t('common:email')}`}
-                            </label>
-                            <input
-                                id="email"
-                                name="email"
-                                aria-invalid={errors.email ? 'true' : 'false'}
-                                className={`w-100 ${
-                                    errors.email ? 'invalid' : ''
-                                }`}
-                                type="text"
-                                placeholder={`${t('common:email')}`}
-                                {...register('email', {
-                                    required: true,
-                                    pattern: /^\S+@\S+$/i
-                                })}
-                            />
-                            <ErrorMessage errors={errors} name="email" />
-                        </fieldset>
-                        <fieldset className="mb-3">
-                            <label
-                                htmlFor="password"
-                                className="visually-hidden">
-                                {`${t('common:password')}`}
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                aria-invalid={
-                                    errors.password ? 'true' : 'false'
-                                }
-                                className={`w-100 ${
-                                    errors.password ? 'invalid' : ''
-                                }`}
-                                type="password"
-                                placeholder={`${t('common:password')}`}
-                                {...register('password', { required: true })}
-                            />
-                            <ErrorMessage errors={errors} name="password" />
-                        </fieldset>
-                        <button
-                            className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
-                            type="submit"
-                            disabled={isLoading}>
-                            {isLoading ? (
-                                <>
-                                    <span
-                                        className="spinner-border me-3"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                    {t('common:loading')}
-                                    ...
-                                </>
-                            ) : (
-                                t('common:login')
-                            )}
-                        </button>
-                    </form>
-                    {/* <div className="mt-4 d-flex align-items-center">
-            <p>{t('common:noaccount')}</p>
-            <button
-              data-action="register"
-              type="button"
-              // style={{ textTransform: 'lowercase' }}
-              // onClick={handleOpen}
-              className="btn link-blue capitalize-first mb-2">
-              {t('common:noaccountlink')}
-            </button>
-          </div> */}
+        <div className="py-5 px-4">
+            <header>
+                <div className="container d-flex justify-content-between">
+                    <h1 className={styles.formHeading}>{t('common:login')}</h1>
+                    <button
+                        type="button"
+                        className={`btn ${styles.btn}`}
+                        onClick={(e) => setIsLoginVisible(!isLoginVisible)}>
+                        <span className="visually-hidden">
+                            {t('common:close')}
+                        </span>
+                        <span className="material-icons-round md-48">
+                            close
+                        </span>
+                    </button>
                 </div>
+            </header>
+            <div className="container">
+                <form
+                    className={styles.form}
+                    onSubmit={handleSubmit(onSubmit)}
+                    onChange={() => {
+                        if (isSubmitted && isDirty) clearErrors();
+                    }}>
+                    <fieldset className="mb-3">
+                        <label htmlFor="email" className="visually-hidden">
+                            {`${t('common:email')}`}
+                        </label>
+                        <input
+                            id="email"
+                            name="email"
+                            aria-invalid={errors.email ? 'true' : 'false'}
+                            className={`w-100 ${errors.email ? 'invalid' : ''}`}
+                            type="text"
+                            placeholder={`${t('common:email')}`}
+                            {...register('email', {
+                                required: true,
+                                pattern: /^\S+@\S+$/i
+                            })}
+                        />
+                        <ErrorMessage errors={errors} name="email" />
+                    </fieldset>
+                    <fieldset className="mb-3">
+                        <label htmlFor="password" className="visually-hidden">
+                            {`${t('common:password')}`}
+                        </label>
+                        <input
+                            id="password"
+                            name="password"
+                            aria-invalid={errors.password ? 'true' : 'false'}
+                            className={`w-100 ${
+                                errors.password ? 'invalid' : ''
+                            }`}
+                            type="password"
+                            placeholder={`${t('common:password')}`}
+                            {...register('password', { required: true })}
+                        />
+                        <ErrorMessage errors={errors} name="password" />
+                    </fieldset>
+                    <button
+                        className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
+                        type="submit"
+                        disabled={isLoading}>
+                        {isLoading ? (
+                            <span
+                                className="spinner-border me-3"
+                                role="status"
+                                aria-hidden="true">
+                                {t('common:loading')}
+                                ...
+                            </span>
+                        ) : (
+                            t('common:login')
+                        )}
+                    </button>
+                </form>
             </div>
-        </>
+        </div>
     );
 }

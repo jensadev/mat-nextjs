@@ -51,7 +51,7 @@ export default function Profile() {
                             </h1>
                         </div>
                     </motion.header>
-                    <div className="container my-5">
+                    <div className="container my-3">
                         {currentUser && (
                             <p className="lead">{`${t('common:welcome_back')} ${
                                 currentUser.handle

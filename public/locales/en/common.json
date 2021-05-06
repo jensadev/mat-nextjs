@@ -38,5 +38,11 @@
     "terms": "terms of service",
     "this_web": "this website",
     "welcome_back": "welcome back",
-    "what_about": "about {{what}}"
+    "what_about": "about {{what}}",
+    "created_by": "This page is made by",
+    "using": "using",
+    "deployed_with": "and deployed with",
+    "source_code": "The source is available on",
+    "found_a_bug": "Found a bug or an issue? Please submit an",
+    "issue": "issue"
 }

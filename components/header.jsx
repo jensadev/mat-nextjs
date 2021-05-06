@@ -61,6 +61,7 @@ export default function Header() {
         expanded: {
             y: 0,
             height: '100%',
+            minHeight: '618px',
             opacity: 1,
             transition: 'easeInOut'
         },
@@ -104,7 +105,7 @@ export default function Header() {
                                         pages.map((page) =>
                                             router.pathname.replace('/', '') !==
                                             page ? (
-                                                <li className="ps-5" key={page}>
+                                                <li className="ps-3" key={page}>
                                                     <Link href={`/${page}`}>
                                                         <a
                                                             className={`link-${page}`}>
@@ -125,7 +126,6 @@ export default function Header() {
                     <Maybe test={!isLoggedIn}>
                         <div className="d-flex">
                             <div className="position-relative">
-                                {/* {isLoginVisible && <div className={styles.fulHack} />} */}
                                 <button
                                     type="button"
                                     onClick={(e) =>
@@ -136,7 +136,6 @@ export default function Header() {
                                 </button>
                             </div>
                             <div className="position-relative">
-                                {/* {isRegistrationVisible && <div className={styles.fulHack} />} */}
                                 <button
                                     type="button"
                                     onClick={(e) =>

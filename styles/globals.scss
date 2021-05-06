@@ -28,10 +28,6 @@ h3, .h3 {
   font-weight: 500;
 }
 
-.py-6 {
-  padding: map-get($spacers, 6) 0;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -86,33 +82,18 @@ fieldset {
 .material-icons-round {
   font-size: $font-size-base;
 }
-.md-48 { font-size: $font-size-lg }
+.md-48 { 
+  font-size: $font-size-lg;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-base;
+  }
+}
 .md-64 { font-size: $font-size-xl; }
 
 #__next {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-// 1000 / 1.618 = 618
-// 38.2%
-// 61.8%
-
-// 38.19
-// 23.61
-
-.row-top {
-  height: 30.9%;
-}
-.row-middle {
-  height: 30.9%;
-}
-.row-bottom {
-  height: 38.2%;
-}
-.row-4 {
-  height: 33.333333%;
 }
 
 .row-calc {
@@ -171,6 +152,10 @@ fieldset {
   padding-bottom: map-get($spacers, 6);
 }
 
+.py-6 {
+  padding: map-get($spacers, 6) 0;
+}
+
 .link-meals {
   @include line-link($black, $black, $meal, $font-size-lg, 400, $font-size-lg / 10);
 }
@@ -201,7 +186,7 @@ fieldset {
 .link-header {
   @include line-link($dark-blue, $dark-blue, $green, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($dark-blue, $dark-blue, $green, $font-size-base, 400, $font-size-base / 10);
+    @include line-link($dark-blue, $dark-blue, $green, $font-size-sm, 400, $font-size-sm / 10);
   }
 }
 
@@ -230,10 +215,14 @@ fieldset {
 }
 
 .text-small {
-  font-size: $font-size-base;
+  font-size: $font-size-sm;
   @media (max-width: map-get($grid-breakpoints, md)) {
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
   }
+}
+
+.text-muted {
+  color: $light-gray !important;
 }
 
 .meal, .dish, .about, .profile {
@@ -328,6 +317,9 @@ fieldset {
       width: 100%;
     }
   }
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-sm;
+  }
 }
 
 .invalid {
@@ -335,7 +327,7 @@ fieldset {
 }
 
 .btn-clear {
-  @include btn-outline($black, $white, $sand)
+  @include btn-outline($gray, $white, $sand)
 }
 
 .btn-consent {
@@ -367,10 +359,10 @@ fieldset {
   padding: $spacer 0;
   display: flex;
   align-items: center;
-  height: 256px;
+  height: 236px;
   overflow: hidden;
   @media (max-width: map-get($grid-breakpoints, md)) {
-    height: 192px;
+    height: 145px;
   }
 }
 
@@ -383,6 +375,42 @@ fieldset {
     font-size: $font-size-xl;
   }
 }
+
+.dropdown-menu {
+  min-width: 0 !important;
+  background-color: $light;
+  border: 2px solid $black;
+  border-radius: 0;
+  &:before,
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+  &:before {
+    right: 0;
+    top: 22%;
+    border: 20px solid transparent;
+    border-left-color: $black;
+    border-top: 0;
+    border-right: 0;
+    margin-top: -10px;
+    margin-right: -20px;
+  }
+  
+  &:after {
+    right: 0;
+    top: calc(22% + 2px);
+    border: 16px solid transparent;
+    border-left-color: $light;
+    border-right: 0;
+    border-top: 0;
+    margin-top: -10px;
+    margin-right: -16px;
+  }
+}
+
 
 
 .form {

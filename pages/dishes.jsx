@@ -50,7 +50,7 @@ export default function Dishes() {
                             </h1>
                         </div>
                     </motion.header>
-                    <div className="container my-5">
+                    <div className="container my-3">
                         <div className="container" />
                     </div>
                 </Maybe>

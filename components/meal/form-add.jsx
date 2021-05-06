@@ -91,7 +91,6 @@ export default function MealForm() {
                 addToast(t('common:created', { what: t('glossary:meal') }), {
                     appearance: 'success'
                 });
-                console.table(response.data.meal);
                 reset(defaultValues);
             }
         } catch (err) {
@@ -265,19 +264,19 @@ export default function MealForm() {
                         <ErrorMessage errors={errors} name="type" />
                         <div className="pt-3 pt-md-4 pb-3">
                             <button
-                                className="btn btn-clear w-100"
+                                type="submit"
+                                disabled={isLoading}
+                                className="btn btn-create w-100">
+                                {t('common:create')}
+                            </button>
+                            <button
+                                className="btn btn-clear w-100 mt-3 mt-md-4"
                                 type="button"
                                 disabled={isLoading}
                                 onClick={() => {
                                     reset(defaultValues);
                                 }}>
                                 {t('common:reset')}
-                            </button>
-                            <button
-                                type="submit"
-                                disabled={isLoading}
-                                className="btn btn-create w-100 mt-3 mt-md-4">
-                                {t('common:create')}
                             </button>
                         </div>
                     </form>
