@@ -1,10 +1,38 @@
 import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
+import Modal from 'react-modal';
 
 import Date from '../date';
 import styles from './meal.module.scss';
 
 export default function ListItem({ meal }) {
     const { t } = useTranslation(['glossary']);
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+    // const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+
+    const openDeleteModal = () => {
+        setDeleteModalIsOpen(true);
+    };
+
+    const afterOpenModal = (modal) => {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+    };
+
+    const closeDeleteModal = () => {
+        setDeleteModalIsOpen(false);
+    };
+
+    const editMeal = (e) => {
+        console.log(meal.id);
+    };
+
+    const deleteMeal = (e) => {
+        console.log(meal.id);
+        // if (window.confirm('Är du säker på att du vill ta bort måltiden?')) {
+        //     console.log(meal.id);
+        // }
+    };
 
     const mealIcon = (type) => {
         switch (type) {
@@ -78,7 +106,10 @@ export default function ListItem({ meal }) {
                 <ul className="dropdown-menu" aria-labelledby="more">
                     <li>
                         <button
-                            type="button"
+                            type="submit"
+                            onClick={(e) => {
+                                editMeal(e);
+                            }}
                             className={`btn btn-icon  ${styles.btn}`}>
                             <span className="visually-hidden">
                                 {t('common:edit')}
@@ -88,7 +119,8 @@ export default function ListItem({ meal }) {
                     </li>
                     <li>
                         <button
-                            type="button"
+                            type="submit"
+                            onClick={openDeleteModal}
                             className={`btn btn-icon  ${styles.btn}`}>
                             <span className="visually-hidden">
                                 {t('common:delete')}
@@ -100,7 +132,10 @@ export default function ListItem({ meal }) {
                 <ul className={styles.dropdownMenu} aria-labelledby="more">
                     <li>
                         <button
-                            type="button"
+                            type="submit"
+                            onClick={(e) => {
+                                editMeal(e);
+                            }}
                             className={`btn btn-icon  ${styles.btn}`}>
                             <span className="visually-hidden">
                                 {t('common:edit')}
@@ -110,7 +145,8 @@ export default function ListItem({ meal }) {
                     </li>
                     <li>
                         <button
-                            type="button"
+                            type="submit"
+                            onClick={openDeleteModal}
                             className={`btn btn-icon  ${styles.btn}`}>
                             <span className="visually-hidden">
                                 {t('common:delete')}
@@ -120,6 +156,48 @@ export default function ListItem({ meal }) {
                     </li>
                 </ul>
             </div>
+            <Modal
+                isOpen={deleteModalIsOpen}
+                onRequestClose={closeDeleteModal}
+                className={styles.modal}
+                overlayClassName={styles.overlay}
+                contentLabel="Example Modal">
+                <div className={styles.modalHeader}>
+                    <h3 className={styles.modalTitle}>
+                        {t('common:delete_something', {
+                            what: t('glossary:meal')
+                        })}
+                    </h3>
+                    <button
+                        type="button"
+                        className={`btn ${styles.btnClose}`}
+                        onClick={closeDeleteModal}>
+                        <span className="visually-hidden">
+                            {t('common:close')}
+                        </span>
+                        <span className="material-icons-round md-48">
+                            close
+                        </span>
+                    </button>
+                </div>
+                <div className={styles.modalBody}>
+                    {t('common:confirm_delete', { what: t('glossary:meal') })}
+                </div>
+                <div className={styles.modalFooter}>
+                    <button
+                        type="button"
+                        className="btn btn-cancel"
+                        onClick={closeDeleteModal}>
+                        {t('common:cancel')}
+                    </button>
+                    <button
+                        type="submit"
+                        className="btn btn-delete ms-4"
+                        onClick={deleteMeal}>
+                        {t('common:delete')}
+                    </button>
+                </div>
+            </Modal>
         </li>
     );
 }

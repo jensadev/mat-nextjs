@@ -277,7 +277,7 @@ fieldset {
 .btn {
   white-space: nowrap;
   text-transform: uppercase;
-  font-size: $font-size-lg;
+  font-size: $font-size-base;
   transition: all .3s;
   font-weight: 500;
   &:focus {
@@ -285,7 +285,7 @@ fieldset {
     box-shadow: none;
   }
   @media (max-width: map-get($grid-breakpoints, md)) {
-    font-size: $font-size-base;
+    font-size: $font-size-sm;
   }
 }
 
@@ -342,6 +342,15 @@ fieldset {
   @include btn-outline($black, $white, $profile)
 }
 
+.btn-cancel {
+  @include btn-outline($black, $sand, $profile);
+  width: 38.2%;
+}
+
+.btn-delete {
+  @include btn-outline($black, $red, $profile);
+  width: 38.2%;
+}
 // .fixed-bottom, .fixed-top {
 //   z-index: 700;
 // }
