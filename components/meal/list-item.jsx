@@ -1,12 +1,16 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { useToasts } from 'react-toast-notifications';
 
+import { destroy } from '../../lib/api/meal';
 import Date from '../date';
 import styles from './meal.module.scss';
 
-export default function ListItem({ meal }) {
+export default function ListItem({ meal, onChange }) {
     const { t } = useTranslation(['glossary']);
+    const { addToast } = useToasts();
+    const [isLoading, setLoading] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     // const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
@@ -27,11 +31,29 @@ export default function ListItem({ meal }) {
         console.log(meal.id);
     };
 
-    const deleteMeal = (e) => {
-        console.log(meal.id);
-        // if (window.confirm('Är du säker på att du vill ta bort måltiden?')) {
-        //     console.log(meal.id);
-        // }
+    const deleteMeal = async (e) => {
+        setLoading(true);
+        try {
+            const response = await destroy(meal.id);
+            console.log(response);
+            if (response.status !== 200) {
+                console.log(response.data.errors);
+            }
+            if (response.status === 200) {
+                addToast(t('common:deleted', { what: t('glossary:meal') }), {
+                    appearance: 'success'
+                });
+                onChange();
+                setDeleteModalIsOpen(false);
+            }
+        } catch (err) {
+            addToast(t('validation:something_went_wrong'), {
+                appearance: 'error'
+            });
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const mealIcon = (type) => {
@@ -187,12 +209,14 @@ export default function ListItem({ meal }) {
                     <button
                         type="button"
                         className="btn btn-cancel"
+                        disabled={isLoading}
                         onClick={closeDeleteModal}>
                         {t('common:cancel')}
                     </button>
                     <button
                         type="submit"
                         className="btn btn-delete ms-4"
+                        disabled={isLoading}
                         onClick={deleteMeal}>
                         {t('common:delete')}
                     </button>
