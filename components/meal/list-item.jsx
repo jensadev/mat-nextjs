@@ -1,10 +1,72 @@
 import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
+import Modal from 'react-modal';
+import { useToasts } from 'react-toast-notifications';
 
+import { destroy, update } from '../../lib/api/meal';
 import Date from '../date';
 import styles from './meal.module.scss';
 
-export default function ListItem({ meal }) {
+export default function ListItem({ meal, onChange }) {
     const { t } = useTranslation(['glossary']);
+    const { addToast } = useToasts();
+    const [isLoading, setLoading] = useState(false);
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+    // const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+
+    const openDeleteModal = () => {
+        setDeleteModalIsOpen(true);
+    };
+
+    const closeDeleteModal = () => {
+        setDeleteModalIsOpen(false);
+    };
+
+    // const openEditModal = () => {
+    //     setEditModalIsOpen(true);
+    // };
+
+    // const closeEditModal = () => {
+    //     setEditModalIsOpen(false);
+    // };
+
+    // const editMeal = () => {
+    //     console.log(meal.id);
+    // };
+
+    const deleteMeal = async () => {
+        setLoading(true);
+        try {
+            const response = await destroy(meal.id);
+            if (response.status !== 200) {
+                if (response.status === 404) {
+                    addToast(t('common:not_found', { what: t('meal') }), {
+                        appearance: 'error'
+                    });
+                    setDeleteModalIsOpen(false);
+                    return;
+                }
+                addToast(t('validation:something_went_wrong'), {
+                    appearance: 'error'
+                });
+                setDeleteModalIsOpen(false);
+            }
+            if (response.status === 200) {
+                addToast(t('common:deleted', { what: t('glossary:meal') }), {
+                    appearance: 'success'
+                });
+                onChange();
+                setDeleteModalIsOpen(false);
+            }
+        } catch (err) {
+            addToast(t('validation:something_went_wrong'), {
+                appearance: 'error'
+            });
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const mealIcon = (type) => {
         switch (type) {
@@ -55,71 +117,176 @@ export default function ListItem({ meal }) {
         }
     };
     return (
-        <li className={styles.listItem}>
-            <div className="d-flex">
-                {mealIcon(meal.type)}
-                <p>
-                    <Date
-                        classNames={`${styles.date}`}
-                        dateString={meal.date}
-                    />
+        <>
+            <li className={styles.listItem}>
+                <div className="d-flex">
+                    {mealIcon(meal.type)}
+                    <p>
+                        <Date
+                            classNames={`${styles.date}`}
+                            dateString={meal.date}
+                        />
+                        {meal.Dish.name}
+                    </p>
+                </div>
+                <div className="dropstart">
+                    <button
+                        className={`btn btn-icon ${styles.dropdownToggle}`}
+                        type="button"
+                        id="more"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <span className="material-icons-round">more_vert</span>
+                    </button>
+                    <ul className="dropdown-menu" aria-labelledby="more">
+                        <li>
+                            <button
+                                type="submit"
+                                // onClick={openEditModal}
+                                className={`btn btn-icon  ${styles.btn}`}>
+                                <span className="visually-hidden">
+                                    {t('common:edit')}
+                                </span>
+                                <span className="material-icons-round">
+                                    edit
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                type="submit"
+                                onClick={openDeleteModal}
+                                className={`btn btn-icon  ${styles.btn}`}>
+                                <span className="visually-hidden">
+                                    {t('common:delete')}
+                                </span>
+                                <span className="material-icons-round">
+                                    delete
+                                </span>
+                            </button>
+                        </li>
+                    </ul>
+                    <ul className={styles.dropdownMenu} aria-labelledby="more">
+                        <li>
+                            <button
+                                type="submit"
+                                // onClick={openEditModal}
+                                className={`btn btn-icon  ${styles.btn}`}>
+                                <span className="visually-hidden">
+                                    {t('common:edit')}
+                                </span>
+                                <span className="material-icons-round">
+                                    edit
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                type="submit"
+                                onClick={openDeleteModal}
+                                className={`btn btn-icon  ${styles.btn}`}>
+                                <span className="visually-hidden">
+                                    {t('common:delete')}
+                                </span>
+                                <span className="material-icons-round">
+                                    delete
+                                </span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <Modal
+                isOpen={deleteModalIsOpen}
+                onRequestClose={closeDeleteModal}
+                className={styles.modal}
+                overlayClassName={styles.overlay}
+                contentLabel="Delete Meal Model">
+                <div className={styles.modalHeader}>
+                    <h3 className={styles.modalTitle}>
+                        {t('common:delete_something', {
+                            what: t('glossary:meal')
+                        })}
+                    </h3>
+                    <button
+                        type="button"
+                        className={`btn ${styles.btnClose}`}
+                        onClick={closeDeleteModal}>
+                        <span className="visually-hidden">
+                            {t('common:close')}
+                        </span>
+                        <span className="material-icons-round md-48">
+                            close
+                        </span>
+                    </button>
+                </div>
+                <div className={styles.modalBody}>
+                    {t('common:confirm_delete')} {meal.Dish.name}?
+                </div>
+                <div className={styles.modalFooter}>
+                    <button
+                        type="button"
+                        className="btn btn-cancel"
+                        disabled={isLoading}
+                        onClick={closeDeleteModal}>
+                        {t('common:cancel')}
+                    </button>
+                    <button
+                        type="submit"
+                        className="btn btn-delete ms-4"
+                        disabled={isLoading}
+                        onClick={deleteMeal}>
+                        {t('common:delete')}
+                    </button>
+                </div>
+            </Modal>
+            {/* <Modal
+                isOpen={editModalIsOpen}
+                onRequestClose={closeEditModal}
+                className={styles.modal}
+                overlayClassName={styles.overlay}
+                contentLabel="Edit Meal Modal">
+                <div className={styles.modalHeader}>
+                    <h3 className={styles.modalTitle}>
+                        {t('common:edit_something', {
+                            what: t('glossary:meal')
+                        })}
+                    </h3>
+                    <button
+                        type="button"
+                        className={`btn ${styles.btnClose}`}
+                        onClick={closeEditModal}>
+                        <span className="visually-hidden">
+                            {t('common:close')}
+                        </span>
+                        <span className="material-icons-round md-48">
+                            close
+                        </span>
+                    </button>
+                </div>
+                <div className={styles.modalBody}>
+                    {meal.id}
+                    {meal.date}
+                    {meal.type}
                     {meal.Dish.name}
-                </p>
-            </div>
-            <div className="dropstart">
-                <button
-                    className={`btn btn-icon ${styles.dropdownToggle}`}
-                    type="button"
-                    id="more"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <span className="material-icons-round">more_vert</span>
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="more">
-                    <li>
-                        <button
-                            type="button"
-                            className={`btn btn-icon  ${styles.btn}`}>
-                            <span className="visually-hidden">
-                                {t('common:edit')}
-                            </span>
-                            <span className="material-icons-round">edit</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            type="button"
-                            className={`btn btn-icon  ${styles.btn}`}>
-                            <span className="visually-hidden">
-                                {t('common:delete')}
-                            </span>
-                            <span className="material-icons-round">delete</span>
-                        </button>
-                    </li>
-                </ul>
-                <ul className={styles.dropdownMenu} aria-labelledby="more">
-                    <li>
-                        <button
-                            type="button"
-                            className={`btn btn-icon  ${styles.btn}`}>
-                            <span className="visually-hidden">
-                                {t('common:edit')}
-                            </span>
-                            <span className="material-icons-round">edit</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            type="button"
-                            className={`btn btn-icon  ${styles.btn}`}>
-                            <span className="visually-hidden">
-                                {t('common:delete')}
-                            </span>
-                            <span className="material-icons-round">delete</span>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </li>
+                </div>
+                <div className={styles.modalFooter}>
+                    <button
+                        type="button"
+                        className="btn btn-cancel"
+                        disabled={isLoading}
+                        onClick={closeEditModal}>
+                        {t('common:cancel')}
+                    </button>
+                    <button
+                        type="submit"
+                        className="btn btn-delete ms-4"
+                        disabled={isLoading}
+                        onClick={editMeal}>
+                        {t('common:edit')}
+                    </button>
+                </div>
+            </Modal> */}
+        </>
     );
 }

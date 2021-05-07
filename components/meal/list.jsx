@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 
 import fetcher from '../../lib/utils/fetcher';
 // import Alert from './alert';
@@ -33,6 +33,10 @@ export default function MealList() {
     }
     // if (!data) return <Loading />;
 
+    const onUpdate = (e) => {
+        mutate(`${process.env.apiUrl}/meals?page=${pageIndex}`);
+    };
+
     const { pager, pageOfItems } = data || false;
 
     return (
@@ -40,7 +44,11 @@ export default function MealList() {
             <ul className={styles.list}>
                 {pageOfItems &&
                     pageOfItems?.map((meal) => (
-                        <ListItem key={meal.id} meal={meal} />
+                        <ListItem
+                            key={meal.id}
+                            meal={meal}
+                            onChange={onUpdate}
+                        />
                     ))}
             </ul>
             {pager && (

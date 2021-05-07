@@ -6,12 +6,15 @@ import '../styles/globals.scss';
 
 import { AnimatePresence } from 'framer-motion';
 import { appWithTranslation } from 'next-i18next';
+import Modal from 'react-modal';
 import { ToastProvider } from 'react-toast-notifications';
 
 import CustomToast from '../components/custom-toast';
 // export default function App({ Component, pageProps }) {
 //   return <Component {...pageProps} />;
 // }
+
+Modal.setAppElement('#__next');
 
 const MyApp = ({ Component, pageProps, router }) => (
     <AnimatePresence>
