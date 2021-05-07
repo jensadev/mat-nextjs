@@ -3,27 +3,29 @@
     "about_intro": "{{brand}} is an app to help you keep track of what {{who}} eat. Save your meals to help you in your everyday life.",
     "about_meals": "Save your meals, what you eat and when.",
     "about_page": {
-        "lead": "{{brand}} exists to help you keep track of what you eat. When the inspiration falthers and the question: -What are we going to eat today? hangs in the air, there is help to be had.",
-        "p1": "The purpose of this page is to allow you to quickly and easily keep a log of what you eat. You can then see your history, search and find what you have eaten. Everything to help you in everyday life."
+        "lead": "{{brand}} exists to help you keep track of what you eat. When the inspiration falthers and the question: -What are we going to eat today? hangs in the air, maybe you can find something here.",
+        "p1": "The purpose of this page is to allow you to quickly and easily keep track of what you eat. You can then see your history, search and find what you have eaten."
     },
     "about_profile": "aboutprofile",
     "about_this": "aboutintro",
     "breakfast": "breakfast",
     "click_here_to_add": "Click here to add a meal",
+    "dina": "my",
     "dinner": "dinner",
     "dish": "dish",
     "dish_placeholder": "search or create a dish...",
     "dish_plural": "dishes",
     "dishes": "dishes",
     "eaten": "i've eaten",
+    "era": "our",
     "food": "food",
     "for": "for",
     "legal_page": {
-        "cookie_header": "Your privacy is important to us",
-        "cookie_lead": "Here you will find information regarding cookies and personal information.",
-        "cookie_text_1": "Cookies are very small text files that are stored on your computer when you visit a website. We use cookies for a variety of purposes and to enhance your online experience on our website (for example, to remember your account login details).",
-        "cookie_text_2": "You can change your preferences and decline certain types of cookies to be stored on your computer while browsing our website. You can also remove any cookies already stored on your computer, but keep in mind that deleting cookies may prevent you from using parts of our website.",
-        "cookie_text_3": "If you have any questions or concerns about how this website processes your personal information, please contact us."
+        "cookie_header": "Your privacy is important",
+        "cookie_lead": "Here you will find information about what this page saves about you.",
+        "cookie_text_1": "Cookies are small text files that are stored on your computer when you visit a website. This site uses cookies to remember your login and save who you are. In addition, Google's cookies are used to investigate the use of the site.",
+        "cookie_text_2": "You can change your preferences and reject certain types of cookies stored on your computer from this web page in your browser. You can also delete all cookies that are already stored on your computer, but remember that deleting cookies can prevent you from using parts of the website.",
+        "cookie_text_3": "If you have any questions or concerns about this, get in touch."
     },
     "list_of": "{{whos}} {{what}}",
     "lunch": "lunch",
@@ -38,7 +40,5 @@
     "you": "you",
     "your": "your",
     "yours": "yours",
-    "dina": "my",
-    "era": "our",
     "yous": "you"
 }
