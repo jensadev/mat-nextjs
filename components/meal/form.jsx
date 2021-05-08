@@ -19,17 +19,33 @@ import fetcher from '../../lib/utils/fetcher';
 import styles from './meal.module.scss';
 // import Alert from './unused/alert';
 
-export default function MealForm() {
+export default function MealForm({ edit }) {
     const [isPresent, safeToRemove] = usePresence();
     const [isLoading, setLoading] = useState(false);
     const router = useRouter();
     const { t } = useTranslation(['common', 'glossary', 'validation']);
     const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
     const { addToast } = useToasts();
+
+    const mealTypes = {
+        1: t('glossary:breakfast'),
+        2: t('glossary:lunch'),
+        3: t('glossary:dinner')
+    };
+
     const defaultValues = {
-        date: Date.now(),
-        type: { value: '3', label: t('glossary:dinner') },
-        dish: ''
+        date: edit?.date ? Date.now(edit.date) : Date.now(),
+        type: edit?.type
+            ? { value: edit.type, label: mealTypes[edit.type] }
+            : {
+                  value: 3,
+                  label: mealTypes[3]
+              },
+        dish: edit?.Dish
+            ? {
+                  label: edit.Dish.name
+              }
+            : ''
     };
 
     useEffect(() => {
@@ -54,12 +70,6 @@ export default function MealForm() {
                 appearance: 'error'
             }
         );
-        // return (
-        //   <Alert type="danger">
-        //     {t('common:cant_load', { what: t('glossary:dish_plural') })}
-        //     ...
-        //   </Alert>
-        // );
     }
 
     // if (!data) return <Loading />;
@@ -67,39 +77,74 @@ export default function MealForm() {
 
     const onSubmit = async (values) => {
         setLoading(true);
-
-        // if (Object.entries(errors).length !== 0) {
-        //   return <Alert error>Fel ...</Alert>;
-        // }
-
-        try {
-            const response = await store(
-                new Date(values.date).toISOString(),
-                values.type.value,
-                values.dish.value
-            );
-            if (response.status !== 201) {
-                console.log(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
-                    setError(key, {
-                        type: 'manual',
-                        message: response.data.errors[key][0]
+        if (edit.id) {
+            try {
+                console.log(edit.id);
+                console.table(values);
+                // const response = await store(
+                //     new Date(values.date).toISOString(),
+                //     values.type.value,
+                //     values.dish.value
+                // );
+                // if (response.status !== 201) {
+                //     console.log(response.data.errors);
+                //     Object.keys(response.data.errors).map((key, index) => {
+                //         setError(key, {
+                //             type: 'manual',
+                //             message: response.data.errors[key][0]
+                //         });
+                //     });
+                // }
+                // if (response.status === 201) {
+                //     addToast(
+                //         t('common:created', { what: t('glossary:meal') }),
+                //         {
+                //             appearance: 'success'
+                //         }
+                //     );
+                //     reset(defaultValues);
+                // }
+            } catch (err) {
+                addToast(t('validation:something_went_wrong'), {
+                    appearance: 'error'
+                });
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            try {
+                const response = await store(
+                    new Date(values.date).toISOString(),
+                    values.type.value,
+                    values.dish.value
+                );
+                if (response.status !== 201) {
+                    console.log(response.data.errors);
+                    Object.keys(response.data.errors).map((key, index) => {
+                        setError(key, {
+                            type: 'manual',
+                            message: response.data.errors[key][0]
+                        });
                     });
+                }
+                if (response.status === 201) {
+                    addToast(
+                        t('common:created', { what: t('glossary:meal') }),
+                        {
+                            appearance: 'success'
+                        }
+                    );
+                    reset(defaultValues);
+                }
+            } catch (err) {
+                addToast(t('validation:something_went_wrong'), {
+                    appearance: 'error'
                 });
+                console.error(err);
+            } finally {
+                setLoading(false);
             }
-            if (response.status === 201) {
-                addToast(t('common:created', { what: t('glossary:meal') }), {
-                    appearance: 'success'
-                });
-                reset(defaultValues);
-            }
-        } catch (err) {
-            addToast(t('validation:something_went_wrong'), {
-                appearance: 'error'
-            });
-            console.error(err);
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -245,16 +290,16 @@ export default function MealForm() {
                                     })}
                                     options={[
                                         {
-                                            value: '1',
-                                            label: t('glossary:breakfast')
+                                            value: 1,
+                                            label: mealTypes[1]
                                         },
                                         {
-                                            value: '2',
-                                            label: t('glossary:lunch')
+                                            value: 2,
+                                            label: mealTypes[2]
                                         },
                                         {
-                                            value: '3',
-                                            label: t('glossary:dinner')
+                                            value: 3,
+                                            label: mealTypes[3]
                                         }
                                     ]}
                                     {...field}
@@ -274,6 +319,7 @@ export default function MealForm() {
                                 type="button"
                                 disabled={isLoading}
                                 onClick={() => {
+                                    console.table(defaultValues);
                                     reset(defaultValues);
                                 }}>
                                 {t('common:reset')}

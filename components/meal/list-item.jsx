@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import { useToasts } from 'react-toast-notifications';
 
-import { destroy, update } from '../../lib/api/meal';
+import { destroy } from '../../lib/api/meal';
 import Date from '../date';
 import styles from './meal.module.scss';
 
@@ -12,6 +12,7 @@ export default function ListItem({ meal, onChange }) {
     const { addToast } = useToasts();
     const [isLoading, setLoading] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+
     // const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
     const openDeleteModal = () => {
@@ -142,7 +143,7 @@ export default function ListItem({ meal, onChange }) {
                         <li>
                             <button
                                 type="submit"
-                                // onClick={openEditModal}
+                                onClick={() => toggleEdit(meal)}
                                 className={`btn btn-icon  ${styles.btn}`}>
                                 <span className="visually-hidden">
                                     {t('common:edit')}
@@ -170,7 +171,7 @@ export default function ListItem({ meal, onChange }) {
                         <li>
                             <button
                                 type="submit"
-                                // onClick={openEditModal}
+                                onClick={() => toggleEdit(meal)}
                                 className={`btn btn-icon  ${styles.btn}`}>
                                 <span className="visually-hidden">
                                     {t('common:edit')}
