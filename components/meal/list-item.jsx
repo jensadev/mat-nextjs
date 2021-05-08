@@ -23,7 +23,6 @@ export default function ListItem({ meal, onChange }) {
         isVisible: isEditMealVisible,
         setIsVisible: setIsEditMealVisible
     } = useVisible(false);
-    // const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
     const openDeleteModal = () => {
         setDeleteModalIsOpen(true);
@@ -33,17 +32,10 @@ export default function ListItem({ meal, onChange }) {
         setDeleteModalIsOpen(false);
     };
 
-    // const openEditModal = () => {
-    //     setEditModalIsOpen(true);
-    // };
-
-    // const closeEditModal = () => {
-    //     setEditModalIsOpen(false);
-    // };
-
-    // const editMeal = () => {
-    //     console.log(meal.id);
-    // };
+    const onUpdated = () => {
+        setIsEditMealVisible(!isEditMealVisible);
+        onChange();
+    };
 
     const deleteMeal = async () => {
         setLoading(true);
@@ -264,7 +256,9 @@ export default function ListItem({ meal, onChange }) {
                     animate={isEditMealVisible ? 'expanded' : 'collapsed'}
                     initial={false}
                     exit={{ opacity: 0 }}>
-                    {isEditMealVisible && <MealForm edit={meal} />}
+                    {isEditMealVisible && (
+                        <MealForm edit={meal} onUpdated={onUpdated} />
+                    )}
                 </motion.div>
             </AnimatePresence>
         </>
