@@ -3,14 +3,15 @@ import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 import useSWR, { mutate } from 'swr';
 
+import { useAppContext } from '../../context/app-context';
 import fetcher from '../../lib/utils/fetcher';
-// import Alert from './alert';
 import ListItem from './list-item';
 import styles from './meal.module.scss';
 
 export default function MealList() {
     const [pageIndex, setPageIndex] = useState(1);
     const { addToast } = useToasts();
+    const { updated, toggleUpdate } = useAppContext();
     const { data, error } = useSWR(
         `${process.env.apiUrl}/meals?page=${pageIndex}`,
         fetcher
@@ -22,22 +23,18 @@ export default function MealList() {
                 what: `${t('common:recent')} ${t('glossary:meal_plural')}`
             })
         );
-        // return (
-        //   <Alert type="danger">
-        //     {t('common:cant_load', {
-        //       what: `${t('common:recent')} ${t('glossary:meal_plural')}`
-        //     })}
-        //     ...
-        //   </Alert>
-        // );
     }
-    // if (!data) return <Loading />;
 
-    const onUpdate = (e) => {
+    const onUpdate = () => {
         mutate(`${process.env.apiUrl}/meals?page=${pageIndex}`);
     };
 
     const { pager, pageOfItems } = data || false;
+
+    if (updated) {
+        onUpdate();
+        toggleUpdate(false);
+    }
 
     return (
         <div className="w-100">

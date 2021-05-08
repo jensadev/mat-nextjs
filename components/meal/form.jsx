@@ -2,10 +2,9 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { format } from 'date-fns';
 import { en, sv } from 'date-fns/locale/';
-import { usePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { Controller, useForm } from 'react-hook-form';
 import ReactSelect from 'react-select';
@@ -13,17 +12,18 @@ import CreatableSelect from 'react-select/creatable';
 import { useToasts } from 'react-toast-notifications';
 import useSWR from 'swr';
 
+import { useAppContext } from '../../context/app-context';
 import { store, update } from '../../lib/api/meal';
 import fetcher from '../../lib/utils/fetcher';
 import styles from './meal.module.scss';
 
 export default function MealForm({ edit, onUpdated }) {
-    const [isPresent, safeToRemove] = usePresence();
     const [isLoading, setLoading] = useState(false);
     const router = useRouter();
     const { t } = useTranslation(['common', 'glossary', 'validation']);
     const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
     const { addToast } = useToasts();
+    const { toggleUpdate } = useAppContext();
 
     const mealTypes = {
         1: t('glossary:breakfast'),
@@ -47,10 +47,6 @@ export default function MealForm({ edit, onUpdated }) {
             : ''
     };
 
-    useEffect(() => {
-        if (!isPresent) setTimeout(safeToRemove, 1000);
-    }, [isPresent, safeToRemove]);
-
     const {
         handleSubmit,
         reset,
@@ -71,7 +67,6 @@ export default function MealForm({ edit, onUpdated }) {
         );
     }
 
-    // if (!data) return <Loading />;
     const dishes = (data && data.dishes) || false;
 
     const onSubmit = async (values) => {
@@ -137,6 +132,7 @@ export default function MealForm({ edit, onUpdated }) {
                             appearance: 'success'
                         }
                     );
+                    toggleUpdate(true);
                     reset(defaultValues);
                 }
             } catch (err) {
