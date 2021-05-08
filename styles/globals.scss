@@ -184,9 +184,9 @@ fieldset {
 }
 
 .link-header {
-  @include line-link($dark-blue, $dark-blue, $green, $font-size-lg, 400, $font-size-lg / 10);
+  @include line-link($dark-blue, $dark-blue, $blue, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($dark-blue, $dark-blue, $green, $font-size-sm, 400, $font-size-sm / 10);
+    @include line-link($dark-blue, $dark-blue, $blue, $font-size-sm, 400, $font-size-sm / 10);
   }
 }
 
@@ -243,6 +243,9 @@ fieldset {
 .bg-addmeal {
   background-color: $red;
 }
+.bg-editmeal {
+  background-color: $green;
+}
 .bg-meal {
   background-color: $meal;
 }
@@ -259,7 +262,7 @@ fieldset {
   background-color: $profile;
 }
 .bg-auth {
-  background-color: $green;
+  background-color: $blue;
 }
 .footer {
   background-color: $black;

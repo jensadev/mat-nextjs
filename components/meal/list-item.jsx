@@ -1,18 +1,28 @@
+import { AnimatePresence, motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { useToasts } from 'react-toast-notifications';
 
 import { destroy } from '../../lib/api/meal';
+import { mealFormAnimation } from '../../lib/utils/animations';
+import useVisible from '../../lib/utils/use-visible';
 import Date from '../date';
 import styles from './meal.module.scss';
+
+const MealForm = dynamic(() => import('./form'));
 
 export default function ListItem({ meal, onChange }) {
     const { t } = useTranslation(['glossary']);
     const { addToast } = useToasts();
     const [isLoading, setLoading] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-
+    const {
+        ref: editMealForm,
+        isVisible: isEditMealVisible,
+        setIsVisible: setIsEditMealVisible
+    } = useVisible(false);
     // const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
     const openDeleteModal = () => {
@@ -143,7 +153,9 @@ export default function ListItem({ meal, onChange }) {
                         <li>
                             <button
                                 type="submit"
-                                onClick={() => toggleEdit(meal)}
+                                onClick={() =>
+                                    setIsEditMealVisible(!isEditMealVisible)
+                                }
                                 className={`btn btn-icon  ${styles.btn}`}>
                                 <span className="visually-hidden">
                                     {t('common:edit')}
@@ -171,7 +183,9 @@ export default function ListItem({ meal, onChange }) {
                         <li>
                             <button
                                 type="submit"
-                                onClick={() => toggleEdit(meal)}
+                                onClick={() =>
+                                    setIsEditMealVisible(!isEditMealVisible)
+                                }
                                 className={`btn btn-icon  ${styles.btn}`}>
                                 <span className="visually-hidden">
                                     {t('common:edit')}
@@ -241,53 +255,18 @@ export default function ListItem({ meal, onChange }) {
                     </button>
                 </div>
             </Modal>
-            {/* <Modal
-                isOpen={editModalIsOpen}
-                onRequestClose={closeEditModal}
-                className={styles.modal}
-                overlayClassName={styles.overlay}
-                contentLabel="Edit Meal Modal">
-                <div className={styles.modalHeader}>
-                    <h3 className={styles.modalTitle}>
-                        {t('common:edit_something', {
-                            what: t('glossary:meal')
-                        })}
-                    </h3>
-                    <button
-                        type="button"
-                        className={`btn ${styles.btnClose}`}
-                        onClick={closeEditModal}>
-                        <span className="visually-hidden">
-                            {t('common:close')}
-                        </span>
-                        <span className="material-icons-round md-48">
-                            close
-                        </span>
-                    </button>
-                </div>
-                <div className={styles.modalBody}>
-                    {meal.id}
-                    {meal.date}
-                    {meal.type}
-                    {meal.Dish.name}
-                </div>
-                <div className={styles.modalFooter}>
-                    <button
-                        type="button"
-                        className="btn btn-cancel"
-                        disabled={isLoading}
-                        onClick={closeEditModal}>
-                        {t('common:cancel')}
-                    </button>
-                    <button
-                        type="submit"
-                        className="btn btn-delete ms-4"
-                        disabled={isLoading}
-                        onClick={editMeal}>
-                        {t('common:edit')}
-                    </button>
-                </div>
-            </Modal> */}
+            <AnimatePresence>
+                <motion.div
+                    ref={editMealForm}
+                    key="meal"
+                    className={`${styles.overlayAddMeal} bg-editmeal col-12 col-md-6`}
+                    variants={mealFormAnimation}
+                    animate={isEditMealVisible ? 'expanded' : 'collapsed'}
+                    initial={false}
+                    exit={{ opacity: 0 }}>
+                    {isEditMealVisible && <MealForm edit={meal} />}
+                </motion.div>
+            </AnimatePresence>
         </>
     );
 }

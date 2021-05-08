@@ -226,3 +226,13 @@
 .btnClose {
   padding-right: 0;
 }
+
+.overlayAddMeal {
+  z-index: $zindex-modal;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  // @media (max-width: map-get($grid-breakpoints, md)) {
+  //   min-height: 618px;
+  // }
+}

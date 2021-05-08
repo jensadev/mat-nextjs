@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
+import { mealFormAnimation } from '../lib/utils/animations';
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
 import useVisible from '../lib/utils/use-visible';
@@ -20,7 +21,7 @@ export default function Header() {
     const router = useRouter();
     const { data: currentUser } = useSWR('user', storage);
     const isLoggedIn = checkLogin(currentUser);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const { t } = useTranslation(['glossary', 'common']);
     const pages = ['meals', 'dishes', 'profile'];
     const {
@@ -38,40 +39,7 @@ export default function Header() {
         isVisible: isAddMealVisible,
         setIsVisible: setIsAddMealVisible
     } = useVisible(false);
-    // const handleClick = (e) => {
-    //   showHideForm(e.target.dataset.action);
-    // };
-    // const authFormAnimation = {
-    //   expanded: {
-    //     y: '0%',
-    //     x: '50%',
-    //     // height: '100%',
-    //     opacity: 1,
-    //     transition: 'easeInOut'
-    //   },
-    //   collapsed: {
-    //     y: '50%',
-    //     x: '50%',
-    //     // height: '0%',
-    //     opacity: 0,
-    //     transition: 'easeInOut'
-    //   }
-    // };
-    const mealFormAnimation = {
-        expanded: {
-            y: 0,
-            height: '100%',
-            minHeight: '618px',
-            opacity: 1,
-            transition: 'easeInOut'
-        },
-        collapsed: {
-            y: -200,
-            height: '0%',
-            opacity: 0,
-            transition: 'easeInOut'
-        }
-    };
+
     useEffect(() => {
         if (isLoggedIn) {
             const bubble = localStorage.getItem('bubble');
@@ -90,9 +58,10 @@ export default function Header() {
                         {isAddMealVisible && <div className={styles.fulHack} />}
                         <button
                             type="button"
-                            onClick={() =>
-                                setIsAddMealVisible(!isAddMealVisible)
-                            }
+                            onClick={() => {
+                                setIsAddMealVisible(!isAddMealVisible);
+                                setVisible(false);
+                            }}
                             className={`btn ${styles.btnAdd}`}>
                             <span className="visually-hidden">
                                 {t('common:add', {
