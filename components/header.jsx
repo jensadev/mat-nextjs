@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
+import { mealFormAnimation } from '../lib/utils/animations';
 import checkLogin from '../lib/utils/checklogin';
 import storage from '../lib/utils/storage';
 import useVisible from '../lib/utils/use-visible';
@@ -14,7 +15,7 @@ import Maybe from './maybe';
 
 const LoginForm = dynamic(() => import('./form-login'));
 const RegistrationForm = dynamic(() => import('./form-registration'));
-const MealForm = dynamic(() => import('./meal/form-add'));
+const MealForm = dynamic(() => import('./meal/form'));
 
 export default function Header() {
     const router = useRouter();
@@ -38,44 +39,11 @@ export default function Header() {
         isVisible: isAddMealVisible,
         setIsVisible: setIsAddMealVisible
     } = useVisible(false);
-    // const handleClick = (e) => {
-    //   showHideForm(e.target.dataset.action);
-    // };
-    // const authFormAnimation = {
-    //   expanded: {
-    //     y: '0%',
-    //     x: '50%',
-    //     // height: '100%',
-    //     opacity: 1,
-    //     transition: 'easeInOut'
-    //   },
-    //   collapsed: {
-    //     y: '50%',
-    //     x: '50%',
-    //     // height: '0%',
-    //     opacity: 0,
-    //     transition: 'easeInOut'
-    //   }
-    // };
-    const mealFormAnimation = {
-        expanded: {
-            y: 0,
-            height: '100%',
-            minHeight: '618px',
-            opacity: 1,
-            transition: 'easeInOut'
-        },
-        collapsed: {
-            y: -200,
-            height: '0%',
-            opacity: 0,
-            transition: 'easeInOut'
-        }
-    };
+
     useEffect(() => {
         if (isLoggedIn) {
             const bubble = localStorage.getItem('bubble');
-            if (!bubble) {
+            if (!bubble || bubble === 0) {
                 setVisible(true);
                 localStorage.setItem('bubble', 1);
             }
@@ -84,9 +52,61 @@ export default function Header() {
 
     return (
         <>
-            <header
-                id="header"
-                className={`${styles.header} fixed-top pt-md-2`}>
+            <Maybe test={isLoggedIn}>
+                <div className={`${styles.addButton} pt-2`}>
+                    <div className="py-md-3 pe-md-5">
+                        {isAddMealVisible && <div className={styles.fulHack} />}
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setIsAddMealVisible(!isAddMealVisible);
+                                setVisible(false);
+                            }}
+                            className={`btn ${styles.btnAdd}`}>
+                            <span className="visually-hidden">
+                                {t('common:add', {
+                                    what: t('glossary:meal')
+                                })}
+                            </span>
+                            {isAddMealVisible ? (
+                                <motion.span
+                                    initial={{ rotate: 0 }}
+                                    animate={{
+                                        rotate: 180
+                                    }}
+                                    className={`material-icons-round md-64 ${styles.close}`}>
+                                    cancel
+                                </motion.span>
+                            ) : (
+                                <motion.span
+                                    className={`material-icons-round md-64 ${styles.open}`}>
+                                    add
+                                </motion.span>
+                            )}
+                        </button>
+                        {visible && (
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    x: -200
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    x: 0
+                                }}
+                                className="position-absolute end-0">
+                                <button
+                                    type="button"
+                                    onClick={() => setVisible(false)}
+                                    className={`${styles.bubble} ${styles.speech}`}>
+                                    {t('glossary:click_here_to_add')}
+                                </button>
+                            </motion.div>
+                        )}
+                    </div>
+                </div>
+            </Maybe>
+            <header id="header" className={`${styles.header} fixed-top pt-2`}>
                 <div className="container d-flex justify-content-between align-items-center py-md-3">
                     <div className="d-flex align-items-center">
                         <Link href="/">
@@ -147,59 +167,6 @@ export default function Header() {
                                     {t('common:register')}
                                 </button>
                             </div>
-                        </div>
-                    </Maybe>
-                    <Maybe test={isLoggedIn}>
-                        <div className="position-relative">
-                            {isAddMealVisible && (
-                                <div className={styles.fulHack} />
-                            )}
-                            <button
-                                type="button"
-                                onClick={() =>
-                                    setIsAddMealVisible(!isAddMealVisible)
-                                }
-                                className={`btn ${styles.btnAdd}`}>
-                                <span className="visually-hidden">
-                                    {t('common:add', {
-                                        what: t('glossary:meal')
-                                    })}
-                                </span>
-                                {isAddMealVisible ? (
-                                    <motion.span
-                                        initial={{ rotate: 0 }}
-                                        animate={{
-                                            rotate: 180
-                                        }}
-                                        className={`material-icons-round md-64 ${styles.close}`}>
-                                        cancel
-                                    </motion.span>
-                                ) : (
-                                    <motion.span
-                                        className={`material-icons-round md-64 ${styles.open}`}>
-                                        add
-                                    </motion.span>
-                                )}
-                            </button>
-                            {visible && (
-                                <motion.div
-                                    initial={{
-                                        opacity: 0,
-                                        x: -200
-                                    }}
-                                    animate={{
-                                        opacity: 1,
-                                        x: 0
-                                    }}
-                                    className="position-absolute end-0">
-                                    <button
-                                        type="button"
-                                        onClick={() => setVisible(false)}
-                                        className={`${styles.bubble} ${styles.speech}`}>
-                                        {t('glossary:click_here_to_add')}
-                                    </button>
-                                </motion.div>
-                            )}
                         </div>
                     </Maybe>
                 </div>

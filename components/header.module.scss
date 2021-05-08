@@ -4,28 +4,7 @@
 }
 
 .header {
-  height: 96px;
   transition: top 0.3s;
-  z-index: $zindex-tooltip;
-  @media (max-width: map-get($grid-breakpoints, md)) {
-    height: 48px;
-  }
-}
-
-.btnAdd {
-  display: flex;
-  padding-right: 0;
-}
-
-.addButton {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
-  z-index: 1500;
-  @media (max-width: map-get($grid-breakpoints, md)) {
-    padding: 0.25rem;
-  }
 }
 
 .open {
@@ -46,15 +25,17 @@
 
 button.bubble {
   position: relative;
-  width: 381px;
-  margin-top: 18px;
-  margin-right: 9px;
+  min-width: 382px;
+  margin-top: 34.44px;
+  margin-right: 55.735px;
   background-color: $white;
   border: 2px solid $black;
   // border-radius: 20px;
   padding: 16px;
   @media (max-width: map-get($grid-breakpoints, md)) {
-    width: 236px;
+    min-width: 236px;
+    margin-top: 21.28px;
+    margin-right:  34.44px;
   }
 
   &:before,
@@ -113,4 +94,22 @@ button.bubble {
   position: absolute;
   width: 100px;
   height: 80px;
+}
+
+.addButton {
+  z-index: $zindex-tooltip !important;
+  position: fixed;
+  top:0;
+  right:0;
+  padding-right: 0.75rem;
+  margin-right: auto;
+// }
+}
+
+.btnAdd {
+  display: flex;
+  line-height: 1;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
 }

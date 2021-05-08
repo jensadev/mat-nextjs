@@ -20,7 +20,7 @@
     "deleted": "{{what}} deleted",
     "delete_something": "delete {{what}}",
     "deployed_with": "and deployed with",
-    "edit": "edit",
+    "edit": "edit {{what}}",
     "email": "email",
     "first_page": "first page",
     "form_create": "create",

@@ -184,9 +184,9 @@ fieldset {
 }
 
 .link-header {
-  @include line-link($dark-blue, $dark-blue, $green, $font-size-lg, 400, $font-size-lg / 10);
+  @include line-link($dark-blue, $dark-blue, $blue, $font-size-lg, 400, $font-size-lg / 10);
   @media (max-width: map-get($grid-breakpoints, md)) {
-    @include line-link($dark-blue, $dark-blue, $green, $font-size-sm, 400, $font-size-sm / 10);
+    @include line-link($dark-blue, $dark-blue, $blue, $font-size-sm, 400, $font-size-sm / 10);
   }
 }
 
@@ -243,6 +243,9 @@ fieldset {
 .bg-addmeal {
   background-color: $red;
 }
+.bg-editmeal {
+  background-color: $green;
+}
 .bg-meal {
   background-color: $meal;
 }
@@ -259,7 +262,7 @@ fieldset {
   background-color: $profile;
 }
 .bg-auth {
-  background-color: $green;
+  background-color: $blue;
 }
 .footer {
   background-color: $black;
@@ -342,6 +345,14 @@ fieldset {
   @include btn-outline($black, $white, $profile)
 }
 
+.btn-edit {
+  @include btn-outline($black, $white, $blue)
+}
+
+.btn-outclose {
+  @include btn-outline($gray, $white, $green);
+}
+
 .btn-cancel {
   @include btn-outline($black, $sand, $profile);
   width: 38.2%;
@@ -351,20 +362,8 @@ fieldset {
   @include btn-outline($black, $red, $profile);
   width: 38.2%;
 }
-// .fixed-bottom, .fixed-top {
-//   z-index: 700;
-// }
-
-// .content {
-//   padding-top: map-get($spacers, 5);
-//   @media (max-width: map-get($grid-breakpoints, md)) {
-//     padding-top: map-get($spacers, 4);
-//   }
-// }
 
 .page-header {
-  // position: absolute;
-  // top: 0;
   padding: $spacer 0;
   display: flex;
   align-items: center;

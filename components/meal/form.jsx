@@ -13,23 +13,38 @@ import CreatableSelect from 'react-select/creatable';
 import { useToasts } from 'react-toast-notifications';
 import useSWR from 'swr';
 
-import { store } from '../../lib/api/meal';
+import { store, update } from '../../lib/api/meal';
 import fetcher from '../../lib/utils/fetcher';
-// import Loading from './loading';
 import styles from './meal.module.scss';
-// import Alert from './unused/alert';
 
-export default function MealForm() {
+export default function MealForm({ edit, onUpdated }) {
     const [isPresent, safeToRemove] = usePresence();
     const [isLoading, setLoading] = useState(false);
     const router = useRouter();
     const { t } = useTranslation(['common', 'glossary', 'validation']);
     const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
     const { addToast } = useToasts();
+
+    const mealTypes = {
+        1: t('glossary:breakfast'),
+        2: t('glossary:lunch'),
+        3: t('glossary:dinner')
+    };
+
     const defaultValues = {
-        date: Date.now(),
-        type: { value: '3', label: t('glossary:dinner') },
-        dish: ''
+        date: edit?.date ? Date.parse(edit.date) : Date.now(),
+        type: edit?.type
+            ? { value: edit.type, label: mealTypes[edit.type] }
+            : {
+                  value: 3,
+                  label: mealTypes[3]
+              },
+        dish: edit?.Dish
+            ? {
+                  value: edit.Dish.name,
+                  label: edit.Dish.name
+              }
+            : ''
     };
 
     useEffect(() => {
@@ -54,12 +69,6 @@ export default function MealForm() {
                 appearance: 'error'
             }
         );
-        // return (
-        //   <Alert type="danger">
-        //     {t('common:cant_load', { what: t('glossary:dish_plural') })}
-        //     ...
-        //   </Alert>
-        // );
     }
 
     // if (!data) return <Loading />;
@@ -67,39 +76,77 @@ export default function MealForm() {
 
     const onSubmit = async (values) => {
         setLoading(true);
-
-        // if (Object.entries(errors).length !== 0) {
-        //   return <Alert error>Fel ...</Alert>;
-        // }
-
-        try {
-            const response = await store(
-                new Date(values.date).toISOString(),
-                values.type.value,
-                values.dish.value
-            );
-            if (response.status !== 201) {
-                console.log(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
-                    setError(key, {
-                        type: 'manual',
-                        message: response.data.errors[key][0]
+        if (edit?.id) {
+            try {
+                // console.log(edit.id);
+                // console.table(values);
+                const response = await update(
+                    edit.id,
+                    new Date(values.date).toISOString(),
+                    values.type.value,
+                    values.dish.value
+                );
+                if (response.status !== 200) {
+                    console.log(response.data.errors);
+                    Object.keys(response.data.errors).map((key, index) => {
+                        setError(key, {
+                            type: 'manual',
+                            message: response.data.errors[key][0]
+                        });
                     });
+                }
+                if (response.status === 200) {
+                    addToast(
+                        t('common:updated', { what: t('glossary:meal') }),
+                        {
+                            appearance: 'success'
+                        }
+                    );
+                    onUpdated();
+                    edit = {};
+                    reset(defaultValues);
+                }
+            } catch (err) {
+                addToast(t('validation:something_went_wrong'), {
+                    appearance: 'error'
                 });
+                console.error(err);
+            } finally {
+                setLoading(false);
             }
-            if (response.status === 201) {
-                addToast(t('common:created', { what: t('glossary:meal') }), {
-                    appearance: 'success'
+        } else {
+            try {
+                const response = await store(
+                    new Date(values.date).toISOString(),
+                    values.type.value,
+                    values.dish.value
+                );
+                if (response.status !== 201) {
+                    console.log(response.data.errors);
+                    Object.keys(response.data.errors).map((key, index) => {
+                        setError(key, {
+                            type: 'manual',
+                            message: response.data.errors[key][0]
+                        });
+                    });
+                }
+                if (response.status === 201) {
+                    addToast(
+                        t('common:created', { what: t('glossary:meal') }),
+                        {
+                            appearance: 'success'
+                        }
+                    );
+                    reset(defaultValues);
+                }
+            } catch (err) {
+                addToast(t('validation:something_went_wrong'), {
+                    appearance: 'error'
                 });
-                reset(defaultValues);
+                console.error(err);
+            } finally {
+                setLoading(false);
             }
-        } catch (err) {
-            addToast(t('validation:something_went_wrong'), {
-                appearance: 'error'
-            });
-            console.error(err);
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -108,7 +155,9 @@ export default function MealForm() {
             <header className="page-header">
                 <div className="container ">
                     <h1 className="page-heading">
-                        {t('common:add', { what: t('glossary:meal') })}
+                        {edit?.id
+                            ? t('common:edit', { what: t('glossary:meal') })
+                            : t('common:add', { what: t('glossary:meal') })}
                     </h1>
                 </div>
             </header>
@@ -245,16 +294,16 @@ export default function MealForm() {
                                     })}
                                     options={[
                                         {
-                                            value: '1',
-                                            label: t('glossary:breakfast')
+                                            value: 1,
+                                            label: mealTypes[1]
                                         },
                                         {
-                                            value: '2',
-                                            label: t('glossary:lunch')
+                                            value: 2,
+                                            label: mealTypes[2]
                                         },
                                         {
-                                            value: '3',
-                                            label: t('glossary:dinner')
+                                            value: 3,
+                                            label: mealTypes[3]
                                         }
                                     ]}
                                     {...field}
@@ -266,8 +315,10 @@ export default function MealForm() {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="btn btn-create w-100">
-                                {t('common:create')}
+                                className="btn btn-edit w-100">
+                                {edit?.id
+                                    ? t('common:edit')
+                                    : t('common:create')}
                             </button>
                             <button
                                 className="btn btn-clear w-100 mt-3 mt-md-4"
@@ -276,8 +327,18 @@ export default function MealForm() {
                                 onClick={() => {
                                     reset(defaultValues);
                                 }}>
-                                {t('common:reset')}
+                                {edit?.id
+                                    ? t('common:cancel')
+                                    : t('common:reset')}
                             </button>
+                            {edit?.id && (
+                                <button
+                                    type="button"
+                                    className="btn btn-outclose w-100 mt-3 mt-md-4"
+                                    onClick={() => onUpdated()}>
+                                    {t('common:close')}
+                                </button>
+                            )}
                         </div>
                     </form>
                 </div>
