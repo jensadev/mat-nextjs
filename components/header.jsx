@@ -21,7 +21,7 @@ export default function Header() {
     const router = useRouter();
     const { data: currentUser } = useSWR('user', storage);
     const isLoggedIn = checkLogin(currentUser);
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const { t } = useTranslation(['glossary', 'common']);
     const pages = ['meals', 'dishes', 'profile'];
     const {
@@ -43,7 +43,7 @@ export default function Header() {
     useEffect(() => {
         if (isLoggedIn) {
             const bubble = localStorage.getItem('bubble');
-            if (!bubble) {
+            if (!bubble || bubble === 0) {
                 setVisible(true);
                 localStorage.setItem('bubble', 1);
             }

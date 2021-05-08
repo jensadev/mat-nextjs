@@ -20,7 +20,7 @@
     "deleted": "{{what}} borttagen",
     "delete_something": "ta bort {{what}}",
     "deployed_with": "och driftad på",
-    "edit": "redigera",
+    "edit": "redigera {{what}}",
     "email": "e-post",
     "first_page": "första sidan",
     "form_create": "skapa",

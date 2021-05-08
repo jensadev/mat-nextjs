@@ -15,9 +15,7 @@ import useSWR from 'swr';
 
 import { store } from '../../lib/api/meal';
 import fetcher from '../../lib/utils/fetcher';
-// import Loading from './loading';
 import styles from './meal.module.scss';
-// import Alert from './unused/alert';
 
 export default function MealForm({ edit }) {
     const [isPresent, safeToRemove] = usePresence();
@@ -153,7 +151,9 @@ export default function MealForm({ edit }) {
             <header className="page-header">
                 <div className="container ">
                     <h1 className="page-heading">
-                        {t('common:add', { what: t('glossary:meal') })}
+                        {edit?.id
+                            ? t('common:edit', { what: t('glossary:meal') })
+                            : t('common:add', { what: t('glossary:meal') })}
                     </h1>
                 </div>
             </header>
@@ -312,17 +312,20 @@ export default function MealForm({ edit }) {
                                 type="submit"
                                 disabled={isLoading}
                                 className="btn btn-create w-100">
-                                {t('common:create')}
+                                {edit?.id
+                                    ? t('common:edit')
+                                    : t('common:create')}
                             </button>
                             <button
                                 className="btn btn-clear w-100 mt-3 mt-md-4"
                                 type="button"
                                 disabled={isLoading}
                                 onClick={() => {
-                                    console.table(defaultValues);
                                     reset(defaultValues);
                                 }}>
-                                {t('common:reset')}
+                                {edit?.id
+                                    ? t('common:cancel')
+                                    : t('common:reset')}
                             </button>
                         </div>
                     </form>
