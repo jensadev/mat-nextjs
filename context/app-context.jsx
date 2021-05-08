@@ -5,11 +5,9 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
     const sharedState = {
-        edit: {},
-        toggleEdit: (meal) => {
-            console.log('toggle');
-            sharedState.edit = meal;
-            console.log(sharedState.edit);
+        updated: false,
+        toggleUpdate: (e) => {
+            sharedState.updated = e;
         }
     };
 
