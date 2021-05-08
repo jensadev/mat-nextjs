@@ -10,6 +10,7 @@ import Modal from 'react-modal';
 import { ToastProvider } from 'react-toast-notifications';
 
 import CustomToast from '../components/custom-toast';
+import { AppWrapper } from '../context/app-context';
 // export default function App({ Component, pageProps }) {
 //   return <Component {...pageProps} />;
 // }
@@ -24,7 +25,9 @@ const MyApp = ({ Component, pageProps, router }) => (
             placement="bottom-right"
             autoDismiss
             autoDismissTimeout={4000}>
-            <Component {...pageProps} key={router.route} />
+            <AppWrapper>
+                <Component {...pageProps} key={router.route} />
+            </AppWrapper>
         </ToastProvider>
     </AnimatePresence>
 );

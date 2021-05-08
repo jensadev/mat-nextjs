@@ -77,7 +77,7 @@ export default function MealForm({ edit }) {
 
     const onSubmit = async (values) => {
         setLoading(true);
-        if (edit.id) {
+        if (edit?.id) {
             try {
                 console.log(edit.id);
                 console.table(values);
