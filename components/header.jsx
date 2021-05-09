@@ -4,11 +4,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
-import useSWR from 'swr';
 
+import { useAppContext } from '../context/app-context';
 import { mealFormAnimation } from '../lib/utils/animations';
-import checkLogin from '../lib/utils/checklogin';
-import storage from '../lib/utils/storage';
 import useVisible from '../lib/utils/use-visible';
 import styles from './header.module.scss';
 import Maybe from './maybe';
@@ -19,8 +17,7 @@ const MealForm = dynamic(() => import('./meal/form'));
 
 export default function Header() {
     const router = useRouter();
-    const { data: currentUser } = useSWR('user', storage);
-    const isLoggedIn = checkLogin(currentUser);
+    const { isLoggedIn } = useAppContext();
     const [visible, setVisible] = useState(false);
     const { t } = useTranslation(['glossary', 'common']);
     const pages = ['meals', 'dishes', 'profile'];

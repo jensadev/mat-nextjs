@@ -3,12 +3,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import useSWR from 'swr';
 
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
-import checkLogin from '../lib/utils/checklogin';
-import storage from '../lib/utils/storage';
+import { useAppContext } from '../context/app-context';
 
 export async function getStaticProps({ locale }) {
     return {
@@ -23,8 +21,7 @@ export async function getStaticProps({ locale }) {
 }
 
 export default function Home() {
-    const { data: currentUser } = useSWR('user', storage);
-    const isLoggedIn = checkLogin(currentUser);
+    const { isLoggedIn, currentUser } = useAppContext();
 
     const container = {
         hidden: { opacity: 0 },
