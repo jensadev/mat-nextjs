@@ -21,9 +21,9 @@
     "food": "mat",
     "for": "till",
     "legal_page": {
-        "cookie_header": "Din integritet är viktig",
-        "cookie_lead": "Här hittar du information vad den här sidan sparar om dig.",
-        "cookie_text_1": "Cookies är små textfiler som lagras på din dator när du besöker en webbplats. Den här sidan använder cookies för att komma ihåg din inloggning och spara vem du är. Utöver det så används googles cookies för att undersöka sidans användning.",
+        "cookie_header": "Din integritet är viktig.",
+        "cookie_lead": "Så vilken information sparar vi om dig?",
+        "cookie_text_1": "Cookies är små textfiler som lagras på din dator när du besöker en webbplats. Vi använder cookies för att komma ihåg din inloggning och spara vem du är. Utöver det så används googles cookies för att undersöka sidans användning.",
         "cookie_text_2": "Du kan ändra dina preferenser och avvisa vissa typer av kakor som lagras på din dator från den här webbsidan i din webbläsare. Du kan också ta bort alla cookies som redan finns lagrade på din dator, men kom ihåg att radering av cookies kan hindra dig från att använda delar av webbplatsen.",
         "cookie_text_3": "Om du har några frågor eller funderingar kring detta, hör av dig."
     },
@@ -41,6 +41,6 @@
     "your": "din",
     "yours": "dina",
     "yous": "ni",
-    "have_logged": "{{who}} har loggat {{num}} {{what}} hittills",
+    "have_logged": "{{who}} har loggat {{num}} {{what}}",
     "users_dishes": "toplista, förslag och inspiration"
 }
