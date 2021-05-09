@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Layout, { siteTitle } from '../components/layout';
-import { pageContainer, pageItem } from '../lib/utils/animations';
+import { pageItem } from '../lib/utils/animations';
 
 export async function getStaticProps({ locale }) {
     return {

@@ -354,12 +354,12 @@ fieldset {
 }
 
 .btn-cancel {
-  @include btn-outline($black, $sand, $profile);
+  @include btn-outline($black, $red, $red);
   width: 38.2%;
 }
 
 .btn-delete {
-  @include btn-outline($black, $red, $profile);
+  @include btn-outline($black, $green, $green);
   width: 38.2%;
 }
 

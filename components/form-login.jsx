@@ -130,13 +130,15 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                         type="submit"
                         disabled={isLoading}>
                         {isLoading ? (
-                            <span
-                                className="spinner-border me-3"
-                                role="status"
-                                aria-hidden="true">
+                            <>
+                                <span
+                                    className="spinner-border me-3"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
                                 {t('common:loading')}
                                 ...
-                            </span>
+                            </>
                         ) : (
                             t('common:login')
                         )}

@@ -176,13 +176,15 @@ export default function RegistrationForm({
                         type="submit"
                         disabled={isLoading}>
                         {isLoading ? (
-                            <span
-                                className="spinner-border me-3"
-                                role="status"
-                                aria-hidden="true">
+                            <>
+                                <span
+                                    className="spinner-border me-3"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
                                 {t('loading')}
                                 ...
-                            </span>
+                            </>
                         ) : (
                             t('register')
                         )}

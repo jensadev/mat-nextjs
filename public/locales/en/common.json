@@ -53,5 +53,7 @@
     "this_web": "this website",
     "using": "using",
     "welcome_back": "welcome back",
-    "what_about": "about {{what}}"
+    "what_about": "about {{what}}",
+    "yes": "yes",
+    "no": "no"
 }

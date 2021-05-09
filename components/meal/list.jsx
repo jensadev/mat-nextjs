@@ -11,7 +11,7 @@ import styles from './meal.module.scss';
 export default function MealList() {
     const [pageIndex, setPageIndex] = useState(1);
     const { addToast } = useToasts();
-    const { updated, toggleUpdate } = useAppContext();
+    const { currentUser, updated, toggleUpdate } = useAppContext();
     const { data, error } = useSWR(
         `${process.env.apiUrl}/meals?page=${pageIndex}`,
         fetcher
@@ -34,6 +34,11 @@ export default function MealList() {
     if (updated) {
         onUpdate();
         toggleUpdate(false);
+    }
+
+    if (pager) {
+        currentUser.meals = pager.totalItems;
+        localStorage.setItem('user', JSON.stringify(currentUser));
     }
 
     return (
