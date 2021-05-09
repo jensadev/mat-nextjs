@@ -53,5 +53,7 @@
     "this_web": "den här webbplatsen",
     "using": "med",
     "welcome_back": "välkommen tillbaka",
-    "what_about": "om {{what}}"
+    "what_about": "om {{what}}",
+    "yes": "ja",
+    "no": "nej"
 }
