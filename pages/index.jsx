@@ -59,7 +59,16 @@ export default function Home() {
                                     {t('glossary:meal_plural')}
                                 </h1>
                                 <p className="lead">
-                                    {t('glossary:about_meals')}
+                                    {currentUser &&
+                                        t('glossary:have_logged', {
+                                            who: currentUser?.family
+                                                ? t('glossary:yous')
+                                                : t('glossary:you'),
+                                            num: currentUser?.meals,
+                                            what: currentUser?.meals
+                                                ? t('glossary:meal_plural')
+                                                : t('glossary:meal')
+                                        })}
                                 </p>
                             </div>
                         </motion.div>
@@ -73,7 +82,7 @@ export default function Home() {
                                     {t('glossary:dish_plural')}
                                 </h1>
                                 <p className="lead">
-                                    {t('glossary:about_dishes')}
+                                    {t('glossary:users_dishes')}
                                 </p>
                             </div>
                         </motion.div>

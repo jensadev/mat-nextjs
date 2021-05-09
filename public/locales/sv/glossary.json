@@ -6,7 +6,7 @@
         "lead": "{{brand}} är skapad för att hjälpa dig föra statistik över vad du äter. När inspirationen tryter och frågan: -Vad ska vi äta idag? hänger i luften så kanske du kan hitta något här.",
         "p1": "Den här sidans syfte är att låta dig snabbt och enkelt föra en logg över vad du äter. Du kan sedan se din historik, söka och hitta vad du har ätit."
     },
-    "about_profile": "aboutprofile",
+    "about_profile": "kontoinställningar",
     "about_this": "aboutintro",
     "breakfast": "frukost",
     "click_here_to_add": "Klicka här för att lägga till en måltid",
@@ -40,5 +40,7 @@
     "you": "du",
     "your": "din",
     "yours": "dina",
-    "yous": "ni"
+    "yous": "ni",
+    "have_logged": "{{who}} har loggat {{num}} {{what}} hittills",
+    "users_dishes": "toplista, förslag och inspiration"
 }

@@ -6,7 +6,7 @@
         "lead": "{{brand}} exists to help you keep track of what you eat. When the inspiration falthers and the question: -What are we going to eat today? hangs in the air, maybe you can find something here.",
         "p1": "The purpose of this page is to allow you to quickly and easily keep track of what you eat. You can then see your history, search and find what you have eaten."
     },
-    "about_profile": "aboutprofile",
+    "about_profile": "account settings",
     "about_this": "aboutintro",
     "breakfast": "breakfast",
     "click_here_to_add": "Click here to add a meal",
@@ -40,5 +40,7 @@
     "you": "you",
     "your": "your",
     "yours": "yours",
-    "yous": "you"
+    "yous": "you",
+    "have_logged": "{{who}} have logged {{num}} {{what}} so far",
+    "users_dishes": "toplist, suggestions and inspiration"
 }
