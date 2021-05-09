@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 import { useAppContext } from '../context/app-context';
 import { mealFormAnimation } from '../lib/utils/animations';
+import storage from '../lib/utils/storage';
 import useVisible from '../lib/utils/use-visible';
 import styles from './header.module.scss';
 import Maybe from './maybe';
@@ -18,7 +19,7 @@ const MealForm = dynamic(() => import('./meal/form'));
 export default function Header() {
     const router = useRouter();
     const { isLoggedIn } = useAppContext();
-    const [visible, setVisible] = useState(false);
+    const [visibleHint, setVisibleHint] = useState(false);
     const { t } = useTranslation(['glossary', 'common']);
     const pages = ['meals', 'dishes', 'profile'];
     const {
@@ -38,14 +39,26 @@ export default function Header() {
     } = useVisible(false);
 
     useEffect(() => {
+        const fetch = async (key) => {
+            return storage(key);
+        };
         if (isLoggedIn) {
-            const bubble = localStorage.getItem('bubble');
-            if (!bubble || bubble === 0) {
-                setVisible(true);
-                localStorage.setItem('bubble', 1);
-            }
+            fetch('bubble')
+                .then((res) => {
+                    if (res !== 1) {
+                        setVisibleHint(true);
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
         }
-    }, [visible]);
+    }, []);
+
+    const hideHint = () => {
+        setVisibleHint(false);
+        localStorage.setItem('bubble', 1);
+    };
 
     return (
         <>
@@ -57,7 +70,7 @@ export default function Header() {
                             type="button"
                             onClick={() => {
                                 setIsAddMealVisible(!isAddMealVisible);
-                                setVisible(false);
+                                hideHint();
                             }}
                             className={`btn ${styles.btnAdd}`}>
                             <span className="visually-hidden">
@@ -81,7 +94,7 @@ export default function Header() {
                                 </motion.span>
                             )}
                         </button>
-                        {visible && (
+                        {visibleHint && (
                             <motion.div
                                 initial={{
                                     opacity: 0,
@@ -94,7 +107,7 @@ export default function Header() {
                                 className="position-absolute end-0">
                                 <button
                                     type="button"
-                                    onClick={() => setVisible(false)}
+                                    onClick={() => hideHint()}
                                     className={`${styles.bubble} ${styles.speech}`}>
                                     {t('glossary:click_here_to_add')}
                                 </button>
