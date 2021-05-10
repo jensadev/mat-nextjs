@@ -24,7 +24,7 @@ export default function Legal() {
     return (
         <Layout legal>
             <Head>
-                <title>{`${siteTitle} - ${t('common:terms')}`}</title>
+                <title>{`${t('common:terms')} - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
                 <motion.header

@@ -27,11 +27,11 @@ export default function Profile() {
     return (
         <Layout profile>
             <Head>
-                <title>{`${siteTitle} - ${
+                <title>{`${
                     currentUser && currentUser.family
                         ? t('common:our_page')
                         : t('common:my_page')
-                }`}</title>
+                } - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>

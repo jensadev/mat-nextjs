@@ -42,7 +42,7 @@ export default function Home() {
     return (
         <Layout home>
             <Head>
-                <title>{`${siteTitle} - ${t('common:index')}`}</title>
+                <title>{`${t('common:index')} - ${siteTitle}`}</title>
             </Head>
             <motion.main
                 variants={container}
