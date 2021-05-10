@@ -7,8 +7,8 @@
         "lead_2": "If you lack inspiration and the question",
         "lead_3": "-What are we going to eat today?",
         "lead_4": "hangs in the air you can check {{brand}}.",
-        "p1": "The purpose of {{brand}} is to help you quickly and easily track what you're eating.",
-        "p2": "You can then use your stored data to",
+        "p1": "The purpose of {{brand}} is to help you track what you eat quickly and easily.",
+        "p2": "You can then use your saved data to",
         "bullet_1": "see your history",
         "bullet_2": "search",
         "bullet_3": "get tips",
@@ -36,7 +36,7 @@
         "cookie_text_3": "We also use cookies from Google to study how the website is used.",
         "cookie_text_4": "You can change your settings and reject certain types of cookies in your browser.",
         "cookie_text_5": "You can also delete all cookies, but remember that deleting cookies may change the way the website works.",
-        "cookie_text_6": "If you have any questions or concerns, please contact us."
+        "contact": "If you have any questions or concerns, please contact us."
     },
     "list_of": "{{whos}} {{what}}",
     "lunch": "lunch",

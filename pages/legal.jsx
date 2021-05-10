@@ -38,14 +38,19 @@ export default function Legal() {
                 </motion.header>
                 <div className="container my-3">
                     <p className="lead">
-                        {t('glossary:legal_page.cookie_header')}.{' '}
+                        {t('glossary:legal_page.cookie_header')}.
+                    </p>
+                    <p className="lead">
                         {t('glossary:legal_page.cookie_lead')}
                     </p>
                     <h2>{t('common:cookie_plural')}</h2>
                     <p>{t('glossary:legal_page.cookie_text_1')}</p>
                     <p>{t('glossary:legal_page.cookie_text_2')}</p>
-                    <h2>{t('common:contact')}</h2>
                     <p>{t('glossary:legal_page.cookie_text_3')}</p>
+                    <p>{t('glossary:legal_page.cookie_text_4')}</p>
+                    <p>{t('glossary:legal_page.cookie_text_5')}</p>
+                    <h2>{t('common:contact')}</h2>
+                    <p>{t('glossary:legal_page.contact')}</p>
                 </div>
             </main>
         </Layout>
