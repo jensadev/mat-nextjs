@@ -26,7 +26,7 @@ export default function Dishes() {
     return (
         <Layout dishes>
             <Head>
-                <title>{`${siteTitle} - ${t('glossary:dishes')}`}</title>
+                <title>{`${t('glossary:dishes')} - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>

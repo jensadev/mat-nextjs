@@ -24,7 +24,7 @@ export default function About() {
     return (
         <Layout about>
             <Head>
-                <title>{`${siteTitle} - ${t('common:about')}`}</title>
+                <title>{`${t('common:about')} - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
                 <motion.header
