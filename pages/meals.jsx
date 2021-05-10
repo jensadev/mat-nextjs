@@ -28,7 +28,7 @@ export default function Meals() {
     return (
         <Layout meals>
             <Head>
-                <title>{`${siteTitle} - ${t('glossary:meals')}`}</title>
+                <title>{`${t('glossary:meals')} - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
