@@ -45,12 +45,18 @@
     "meal_type": "måltidstyp",
     "meals": "måltider",
     "profile": "profil",
+    "whos_what": "{{whos}} {{what}}",
+    "profile_page": {
+        "your_email": "Din e-post"
+
+    },
     "the": "den",
     "to_eat": "ska jag äta",
     "we": "vi",
     "you": "du",
     "your": "din",
     "yours": "dina",
+    "yourss": "er",
     "yous": "ni",
     "have_logged": "{{who}} har loggat {{num}} {{what}} hittills",
     "users_dishes": "toplista, förslag och inspiration"

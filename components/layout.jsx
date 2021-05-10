@@ -29,11 +29,16 @@ export default function Layout({ children }) {
                     as="style"
                 />
                 <link rel="icon" href="/favicon.ico" />
-                <meta name="description" content="What dp you eat and when? Save your meals to help you in your everyday life." />
+                <meta
+                    name="description"
+                    content="What do you eat and when? Save your meals to simplify everyday life."
+                />
                 <meta name="og:title" content={siteTitle} />
                 <meta name="canonical" href="https://mat.jensa.xyz" />
-                <meta charset="UTF-8" />
-                <meta name="keywords" content="meal, meals, dish, dishes, måltider, eat, mealplan, ideas" />
+                <meta
+                    name="keywords"
+                    content="meal, meals, dish, dishes, eat, mealplan, ideas, inspiration, måltider, rätter"
+                />
                 <meta name="author" content="Jens Andreasson" />
                 <meta
                     name="viewport"
@@ -48,7 +53,8 @@ export default function Layout({ children }) {
                     href="https://use.typekit.net/yis5dme.css"
                 />
                 <script async src="/javascript/scrollhide.js" />
-                <script async
+                <script
+                    async
                     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
                     integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
                     crossOrigin="anonymous"

@@ -43,16 +43,18 @@ export default function MealList() {
 
     return (
         <div className="w-100">
-            {!data && 
+            {!data && (
                 <div className="position-absolute top-50 start-50 translate-middle">
                     <div
                         className="spinner-border"
                         style={{ width: '4rem', height: '4rem' }}
                         role="status">
-                        <span className="visually-hidden">{t('common_loading')}...</span>
+                        <span className="visually-hidden">
+                            {t('common:loading')}...
+                        </span>
                     </div>
                 </div>
-            }
+            )}
             <ul className={styles.list}>
                 {pageOfItems &&
                     pageOfItems?.map((meal) => (
