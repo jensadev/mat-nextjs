@@ -232,18 +232,18 @@ export default function ListItem({ meal, onChange }) {
                 </div>
                 <div className={styles.modalFooter}>
                     <button
-                        type="submit"
-                        className="btn btn-delete"
-                        disabled={isLoading}
-                        onClick={deleteMeal}>
-                        {t('common:yes')}
-                    </button>
-                    <button
                         type="button"
-                        className="btn btn-cancel ms-4"
+                        className="btn btn-cancel"
                         disabled={isLoading}
                         onClick={closeDeleteModal}>
                         {t('common:no')}
+                    </button>
+                    <button
+                        type="submit"
+                        className="btn btn-delete ms-4"
+                        disabled={isLoading}
+                        onClick={deleteMeal}>
+                        {t('common:yes')}
                     </button>
                 </div>
             </Modal>

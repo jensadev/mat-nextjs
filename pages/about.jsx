@@ -44,7 +44,19 @@ export default function About() {
                     <p className="lead">
                         {t('glossary:about_page.lead', { brand: siteTitle })}
                     </p>
-                    <p>{t('glossary:about_page.p1')}</p>
+                    <p>{t('glossary:about_page.lead_2')}</p>
+                    <p>{t('glossary:about_page.lead_3')}</p>
+                    <p>
+                        {t('glossary:about_page.lead_4', { brand: siteTitle })}
+                    </p>
+                    <p>{t('glossary:about_page.p1', { brand: siteTitle })}</p>
+                    <p>{t('glossary:about_page.p2')}</p>
+                    <ul>
+                        <li>{t('glossary:about_page.bullet_1')}</li>
+                        <li>{t('glossary:about_page.bullet_2')}</li>
+                        <li>{t('glossary:about_page.bullet_3')}</li>
+                        <li>{t('glossary:about_page.bullet_4')}</li>
+                    </ul>
                 </div>
             </main>
         </Layout>
