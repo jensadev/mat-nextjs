@@ -1,10 +1,18 @@
 {
-    "about_dishes": "Vad äter du? Få överblick och tips.",
-    "about_intro": "{{brand}} är en app för att hjälpa dig föra statistik över vad {{who}} äter. Spara dina måltider för att hjälpa dig i vardagen.",
+    "about_dishes": "Vilka är dina favoriter? Bli inspirerad",
+    "about_intro": "{{brand}} är en app för att hjälpa dig. Här kan du föra statistik över vad {{who}} äter. Spara {{whos}} måltider för att förenkla vardagen.",
     "about_meals": "Spara dina måltider, vad du äter och när.",
     "about_page": {
-        "lead": "{{brand}} är skapad för att hjälpa dig föra statistik över vad du äter. När inspirationen tryter och frågan: -Vad ska vi äta idag? hänger i luften så kanske du kan hitta något här.",
-        "p1": "Den här sidans syfte är att låta dig snabbt och enkelt föra en logg över vad du äter. Du kan sedan se din historik, söka och hitta vad du har ätit."
+        "lead": "{{brand}} är skapad för att hjälpa dig föra statistik över vad du äter.",
+        "lead_2": "När du saknar inspiration och frågan:",
+        "lead_3": "-Vad ska vi äta idag?",
+        "lead_4": "hänger i luften så kollar du {{brand}}.",
+        "p1": "Syftet med {{brand}} är att låta dig snabbt och enkelt logga vad du äter.",
+        "p2": "Du kan sedan använda din sparade data för att",
+        "bullet_1": "se din historik",
+        "bullet_2": "söka",
+        "bullet_3": "få tips",
+        "bullet_4": "eller bara minnas"
     },
     "about_profile": "kontoinställningar",
     "about_this": "aboutintro",
@@ -22,10 +30,13 @@
     "for": "till",
     "legal_page": {
         "cookie_header": "Din integritet är viktig",
-        "cookie_lead": "Här hittar du information vad den här sidan sparar om dig.",
-        "cookie_text_1": "Cookies är små textfiler som lagras på din dator när du besöker en webbplats. Den här sidan använder cookies för att komma ihåg din inloggning och spara vem du är. Utöver det så används googles cookies för att undersöka sidans användning.",
-        "cookie_text_2": "Du kan ändra dina preferenser och avvisa vissa typer av kakor som lagras på din dator från den här webbsidan i din webbläsare. Du kan också ta bort alla cookies som redan finns lagrade på din dator, men kom ihåg att radering av cookies kan hindra dig från att använda delar av webbplatsen.",
-        "cookie_text_3": "Om du har några frågor eller funderingar kring detta, hör av dig."
+        "cookie_lead": "Här hittar du information kring vad den här sidan sparar om dig.",
+        "cookie_text_1": "Cookies är små textfiler som lagras på din dator när du besöker en webbplats.",
+        "cookie_text_2": "Den här webbplatsen använder cookies för att komma ihåg din inloggning och spara vem du är.",
+        "cookie_text_3": "Vi använder även googles cookies för att undersöka hur webbplatsen används.",
+        "cookie_text_4": "Du kan ändra dina preferenser och avvisa vissa typer av kakor i din webbläsare.",
+        "cookie_text_5": "Du kan också ta bort alla cookies, men kom ihåg att radering av cookies kan påverka webbplatsens funktion.",
+        "cookie_text_6": "Om du har några frågor eller funderingar, hör av dig."
     },
     "list_of": "{{whos}} {{what}}",
     "lunch": "lunch",
