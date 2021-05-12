@@ -5,18 +5,20 @@ import useSWR, { mutate } from 'swr';
 
 import { useAppContext } from '../../context/app-context';
 import fetcher from '../../lib/utils/fetcher';
+import Pagination from '../pagination';
 import ListItem from './list-item';
 import styles from './meal.module.scss';
 
 export default function MealList() {
     const [pageIndex, setPageIndex] = useState(1);
     const { addToast } = useToasts();
+    const { t } = useTranslation(['common', 'glossary']);
     const { currentUser, updated, toggleUpdate } = useAppContext();
     const { data, error } = useSWR(
         `${process.env.apiUrl}/meals?page=${pageIndex}`,
         fetcher
     );
-    const { t } = useTranslation(['common', 'glossary']);
+
     if (error) {
         return addToast(
             t('common:cant_load', {
@@ -40,6 +42,10 @@ export default function MealList() {
         currentUser.meals = pager.totalItems;
         localStorage.setItem('user', JSON.stringify(currentUser));
     }
+
+    const setIndex = (page) => {
+        setPageIndex(page);
+    };
 
     return (
         <div className="w-100">
@@ -65,103 +71,7 @@ export default function MealList() {
                         />
                     ))}
             </ul>
-            {pager && (
-                <nav
-                    aria-label="Pagination"
-                    className={styles.paginationContainer}>
-                    <ul
-                        className={`${styles.pagination} justify-content-center`}>
-                        <li
-                            className={`${
-                                pager.currentPage === 1 ? styles.disabled : ''
-                            }`}>
-                            <button
-                                className={styles.pageLink}
-                                type="button"
-                                onClick={() => setPageIndex(1)}>
-                                <span className="visually-hidden">
-                                    {t('common:first_page')}
-                                </span>
-                                <span className="material-icons-round md-48">
-                                    first_page
-                                </span>
-                            </button>
-                        </li>
-                        <li
-                            className={`${
-                                pager.currentPage === 1 ? styles.disabled : ''
-                            }`}>
-                            <button
-                                className={styles.pageLink}
-                                type="button"
-                                onClick={() =>
-                                    setPageIndex(pager.currentPage - 1)
-                                }>
-                                <span className="visually-hidden">
-                                    {t('common:before')}
-                                </span>
-                                <span className="material-icons-round md-48">
-                                    navigate_before
-                                </span>
-                            </button>
-                        </li>
-                        {pager.pages.map((page) => (
-                            <li
-                                key={page}
-                                className={`${styles.pageItem} number-item ${
-                                    pager.currentPage === page
-                                        ? styles.active
-                                        : ''
-                                }`}>
-                                <button
-                                    className={styles.pageLink}
-                                    type="button"
-                                    onClick={() => setPageIndex(page)}>
-                                    {page}
-                                </button>
-                            </li>
-                        ))}
-                        <li
-                            className={`${
-                                pager.currentPage === pager.totalPages
-                                    ? styles.disabled
-                                    : ''
-                            }`}>
-                            <button
-                                className={styles.pageLink}
-                                type="button"
-                                onClick={() =>
-                                    setPageIndex(pager.currentPage + 1)
-                                }>
-                                <span className="visually-hidden">
-                                    {t('common:next')}
-                                </span>
-                                <span className="material-icons-round md-48">
-                                    navigate_next
-                                </span>
-                            </button>
-                        </li>
-                        <li
-                            className={`${
-                                pager.currentPage === pager.totalPages
-                                    ? styles.disabled
-                                    : ''
-                            }`}>
-                            <button
-                                className={styles.pageLink}
-                                type="button"
-                                onClick={() => setPageIndex(pager.totalPages)}>
-                                <span className="visually-hidden">
-                                    {t('common:last_page')}
-                                </span>
-                                <span className="material-icons-round md-48">
-                                    last_page
-                                </span>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            )}
+            {pager && <Pagination pager={pager} setIndex={setIndex} />}
         </div>
     );
 }
