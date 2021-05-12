@@ -1,4 +1,3 @@
-// import 'react-datepicker/dist/react-datepicker.css';
 import { ErrorMessage } from '@hookform/error-message';
 import { format } from 'date-fns';
 import { en, sv } from 'date-fns/locale/';
@@ -158,7 +157,7 @@ export default function MealForm({ edit, onUpdated }) {
                 </div>
             </header>
             <div className="content w-100">
-                <div className="container ">
+                <div className="container">
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                         className={styles.mealForm}>
