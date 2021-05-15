@@ -20,7 +20,7 @@ export default function MealForm({ edit, onUpdated }) {
     const [isLoading, setLoading] = useState(false);
     const router = useRouter();
     const { t } = useTranslation(['common', 'glossary', 'validation']);
-    const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
+    const { data, error } = useSWR(`${process.env.apiUrl}/dishes/all`, fetcher);
     const { addToast } = useToasts();
     const { toggleUpdate } = useAppContext();
 
@@ -72,8 +72,6 @@ export default function MealForm({ edit, onUpdated }) {
         setLoading(true);
         if (edit?.id) {
             try {
-                // console.log(edit.id);
-                // console.table(values);
                 const response = await update(
                     edit.id,
                     new Date(values.date).toISOString(),
