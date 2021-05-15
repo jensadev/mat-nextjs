@@ -3,16 +3,16 @@
     "about_intro": "is an app that helps you. Here you can keep a statistic of what you eat. Save your meals to make everyday life easier.",
     "about_meals": "Save your meals, what you eat and when.",
     "about_page": {
+        "bullet_1": "see your history",
+        "bullet_2": "search",
+        "bullet_3": "get tips",
+        "bullet_4": "or just remember",
         "lead": "{{brand}} was created to help you keep track of what you eat.",
         "lead_2": "If you lack inspiration and the question",
         "lead_3": "-What are we going to eat today?",
         "lead_4": "hangs in the air you can check {{brand}}.",
         "p1": "The purpose of {{brand}} is to help you track what you eat quickly and easily.",
-        "p2": "You can then use your saved data to",
-        "bullet_1": "see your history",
-        "bullet_2": "search",
-        "bullet_3": "get tips",
-        "bullet_4": "or just remember"
+        "p2": "You can then use your saved data to"
     },
     "about_profile": "account settings",
     "about_this": "aboutintro",
@@ -28,15 +28,16 @@
     "era": "our",
     "food": "food",
     "for": "for",
+    "have_logged": "{{who}} have recorded {{num}} {{what}}",
     "legal_page": {
+        "contact": "If you have any questions or concerns, please contact us.",
         "cookie_header": "Your privacy is important",
         "cookie_lead": "Here you will find information about what this site stores about you",
         "cookie_text_1": "Cookies are small text files that are stored on your computer when you visit a website.",
         "cookie_text_2": "This website uses cookies to remember when you log in and to store who you are.",
         "cookie_text_3": "We also use cookies from Google to study how the website is used.",
         "cookie_text_4": "You can change your settings and reject certain types of cookies in your browser.",
-        "cookie_text_5": "You can also delete all cookies, but remember that deleting cookies may change the way the website works.",
-        "contact": "If you have any questions or concerns, please contact us."
+        "cookie_text_5": "You can also delete all cookies, but remember that deleting cookies may change the way the website works."
     },
     "list_of": "{{whos}} {{what}}",
     "lunch": "lunch",
@@ -45,13 +46,20 @@
     "meal_type": "meal type",
     "meals": "meals",
     "profile": "profile",
+    "profile_page": {
+        "account_bio": "bio",
+        "account_email": "email.",
+        "account_family": "family",
+        "account_public": "public",
+        "your_email": "your email"
+    },
     "the": "the",
     "to_eat": "will I eat",
+    "users_dishes": "top list, suggestions and inspiration",
     "we": "we",
+    "whos_what": "{{whos}} {{what}}",
     "you": "you",
     "your": "your",
     "yours": "yours",
-    "yous": "you",
-    "have_logged": "{{who}} have recorded {{num}} {{what}}",
-    "users_dishes": "top list, suggestions and inspiration"
+    "yous": "you"
 }

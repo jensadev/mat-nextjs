@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { ErrorMessage } from '@hookform/error-message';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useToasts } from 'react-toast-notifications';
 import useSWR from 'swr';
@@ -21,8 +21,8 @@ export default function ProfileForm() {
         reset,
         handleSubmit,
         setValue,
-        formState: { errors }
-    } = useForm({});
+        formState: { errors, touchedFields }
+    } = useForm();
     //     defaultValues: useMemo(() => {
     //         return data?.user;
     //     }, [data])
@@ -30,10 +30,10 @@ export default function ProfileForm() {
 
     useEffect(() => {
         // reset(data?.user);
-        setValue('family', data.user.family);
-        setValue('public', data.user.public);
-        setValue('email', data.user.email);
-        setValue('bio', data.user.bio);
+        setValue('family', data?.user.family);
+        setValue('public', data?.user.public);
+        setValue('email', data?.user.email);
+        setValue('bio', data?.user.bio);
     }, [data]);
 
     if (error) {
@@ -46,13 +46,11 @@ export default function ProfileForm() {
 
     // const user = (data && data.user) || false;
 
-    const onSubmitFamily = async (values) => console.log(values);
-    const onSubmitPublic = async (values) => console.log(values);
-
-    const onSubmitEmail = async (values) => {
+    const onSubmit = async (values) => {
         setLoading(true);
+        console.log(touchedFields);
         try {
-            console.table(values.email);
+            console.table(values);
         } catch (err) {
             addToast(t('validation:something_went_wrong'), {
                 appearance: 'error'
@@ -62,20 +60,6 @@ export default function ProfileForm() {
             setLoading(false);
         }
     };
-    const onSubmitBio = async (values) => {
-        setLoading(true);
-        try {
-            console.table(values.bio);
-        } catch (err) {
-            addToast(t('validation:something_went_wrong'), {
-                appearance: 'error'
-            });
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-    console.log(errors);
 
     return (
         <>
@@ -98,7 +82,7 @@ export default function ProfileForm() {
             )}
             {data && (
                 <>
-                    <form onChange={handleSubmit(onSubmitFamily)}>
+                    <form onChange={handleSubmit(onSubmit)}>
                         <fieldset className="mb-3 d-flex">
                             <p>{t('glossary:profile_page.account_family')}</p>
                             <label
@@ -113,7 +97,7 @@ export default function ProfileForm() {
                             />
                         </fieldset>
                     </form>
-                    <form onChange={handleSubmit(onSubmitPublic)}>
+                    <form onChange={handleSubmit(onSubmit)}>
                         <fieldset className="mb-3 d-flex">
                             <p>{t('glossary:profile_page.account_public')}</p>
                             <label
@@ -128,7 +112,7 @@ export default function ProfileForm() {
                             />
                         </fieldset>
                     </form>
-                    <form onSubmit={handleSubmit(onSubmitEmail)}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <fieldset className="mb-3">
                             <p>{t('glossary:profile_page.account_email')}</p>
                             <label
@@ -154,7 +138,7 @@ export default function ProfileForm() {
                             {t('common:edit')}
                         </button>
                     </form>
-                    <form onSubmit={handleSubmit(onSubmitBio)}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <fieldset className="mb-3">
                             <p>{t('glossary:profile_page.account_bio')}</p>
                             <label
