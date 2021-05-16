@@ -55,5 +55,6 @@
     "welcome_back": "välkommen tillbaka",
     "what_about": "om {{what}}",
     "yes": "ja",
-    "no": "nej"
+    "no": "nej",
+    "user": "användare"
 }
