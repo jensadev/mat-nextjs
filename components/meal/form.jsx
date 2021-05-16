@@ -1,4 +1,3 @@
-// import 'react-datepicker/dist/react-datepicker.css';
 import { ErrorMessage } from '@hookform/error-message';
 import { format } from 'date-fns';
 import { en, sv } from 'date-fns/locale/';
@@ -21,7 +20,7 @@ export default function MealForm({ edit, onUpdated }) {
     const [isLoading, setLoading] = useState(false);
     const router = useRouter();
     const { t } = useTranslation(['common', 'glossary', 'validation']);
-    const { data, error } = useSWR(`${process.env.apiUrl}/dishes`, fetcher);
+    const { data, error } = useSWR(`${process.env.apiUrl}/dishes/all`, fetcher);
     const { addToast } = useToasts();
     const { toggleUpdate } = useAppContext();
 
@@ -73,8 +72,6 @@ export default function MealForm({ edit, onUpdated }) {
         setLoading(true);
         if (edit?.id) {
             try {
-                // console.log(edit.id);
-                // console.table(values);
                 const response = await update(
                     edit.id,
                     new Date(values.date).toISOString(),
@@ -158,7 +155,7 @@ export default function MealForm({ edit, onUpdated }) {
                 </div>
             </header>
             <div className="content w-100">
-                <div className="container ">
+                <div className="container">
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                         className={styles.mealForm}>

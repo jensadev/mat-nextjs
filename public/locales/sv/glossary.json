@@ -45,13 +45,24 @@
     "meal_type": "måltidstyp",
     "meals": "måltider",
     "profile": "profil",
+    "whos_what": "{{whos}} {{what}}",
+    "profile_page": {
+        "your_email": "Din e-post",
+        "account_family": "är ditt konto för dig eller din familj",
+        "account_public": "du kan välja att göra ditt konto publikt, så att andra kan se det",
+        "account_email": "du är registrerad med...",
+        "account_bio": "här kan du skriva kort om dig själv, om ditt konto är publikt kan andra se denna text"
+    },
     "the": "den",
     "to_eat": "ska jag äta",
     "we": "vi",
     "you": "du",
     "your": "din",
     "yours": "dina",
+    "yourss": "er",
+    "yoursss": "era",
     "yous": "ni",
-    "have_logged": "{{who}} har loggat {{num}} {{what}}",
+    "have_log": "se {{who}} sparade {{what}}",
+    "have_logged": "{{who}} har {{num}} sparade {{what}}",
     "users_dishes": "toplista, förslag och inspiration"
 }

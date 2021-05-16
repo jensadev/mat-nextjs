@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import ProfileForm from '../components/form-profile';
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
 import { useAppContext } from '../context/app-context';
@@ -21,7 +22,7 @@ export async function getStaticProps({ locale }) {
 }
 
 export default function Profile() {
-    const { t } = useTranslation(['common']);
+    const { t } = useTranslation(['common', 'glossary']);
     const { isLoggedIn, currentUser } = useAppContext();
 
     return (
@@ -49,11 +50,7 @@ export default function Profile() {
                         </div>
                     </motion.header>
                     <div className="container my-3">
-                        {currentUser && (
-                            <p className="lead">{`${t('common:welcome_back')} ${
-                                currentUser.handle
-                            }`}</p>
-                        )}
+                        <ProfileForm />
                     </div>
                 </Maybe>
             </main>

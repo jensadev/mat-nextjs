@@ -1,54 +1,37 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 
-import { useAppContext } from '../../context/app-context';
 import fetcher from '../../lib/utils/fetcher';
 import Pagination from '../pagination';
+import styles from './dish.module.scss';
 import ListItem from './list-item';
-import styles from './meal.module.scss';
 
-export default function MealList() {
+export default function AllDishes() {
     const [pageIndex, setPageIndex] = useState(1);
-    const { addToast } = useToasts();
     const { t } = useTranslation(['common', 'glossary']);
-    const { currentUser, updated, toggleUpdate } = useAppContext();
+    const { addToast } = useToasts();
     const { data, error } = useSWR(
-        `${process.env.apiUrl}/meals?page=${pageIndex}`,
+        `${process.env.apiUrl}/dishes?page=${pageIndex}`,
         fetcher
     );
 
     if (error) {
         return addToast(
             t('common:cant_load', {
-                what: `${t('common:recent')} ${t('glossary:meal_plural')}`
+                what: `${t('common:recent')} ${t('glossary:dish_plural')}`
             })
         );
     }
 
-    const onUpdate = () => {
-        mutate(`${process.env.apiUrl}/meals?page=${pageIndex}`);
-    };
-
     const { pager, pageOfItems } = data || false;
-
-    if (updated) {
-        onUpdate();
-        toggleUpdate(false);
-    }
-
-    if (pager) {
-        currentUser.meals = pager.totalItems;
-        localStorage.setItem('user', JSON.stringify(currentUser));
-    }
-
     const setIndex = (page) => {
         setPageIndex(page);
     };
 
     return (
-        <div className="w-100">
+        <div className="col-md-6">
             {!data && (
                 <div className="position-absolute top-50 start-50 translate-middle">
                     <div
@@ -63,12 +46,8 @@ export default function MealList() {
             )}
             <ul className={styles.list}>
                 {pageOfItems &&
-                    pageOfItems?.map((meal) => (
-                        <ListItem
-                            key={meal.id}
-                            meal={meal}
-                            onUpdate={onUpdate}
-                        />
+                    pageOfItems?.map((dish) => (
+                        <ListItem key={dish.id} dish={dish} />
                     ))}
             </ul>
             {pager && <Pagination pager={pager} setIndex={setIndex} />}

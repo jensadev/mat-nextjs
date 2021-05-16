@@ -13,7 +13,7 @@ import styles from './meal.module.scss';
 
 const MealForm = dynamic(() => import('./form'));
 
-export default function ListItem({ meal, onChange }) {
+export default function ListItem({ meal, onUpdate }) {
     const { t } = useTranslation(['glossary']);
     const { addToast } = useToasts();
     const [isLoading, setLoading] = useState(false);
@@ -34,7 +34,7 @@ export default function ListItem({ meal, onChange }) {
 
     const onUpdated = () => {
         setIsEditMealVisible(!isEditMealVisible);
-        onChange();
+        onUpdate();
     };
 
     const deleteMeal = async () => {
@@ -58,7 +58,7 @@ export default function ListItem({ meal, onChange }) {
                 addToast(t('common:deleted', { what: t('glossary:meal') }), {
                     appearance: 'success'
                 });
-                onChange();
+                onUpdate();
                 setDeleteModalIsOpen(false);
             }
         } catch (err) {

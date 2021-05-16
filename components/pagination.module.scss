@@ -1,0 +1,67 @@
+@import "../styles/_vars.scss";
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  li {
+    @media (max-width: 576px) {
+      &:nth-child(2) {
+        display: none;
+      }
+      &:nth-last-child(2) {
+        display: none;
+      }
+    }
+  }
+}
+
+.pageItem {
+  border-bottom: 2px solid transparent;
+}
+
+.disabled {
+  .pageLink {
+    color: $light-gray;
+    &:hover {
+      color: $gray;
+      border-bottom: 2px solid transparent !important;
+      background-color: transparent !important;
+    }
+  }
+}
+
+.active {
+  .pageLink {
+    color: $black;
+    // background-color: $cyan;
+    border-bottom: 2px solid $black;
+  }
+}
+
+.pageLink {
+  margin: 0 0.4rem;
+  background-color: transparent;
+  border: 0;
+  color: $gray;
+  transition: background-color 0.3s;
+  border-bottom: 2px solid transparent;
+  font-size: $font-size-lg;
+  &:hover {
+    color: $dark-gray;
+    border-bottom: 2px solid $black;
+  }
+  &:hover:not(.active) {
+    // color: $white;
+    background-color: $light;
+  }
+  span {
+    padding-top: 0.6rem;
+  }
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-base;
+    span {
+      padding-top: 0.4rem;
+    }
+  }
+}

@@ -55,5 +55,7 @@
     "welcome_back": "welcome back",
     "what_about": "about {{what}}",
     "yes": "yes",
-    "no": "no"
+    "no": "no",
+    "user": "user",
+    "update": "update"
 }

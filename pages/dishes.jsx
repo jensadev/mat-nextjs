@@ -3,6 +3,8 @@ import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import AllDishes from '../components/dish/all';
+import TopDishes from '../components/dish/top';
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
 import { useAppContext } from '../context/app-context';
@@ -48,7 +50,10 @@ export default function Dishes() {
                         </div>
                     </motion.header>
                     <div className="container my-3">
-                        <div className="container" />
+                        <div className="row">
+                            <TopDishes />
+                            <AllDishes />
+                        </div>
                     </div>
                 </Maybe>
             </main>
