@@ -67,7 +67,7 @@ export default function MealList() {
                         <ListItem
                             key={meal.id}
                             meal={meal}
-                            onChange={onUpdate}
+                            onUpdate={onUpdate}
                         />
                     ))}
             </ul>
