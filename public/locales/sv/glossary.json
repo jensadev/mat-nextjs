@@ -60,7 +60,9 @@
     "your": "din",
     "yours": "dina",
     "yourss": "er",
+    "yoursss": "era",
     "yous": "ni",
-    "have_logged": "{{who}} har loggat {{num}} {{what}}",
+    "have_log": "se {{who}} sparade {{what}}",
+    "have_logged": "{{who}} har {{num}} sparade {{what}}",
     "users_dishes": "toplista, förslag och inspiration"
 }

@@ -56,5 +56,6 @@
     "what_about": "about {{what}}",
     "yes": "yes",
     "no": "no",
-    "user": "user"
+    "user": "user",
+    "update": "update"
 }

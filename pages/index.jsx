@@ -59,16 +59,25 @@ export default function Home() {
                                     {t('glossary:meal_plural')}
                                 </h1>
                                 <p className="lead">
-                                    {currentUser &&
-                                        t('glossary:have_logged', {
-                                            who: currentUser?.family
-                                                ? t('glossary:yous')
-                                                : t('glossary:you'),
-                                            num: currentUser?.meals,
-                                            what: currentUser?.meals
-                                                ? t('glossary:meal_plural')
-                                                : t('glossary:meal')
-                                        })}
+                                    {currentUser && currentUser.meals
+                                        ? t('glossary:have_logged', {
+                                              who: currentUser?.family
+                                                  ? t('glossary:yous')
+                                                  : t('glossary:you'),
+                                              num: currentUser?.meals || '',
+                                              what:
+                                                  currentUser?.meals > 1
+                                                      ? t(
+                                                            'glossary:meal_plural'
+                                                        )
+                                                      : t('glossary:meal')
+                                          })
+                                        : t('glossary:have_log', {
+                                              who: currentUser?.family
+                                                  ? t('glossary:yoursss')
+                                                  : t('glossary:yours'),
+                                              what: t('glossary:meals')
+                                          })}
                                 </p>
                             </div>
                         </motion.div>

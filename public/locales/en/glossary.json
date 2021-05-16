@@ -28,6 +28,7 @@
     "era": "our",
     "food": "food",
     "for": "for",
+    "have_log": "see {{who}} recorded {{what}}",
     "have_logged": "{{who}} have recorded {{num}} {{what}}",
     "legal_page": {
         "contact": "If you have any questions or concerns, please contact us.",
@@ -60,6 +61,8 @@
     "whos_what": "{{whos}} {{what}}",
     "you": "you",
     "your": "your",
-    "yours": "yours",
+    "yours": "your",
+    "yourss": "your",
+    "yoursss": "your",
     "yous": "you"
 }
