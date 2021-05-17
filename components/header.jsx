@@ -116,7 +116,9 @@ export default function Header() {
                     </div>
                 </div>
             </Maybe>
-            <header id="header" className={`${styles.header} fixed-top pt-2`}>
+            <header
+                id="header"
+                className={`${styles.header} fixed-top pt-2 pb-2`}>
                 <div className="container d-flex justify-content-between align-items-center py-md-3">
                     <div className="d-flex align-items-center">
                         <Link href="/">

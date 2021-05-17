@@ -367,6 +367,11 @@ fieldset {
   width: 38.2%;
 }
 
+.btn-meal {
+  @include btn-outline($black, $white, $meal);
+  width: 38.2%;
+}
+
 .page-header {
   padding: $spacer 0;
   display: flex;

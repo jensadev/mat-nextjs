@@ -67,7 +67,7 @@ button.bubble {
 
 .overlayAddMeal {
   z-index: $zindex-modal;
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
   // @media (max-width: map-get($grid-breakpoints, md)) {
