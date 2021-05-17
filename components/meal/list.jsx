@@ -1,23 +1,43 @@
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import useSWR, { mutate } from 'swr';
+import { useSWRInfinite } from 'swr';
 
 import { useAppContext } from '../../context/app-context';
 import fetcher from '../../lib/utils/fetcher';
-import Pagination from '../pagination';
 import ListItem from './list-item';
 import styles from './meal.module.scss';
 
+const PAGE_SIZE = 7;
+
 export default function MealList() {
-    const [pageIndex, setPageIndex] = useState(1);
+    // const [pageIndex, setPageIndex] = useState(1);
     const { addToast } = useToasts();
     const { t } = useTranslation(['common', 'glossary']);
     const { currentUser, updated, toggleUpdate } = useAppContext();
-    const { data, error } = useSWR(
-        `${process.env.apiUrl}/meals?page=${pageIndex}`,
+    // const { data, error } = useSWR(
+    //     `${process.env.apiUrl}/meals?page=${pageIndex}`,
+    //     fetcher
+    // );
+
+    const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
+        (index) =>
+            `${process.env.apiUrl}/meals/list?size=${PAGE_SIZE}&page=${index}`,
         fetcher
     );
+
+    // console.log(size);
+
+    // let { pager, pageOfItems } = data || false;
+
+    const meals = data ? [].concat(...data) : [];
+    const isLoadingInitialData = !data && !error;
+    const isLoadingMore =
+        isLoadingInitialData ||
+        (size > 0 && data && typeof data[size - 1] === 'undefined');
+    const isEmpty = data?.[0]?.length === 0;
+    const isReachingEnd =
+        isEmpty || (data && data[data.length - 1]?.length < PAGE_SIZE);
+    const isRefreshing = isValidating && data && data.length === size;
 
     if (error) {
         return addToast(
@@ -28,24 +48,25 @@ export default function MealList() {
     }
 
     const onUpdate = () => {
-        mutate(`${process.env.apiUrl}/meals?page=${pageIndex}`);
+        // mutate(`${process.env.apiUrl}/meals?page=${pageIndex}`);
+        mutate();
     };
 
-    const { pager, pageOfItems } = data || false;
+    // const { pager, pageOfItems } = data || false;
 
     if (updated) {
         onUpdate();
         toggleUpdate(false);
     }
 
-    if (pager) {
-        currentUser.meals = pager.totalItems;
-        localStorage.setItem('user', JSON.stringify(currentUser));
-    }
+    // if (meals) {
+    //     currentUser.meals = meals.length;
+    //     localStorage.setItem('user', JSON.stringify(currentUser));
+    // }
 
-    const setIndex = (page) => {
-        setPageIndex(page);
-    };
+    // const setIndex = (page) => {
+    //     setPageIndex(page);
+    // };
 
     return (
         <div className="w-100">
@@ -61,9 +82,26 @@ export default function MealList() {
                     </div>
                 </div>
             )}
+            {/* <p>
+                showing {size} page(s) of {isLoadingMore ? '...' : meals.length}{' '}
+                issue(s){' '}
+
+                <button
+                    type="button"
+                    disabled={isRefreshing}
+                    onClick={() => mutate()}>
+                    {isRefreshing ? 'refreshing...' : 'refresh'}
+                </button>
+                <button
+                    type="button"
+                    disabled={!size}
+                    onClick={() => setSize(0)}>
+                    clear
+                </button>
+            </p> */}
             <ul className={styles.list}>
-                {pageOfItems &&
-                    pageOfItems?.map((meal) => (
+                {meals &&
+                    meals.map((meal) => (
                         <ListItem
                             key={meal.id}
                             meal={meal}
@@ -71,7 +109,32 @@ export default function MealList() {
                         />
                     ))}
             </ul>
-            {pager && <Pagination pager={pager} setIndex={setIndex} />}
+            <nav className="d-flex justify-content-center">
+                <button
+                    className="btn btn-meal d-flex align-items-center justify-content-center"
+                    type="button"
+                    disabled={isLoadingMore || isReachingEnd}
+                    onClick={() => setSize(size + 1)}>
+                    {isLoadingMore ? (
+                        <>
+                            {' '}
+                            <span
+                                className="spinner-border me-3"
+                                role="status"
+                                aria-hidden="true"
+                            />
+                            {t('common:loading')}
+                            ...
+                        </>
+                    ) : isReachingEnd ? (
+                        t('common:no_more', { what: t('glossarymeal_plural') })
+                    ) : (
+                        t('common:load_more')
+                    )}
+                </button>
+            </nav>
+
+            {/* {pager && <Pagination pager={pager} setIndex={setIndex} />} */}
         </div>
     );
 }

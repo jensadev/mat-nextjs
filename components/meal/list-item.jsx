@@ -120,89 +120,80 @@ export default function ListItem({ meal, onUpdate }) {
         }
     };
     return (
-        <>
-            <li className={styles.listItem}>
-                <div className="d-flex">
-                    {mealIcon(meal.type)}
-                    <p>
-                        <Date
-                            classNames={`${styles.date}`}
-                            dateString={meal.date}
-                        />
-                        {meal.Dish.name}
-                    </p>
-                </div>
-                <div className="dropstart">
-                    <button
-                        className={`btn btn-icon ${styles.dropdownToggle}`}
-                        type="button"
-                        id="more"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <span className="material-icons-round">more_vert</span>
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="more">
-                        <li>
-                            <button
-                                type="submit"
-                                onClick={() =>
-                                    setIsEditMealVisible(!isEditMealVisible)
-                                }
-                                className={`btn btn-icon  ${styles.btn}`}>
-                                <span className="visually-hidden">
-                                    {t('common:edit')}
-                                </span>
-                                <span className="material-icons-round">
-                                    edit
-                                </span>
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="submit"
-                                onClick={openDeleteModal}
-                                className={`btn btn-icon  ${styles.btn}`}>
-                                <span className="visually-hidden">
-                                    {t('common:delete')}
-                                </span>
-                                <span className="material-icons-round">
-                                    delete
-                                </span>
-                            </button>
-                        </li>
-                    </ul>
-                    <ul className={styles.dropdownMenu} aria-labelledby="more">
-                        <li>
-                            <button
-                                type="submit"
-                                onClick={() =>
-                                    setIsEditMealVisible(!isEditMealVisible)
-                                }
-                                className={`btn btn-icon  ${styles.btn}`}>
-                                <span className="visually-hidden">
-                                    {t('common:edit')}
-                                </span>
-                                <span className="material-icons-round">
-                                    edit
-                                </span>
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="submit"
-                                onClick={openDeleteModal}
-                                className={`btn btn-icon  ${styles.btn}`}>
-                                <span className="visually-hidden">
-                                    {t('common:delete')}
-                                </span>
-                                <span className="material-icons-round">
-                                    delete
-                                </span>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+        <li className={styles.listItem}>
+            <div className="d-flex">
+                {mealIcon(meal.type)}
+                <p>
+                    <Date
+                        classNames={`${styles.date}`}
+                        dateString={meal.date}
+                    />
+                    {meal.Dish.name}
+                </p>
+            </div>
+            <div className="dropstart">
+                <button
+                    className={`btn btn-icon ${styles.dropdownToggle}`}
+                    type="button"
+                    id="more"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <span className="material-icons-round">more_vert</span>
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="more">
+                    <li>
+                        <button
+                            type="submit"
+                            onClick={() =>
+                                setIsEditMealVisible(!isEditMealVisible)
+                            }
+                            className={`btn btn-icon  ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:edit')}
+                            </span>
+                            <span className="material-icons-round">edit</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="submit"
+                            onClick={openDeleteModal}
+                            className={`btn btn-icon  ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:delete')}
+                            </span>
+                            <span className="material-icons-round">delete</span>
+                        </button>
+                    </li>
+                </ul>
+                <ul className={styles.dropdownMenu} aria-labelledby="more">
+                    <li>
+                        <button
+                            type="submit"
+                            onClick={() =>
+                                setIsEditMealVisible(!isEditMealVisible)
+                            }
+                            className={`btn btn-icon  ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:edit')}
+                            </span>
+                            <span className="material-icons-round">edit</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="submit"
+                            onClick={openDeleteModal}
+                            className={`btn btn-icon  ${styles.btn}`}>
+                            <span className="visually-hidden">
+                                {t('common:delete')}
+                            </span>
+                            <span className="material-icons-round">delete</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
             <Modal
                 isOpen={deleteModalIsOpen}
                 onRequestClose={closeDeleteModal}
@@ -261,6 +252,6 @@ export default function ListItem({ meal, onUpdate }) {
                     )}
                 </motion.div>
             </AnimatePresence>
-        </>
+        </li>
     );
 }
