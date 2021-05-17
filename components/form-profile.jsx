@@ -2,7 +2,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useToasts } from 'react-toast-notifications';
 import useSWR, { mutate } from 'swr';
@@ -14,19 +14,12 @@ import Loading from './loading';
 
 export default function ProfileForm() {
     const [isLoading, setLoading] = useState(false);
-    const { t } = useTranslation(['common', 'glossary']);
+    const { t } = useTranslation(['common', 'glossary', 'validation']);
     const { addToast } = useToasts();
     const router = useRouter();
     const { currentUser } = useAppContext();
 
     const { data, error } = useSWR(`${process.env.apiUrl}/users`, fetcher);
-
-    const defaultValues = {
-        family: currentUser.family,
-        email: currentUser.email,
-        public: currentUser.public,
-        bio: currentUser.bio
-    };
 
     const {
         register,
@@ -34,7 +27,16 @@ export default function ProfileForm() {
         reset,
         setError,
         formState: { errors, dirtyFields }
-    } = useForm({ defaultValues });
+    } = useForm({});
+
+    useEffect(() => {
+        reset({
+            family: data?.user.family,
+            email: data?.user.email,
+            public: data?.user.public,
+            bio: data?.user.bio
+        });
+    }, [data, reset]);
 
     if (error) {
         return addToast(
@@ -96,7 +98,8 @@ export default function ProfileForm() {
                     currentUser.bio = response.data.updatedUser.bio;
                 }
                 localStorage.setItem('user', JSON.stringify(currentUser));
-                mutate('user', response.data.updatedUser);
+                const user = await mutate('user', response.data.updatedUser);
+                window.localStorage.setItem('user', JSON.stringify(user));
                 reset(response.data.updatedUser);
             }
         } catch (err) {
@@ -153,15 +156,20 @@ export default function ProfileForm() {
                             {t('common:email')}
                         </label>
                         <input
+                            id="email"
                             type="text"
                             name="email"
+                            aria-invalid={errors.user?.email ? 'true' : 'false'}
+                            className={`w-100 ${
+                                errors.user?.email ? 'invalid' : ''
+                            }`}
                             placeholder="Email"
                             {...register('email', {
                                 required: true,
                                 pattern: /^\S+@\S+$/i
                             })}
                         />
-                        <ErrorMessage errors={errors} name="email" />
+                        <ErrorMessage errors={errors} name="user.email" />
                     </fieldset>
                     <fieldset className="mb-3">
                         <p>{t('glossary:profile_page.account_bio')}</p>
@@ -173,10 +181,23 @@ export default function ProfileForm() {
                         <textarea
                             type="text"
                             name="bio"
+                            aria-invalid={errors.bio ? 'true' : 'false'}
+                            className={`w-100 ${errors.bio ? 'invalid' : ''}`}
                             placeholder="Bio"
-                            {...register('bio', {})}
+                            {...register('bio', {
+                                maxLength: {
+                                    value: 255,
+                                    message: t('validation:max', { num: 255 })
+                                }
+                            })}
                         />
-                        <ErrorMessage errors={errors} name="bio" />
+                        <ErrorMessage
+                            errors={errors}
+                            name="bio"
+                            render={({ message }) => (
+                                <p className="text-invalid">{message}</p>
+                            )}
+                        />
                     </fieldset>
                     <button
                         type="submit"

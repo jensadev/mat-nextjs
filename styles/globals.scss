@@ -329,6 +329,10 @@ fieldset {
   border-color: $red !important;
 }
 
+.text-invalid {
+  color: $red !important;
+}
+
 .btn-clear {
   @include btn-outline($gray, $white, $sand)
 }
