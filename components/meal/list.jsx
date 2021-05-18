@@ -30,6 +30,7 @@ export default function MealList() {
     // let { pager, pageOfItems } = data || false;
 
     const meals = data ? [].concat(...data) : [];
+
     const isLoadingInitialData = !data && !error;
     const isLoadingMore =
         isLoadingInitialData ||
@@ -100,14 +101,21 @@ export default function MealList() {
                 </button>
             </p> */}
             <ul className={styles.list}>
-                {meals &&
+                {meals.length > 0 ? (
                     meals.map((meal) => (
                         <ListItem
                             key={meal.id}
                             meal={meal}
                             onUpdate={onUpdate}
                         />
-                    ))}
+                    ))
+                ) : (
+                    <li>
+                        {t('common:no_what_yet', {
+                            what: t('glossary:meal_plural')
+                        })}
+                    </li>
+                )}
             </ul>
             <nav className="d-flex justify-content-center">
                 <button

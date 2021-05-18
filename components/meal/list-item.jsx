@@ -58,6 +58,7 @@ export default function ListItem({ meal, onUpdate }) {
                 addToast(t('common:deleted', { what: t('glossary:meal') }), {
                     appearance: 'success'
                 });
+
                 onUpdate();
                 setDeleteModalIsOpen(false);
             }
