@@ -76,7 +76,10 @@ export default function ListItem({ meal, onUpdate }) {
         switch (type) {
             case 1:
                 return (
-                    <div className="position-relative me-3">
+                    <div
+                        aria-hidden="true"
+                        tabIndex="-1"
+                        className="position-relative me-3">
                         <span className={styles.breakfast}>
                             {t('glossary:breakfast')[0]}
                         </span>
@@ -90,7 +93,10 @@ export default function ListItem({ meal, onUpdate }) {
                 );
             case 2:
                 return (
-                    <div className="position-relative me-3">
+                    <div
+                        aria-hidden="true"
+                        tabIndex="-1"
+                        className="position-relative me-3">
                         <span className={styles.lunch}>
                             {t('glossary:lunch')[0]}
                         </span>
@@ -104,7 +110,10 @@ export default function ListItem({ meal, onUpdate }) {
                 );
             case 3:
                 return (
-                    <div className="position-relative me-3">
+                    <div
+                        aria-hidden="true"
+                        tabIndex="-1"
+                        className="position-relative me-3">
                         <span className={styles.dinner}>
                             {t('glossary:dinner')[0]}
                         </span>
@@ -139,6 +148,9 @@ export default function ListItem({ meal, onUpdate }) {
                     id="more"
                     data-bs-toggle="dropdown"
                     aria-expanded="false">
+                    <span className="visually-hidden">
+                        {t('common:edit_dropdown')}
+                    </span>
                     <span className="material-icons-round">more_vert</span>
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="more">

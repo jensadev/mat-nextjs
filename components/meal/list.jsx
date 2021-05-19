@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next';
+import { useEffect, useRef, useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 import { useSWRInfinite } from 'swr';
 
@@ -10,7 +11,7 @@ import styles from './meal.module.scss';
 const PAGE_SIZE = 7;
 
 export default function MealList() {
-    // const [pageIndex, setPageIndex] = useState(1);
+    const [pageIndex, setPageIndex] = useState(1);
     const { addToast } = useToasts();
     const { t } = useTranslation(['common', 'glossary']);
     const { currentUser, updated, toggleUpdate } = useAppContext();
@@ -18,16 +19,12 @@ export default function MealList() {
     //     `${process.env.apiUrl}/meals?page=${pageIndex}`,
     //     fetcher
     // );
-
+    const loader = useRef(null);
     const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
         (index) =>
             `${process.env.apiUrl}/meals/list?size=${PAGE_SIZE}&page=${index}`,
         fetcher
     );
-
-    // console.log(size);
-
-    // let { pager, pageOfItems } = data || false;
 
     const meals = data ? [].concat(...data) : [];
 
@@ -39,6 +36,27 @@ export default function MealList() {
     const isReachingEnd =
         isEmpty || (data && data[data.length - 1]?.length < PAGE_SIZE);
     const isRefreshing = isValidating && data && data.length === size;
+
+    const handleObserver = (entities) => {
+        const target = entities[0];
+        if (target.isIntersecting) {
+            loader.current.click();
+        }
+    };
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '20px',
+            threshold: 1.0
+        };
+        // initialize IntersectionObserver
+        // and attaching to Load More div
+        const observer = new IntersectionObserver(handleObserver, options);
+        if (loader.current) {
+            observer.observe(loader.current);
+        }
+    }, []);
 
     if (error) {
         return addToast(
@@ -119,10 +137,13 @@ export default function MealList() {
             </ul>
             <nav className="d-flex justify-content-center">
                 <button
+                    ref={loader}
                     className="btn btn-meal d-flex align-items-center justify-content-center"
                     type="button"
                     disabled={isLoadingMore || isReachingEnd}
-                    onClick={() => setSize(size + 1)}>
+                    onClick={() => {
+                        setSize(size + 1);
+                    }}>
                     {isLoadingMore ? (
                         <>
                             {' '}
