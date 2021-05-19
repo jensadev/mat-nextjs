@@ -146,7 +146,6 @@ export default function MealList() {
                     }}>
                     {isLoadingMore ? (
                         <>
-                            {' '}
                             <span
                                 className="spinner-border me-3"
                                 role="status"
