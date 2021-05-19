@@ -31,7 +31,7 @@ export default function AllDishes() {
     };
 
     return (
-        <div className="col-md-6">
+        <div className="col">
             {!data && (
                 <div className="position-absolute top-50 start-50 translate-middle">
                     <div

@@ -9,7 +9,10 @@ import ListItem from './list-item';
 export default function TopDishes() {
     const { t } = useTranslation(['common', 'glossary']);
     const { addToast } = useToasts();
-    const { data, error } = useSWR(`${process.env.apiUrl}/dishes/top`, fetcher);
+    const { data, error } = useSWR(
+        `${process.env.apiUrl}/dishes/top?limit=5`,
+        fetcher
+    );
 
     if (error) {
         return addToast(

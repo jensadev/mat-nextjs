@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import AllDishes from '../components/dish/all';
+import SuggestDish from '../components/dish/suggest';
 import TopDishes from '../components/dish/top';
 import Layout, { siteTitle } from '../components/layout';
 import Maybe from '../components/maybe';
@@ -52,6 +53,9 @@ export default function Dishes() {
                     <div className="container my-3">
                         <div className="row">
                             <TopDishes />
+                            <SuggestDish />
+                        </div>
+                        <div className="row">
                             <AllDishes />
                         </div>
                     </div>
