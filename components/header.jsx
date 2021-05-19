@@ -72,7 +72,7 @@ export default function Header() {
                                 setIsAddMealVisible(!isAddMealVisible);
                                 hideHint();
                             }}
-                            className={`btn ${styles.btnAdd}`}>
+                            className={`btn btn-icon ${styles.btnAdd}`}>
                             <span className="visually-hidden">
                                 {t('common:add', {
                                     what: t('glossary:meal')
@@ -137,10 +137,10 @@ export default function Header() {
                                         pages.map((page) =>
                                             router.pathname.replace('/', '') !==
                                             page ? (
-                                                <li className="ps-3" key={page}>
+                                                <li key={page}>
                                                     <Link href={`/${page}`}>
                                                         <a
-                                                            className={`link-${page}`}>
+                                                            className={`link-${page} px-3`}>
                                                             {t(
                                                                 `glossary:${page}`
                                                             )}
