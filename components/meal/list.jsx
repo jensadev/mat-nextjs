@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useToasts } from 'react-toast-notifications';
 import { useSWRInfinite } from 'swr';
 
@@ -11,10 +11,10 @@ import styles from './meal.module.scss';
 const PAGE_SIZE = 7;
 
 export default function MealList() {
-    const [pageIndex, setPageIndex] = useState(1);
+    // const [pageIndex, setPageIndex] = useState(1);
     const { addToast } = useToasts();
     const { t } = useTranslation(['common', 'glossary']);
-    const { currentUser, updated, toggleUpdate } = useAppContext();
+    const { updated, toggleUpdate } = useAppContext();
     // const { data, error } = useSWR(
     //     `${process.env.apiUrl}/meals?page=${pageIndex}`,
     //     fetcher
@@ -89,18 +89,19 @@ export default function MealList() {
 
     return (
         <div className="w-100">
-            {!data && (
-                <div className="position-absolute top-50 start-50 translate-middle">
-                    <div
-                        className="spinner-border"
-                        style={{ width: '4rem', height: '4rem' }}
-                        role="status">
-                        <span className="visually-hidden">
-                            {t('common:loading')}...
-                        </span>
+            {!data ||
+                (isLoadingMore && (
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                        <div
+                            className="spinner-border"
+                            style={{ width: '4rem', height: '4rem' }}
+                            role="status">
+                            <span className="visually-hidden">
+                                {t('common:loading')}...
+                            </span>
+                        </div>
                     </div>
-                </div>
-            )}
+                ))}
             {/* <p>
                 showing {size} page(s) of {isLoadingMore ? '...' : meals.length}{' '}
                 issue(s){' '}

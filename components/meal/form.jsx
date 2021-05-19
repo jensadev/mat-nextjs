@@ -95,7 +95,7 @@ export default function MealForm({ edit, onUpdated }) {
                         }
                     );
                     onUpdated();
-                    edit = {};
+                    // edit = {};
                     reset(defaultValues);
                 }
             } catch (err) {
