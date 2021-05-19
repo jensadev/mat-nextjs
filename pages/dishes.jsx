@@ -51,7 +51,7 @@ export default function Dishes() {
                         </div>
                     </motion.header>
                     <div className="container my-3">
-                        <div className="row">
+                        <div className="row gx-5">
                             <TopDishes />
                             <SuggestDish />
                         </div>

@@ -4,7 +4,7 @@ import { useToasts } from 'react-toast-notifications';
 import { useSWRInfinite } from 'swr';
 
 import fetcher from '../../lib/utils/fetcher';
-import Pagination from '../pagination';
+// import Pagination from '../pagination';
 import styles from './dish.module.scss';
 import ListItem from './list-item';
 
@@ -66,7 +66,7 @@ export default function AllDishes() {
     // };
 
     return (
-        <div className="col">
+        <div className="col my-3">
             {!data ||
                 (isLoadingMore && (
                     <div className="position-absolute top-50 start-50 translate-middle">
@@ -80,6 +80,9 @@ export default function AllDishes() {
                         </div>
                     </div>
                 ))}
+            <h2 className="hero-h2-nolink text-dark">
+                {t('glossary:show_all', { what: t('glossary:dish_plural') })}
+            </h2>
             <ul className={styles.list}>
                 {dishes &&
                     dishes?.map((dish) => (
@@ -89,7 +92,7 @@ export default function AllDishes() {
             <nav className="d-flex justify-content-center">
                 <button
                     ref={loader}
-                    className="btn btn-meal d-flex align-items-center justify-content-center"
+                    className="btn btn-dish d-flex align-items-center justify-content-center"
                     type="button"
                     disabled={isLoadingMore || isReachingEnd}
                     onClick={() => {
@@ -97,7 +100,6 @@ export default function AllDishes() {
                     }}>
                     {isLoadingMore ? (
                         <>
-                            {' '}
                             <span
                                 className="spinner-border me-3"
                                 role="status"
@@ -109,9 +111,14 @@ export default function AllDishes() {
                     ) : isReachingEnd ? (
                         t('common:no_more', { what: t('glossary:dish_plural') })
                     ) : (
-                        t('common:load_more', {
-                            what: t('glossary:dish_plural')
-                        })
+                        <>
+                            {t('common:load_more', {
+                                what: t('glossary:dish_plural')
+                            })}
+                            <span className="material-icons-round md-48">
+                                read_more
+                            </span>
+                        </>
                     )}
                 </button>
             </nav>
