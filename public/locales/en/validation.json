@@ -1,5 +1,6 @@
 {
     "something_went_wrong": "oops, something went wrong",
     "what_error": "{{what}} failed, please try again",
-    "what_success": "{{what}} success"
+    "what_success": "{{what}} success",
+    "max": "max {{num}} characters"
 }

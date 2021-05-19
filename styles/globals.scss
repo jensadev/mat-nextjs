@@ -21,7 +21,7 @@ h1, .h1 {
 }
 h2, .h2 {
   font-size: $font-size-lg;
-  font-weight: 500;
+  font-weight: 700;
 }
 h3, .h3 {
   font-size: $font-size-base;
@@ -77,6 +77,10 @@ fieldset {
 .btn-icon {
   background-color: transparent;
   border: 0;
+  &:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 25%) !important;
+    box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 25%) !important;
+  }
 }
 
 .material-icons-round {
@@ -125,6 +129,11 @@ fieldset {
     opacity: 1;
     width: 100%;
   }
+  &:focus-visible {
+    outline: none;
+    -webkit-box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 25%) !important;
+    box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 25%) !important;
+  }
 }
 
 .hero-h1 {
@@ -141,6 +150,16 @@ fieldset {
   display: inline-block;
   @media (max-width: map-get($grid-breakpoints, md)) {
     font-size: $font-size-xl;
+  }
+}
+
+.hero-h2-nolink {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $white;
+  display: inline-block;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-base;
   }
 }
 
@@ -223,6 +242,10 @@ fieldset {
 
 .text-muted {
   color: $light-gray !important;
+}
+
+.text-dark {
+  color: $black !important;
 }
 
 .meal, .dish, .about, .profile {
@@ -329,6 +352,10 @@ fieldset {
   border-color: $red !important;
 }
 
+.text-invalid {
+  color: $red !important;
+}
+
 .btn-clear {
   @include btn-outline($gray, $white, $sand)
 }
@@ -360,6 +387,11 @@ fieldset {
 
 .btn-delete {
   @include btn-outline($black, $green, $green);
+  width: 38.2%;
+}
+
+.btn-meal {
+  @include btn-outline($black, $white, $meal);
   width: 38.2%;
 }
 

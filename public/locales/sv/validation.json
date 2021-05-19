@@ -1,5 +1,6 @@
 {
     "something_went_wrong": "tusan, något gick snett",
     "what_error": "{{what}} misslyckades, försök igen",
-    "what_success": "{{what}} lyckades"
+    "what_success": "{{what}} lyckades",
+    "max": "max {{num}} tecken"
 }
