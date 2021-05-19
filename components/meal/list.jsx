@@ -22,12 +22,11 @@ export default function MealList() {
     const loader = useRef(null);
     const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
         (index) =>
-            `${process.env.apiUrl}/meals/list?size=${PAGE_SIZE}&page=${index}`,
+            `${process.env.apiUrl}/meals?size=${PAGE_SIZE}&page=${index}`,
         fetcher
     );
 
     const meals = data ? [].concat(...data) : [];
-
     const isLoadingInitialData = !data && !error;
     const isLoadingMore =
         isLoadingInitialData ||
@@ -157,9 +156,11 @@ export default function MealList() {
                             ...
                         </>
                     ) : isReachingEnd ? (
-                        t('common:no_more', { what: t('glossarymeal_plural') })
+                        t('common:no_more', { what: t('glossary:meal_plural') })
                     ) : (
-                        t('common:load_more')
+                        t('common:load_more', {
+                            what: t('glossary:meal_plural')
+                        })
                     )}
                 </button>
             </nav>
