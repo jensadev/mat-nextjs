@@ -56,27 +56,36 @@ export default function Home() {
                             className="bg-meal meal pointer">
                             <div className="row-calc container py-5">
                                 <h1 className="hero-h1 pt-5">
-                                    {t('glossary:meal_plural')}
+                                    {t('glossary:meal', { count: 0 })}
                                 </h1>
                                 <p className="lead">
                                     {currentUser && currentUser.meals
                                         ? t('glossary:have_logged', {
                                               who: currentUser?.family
-                                                  ? t('glossary:yous')
-                                                  : t('glossary:you'),
-                                              num: currentUser?.meals || '',
-                                              what:
-                                                  currentUser?.meals > 1
-                                                      ? t(
-                                                            'glossary:meal_plural'
-                                                        )
-                                                      : t('glossary:meal')
+                                                  ? t('glossary:you', {
+                                                        count: 0
+                                                    })
+                                                  : t('glossary:you', {
+                                                        count: 1
+                                                    }),
+                                              what: t(
+                                                  'glossary:mealWithCount',
+                                                  {
+                                                      count: currentUser?.meals
+                                                  }
+                                              )
                                           })
                                         : t('glossary:have_log', {
                                               who: currentUser?.family
-                                                  ? t('glossary:yoursss')
-                                                  : t('glossary:yours'),
-                                              what: t('glossary:meals')
+                                                  ? t('glossary:you', {
+                                                        count: 2
+                                                    })
+                                                  : t('glossary:you', {
+                                                        count: 1
+                                                    }),
+                                              what: t('glossary:meal', {
+                                                  count: 0
+                                              })
                                           })}
                                 </p>
                             </div>
@@ -88,7 +97,7 @@ export default function Home() {
                             className="bg-dish dish pointer">
                             <div className="row-calc container py-5">
                                 <h1 className="hero-h1">
-                                    {t('glossary:dish_plural')}
+                                    {t('glossary:dish', { count: 0 })}
                                 </h1>
                                 <p className="lead">
                                     {t('glossary:users_dishes')}
@@ -103,8 +112,17 @@ export default function Home() {
                             <div className="row-calc container py-5 mb-md-3">
                                 <h1 className="hero-h1">
                                     {currentUser && currentUser.family
-                                        ? t('common:our_page')
-                                        : t('common:my_page')}
+                                        ? t('glossary:yours_what', {
+                                              what: t('glossary:page', {
+                                                  count: 1
+                                              })
+                                          })
+                                        : t('glossary:my_what', {
+                                              count: 1,
+                                              what: t('glossary:page', {
+                                                  count: 1
+                                              })
+                                          })}
                                 </h1>
                                 <p className="lead pb-5">
                                     {t('glossary:about_profile')}
@@ -117,7 +135,7 @@ export default function Home() {
                     <motion.div variants={item} className="bg-meal meal">
                         <div className="row-calc container py-5">
                             <h1 className="hero-h1-nolink pt-5">
-                                {t('glossary:meal_plural')}
+                                {t('glossary:meal', { count: 0 })}
                             </h1>
                             <p className="lead">{t('glossary:about_meals')}</p>
                         </div>
@@ -125,7 +143,7 @@ export default function Home() {
                     <motion.div variants={item} className="bg-dish dish">
                         <div className="row-calc container py-5">
                             <h1 className="hero-h1-nolink">
-                                {t('glossary:dish_plural')}
+                                {t('glossary:dish', { count: 0 })}
                             </h1>
                             <p className="lead">{t('glossary:about_dishes')}</p>
                         </div>

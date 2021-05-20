@@ -32,8 +32,16 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                 router.locale
             );
             if (response.status !== 200) {
-                console.table(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
+                addToast(
+                    t([
+                        `validation:error.${response.status}`,
+                        'validation:error.unspecific'
+                    ]),
+                    {
+                        appearance: 'error'
+                    }
+                );
+                Object.keys(response.data.errors).forEach((key) => {
                     setError(key, {
                         type: 'manual',
                         message: response.data.errors[key][0]
@@ -43,7 +51,9 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
 
             if (response.data?.user) {
                 addToast(
-                    t('validation:what_success', { what: t('common:login') }),
+                    t('validation:what_success', {
+                        what: t('common:the_login')
+                    }),
                     {
                         appearance: 'success'
                     }
@@ -56,9 +66,12 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                 Router.push('/');
             }
         } catch (error) {
-            addToast(t('validation:what_error', { what: t('common:login') }), {
-                appearance: 'error'
-            });
+            addToast(
+                t('validation:what_error', { what: t('common:the_login') }),
+                {
+                    appearance: 'error'
+                }
+            );
             console.error(error);
         } finally {
             setLoading(false);
@@ -92,7 +105,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                     }}>
                     <fieldset className="mb-3">
                         <label htmlFor="email" className="visually-hidden">
-                            {`${t('common:email')}`}
+                            {`${t('glossary:email')}`}
                         </label>
                         <input
                             id="email"
@@ -100,7 +113,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                             aria-invalid={errors.email ? 'true' : 'false'}
                             className={`w-100 ${errors.email ? 'invalid' : ''}`}
                             type="text"
-                            placeholder={`${t('common:email')}`}
+                            placeholder={`${t('glossary:email')}`}
                             {...register('email', {
                                 required: true,
                                 pattern: /^\S+@\S+$/i
@@ -110,7 +123,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                     </fieldset>
                     <fieldset className="mb-3">
                         <label htmlFor="password" className="visually-hidden">
-                            {`${t('common:password')}`}
+                            {`${t('glossary:password')}`}
                         </label>
                         <input
                             id="password"
@@ -120,7 +133,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                                 errors.password ? 'invalid' : ''
                             }`}
                             type="password"
-                            placeholder={`${t('common:password')}`}
+                            placeholder={`${t('glossary:password')}`}
                             {...register('password', { required: true })}
                         />
                         <ErrorMessage errors={errors} name="password" />

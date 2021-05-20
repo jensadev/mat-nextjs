@@ -48,7 +48,11 @@ export default function SuggestDish() {
                     exit={{ x: -300, opacity: 0 }}>
                     {t('glossary:suggest_what', { what: t('glossary:dish') })}
                 </motion.h2>
-                {suggestion && <h3 className="h2">{suggestion}</h3>}
+                {suggestion && (
+                    <h3 className={`h2 ${styles.textSuggestion}`}>
+                        {suggestion}
+                    </h3>
+                )}
                 <button
                     className="mt-auto btn btn-suggest d-flex align-items-center justify-content-center"
                     type="button"

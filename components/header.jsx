@@ -18,7 +18,7 @@ const MealForm = dynamic(() => import('./meal/form'));
 
 export default function Header() {
     const router = useRouter();
-    const { isLoggedIn } = useAppContext();
+    const { currentUser, isLoggedIn } = useAppContext();
     const [visibleHint, setVisibleHint] = useState(false);
     const { t } = useTranslation(['glossary', 'common']);
     const pages = ['meals', 'dishes', 'profile'];
@@ -141,9 +141,52 @@ export default function Header() {
                                                     <Link href={`/${page}`}>
                                                         <a
                                                             className={`link-${page} px-3`}>
-                                                            {t(
-                                                                `glossary:${page}`
-                                                            )}
+                                                            {page &&
+                                                            page === 'meals'
+                                                                ? t(
+                                                                      'glossary:meal',
+                                                                      {
+                                                                          count: 0
+                                                                      }
+                                                                  )
+                                                                : ''}
+                                                            {page &&
+                                                            page === 'dishes'
+                                                                ? t(
+                                                                      'glossary:dish',
+                                                                      {
+                                                                          count: 0
+                                                                      }
+                                                                  )
+                                                                : ''}
+                                                            {page &&
+                                                            page === 'profile'
+                                                                ? currentUser &&
+                                                                  currentUser.family
+                                                                    ? t(
+                                                                          'glossary:yours_what',
+                                                                          {
+                                                                              what: t(
+                                                                                  'glossary:page',
+                                                                                  {
+                                                                                      count: 1
+                                                                                  }
+                                                                              )
+                                                                          }
+                                                                      )
+                                                                    : t(
+                                                                          'glossary:my_what',
+                                                                          {
+                                                                              count: 1,
+                                                                              what: t(
+                                                                                  'glossary:page',
+                                                                                  {
+                                                                                      count: 1
+                                                                                  }
+                                                                              )
+                                                                          }
+                                                                      )
+                                                                : ''}
                                                         </a>
                                                     </Link>
                                                 </li>
@@ -160,23 +203,23 @@ export default function Header() {
                             <div className="position-relative">
                                 <button
                                     type="button"
-                                    onClick={(e) =>
+                                    onClick={() =>
                                         setIsLoginVisible(!isLoginVisible)
                                     }
                                     className="btn link-header">
-                                    {t('common:login')}
+                                    {t('glossary:login')}
                                 </button>
                             </div>
                             <div className="position-relative">
                                 <button
                                     type="button"
-                                    onClick={(e) =>
+                                    onClick={() =>
                                         setIsRegistrationVisible(
                                             !isRegistrationVisible
                                         )
                                     }
                                     className="btn link-header">
-                                    {t('common:register')}
+                                    {t('glossary:register')}
                                 </button>
                             </div>
                         </div>

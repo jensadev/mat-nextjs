@@ -30,8 +30,17 @@ export default function Profile() {
             <Head>
                 <title>{`${
                     currentUser && currentUser.family
-                        ? t('common:our_page')
-                        : t('common:my_page')
+                        ? t('glossary:yours_what', {
+                              what: t('glossary:page', {
+                                  count: 1
+                              })
+                          })
+                        : t('glossary:my_what', {
+                              count: 1,
+                              what: t('glossary:page', {
+                                  count: 1
+                              })
+                          })
                 } - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
@@ -44,8 +53,17 @@ export default function Profile() {
                         <div className="container">
                             <h1 className="page-heading">
                                 {currentUser && currentUser.family
-                                    ? t('common:our_page')
-                                    : t('common:my_page')}
+                                    ? t('glossary:yours_what', {
+                                          what: t('glossary:page', {
+                                              count: 1
+                                          })
+                                      })
+                                    : t('glossary:my_what', {
+                                          count: 1,
+                                          what: t('glossary:page', {
+                                              count: 1
+                                          })
+                                      })}
                             </h1>
                         </div>
                     </motion.header>

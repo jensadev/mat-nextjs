@@ -55,15 +55,12 @@ export default function AllDishes() {
     if (error) {
         return addToast(
             t('common:cant_load', {
-                what: `${t('common:recent')} ${t('glossary:dish_plural')}`
+                what: `${t('common:recent')} ${t('glossary:dish', {
+                    count: 0
+                })}`
             })
         );
     }
-
-    // const { pager, pageOfItems } = data || false;
-    // const setIndex = (page) => {
-    //     setPageIndex(page);
-    // };
 
     return (
         <div className="col my-3">
@@ -81,7 +78,9 @@ export default function AllDishes() {
                     </div>
                 ))}
             <h2 className="hero-h2-nolink text-dark">
-                {t('glossary:show_all', { what: t('glossary:dish_plural') })}
+                {t('glossary:show_all', {
+                    what: t('glossary:dish', { count: 0 })
+                })}
             </h2>
             <ul className={styles.list}>
                 {dishes &&
@@ -109,11 +108,13 @@ export default function AllDishes() {
                             ...
                         </>
                     ) : isReachingEnd ? (
-                        t('common:no_more', { what: t('glossary:dish_plural') })
+                        t('common:no_more', {
+                            what: t('glossary:dish', { count: 0 })
+                        })
                     ) : (
                         <>
                             {t('common:load_more', {
-                                what: t('glossary:dish_plural')
+                                what: t('glossary:dish', { count: 0 })
                             })}
                             <span className="material-icons-round md-48">
                                 read_more
@@ -122,7 +123,6 @@ export default function AllDishes() {
                     )}
                 </button>
             </nav>
-            {/* {pager && <Pagination pager={pager} setIndex={setIndex} />} */}
         </div>
     );
 }

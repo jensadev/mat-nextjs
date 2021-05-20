@@ -28,7 +28,9 @@ export default function Meals() {
     return (
         <Layout meals>
             <Head>
-                <title>{`${t('glossary:meals')} - ${siteTitle}`}</title>
+                <title>{`${t('glossary:meal', {
+                    count: 0
+                })} - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
@@ -39,13 +41,15 @@ export default function Meals() {
                         className="page-header bg-meal">
                         <div className="container">
                             <h1 className="page-heading">
-                                {t('glossary:list_of', {
-                                    whos:
-                                        currentUser && currentUser.family
-                                            ? t('glossary:era')
-                                            : t('glossary:dina'),
-                                    what: t('glossary:meal_plural')
-                                })}
+                                {currentUser && currentUser.family
+                                    ? t('glossary:our_what', {
+                                          count: 0,
+                                          what: t('meal', { count: 0 })
+                                      })
+                                    : t('glossary:my_what', {
+                                          count: 0,
+                                          what: t('meal', { count: 0 })
+                                      })}
                             </h1>
                         </div>
                     </motion.header>

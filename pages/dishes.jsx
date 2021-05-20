@@ -29,7 +29,9 @@ export default function Dishes() {
     return (
         <Layout dishes>
             <Head>
-                <title>{`${t('glossary:dishes')} - ${siteTitle}`}</title>
+                <title>{`${t('glossary:dish', {
+                    count: 0
+                })} - ${siteTitle}`}</title>
             </Head>
             <main className="d-flex flex-column">
                 <Maybe test={isLoggedIn}>
@@ -40,18 +42,20 @@ export default function Dishes() {
                         className="page-header bg-dish">
                         <div className="container">
                             <h1 className="page-heading">
-                                {t('glossary:list_of', {
-                                    whos:
-                                        currentUser && currentUser.family
-                                            ? t('glossary:era')
-                                            : t('glossary:dina'),
-                                    what: t('glossary:dish_plural')
-                                })}
+                                {currentUser && currentUser.family
+                                    ? t('glossary:our_what', {
+                                          count: 0,
+                                          what: t('dish', { count: 0 })
+                                      })
+                                    : t('glossary:my_what', {
+                                          count: 0,
+                                          what: t('dish', { count: 0 })
+                                      })}
                             </h1>
                         </div>
                     </motion.header>
                     <div className="container my-3">
-                        <div className="row gx-5">
+                        <div className="row">
                             <TopDishes />
                             <SuggestDish />
                         </div>

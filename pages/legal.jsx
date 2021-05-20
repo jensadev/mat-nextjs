@@ -43,7 +43,7 @@ export default function Legal() {
                     <p className="lead">
                         {t('glossary:legal_page.cookie_lead')}
                     </p>
-                    <h2>{t('common:cookie_plural')}</h2>
+                    <h2>{t('glossary:cookie', { count: 0 })}</h2>
                     <p>{t('glossary:legal_page.cookie_text_1')}</p>
                     <p>{t('glossary:legal_page.cookie_text_2')}</p>
                     <p>{t('glossary:legal_page.cookie_text_3')}</p>

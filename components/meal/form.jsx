@@ -59,7 +59,7 @@ export default function MealForm({ edit, onUpdated }) {
 
     if (error) {
         return addToast(
-            t('common:cant_load', { what: t('glossary:dish_plural') }),
+            t('common:cant_load', { what: t('glossary:dish', { count: 0 }) }),
             {
                 appearance: 'error'
             }

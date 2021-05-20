@@ -10,6 +10,7 @@ import useSWR, { mutate } from 'swr';
 import { useAppContext } from '../context/app-context';
 import { update } from '../lib/api/user';
 import fetcher from '../lib/utils/fetcher';
+import styles from './form.module.scss';
 import Loading from './loading';
 
 export default function ProfileForm() {
@@ -41,7 +42,7 @@ export default function ProfileForm() {
     if (error) {
         return addToast(
             t('common:cant_load', {
-                what: t('common:user')
+                what: t('glossary:user')
             })
         );
     }
@@ -70,11 +71,16 @@ export default function ProfileForm() {
 
             const response = await update(updateValues, router.locale);
             if (response.status !== 200) {
-                // addToast(t('validation:something_went_wrong'), {
-                //     appearance: 'error'
-                // });
-                console.log(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
+                addToast(
+                    t([
+                        `validation:error.${response.status}`,
+                        'validation:error.unspecific'
+                    ]),
+                    {
+                        appearance: 'error'
+                    }
+                );
+                Object.keys(response.data.errors).forEach((key) => {
                     setError(key, {
                         type: 'manual',
                         message: response.data.errors[key][0]
@@ -103,9 +109,14 @@ export default function ProfileForm() {
                 reset(response.data.updatedUser);
             }
         } catch (err) {
-            addToast(t('validation:something_went_wrong'), {
-                appearance: 'error'
-            });
+            addToast(
+                t('validation:what_error', {
+                    what: t('glossary:registration')
+                }),
+                {
+                    appearance: 'error'
+                }
+            );
             console.error(err);
         } finally {
             setLoading(false);
@@ -124,36 +135,40 @@ export default function ProfileForm() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset className="mb-3 d-flex">
                         <p>{t('glossary:profile_page.account_family')}</p>
+                        <input
+                            id="family"
+                            className={styles.styledCheckbox}
+                            type="checkbox"
+                            name="family"
+                            {...register('family')}
+                        />
                         <label
                             htmlFor="family"
                             className="form-label visually-hidden">
                             {t('glossary:family')}
                         </label>
-                        <input
-                            type="checkbox"
-                            name="family"
-                            {...register('family')}
-                        />
                     </fieldset>
                     <fieldset className="mb-3 d-flex">
                         <p>{t('glossary:profile_page.account_public')}</p>
+                        <input
+                            id="public"
+                            className={styles.styledCheckbox}
+                            type="checkbox"
+                            name="public"
+                            {...register('public', {})}
+                        />
                         <label
                             htmlFor="public"
                             className="form-label visually-hidden">
                             {t('glossary:public')}
                         </label>
-                        <input
-                            type="checkbox"
-                            name="public"
-                            {...register('public', {})}
-                        />
                     </fieldset>
                     <fieldset className="mb-3">
                         <p>{t('glossary:profile_page.account_email')}</p>
                         <label
                             htmlFor="email"
                             className="form-label visually-hidden">
-                            {t('common:email')}
+                            {t('glossary:email')}
                         </label>
                         <input
                             id="email"

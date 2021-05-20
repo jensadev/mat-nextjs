@@ -36,8 +36,16 @@ export default function RegistrationForm({
                 router.locale
             );
             if (response.status !== 201) {
-                // console.table(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
+                addToast(
+                    t([
+                        `validation:error.${response.status}`,
+                        'validation:error.unspecific'
+                    ]),
+                    {
+                        appearance: 'error'
+                    }
+                );
+                Object.keys(response.data.errors).forEach((key) => {
                     setError(key, {
                         type: 'manual',
                         message: response.data.errors[key][0]
@@ -48,7 +56,7 @@ export default function RegistrationForm({
             if (response.data?.user) {
                 addToast(
                     t('validation:what_success', {
-                        what: t('common:registration')
+                        what: t('glossary:registration')
                     }),
                     { appearance: 'success' }
                 );
@@ -61,7 +69,9 @@ export default function RegistrationForm({
             }
         } catch (error) {
             addToast(
-                t('validation:what_error', { what: t('common:registration') }),
+                t('validation:what_error', {
+                    what: t('glossary:registration')
+                }),
                 {
                     appearance: 'error'
                 }
@@ -76,7 +86,7 @@ export default function RegistrationForm({
             <header className="">
                 <div className="container d-flex justify-content-between">
                     <h1 className={styles.formHeading}>
-                        {t('common:register')}
+                        {t('glossary:register')}
                     </h1>
                     <button
                         type="button"
@@ -102,7 +112,7 @@ export default function RegistrationForm({
                     }}>
                     <fieldset className="mb-3">
                         <label htmlFor="email" className="visually-hidden">
-                            {`${t('common:email')}*`}
+                            {`${t('glossary:email')}*`}
                         </label>
                         <input
                             id="email"
@@ -112,7 +122,7 @@ export default function RegistrationForm({
                                 errors.user?.email ? 'invalid' : ''
                             }`}
                             type="text"
-                            placeholder={`${t('common:email')}*`}
+                            placeholder={`${t('glossary:email')}*`}
                             {...register('email', {
                                 required: true,
                                 pattern: /^\S+@\S+$/i
@@ -122,7 +132,7 @@ export default function RegistrationForm({
                     </fieldset>
                     <fieldset className="mb-3">
                         <label htmlFor="password" className="visually-hidden">
-                            {`${t('common:password')}*`}
+                            {`${t('glossary:password')}*`}
                         </label>
                         <input
                             id="password"
@@ -134,7 +144,7 @@ export default function RegistrationForm({
                                 errors.user?.password ? 'invalid' : ''
                             }`}
                             type="password"
-                            placeholder={`${t('common:password')}*`}
+                            placeholder={`${t('glossary:password')}*`}
                             {...register('password', { required: true })}
                         />
                         <ErrorMessage errors={errors} name="user.password" />
@@ -143,7 +153,9 @@ export default function RegistrationForm({
                         <label
                             htmlFor="passwordConfirmation"
                             className="visually-hidden">
-                            {`${t('common:password_confirmation')}*`}
+                            {`${t('common:confirm_what', {
+                                what: t('glossary:password')
+                            })}*`}
                         </label>
                         <input
                             id="passwordConfirmation"
@@ -159,9 +171,9 @@ export default function RegistrationForm({
                                     : ''
                             }`}
                             type="password"
-                            placeholder={`${t(
-                                'common:password_confirmation'
-                            )}*`}
+                            placeholder={`${t('common:confirm_what', {
+                                what: t('glossary:password')
+                            })}*`}
                             {...register('passwordConfirmation', {
                                 required: true
                             })}
@@ -182,11 +194,11 @@ export default function RegistrationForm({
                                     role="status"
                                     aria-hidden="true"
                                 />
-                                {t('loading')}
+                                {t('common:loading')}
                                 ...
                             </>
                         ) : (
-                            t('register')
+                            t('glossary:register')
                         )}
                     </button>
                 </form>
