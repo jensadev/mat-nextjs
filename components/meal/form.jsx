@@ -99,7 +99,7 @@ export default function MealForm({ edit, onUpdated }) {
                     reset(defaultValues);
                 }
             } catch (err) {
-                addToast(t('validation:something_went_wrong'), {
+                addToast(t([`error.${err}`, 'error.unspecific']), {
                     appearance: 'error'
                 });
                 console.error(err);
@@ -133,7 +133,7 @@ export default function MealForm({ edit, onUpdated }) {
                     reset(defaultValues);
                 }
             } catch (err) {
-                addToast(t('validation:something_went_wrong'), {
+                addToast(t([`error.${err}`, 'error.unspecific']), {
                     appearance: 'error'
                 });
                 console.error(err);

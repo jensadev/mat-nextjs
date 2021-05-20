@@ -2,5 +2,12 @@
     "something_went_wrong": "tusan, något gick snett",
     "what_error": "{{what}} misslyckades, försök igen",
     "what_success": "{{what}} lyckades",
-    "max": "max {{num}} tecken"
+    "max": "max {{num}} tecken",
+    "error": {
+        "unspecific": "Something went wrong.",
+        "404": "The page was not found.",
+        "403": "That resource is forbidden.",
+        "401": "Unauthorized.",
+        "422": "Unprocessable Entity"
+      }
 }

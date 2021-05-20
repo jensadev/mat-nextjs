@@ -2,5 +2,12 @@
     "something_went_wrong": "oops, something went wrong",
     "what_error": "{{what}} failed, please try again",
     "what_success": "{{what}} success",
-    "max": "max {{num}} characters"
+    "max": "max {{num}} characters",
+    "error": {
+        "unspecific": "Something went wrong.",
+        "404": "The page was not found.",
+        "403": "That resource is forbidden.",
+        "401": "Unauthorized.",
+        "422": "Unprocessable Entity"
+      }
 }
