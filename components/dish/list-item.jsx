@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -45,14 +46,14 @@ export default function ListItem({ dish, count }) {
     // };
 
     return (
-        <li
+        <motion.li
+            initial={{ y: 300, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             className={`${styles.listItem} ${
                 count ? styles.noFlow : styles.listFlex
             }`}>
             {count && (
-                <span className={`${styles.badge} bg-dish me-2 me-md-3`}>
-                    {count}
-                </span>
+                <span className={`${styles.badge} me-2 me-md-3`}>{count}</span>
             )}
             {editDish ? (
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -145,6 +146,6 @@ export default function ListItem({ dish, count }) {
                     </button>
                 </div>
             </Modal>
-        </li>
+        </motion.li>
     );
 }

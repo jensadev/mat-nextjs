@@ -28,6 +28,7 @@
     "era": "our",
     "food": "food",
     "for": "for",
+    "get_what": "get {{what}}",
     "have_log": "see {{who}} recorded {{what}}",
     "have_logged": "{{who}} have recorded {{num}} {{what}}",
     "legal_page": {
@@ -54,8 +55,11 @@
         "account_public": "public",
         "your_email": "your email"
     },
+    "show_all": "show all {{what}}",
+    "suggest_what": "suggest a {{what}}",
     "the": "the",
     "to_eat": "will I eat",
+    "top_list": "top list",
     "users_dishes": "top list, suggestions and inspiration",
     "we": "we",
     "whos_what": "{{whos}} {{what}}",

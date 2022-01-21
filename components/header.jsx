@@ -72,7 +72,7 @@ export default function Header() {
                                 setIsAddMealVisible(!isAddMealVisible);
                                 hideHint();
                             }}
-                            className={`btn ${styles.btnAdd}`}>
+                            className={`btn btn-icon ${styles.btnAdd}`}>
                             <span className="visually-hidden">
                                 {t('common:add', {
                                     what: t('glossary:meal')
@@ -116,7 +116,9 @@ export default function Header() {
                     </div>
                 </div>
             </Maybe>
-            <header id="header" className={`${styles.header} fixed-top pt-2`}>
+            <header
+                id="header"
+                className={`${styles.header} fixed-top pt-2 pb-2`}>
                 <div className="container d-flex justify-content-between align-items-center py-md-3">
                     <div className="d-flex align-items-center">
                         <Link href="/">
@@ -135,10 +137,10 @@ export default function Header() {
                                         pages.map((page) =>
                                             router.pathname.replace('/', '') !==
                                             page ? (
-                                                <li className="ps-3" key={page}>
+                                                <li key={page}>
                                                     <Link href={`/${page}`}>
                                                         <a
-                                                            className={`link-${page}`}>
+                                                            className={`link-${page} px-3`}>
                                                             {t(
                                                                 `glossary:${page}`
                                                             )}

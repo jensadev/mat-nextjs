@@ -3,16 +3,16 @@
     "about_intro": "{{brand}} är en app som hjälper dig. Här kan du föra statistik över vad {{who}} äter. Spara {{whos}} måltider för att göra vardagen enklare.",
     "about_meals": "Spara dina måltider, vad du äter och när.",
     "about_page": {
+        "bullet_1": "se din historik",
+        "bullet_2": "söka",
+        "bullet_3": "få tips",
+        "bullet_4": "eller bara minnas",
         "lead": "{{brand}} skapades för att hjälpa dig att hålla reda på vad du äter.",
         "lead_2": "När du saknar inspiration och frågan:",
         "lead_3": "-Vad ska vi äta idag?",
         "lead_4": "hänger i luften kan du kolla {{brand}}.",
         "p1": "Syftet med {{brand}} är att hjälpa dig att snabbt och enkelt sparar vad du äter.",
-        "p2": "Du kan sedan använda din sparade data för att",
-        "bullet_1": "se din historik",
-        "bullet_2": "söka",
-        "bullet_3": "få tips",
-        "bullet_4": "eller bara minnas"
+        "p2": "Du kan sedan använda din sparade data för att"
     },
     "about_profile": "kontoinställningar",
     "about_this": "aboutintro",
@@ -28,15 +28,18 @@
     "era": "era",
     "food": "mat",
     "for": "till",
+    "get_what": "hämta {{what}}",
+    "have_log": "se {{who}} sparade {{what}}",
+    "have_logged": "{{who}} har {{num}} sparade {{what}}",
     "legal_page": {
+        "contact": "Kontakta oss om du har några frågor eller funderingar.",
         "cookie_header": "Din integritet är viktig",
         "cookie_lead": "Här hittar du information om vad den här webbplatsen lagrar om dig.",
         "cookie_text_1": "Cookies är små textfiler som lagras på din dator när du besöker en webbplats.",
         "cookie_text_2": "Denna webbplats använder cookies för att komma ihåg när du loggar in och lagra vem du är.",
         "cookie_text_3": "Vi använder också cookies från Google för att studera hur webbplatsen används.",
         "cookie_text_4": "Du kan ändra dina inställningar och avvisa vissa typer av cookies i din webbläsare.",
-        "cookie_text_5": "Du kan också ta bort alla cookies, men kom ihåg att radering av cookies kan förändra hur webbplatsen fungerar.",
-        "contact": "Kontakta oss om du har några frågor eller funderingar."
+        "cookie_text_5": "Du kan också ta bort alla cookies, men kom ihåg att radering av cookies kan förändra hur webbplatsen fungerar."
     },
     "list_of": "{{whos}} {{what}}",
     "lunch": "lunch",
@@ -45,24 +48,25 @@
     "meal_type": "måltidstyp",
     "meals": "måltider",
     "profile": "profil",
-    "whos_what": "{{whos}} {{what}}",
     "profile_page": {
-        "your_email": "Din e-post",
+        "account_bio": "här kan du skriva kort om dig själv, om ditt konto är publikt kan andra se denna text",
+        "account_email": "du är registrerad med...",
         "account_family": "är ditt konto för dig eller din familj",
         "account_public": "du kan välja att göra ditt konto publikt, så att andra kan se det",
-        "account_email": "du är registrerad med...",
-        "account_bio": "här kan du skriva kort om dig själv, om ditt konto är publikt kan andra se denna text"
+        "your_email": "din e-post"
     },
+    "show_all": "alla sparade {{what}}",
+    "suggest_what": "föreslå en {{what}}",
     "the": "den",
     "to_eat": "ska jag äta",
+    "top_list": "toplistan",
+    "users_dishes": "toplista, förslag och inspiration",
     "we": "vi",
+    "whos_what": "{{whos}} {{what}}",
     "you": "du",
     "your": "din",
     "yours": "dina",
     "yourss": "er",
     "yoursss": "era",
-    "yous": "ni",
-    "have_log": "se {{who}} sparade {{what}}",
-    "have_logged": "{{who}} har {{num}} sparade {{what}}",
-    "users_dishes": "toplista, förslag och inspiration"
+    "yous": "ni"
 }
