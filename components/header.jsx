@@ -25,17 +25,17 @@ export default function Header() {
     const {
         ref: loginForm,
         isVisible: isLoginVisible,
-        setIsVisible: setIsLoginVisible
+        setIsVisible: setIsLoginVisible,
     } = useVisible(false);
     const {
         ref: registerForm,
         isVisible: isRegistrationVisible,
-        setIsVisible: setIsRegistrationVisible
+        setIsVisible: setIsRegistrationVisible,
     } = useVisible(false);
     const {
         ref: addMealForm,
         isVisible: isAddMealVisible,
-        setIsVisible: setIsAddMealVisible
+        setIsVisible: setIsAddMealVisible,
     } = useVisible(false);
 
     useEffect(() => {
@@ -72,24 +72,27 @@ export default function Header() {
                                 setIsAddMealVisible(!isAddMealVisible);
                                 hideHint();
                             }}
-                            className={`btn btn-icon ${styles.btnAdd}`}>
+                            className={`btn btn-icon ${styles.btnAdd}`}
+                        >
                             <span className="visually-hidden">
                                 {t('common:add', {
-                                    what: t('glossary:meal')
+                                    what: t('glossary:meal'),
                                 })}
                             </span>
                             {isAddMealVisible ? (
                                 <motion.span
                                     initial={{ rotate: 0 }}
                                     animate={{
-                                        rotate: 180
+                                        rotate: 180,
                                     }}
-                                    className={`material-icons-round md-64 ${styles.close}`}>
+                                    className={`material-icons-round md-64 ${styles.close}`}
+                                >
                                     cancel
                                 </motion.span>
                             ) : (
                                 <motion.span
-                                    className={`material-icons-round md-64 ${styles.open}`}>
+                                    className={`material-icons-round md-64 ${styles.open}`}
+                                >
                                     add
                                 </motion.span>
                             )}
@@ -98,17 +101,19 @@ export default function Header() {
                             <motion.div
                                 initial={{
                                     opacity: 0,
-                                    x: -200
+                                    x: -200,
                                 }}
                                 animate={{
                                     opacity: 1,
-                                    x: 0
+                                    x: 0,
                                 }}
-                                className="position-absolute end-0">
+                                className="position-absolute end-0"
+                            >
                                 <button
                                     type="button"
                                     onClick={() => hideHint()}
-                                    className={`${styles.bubble} ${styles.speech}`}>
+                                    className={`${styles.bubble} ${styles.speech}`}
+                                >
                                     {t('glossary:click_here_to_add')}
                                 </button>
                             </motion.div>
@@ -118,7 +123,8 @@ export default function Header() {
             </Maybe>
             <header
                 id="header"
-                className={`${styles.header} fixed-top pt-2 pb-2`}>
+                className={`${styles.header} fixed-top pt-2 pb-2`}
+            >
                 <div className="container d-flex justify-content-between align-items-center py-md-3">
                     <div className="d-flex align-items-center">
                         <Link href="/">
@@ -140,7 +146,8 @@ export default function Header() {
                                                 <li key={page}>
                                                     <Link href={`/${page}`}>
                                                         <a
-                                                            className={`link-${page} px-3`}>
+                                                            className={`link-${page} px-3`}
+                                                        >
                                                             {t(
                                                                 `glossary:${page}`
                                                             )}
@@ -160,22 +167,24 @@ export default function Header() {
                             <div className="position-relative">
                                 <button
                                     type="button"
-                                    onClick={(e) =>
+                                    onClick={() =>
                                         setIsLoginVisible(!isLoginVisible)
                                     }
-                                    className="btn link-header">
+                                    className="btn link-header"
+                                >
                                     {t('common:login')}
                                 </button>
                             </div>
                             <div className="position-relative">
                                 <button
                                     type="button"
-                                    onClick={(e) =>
+                                    onClick={() =>
                                         setIsRegistrationVisible(
                                             !isRegistrationVisible
                                         )
                                     }
-                                    className="btn link-header">
+                                    className="btn link-header"
+                                >
                                     {t('common:register')}
                                 </button>
                             </div>
@@ -192,7 +201,8 @@ export default function Header() {
                             className={`${styles.overlayAuth} bg-auth`}
                             animate={{ opacity: 1, y: 0 }}
                             initial={{ opacity: 0, y: 200 }}
-                            exit={{ opacity: 0, y: 200 }}>
+                            exit={{ opacity: 0, y: 200 }}
+                        >
                             <LoginForm
                                 isLoginVisible={isLoginVisible}
                                 setIsLoginVisible={setIsLoginVisible}
@@ -206,7 +216,8 @@ export default function Header() {
                             className={`${styles.overlayAuth} bg-auth`}
                             animate={{ opacity: 1, y: 0 }}
                             initial={{ opacity: 0, y: 200 }}
-                            exit={{ opacity: 0, y: 200 }}>
+                            exit={{ opacity: 0, y: 200 }}
+                        >
                             <RegistrationForm
                                 isRegistrationVisible={isRegistrationVisible}
                                 setIsRegistrationVisible={
@@ -226,7 +237,8 @@ export default function Header() {
                         variants={mealFormAnimation}
                         animate={isAddMealVisible ? 'expanded' : 'collapsed'}
                         initial={false}
-                        exit={{ opacity: 0 }}>
+                        exit={{ opacity: 0 }}
+                    >
                         {isAddMealVisible && <MealForm />}
                     </motion.div>
                 </AnimatePresence>

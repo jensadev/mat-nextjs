@@ -21,7 +21,7 @@ export default function ListItem({ meal, onUpdate }) {
     const {
         ref: editMealForm,
         isVisible: isEditMealVisible,
-        setIsVisible: setIsEditMealVisible
+        setIsVisible: setIsEditMealVisible,
     } = useVisible(false);
 
     const openDeleteModal = () => {
@@ -44,19 +44,19 @@ export default function ListItem({ meal, onUpdate }) {
             if (response.status !== 200) {
                 if (response.status === 404) {
                     addToast(t('common:not_found', { what: t('meal') }), {
-                        appearance: 'error'
+                        appearance: 'error',
                     });
                     setDeleteModalIsOpen(false);
                     return;
                 }
                 addToast(t('validation:something_went_wrong'), {
-                    appearance: 'error'
+                    appearance: 'error',
                 });
                 setDeleteModalIsOpen(false);
             }
             if (response.status === 200) {
                 addToast(t('common:deleted', { what: t('glossary:meal') }), {
-                    appearance: 'success'
+                    appearance: 'success',
                 });
 
                 onUpdate();
@@ -64,7 +64,7 @@ export default function ListItem({ meal, onUpdate }) {
             }
         } catch (err) {
             addToast(t('validation:something_went_wrong'), {
-                appearance: 'error'
+                appearance: 'error',
             });
             console.error(err);
         } finally {
@@ -79,7 +79,8 @@ export default function ListItem({ meal, onUpdate }) {
                     <div
                         aria-hidden="true"
                         tabIndex="-1"
-                        className="position-relative me-3">
+                        className="position-relative me-3"
+                    >
                         <span className={styles.breakfast}>
                             {t('glossary:breakfast')[0]}
                         </span>
@@ -96,7 +97,8 @@ export default function ListItem({ meal, onUpdate }) {
                     <div
                         aria-hidden="true"
                         tabIndex="-1"
-                        className="position-relative me-3">
+                        className="position-relative me-3"
+                    >
                         <span className={styles.lunch}>
                             {t('glossary:lunch')[0]}
                         </span>
@@ -113,7 +115,8 @@ export default function ListItem({ meal, onUpdate }) {
                     <div
                         aria-hidden="true"
                         tabIndex="-1"
-                        className="position-relative me-3">
+                        className="position-relative me-3"
+                    >
                         <span className={styles.dinner}>
                             {t('glossary:dinner')[0]}
                         </span>
@@ -147,7 +150,8 @@ export default function ListItem({ meal, onUpdate }) {
                     type="button"
                     id="more"
                     data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                    aria-expanded="false"
+                >
                     <span className="visually-hidden">
                         {t('common:edit_dropdown')}
                     </span>
@@ -160,7 +164,8 @@ export default function ListItem({ meal, onUpdate }) {
                             onClick={() =>
                                 setIsEditMealVisible(!isEditMealVisible)
                             }
-                            className={`btn btn-icon  ${styles.btn}`}>
+                            className={`btn btn-icon  ${styles.btn}`}
+                        >
                             <span className="visually-hidden">
                                 {t('common:edit')}
                             </span>
@@ -171,7 +176,8 @@ export default function ListItem({ meal, onUpdate }) {
                         <button
                             type="submit"
                             onClick={openDeleteModal}
-                            className={`btn btn-icon  ${styles.btn}`}>
+                            className={`btn btn-icon  ${styles.btn}`}
+                        >
                             <span className="visually-hidden">
                                 {t('common:delete')}
                             </span>
@@ -186,7 +192,8 @@ export default function ListItem({ meal, onUpdate }) {
                             onClick={() =>
                                 setIsEditMealVisible(!isEditMealVisible)
                             }
-                            className={`btn btn-icon  ${styles.btn}`}>
+                            className={`btn btn-icon  ${styles.btn}`}
+                        >
                             <span className="visually-hidden">
                                 {t('common:edit')}
                             </span>
@@ -197,7 +204,8 @@ export default function ListItem({ meal, onUpdate }) {
                         <button
                             type="submit"
                             onClick={openDeleteModal}
-                            className={`btn btn-icon  ${styles.btn}`}>
+                            className={`btn btn-icon  ${styles.btn}`}
+                        >
                             <span className="visually-hidden">
                                 {t('common:delete')}
                             </span>
@@ -212,17 +220,19 @@ export default function ListItem({ meal, onUpdate }) {
                 onRequestClose={closeDeleteModal}
                 className={styles.modal}
                 overlayClassName={styles.overlay}
-                contentLabel="Delete Meal Model">
+                contentLabel="Delete Meal Model"
+            >
                 <div className={styles.modalHeader}>
                     <h3 className={styles.modalTitle}>
                         {t('common:delete_something', {
-                            what: t('glossary:meal')
+                            what: t('glossary:meal'),
                         })}
                     </h3>
                     <button
                         type="button"
                         className={`btn ${styles.btnClose}`}
-                        onClick={closeDeleteModal}>
+                        onClick={closeDeleteModal}
+                    >
                         <span className="visually-hidden">
                             {t('common:close')}
                         </span>
@@ -239,14 +249,16 @@ export default function ListItem({ meal, onUpdate }) {
                         type="button"
                         className="btn btn-cancel"
                         disabled={isLoading}
-                        onClick={closeDeleteModal}>
+                        onClick={closeDeleteModal}
+                    >
                         {t('common:no')}
                     </button>
                     <button
                         type="submit"
                         className="btn btn-delete ms-4"
                         disabled={isLoading}
-                        onClick={deleteMeal}>
+                        onClick={deleteMeal}
+                    >
                         {t('common:yes')}
                     </button>
                 </div>
@@ -259,7 +271,8 @@ export default function ListItem({ meal, onUpdate }) {
                     variants={mealFormAnimation}
                     animate={isEditMealVisible ? 'expanded' : 'collapsed'}
                     initial={false}
-                    exit={{ opacity: 0 }}>
+                    exit={{ opacity: 0 }}
+                >
                     {isEditMealVisible && (
                         <MealForm edit={meal} onUpdated={onUpdated} />
                     )}

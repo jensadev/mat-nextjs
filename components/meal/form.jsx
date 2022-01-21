@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { ErrorMessage } from '@hookform/error-message';
 import { format } from 'date-fns';
 import { en, sv } from 'date-fns/locale/';
@@ -27,7 +28,7 @@ export default function MealForm({ edit, onUpdated }) {
     const mealTypes = {
         1: t('glossary:breakfast'),
         2: t('glossary:lunch'),
-        3: t('glossary:dinner')
+        3: t('glossary:dinner'),
     };
 
     const defaultValues = {
@@ -36,14 +37,14 @@ export default function MealForm({ edit, onUpdated }) {
             ? { value: edit.type, label: mealTypes[edit.type] }
             : {
                   value: 3,
-                  label: mealTypes[3]
+                  label: mealTypes[3],
               },
         dish: edit?.Dish
             ? {
                   value: edit.Dish.name,
-                  label: edit.Dish.name
+                  label: edit.Dish.name,
               }
-            : ''
+            : '',
     };
 
     const {
@@ -52,7 +53,7 @@ export default function MealForm({ edit, onUpdated }) {
         control,
         watch,
         setError,
-        formState: { errors }
+        formState: { errors },
     } = useForm({ defaultValues });
 
     const watchDate = watch('date');
@@ -61,7 +62,7 @@ export default function MealForm({ edit, onUpdated }) {
         return addToast(
             t('common:cant_load', { what: t('glossary:dish_plural') }),
             {
-                appearance: 'error'
+                appearance: 'error',
             }
         );
     }
@@ -80,10 +81,11 @@ export default function MealForm({ edit, onUpdated }) {
                 );
                 if (response.status !== 200) {
                     console.log(response.data.errors);
-                    Object.keys(response.data.errors).map((key, index) => {
+                    // eslint-disable-next-line array-callback-return
+                    Object.keys(response.data.errors).map((key) => {
                         setError(key, {
                             type: 'manual',
-                            message: response.data.errors[key][0]
+                            message: response.data.errors[key][0],
                         });
                     });
                 }
@@ -91,7 +93,7 @@ export default function MealForm({ edit, onUpdated }) {
                     addToast(
                         t('common:updated', { what: t('glossary:meal') }),
                         {
-                            appearance: 'success'
+                            appearance: 'success',
                         }
                     );
                     onUpdated();
@@ -100,7 +102,7 @@ export default function MealForm({ edit, onUpdated }) {
                 }
             } catch (err) {
                 addToast(t('validation:something_went_wrong'), {
-                    appearance: 'error'
+                    appearance: 'error',
                 });
                 console.error(err);
             } finally {
@@ -115,10 +117,11 @@ export default function MealForm({ edit, onUpdated }) {
                 );
                 if (response.status !== 201) {
                     console.log(response.data.errors);
-                    Object.keys(response.data.errors).map((key, index) => {
+                    // eslint-disable-next-line array-callback-return
+                    Object.keys(response.data.errors).map((key) => {
                         setError(key, {
                             type: 'manual',
-                            message: response.data.errors[key][0]
+                            message: response.data.errors[key][0],
                         });
                     });
                 }
@@ -126,7 +129,7 @@ export default function MealForm({ edit, onUpdated }) {
                     addToast(
                         t('common:created', { what: t('glossary:meal') }),
                         {
-                            appearance: 'success'
+                            appearance: 'success',
                         }
                     );
                     toggleUpdate(true);
@@ -134,7 +137,7 @@ export default function MealForm({ edit, onUpdated }) {
                 }
             } catch (err) {
                 addToast(t('validation:something_went_wrong'), {
-                    appearance: 'error'
+                    appearance: 'error',
                 });
                 console.error(err);
             } finally {
@@ -158,16 +161,18 @@ export default function MealForm({ edit, onUpdated }) {
                 <div className="container">
                     <form
                         onSubmit={handleSubmit(onSubmit)}
-                        className={styles.mealForm}>
+                        className={styles.mealForm}
+                    >
                         <p className="capitalize-first mb-1 mb-md-2">
                             {format(watchDate || Date.now(), 'eeee', {
-                                locale: router.locale === 'en' ? en : sv
+                                locale: router.locale === 'en' ? en : sv,
                             })}{' '}
                             {t('glossary:the')}
                         </p>
                         <label
                             htmlFor="date"
-                            className="form-label visually-hidden">
+                            className="form-label visually-hidden"
+                        >
                             {`${t('common:date')}*`}
                         </label>
                         <Controller
@@ -175,7 +180,7 @@ export default function MealForm({ edit, onUpdated }) {
                             name="date"
                             rules={{
                                 required: true,
-                                valueAsDate: true
+                                valueAsDate: true,
                             }}
                             render={({ field }) => (
                                 <ReactDatePicker
@@ -186,8 +191,8 @@ export default function MealForm({ edit, onUpdated }) {
                                         preventOverflow: {
                                             enabled: true,
                                             escapeWithReference: false,
-                                            boundariesElement: 'viewport'
-                                        }
+                                            boundariesElement: 'viewport',
+                                        },
                                     }}
                                     locale={router.locale === 'en' ? en : sv}
                                     dateFormat="do LLLL"
@@ -206,7 +211,8 @@ export default function MealForm({ edit, onUpdated }) {
                         </p>
                         <label
                             htmlFor="dish"
-                            className="form-label visually-hidden">
+                            className="form-label visually-hidden"
+                        >
                             {`${t('glossary:dish')}*`}
                         </label>
                         <Controller
@@ -214,7 +220,7 @@ export default function MealForm({ edit, onUpdated }) {
                             control={control}
                             rules={{
                                 required: true,
-                                minLength: 4
+                                minLength: 4,
                             }}
                             render={({ field }) => (
                                 <CreatableSelect
@@ -235,8 +241,8 @@ export default function MealForm({ edit, onUpdated }) {
                                             primary25: '#77D7DB',
                                             primary: '#231F20',
                                             neutral20: '#fff',
-                                            neutral30: '#fff'
-                                        }
+                                            neutral30: '#fff',
+                                        },
                                     })}
                                     isValidNewOption={(option) =>
                                         option.length > 3
@@ -249,7 +255,7 @@ export default function MealForm({ edit, onUpdated }) {
                                         dishes &&
                                         dishes.map((dish) => ({
                                             label: dish.name,
-                                            value: dish.name
+                                            value: dish.name,
                                         }))
                                     }
                                     {...field}
@@ -262,14 +268,15 @@ export default function MealForm({ edit, onUpdated }) {
                         </p>
                         <label
                             htmlFor="type"
-                            className="form-label visually-hidden">
+                            className="form-label visually-hidden"
+                        >
                             {`${t('glossary:meal_type')}*`}
                         </label>
                         <Controller
                             name="type"
                             control={control}
                             rules={{
-                                required: true
+                                required: true,
                             }}
                             render={({ field }) => (
                                 <ReactSelect
@@ -282,22 +289,22 @@ export default function MealForm({ edit, onUpdated }) {
                                             primary25: '#77D7DB',
                                             primary: '#231F20',
                                             neutral20: '#fff',
-                                            neutral30: '#fff'
-                                        }
+                                            neutral30: '#fff',
+                                        },
                                     })}
                                     options={[
                                         {
                                             value: 1,
-                                            label: mealTypes[1]
+                                            label: mealTypes[1],
                                         },
                                         {
                                             value: 2,
-                                            label: mealTypes[2]
+                                            label: mealTypes[2],
                                         },
                                         {
                                             value: 3,
-                                            label: mealTypes[3]
-                                        }
+                                            label: mealTypes[3],
+                                        },
                                     ]}
                                     {...field}
                                 />
@@ -308,7 +315,8 @@ export default function MealForm({ edit, onUpdated }) {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="btn btn-edit w-100">
+                                className="btn btn-edit w-100"
+                            >
                                 {edit?.id
                                     ? t('common:edit')
                                     : t('common:create')}
@@ -319,7 +327,8 @@ export default function MealForm({ edit, onUpdated }) {
                                 disabled={isLoading}
                                 onClick={() => {
                                     reset(defaultValues);
-                                }}>
+                                }}
+                            >
                                 {edit?.id
                                     ? t('common:cancel')
                                     : t('common:reset')}
@@ -328,7 +337,8 @@ export default function MealForm({ edit, onUpdated }) {
                                 <button
                                     type="button"
                                     className="btn btn-outclose w-100 mt-3 mt-md-4"
-                                    onClick={() => onUpdated()}>
+                                    onClick={() => onUpdated()}
+                                >
                                     {t('common:close')}
                                 </button>
                             )}

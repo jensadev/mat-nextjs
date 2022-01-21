@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { ErrorMessage } from '@hookform/error-message';
 import Router, { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -19,7 +20,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
         handleSubmit,
         formState: { errors, isSubmitted, isDirty },
         setError,
-        clearErrors
+        clearErrors,
     } = useForm();
 
     const onSubmit = async (values) => {
@@ -33,10 +34,11 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
             );
             if (response.status !== 200) {
                 console.table(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
+                // eslint-disable-next-line array-callback-return
+                Object.keys(response.data.errors).map((key) => {
                     setError(key, {
                         type: 'manual',
-                        message: response.data.errors[key][0]
+                        message: response.data.errors[key][0],
                     });
                 });
             }
@@ -45,7 +47,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                 addToast(
                     t('validation:what_success', { what: t('common:login') }),
                     {
-                        appearance: 'success'
+                        appearance: 'success',
                     }
                 );
                 window.localStorage.setItem(
@@ -57,7 +59,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
             }
         } catch (error) {
             addToast(t('validation:what_error', { what: t('common:login') }), {
-                appearance: 'error'
+                appearance: 'error',
             });
             console.error(error);
         } finally {
@@ -73,7 +75,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                     <button
                         type="button"
                         className={`btn ${styles.btn}`}
-                        onClick={(e) => setIsLoginVisible(!isLoginVisible)}>
+                        onClick={() => setIsLoginVisible(!isLoginVisible)}
+                    >
                         <span className="visually-hidden">
                             {t('common:close')}
                         </span>
@@ -89,7 +92,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                     onSubmit={handleSubmit(onSubmit)}
                     onChange={() => {
                         if (isSubmitted && isDirty) clearErrors();
-                    }}>
+                    }}
+                >
                     <fieldset className="mb-3">
                         <label htmlFor="email" className="visually-hidden">
                             {`${t('common:email')}`}
@@ -103,7 +107,7 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                             placeholder={`${t('common:email')}`}
                             {...register('email', {
                                 required: true,
-                                pattern: /^\S+@\S+$/i
+                                pattern: /^\S+@\S+$/i,
                             })}
                         />
                         <ErrorMessage errors={errors} name="email" />
@@ -128,7 +132,8 @@ export default function LoginForm({ setIsLoginVisible, isLoginVisible }) {
                     <button
                         className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
                         type="submit"
-                        disabled={isLoading}>
+                        disabled={isLoading}
+                    >
                         {isLoading ? (
                             <>
                                 <span

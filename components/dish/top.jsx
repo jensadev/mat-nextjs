@@ -18,7 +18,7 @@ export default function TopDishes() {
     if (error) {
         return addToast(
             t('common:cant_load', {
-                what: `${t('common:recent')} ${t('glossary:dish_plural')}`
+                what: `${t('common:recent')} ${t('glossary:dish_plural')}`,
             })
         );
     }
@@ -28,13 +28,15 @@ export default function TopDishes() {
             initial={{ y: 300, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -300, opacity: 0 }}
-            className={`col-md mb-3 m-2 ${styles.bgTop}`}>
+            className={`col-md mb-3 m-2 ${styles.bgTop}`}
+        >
             {!data && (
                 <div className="position-absolute top-50 start-50 translate-middle">
                     <div
                         className="spinner-border"
                         style={{ width: '4rem', height: '4rem' }}
-                        role="status">
+                        role="status"
+                    >
                         <span className="visually-hidden">
                             {t('common:loading')}...
                         </span>
@@ -46,7 +48,8 @@ export default function TopDishes() {
                     className="hero-h2-nolink"
                     initial={{ x: 300, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: -300, opacity: 0 }}>
+                    exit={{ x: -300, opacity: 0 }}
+                >
                     {t('glossary:top_list')}
                 </motion.h2>
                 <ul className={styles.list}>

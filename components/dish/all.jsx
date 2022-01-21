@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useTranslation } from 'next-i18next';
 import { useEffect, useRef } from 'react';
 import { useToasts } from 'react-toast-notifications';
@@ -15,7 +16,7 @@ export default function AllDishes() {
     const { t } = useTranslation(['common', 'glossary']);
     const { addToast } = useToasts();
     const loader = useRef(null);
-    const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
+    const { data, error, size, setSize } = useSWRInfinite(
         (index) =>
             `${process.env.apiUrl}/dishes?size=${PAGE_SIZE}&page=${index}`,
         fetcher
@@ -29,7 +30,7 @@ export default function AllDishes() {
     const isEmpty = data?.[0]?.length === 0;
     const isReachingEnd =
         isEmpty || (data && data[data.length - 1]?.length < PAGE_SIZE);
-    const isRefreshing = isValidating && data && data.length === size;
+    // const isRefreshing = isValidating && data && data.length === size;
 
     const handleObserver = (entities) => {
         const target = entities[0];
@@ -42,7 +43,7 @@ export default function AllDishes() {
         const options = {
             root: null,
             rootMargin: '20px',
-            threshold: 1.0
+            threshold: 1.0,
         };
         // initialize IntersectionObserver
         // and attaching to Load More div
@@ -55,7 +56,7 @@ export default function AllDishes() {
     if (error) {
         return addToast(
             t('common:cant_load', {
-                what: `${t('common:recent')} ${t('glossary:dish_plural')}`
+                what: `${t('common:recent')} ${t('glossary:dish_plural')}`,
             })
         );
     }
@@ -73,7 +74,8 @@ export default function AllDishes() {
                         <div
                             className="spinner-border"
                             style={{ width: '4rem', height: '4rem' }}
-                            role="status">
+                            role="status"
+                        >
                             <span className="visually-hidden">
                                 {t('common:loading')}...
                             </span>
@@ -97,7 +99,8 @@ export default function AllDishes() {
                     disabled={isLoadingMore || isReachingEnd}
                     onClick={() => {
                         setSize(size + 1);
-                    }}>
+                    }}
+                >
                     {isLoadingMore ? (
                         <>
                             <span
@@ -113,7 +116,7 @@ export default function AllDishes() {
                     ) : (
                         <>
                             {t('common:load_more', {
-                                what: t('glossary:dish_plural')
+                                what: t('glossary:dish_plural'),
                             })}
                             <span className="material-icons-round md-48">
                                 read_more

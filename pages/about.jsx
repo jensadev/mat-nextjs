@@ -12,9 +12,9 @@ export async function getStaticProps({ locale }) {
             ...(await serverSideTranslations(locale, [
                 'common',
                 'glossary',
-                'validation'
-            ]))
-        }
+                'validation',
+            ])),
+        },
     };
 }
 
@@ -31,11 +31,12 @@ export default function About() {
                     initial="hidden"
                     animate="show"
                     variants={pageItem}
-                    className="page-header bg-about">
+                    className="page-header bg-about"
+                >
                     <div className="container">
                         <h1 className="page-heading">
                             {`${t('common:what_about', {
-                                what: t('common:this_web')
+                                what: t('common:this_web'),
                             })}`}
                         </h1>
                     </div>

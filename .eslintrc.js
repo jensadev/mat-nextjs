@@ -2,12 +2,12 @@ module.exports = {
     root: true,
     env: {
         browser: true,
-        es2021: true
+        es2021: true,
     },
     settings: {
         react: {
-            version: 'detect' // Automatically detect the react version
-        }
+            version: 'detect', // Automatically detect the react version
+        },
     },
     extends: [
         'eslint:recommended',
@@ -15,14 +15,15 @@ module.exports = {
         'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
         'airbnb',
-        'plugin:prettier/recommended' // Make this the last element so prettier config overrides other formatting rules
+        'plugin:@next/next/recommended',
+        'plugin:prettier/recommended', // Make this the last element so prettier config overrides other formatting rules
     ],
     parserOptions: {
         ecmaFeatures: {
-            jsx: true
+            jsx: true,
         },
         ecmaVersion: 12,
-        sourceType: 'module'
+        sourceType: 'module',
     },
     plugins: ['react', 'prettier', 'simple-import-sort'],
     rules: {
@@ -36,11 +37,11 @@ module.exports = {
             {
                 components: ['Link'],
                 specialLink: ['hrefLeft', 'hrefRight'],
-                aspects: ['invalidHref', 'preferButton']
-            }
-        ]
+                aspects: ['invalidHref', 'preferButton'],
+            },
+        ],
     },
     globals: {
-        React: 'writable'
-    }
+        React: 'writable',
+    },
 };

@@ -15,9 +15,9 @@ export async function getStaticProps({ locale }) {
             ...(await serverSideTranslations(locale, [
                 'common',
                 'glossary',
-                'validation'
-            ]))
-        }
+                'validation',
+            ])),
+        },
     };
 }
 
@@ -40,7 +40,8 @@ export default function Profile() {
                         variants={pageItem}
                         initial="hidden"
                         animate="show"
-                        className="page-header bg-profile">
+                        className="page-header bg-profile"
+                    >
                         <div className="container">
                             <h1 className="page-heading">
                                 {currentUser && currentUser.family

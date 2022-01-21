@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useTranslation } from 'next-i18next';
 import { useEffect, useRef } from 'react';
 import { useToasts } from 'react-toast-notifications';
@@ -20,7 +21,7 @@ export default function MealList() {
     //     fetcher
     // );
     const loader = useRef(null);
-    const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
+    const { data, error, mutate, size, setSize } = useSWRInfinite(
         (index) =>
             `${process.env.apiUrl}/meals?size=${PAGE_SIZE}&page=${index}`,
         fetcher
@@ -34,7 +35,7 @@ export default function MealList() {
     const isEmpty = data?.[0]?.length === 0;
     const isReachingEnd =
         isEmpty || (data && data[data.length - 1]?.length < PAGE_SIZE);
-    const isRefreshing = isValidating && data && data.length === size;
+    // const isRefreshing = isValidating && data && data.length === size;
 
     const handleObserver = (entities) => {
         const target = entities[0];
@@ -47,7 +48,7 @@ export default function MealList() {
         const options = {
             root: null,
             rootMargin: '20px',
-            threshold: 1.0
+            threshold: 1.0,
         };
         // initialize IntersectionObserver
         // and attaching to Load More div
@@ -60,7 +61,7 @@ export default function MealList() {
     if (error) {
         return addToast(
             t('common:cant_load', {
-                what: `${t('common:recent')} ${t('glossary:meal_plural')}`
+                what: `${t('common:recent')} ${t('glossary:meal_plural')}`,
             })
         );
     }
@@ -94,7 +95,8 @@ export default function MealList() {
                         <div
                             className="spinner-border"
                             style={{ width: '4rem', height: '4rem' }}
-                            role="status">
+                            role="status"
+                        >
                             <span className="visually-hidden">
                                 {t('common:loading')}...
                             </span>
@@ -130,7 +132,7 @@ export default function MealList() {
                 ) : (
                     <li>
                         {t('common:no_what_yet', {
-                            what: t('glossary:meal_plural')
+                            what: t('glossary:meal_plural'),
                         })}
                     </li>
                 )}
@@ -143,7 +145,8 @@ export default function MealList() {
                     disabled={isLoadingMore || isReachingEnd}
                     onClick={() => {
                         setSize(size + 1);
-                    }}>
+                    }}
+                >
                     {isLoadingMore ? (
                         <>
                             <span
@@ -158,7 +161,7 @@ export default function MealList() {
                         t('common:no_more', { what: t('glossary:meal_plural') })
                     ) : (
                         t('common:load_more', {
-                            what: t('glossary:meal_plural')
+                            what: t('glossary:meal_plural'),
                         })
                     )}
                 </button>

@@ -1,4 +1,4 @@
-window.addEventListener('load', (event) => {
+window.addEventListener('load', () => {
     let prevScrollpos = window.pageYOffset;
 
     window.onscroll = () => {
@@ -14,9 +14,8 @@ window.addEventListener('load', (event) => {
             const bgColor = window.getComputedStyle(bg).backgroundColor;
 
             if (currentScrollPos > 0) {
-                document.querySelector(
-                    '#header'
-                ).style.backgroundColor = bgColor;
+                document.querySelector('#header').style.backgroundColor =
+                    bgColor;
             } else {
                 document.querySelector('#header').style.backgroundColor =
                     'transparent';

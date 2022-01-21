@@ -49,21 +49,24 @@ export default function Footer() {
                                 {t('common:created_by')}{' '}
                                 <a
                                     href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#101;&#110;&#115;&#97;&#110;&#100;&#114;&#101;&#97;&#115;&#115;&#111;&#110;&#55;&#55;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                >
                                     &#74;&#101;&#110;&#115;&#32;&#65;&#110;&#100;&#114;&#101;&#97;&#115;&#115;&#111;&#110;
                                 </a>{' '}
                                 {t('common:using')}{' '}
                                 <a
                                     target="_blank"
                                     href="https://nextjs.org/"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                >
                                     Next.js
                                 </a>{' '}
                                 {t('common:deployed_with')}{' '}
                                 <a
                                     target="_blank"
                                     href="https://vercel.com/"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                >
                                     Vercel
                                 </a>
                                 .
@@ -73,7 +76,8 @@ export default function Footer() {
                                 <a
                                     target="_blank"
                                     href="https://github.com/jensnti/mat-nextjs"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                >
                                     GitHub
                                 </a>
                                 .
@@ -83,7 +87,8 @@ export default function Footer() {
                                 <a
                                     target="_blank"
                                     href="https://github.com/jensnti/mat-nextjs/issues"
-                                    rel="noreferrer">
+                                    rel="noreferrer"
+                                >
                                     {t('common:issue')}
                                 </a>
                                 .

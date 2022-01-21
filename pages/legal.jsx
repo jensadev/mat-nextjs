@@ -12,9 +12,9 @@ export async function getStaticProps({ locale }) {
             ...(await serverSideTranslations(locale, [
                 'common',
                 'glossary',
-                'validation'
-            ]))
-        }
+                'validation',
+            ])),
+        },
     };
 }
 
@@ -31,7 +31,8 @@ export default function Legal() {
                     variants={pageItem}
                     initial="hidden"
                     animate="show"
-                    className="page-header bg-legal">
+                    className="page-header bg-legal"
+                >
                     <div className="container">
                         <h1 className="page-heading">{t('common:terms')}</h1>
                     </div>

@@ -24,7 +24,8 @@ const MyApp = ({ Component, pageProps, router }) => (
             components={{ Toast: CustomToast }}
             placement="bottom-right"
             autoDismiss
-            autoDismissTimeout={4000}>
+            autoDismissTimeout={4000}
+        >
             <AppWrapper>
                 <Component {...pageProps} key={router.route} />
             </AppWrapper>

@@ -26,7 +26,7 @@ export default function ProfileForm() {
         handleSubmit,
         reset,
         setError,
-        formState: { errors, dirtyFields }
+        formState: { errors, dirtyFields },
     } = useForm({});
 
     useEffect(() => {
@@ -34,14 +34,14 @@ export default function ProfileForm() {
             family: data?.user.family,
             email: data?.user.email,
             public: data?.user.public,
-            bio: data?.user.bio
+            bio: data?.user.bio,
         });
     }, [data, reset]);
 
     if (error) {
         return addToast(
             t('common:cant_load', {
-                what: t('common:user')
+                what: t('common:user'),
             })
         );
     }
@@ -74,16 +74,17 @@ export default function ProfileForm() {
                 //     appearance: 'error'
                 // });
                 console.log(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
+                // eslint-disable-next-line array-callback-return
+                Object.keys(response.data.errors).map((key) => {
                     setError(key, {
                         type: 'manual',
-                        message: response.data.errors[key][0]
+                        message: response.data.errors[key][0],
                     });
                 });
             }
             if (response.status === 200) {
                 addToast(t('common:updated', { what: t('glossary:meal') }), {
-                    appearance: 'success'
+                    appearance: 'success',
                 });
                 if (dirtyFields.family) {
                     currentUser.family = response.data.updatedUser.family;
@@ -104,7 +105,7 @@ export default function ProfileForm() {
             }
         } catch (err) {
             addToast(t('validation:something_went_wrong'), {
-                appearance: 'error'
+                appearance: 'error',
             });
             console.error(err);
         } finally {
@@ -126,7 +127,8 @@ export default function ProfileForm() {
                         <p>{t('glossary:profile_page.account_family')}</p>
                         <label
                             htmlFor="family"
-                            className="form-label visually-hidden">
+                            className="form-label visually-hidden"
+                        >
                             {t('glossary:family')}
                         </label>
                         <input
@@ -139,7 +141,8 @@ export default function ProfileForm() {
                         <p>{t('glossary:profile_page.account_public')}</p>
                         <label
                             htmlFor="public"
-                            className="form-label visually-hidden">
+                            className="form-label visually-hidden"
+                        >
                             {t('glossary:public')}
                         </label>
                         <input
@@ -152,7 +155,8 @@ export default function ProfileForm() {
                         <p>{t('glossary:profile_page.account_email')}</p>
                         <label
                             htmlFor="email"
-                            className="form-label visually-hidden">
+                            className="form-label visually-hidden"
+                        >
                             {t('common:email')}
                         </label>
                         <input
@@ -166,7 +170,7 @@ export default function ProfileForm() {
                             placeholder="Email"
                             {...register('email', {
                                 required: true,
-                                pattern: /^\S+@\S+$/i
+                                pattern: /^\S+@\S+$/i,
                             })}
                         />
                         <ErrorMessage errors={errors} name="user.email" />
@@ -175,7 +179,8 @@ export default function ProfileForm() {
                         <p>{t('glossary:profile_page.account_bio')}</p>
                         <label
                             htmlFor="bio"
-                            className="form-label visually-hidden">
+                            className="form-label visually-hidden"
+                        >
                             {t('glossary:bio')}
                         </label>
                         <textarea
@@ -187,8 +192,8 @@ export default function ProfileForm() {
                             {...register('bio', {
                                 maxLength: {
                                     value: 255,
-                                    message: t('validation:max', { num: 255 })
-                                }
+                                    message: t('validation:max', { num: 255 }),
+                                },
                             })}
                         />
                         <ErrorMessage
@@ -202,7 +207,8 @@ export default function ProfileForm() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="btn btn-edit w-100 d-flex align-items-center justify-content-center">
+                        className="btn btn-edit w-100 d-flex align-items-center justify-content-center"
+                    >
                         {isLoading ? (
                             <>
                                 <span

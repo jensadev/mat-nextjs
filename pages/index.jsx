@@ -14,9 +14,9 @@ export async function getStaticProps({ locale }) {
             ...(await serverSideTranslations(locale, [
                 'common',
                 'glossary',
-                'validation'
-            ]))
-        }
+                'validation',
+            ])),
+        },
     };
 }
 
@@ -28,14 +28,14 @@ export default function Home() {
         show: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.5
-            }
-        }
+                staggerChildren: 0.5,
+            },
+        },
     };
 
     const item = {
         hidden: { opacity: 0, y: -400 },
-        show: { opacity: 1, y: 0 }
+        show: { opacity: 1, y: 0 },
     };
 
     const { t } = useTranslation('glossary', 'common');
@@ -48,12 +48,14 @@ export default function Home() {
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="d-flex h-100 flex-column">
+                className="d-flex h-100 flex-column"
+            >
                 <Maybe test={isLoggedIn}>
                     <Link href="/meals">
                         <motion.div
                             variants={item}
-                            className="bg-meal meal pointer">
+                            className="bg-meal meal pointer"
+                        >
                             <div className="row-calc container py-5">
                                 <h1 className="hero-h1 pt-5">
                                     {t('glossary:meal_plural')}
@@ -70,13 +72,13 @@ export default function Home() {
                                                       ? t(
                                                             'glossary:meal_plural'
                                                         )
-                                                      : t('glossary:meal')
+                                                      : t('glossary:meal'),
                                           })
                                         : t('glossary:have_log', {
                                               who: currentUser?.family
                                                   ? t('glossary:yoursss')
                                                   : t('glossary:yours'),
-                                              what: t('glossary:meals')
+                                              what: t('glossary:meals'),
                                           })}
                                 </p>
                             </div>
@@ -85,7 +87,8 @@ export default function Home() {
                     <Link href="/dishes">
                         <motion.div
                             variants={item}
-                            className="bg-dish dish pointer">
+                            className="bg-dish dish pointer"
+                        >
                             <div className="row-calc container py-5">
                                 <h1 className="hero-h1">
                                     {t('glossary:dish_plural')}
@@ -99,7 +102,8 @@ export default function Home() {
                     <Link href="/profile">
                         <motion.div
                             variants={item}
-                            className="bg-profile profile pointer">
+                            className="bg-profile profile pointer"
+                        >
                             <div className="row-calc container py-5 mb-md-3">
                                 <h1 className="hero-h1">
                                     {currentUser && currentUser.family
@@ -133,13 +137,14 @@ export default function Home() {
                     <Link href="/about">
                         <motion.div
                             variants={item}
-                            className="bg-about about pointer">
+                            className="bg-about about pointer"
+                        >
                             <div className="row-calc container py-5 mb-md-3">
                                 <h1 className="hero-h1">{t('common:about')}</h1>
                                 <p className="lead">
                                     {t('glossary:about_intro', {
                                         brand: siteTitle,
-                                        who: t('glossary:you')
+                                        who: t('glossary:you'),
                                     })}
                                 </p>
                             </div>

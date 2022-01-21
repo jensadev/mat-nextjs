@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { ErrorMessage } from '@hookform/error-message';
 import Router, { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -11,7 +12,7 @@ import styles from './form.module.scss';
 
 export default function RegistrationForm({
     setIsRegistrationVisible,
-    isRegistrationVisible
+    isRegistrationVisible,
 }) {
     const [isLoading, setLoading] = useState(false);
     const { t } = useTranslation(['common', 'glossary', 'validation']);
@@ -22,7 +23,7 @@ export default function RegistrationForm({
         handleSubmit,
         setError,
         clearErrors,
-        formState: { errors, isSubmitted, isDirty }
+        formState: { errors, isSubmitted, isDirty },
     } = useForm();
 
     const onSubmit = async (values) => {
@@ -37,10 +38,11 @@ export default function RegistrationForm({
             );
             if (response.status !== 201) {
                 // console.table(response.data.errors);
-                Object.keys(response.data.errors).map((key, index) => {
+                // eslint-disable-next-line array-callback-return
+                Object.keys(response.data.errors).map((key) => {
                     setError(key, {
                         type: 'manual',
-                        message: response.data.errors[key][0]
+                        message: response.data.errors[key][0],
                     });
                 });
             }
@@ -48,7 +50,7 @@ export default function RegistrationForm({
             if (response.data?.user) {
                 addToast(
                     t('validation:what_success', {
-                        what: t('common:registration')
+                        what: t('common:registration'),
                     }),
                     { appearance: 'success' }
                 );
@@ -63,7 +65,7 @@ export default function RegistrationForm({
             addToast(
                 t('validation:what_error', { what: t('common:registration') }),
                 {
-                    appearance: 'error'
+                    appearance: 'error',
                 }
             );
             console.error(error);
@@ -81,9 +83,10 @@ export default function RegistrationForm({
                     <button
                         type="button"
                         className={`btn ${styles.btn}`}
-                        onClick={(e) =>
+                        onClick={() =>
                             setIsRegistrationVisible(!isRegistrationVisible)
-                        }>
+                        }
+                    >
                         <span className="visually-hidden">
                             {t('common:close')}
                         </span>
@@ -99,7 +102,8 @@ export default function RegistrationForm({
                     onSubmit={handleSubmit(onSubmit)}
                     onChange={() => {
                         if (isSubmitted && isDirty) clearErrors();
-                    }}>
+                    }}
+                >
                     <fieldset className="mb-3">
                         <label htmlFor="email" className="visually-hidden">
                             {`${t('common:email')}*`}
@@ -115,7 +119,7 @@ export default function RegistrationForm({
                             placeholder={`${t('common:email')}*`}
                             {...register('email', {
                                 required: true,
-                                pattern: /^\S+@\S+$/i
+                                pattern: /^\S+@\S+$/i,
                             })}
                         />
                         <ErrorMessage errors={errors} name="user.email" />
@@ -142,7 +146,8 @@ export default function RegistrationForm({
                     <fieldset className="mb-3">
                         <label
                             htmlFor="passwordConfirmation"
-                            className="visually-hidden">
+                            className="visually-hidden"
+                        >
                             {`${t('common:password_confirmation')}*`}
                         </label>
                         <input
@@ -163,7 +168,7 @@ export default function RegistrationForm({
                                 'common:password_confirmation'
                             )}*`}
                             {...register('passwordConfirmation', {
-                                required: true
+                                required: true,
                             })}
                         />
                         <ErrorMessage
@@ -174,7 +179,8 @@ export default function RegistrationForm({
                     <button
                         className="btn btn-auth w-100 d-flex align-items-center justify-content-center"
                         type="submit"
-                        disabled={isLoading}>
+                        disabled={isLoading}
+                    >
                         {isLoading ? (
                             <>
                                 <span

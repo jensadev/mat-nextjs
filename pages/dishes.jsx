@@ -17,9 +17,9 @@ export async function getStaticProps({ locale }) {
             ...(await serverSideTranslations(locale, [
                 'common',
                 'glossary',
-                'validation'
-            ]))
-        }
+                'validation',
+            ])),
+        },
     };
 }
 
@@ -37,7 +37,8 @@ export default function Dishes() {
                         variants={pageItem}
                         initial="hidden"
                         animate="show"
-                        className="page-header bg-dish">
+                        className="page-header bg-dish"
+                    >
                         <div className="container">
                             <h1 className="page-heading">
                                 {t('glossary:list_of', {
@@ -45,7 +46,7 @@ export default function Dishes() {
                                         currentUser && currentUser.family
                                             ? t('glossary:era')
                                             : t('glossary:dina'),
-                                    what: t('glossary:dish_plural')
+                                    what: t('glossary:dish_plural'),
                                 })}
                             </h1>
                         </div>

@@ -16,7 +16,7 @@ export function AppWrapper({ children }) {
         updated: false,
         toggleUpdate: (e) => {
             sharedState.updated = e;
-        }
+        },
     };
 
     return (

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
@@ -10,18 +11,13 @@ export default function ListItem({ dish, count }) {
     const { t } = useTranslation(['glossary']);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     const [editDish, setEditDish] = useState(false);
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading] = useState(false);
 
     const defaultValues = {
-        dish: dish.name
+        dish: dish.name,
     };
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors, touchedFields }
-    } = useForm({ defaultValues });
+    const { register, handleSubmit } = useForm({ defaultValues });
 
     const openDeleteModal = () => {
         setDeleteModalIsOpen(true);
@@ -51,7 +47,8 @@ export default function ListItem({ dish, count }) {
             animate={{ y: 0, opacity: 1 }}
             className={`${styles.listItem} ${
                 count ? styles.noFlow : styles.listFlex
-            }`}>
+            }`}
+        >
             {count && (
                 <span className={`${styles.badge} me-2 me-md-3`}>{count}</span>
             )}
@@ -69,7 +66,8 @@ export default function ListItem({ dish, count }) {
                         type="button"
                         id="more"
                         data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                        aria-expanded="false"
+                    >
                         <span className="material-icons-round">more_vert</span>
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="more">
@@ -77,7 +75,8 @@ export default function ListItem({ dish, count }) {
                             <button
                                 type="submit"
                                 onClick={setEditDish}
-                                className={`btn btn-icon  ${styles.btn}`}>
+                                className={`btn btn-icon  ${styles.btn}`}
+                            >
                                 <span className="visually-hidden">
                                     {t('common:edit')}
                                 </span>
@@ -90,7 +89,8 @@ export default function ListItem({ dish, count }) {
                             <button
                                 type="submit"
                                 onClick={openDeleteModal}
-                                className={`btn btn-icon  ${styles.btn}`}>
+                                className={`btn btn-icon  ${styles.btn}`}
+                            >
                                 <span className="visually-hidden">
                                     {t('common:delete')}
                                 </span>
@@ -107,17 +107,19 @@ export default function ListItem({ dish, count }) {
                 onRequestClose={closeDeleteModal}
                 className={styles.modal}
                 overlayClassName={styles.overlay}
-                contentLabel="Delete Dish Model">
+                contentLabel="Delete Dish Model"
+            >
                 <div className={styles.modalHeader}>
                     <h3 className={styles.modalTitle}>
                         {t('common:delete_something', {
-                            what: t('glossary:dish')
+                            what: t('glossary:dish'),
                         })}
                     </h3>
                     <button
                         type="button"
                         className={`btn ${styles.btnClose}`}
-                        onClick={closeDeleteModal}>
+                        onClick={closeDeleteModal}
+                    >
                         <span className="visually-hidden">
                             {t('common:close')}
                         </span>
@@ -134,14 +136,16 @@ export default function ListItem({ dish, count }) {
                         type="button"
                         className="btn btn-cancel"
                         disabled={isLoading}
-                        onClick={closeDeleteModal}>
+                        onClick={closeDeleteModal}
+                    >
                         {t('common:no')}
                     </button>
                     <button
                         type="submit"
                         className="btn btn-delete ms-4"
                         disabled={isLoading}
-                        onClick={deleteDish}>
+                        onClick={deleteDish}
+                    >
                         {t('common:yes')}
                     </button>
                 </div>

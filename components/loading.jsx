@@ -7,7 +7,8 @@ export default function Loading() {
             <div
                 className="spinner-border"
                 style={{ width: '4rem', height: '4rem' }}
-                role="status">
+                role="status"
+            >
                 <span className="visually-hidden">
                     {t('common:loading')}...
                 </span>

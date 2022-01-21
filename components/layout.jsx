@@ -13,11 +13,6 @@ export default function Layout({ children }) {
     return (
         <>
             <Head>
-                <script
-                    async
-                    src="https://www.googletagmanager.com/gtag/js?id=G-H5GZSB80BD"
-                />
-                <script async src="/javascript/ga.js" />
                 <link
                     rel="preload"
                     href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
@@ -67,7 +62,8 @@ export default function Layout({ children }) {
                 disableButtonStyles="true"
                 buttonClasses="btn btn-consent d-flex align-items-center justify-content-center px-3 m-3"
                 buttonText={t('common:cookie_consent')}
-                contentClasses="pb-3">
+                contentClasses="pb-3"
+            >
                 {t('common:cookie_text')}
             </CookieConsent>
             <script src="/javascript/scrollhide.js" defer />
